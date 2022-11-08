@@ -2,11 +2,11 @@ body {
   color: #333; }
 
 .bg-header-color {
-  background: #144dc6;
-  background: -moz-linear-gradient(0deg, #144dc6 0%, #1776c7 100%);
-  background: -webkit-linear-gradient(0deg, #144dc6 0%, #1776c7 100%);
-  background: linear-gradient(0deg, #144dc6 0%, #1776c7 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#144dc6",endColorstr="#1776c7",GradientType=1); }
+  background: #02274a;
+  background: -moz-radial-gradient(circle, #02274a 0%, #0e3f6c 100%);
+  background: -webkit-radial-gradient(circle, #02274a 0%, #0e3f6c 100%);
+  background: radial-gradient(circle, #02274a 0%, #0e3f6c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#02274a", endColorstr="#0e3f6c", GradientType=1); }
 
 .layout-fixed .main-sidebar {
   top: calc(4rem - 1px); }
@@ -24,9 +24,38 @@ body {
   color: #333; }
   .layout-fixed .content-wrapper .content {
     color: #333; }
-.layout-fixed div.rounded {
+.layout-fixed div.c-rounded {
   -webkit-border-radius: 8px !important;
   -moz-border-radius: 8px !important;
   border-radius: 8px !important; }
+.layout-fixed .diagrams .diagrams-block {
+  border: 3px solid #001f3f;
+  height: calc(100vh - 7.4rem);
+  background: #91c9ff;
+  background: -moz-linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
+  background: -webkit-linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
+  background: linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#91c9ff", endColorstr="#96cafb", GradientType=1); }
+  .layout-fixed .diagrams .diagrams-block .dig-header {
+    position: relative;
+    margin-top: -3px;
+    margin-left: -3px;
+    margin-right: -3px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px; }
+  .layout-fixed .diagrams .diagrams-block .diagrams-item {
+    background: #243747;
+    background: linear-gradient(90deg, #243747 0%, #4b74a0 100%);
+    background: -moz-linear-gradient(90deg, #243747 0%, #4b74a0 100%);
+    background: -webkit-linear-gradient(90deg, #243747 0%, #4b74a0 100%);
+    width: 100%; }
+    .layout-fixed .diagrams .diagrams-block .diagrams-item .dig-icon {
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px; }
 
 /*# sourceMappingURL=custom.css.map */

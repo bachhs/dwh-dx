@@ -5,41 +5,193 @@
 <template>
 	<el-card class="box-card w-100 flex-fill"
 		:body-style="{ padding: '0.5rem 0.8rem' }">
-		<div class="d-flex mt-1">
-			<div class="flex-fill d-flex flex-column m-1 mr-4 ml-0 p-2 rounded" style="border: 2px solid #e0e0e0; height: calc(100vh - 7.4rem); background-color: #f0f0f0;">
-				<div class="text-center mb-3">NGUỒN DỮ LIỆU</div>
-				<div class="text-center flex-fill d-flex flex-column pl-2 pr-2">
-					<div class="mb-4 flex-fill d-flex align-items-center justify-content-center pt-3 pb-3 rounded" style="border: 2px solid #e0e0e0; background-color: #fff;">
-						<img src="/custom-img/svg-icon/ms-excel.svg" style="width: 8rem;" />
+		<div class="d-flex mt-1 diagrams">
+			<div class="d-flex flex-column m-1 ml-0 p-0 c-rounded diagrams-block"
+					style="flex-basis: 20% !important;">
+				<div class="text-center mb-3 mt-0 bg-navy p-2 dig-header">
+					<strong class="text-white">DỮ LIỆU NGUỒN</strong>
+				</div>
+				<div class="text-center flex-fill d-flex flex-column pl-3 pr-3 justify-content-center">
+					<div class="mb-4 d-flex align-items-center justify-content-center pt-2 pb-2 c-rounded diagrams-item">
+						<div class="d-flex align-items-center pl-3 pr-3 w-100">
+							<div class="dig-icon p-2">
+								<img src="/custom-img/svg-icon/thong-tin-truyen-thong.svg" style="width: 4rem;" />
+							</div>
+							<div class="ml-2 flex-fill text-white">
+								Sở Thông Tin & Truyền Thông
+							</div>
+						</div>
 					</div>
-					<div class="mb-4 flex-fill d-flex align-items-center justify-content-center pt-3 pb-3 rounded" style="border: 2px solid #e0e0e0; background-color: #fff;">
-						<img src="/custom-img/svg-icon/database-icon.svg" style="width: 8rem;" />
+					<div class="mb-4 d-flex align-items-center justify-content-center pt-2 pb-2 c-rounded diagrams-item">
+						<div class="d-flex align-items-center pl-3 pr-3 w-100">
+							<div class="dig-icon p-2">
+								<img src="/custom-img/svg-icon/medical.svg" style="width: 4rem;" />
+							</div>
+							<div class="ml-2 flex-fill text-white">
+								Sở Y Tế
+							</div>
+						</div>
 					</div>
-					<div class="mb-4 flex-fill d-flex align-items-center justify-content-center pt-3 pb-3 rounded" style="border: 2px solid #e0e0e0; background-color: #fff;">
-						<img src="/custom-img/svg-icon/file-icon.svg" style="width: 8rem;" />
+					<div class="mb-4 d-flex align-items-center justify-content-center pt-2 pb-2 c-rounded diagrams-item">
+						<div class="d-flex align-items-center pl-3 pr-3 w-100">
+							<div class="dig-icon p-2">
+								<img src="/custom-img/svg-icon/traffic-jam.svg" style="width: 4rem;" />
+							</div>
+							<div class="ml-2 flex-fill text-white">
+								Sở Giao thông<br/>vận tải
+							</div>
+						</div>
 					</div>
-					<div class="mb-2 flex-fill d-flex align-items-center justify-content-center pt-3 pb-3 rounded" style="border: 2px solid #e0e0e0; background-color: #fff;">
-						<img src="/custom-img/svg-icon/rest-api.svg" style="width: 8rem;" />
+					<div class="mb-4 d-flex align-items-center justify-content-center pt-2 pb-2 c-rounded diagrams-item">
+						<div class="d-flex align-items-center pl-3 pr-3 w-100">
+							<div class="dig-icon p-2">
+								<img src="/custom-img/svg-icon/construction.svg" style="width: 4rem;" />
+							</div>
+							<div class="ml-2 flex-fill text-white">
+								Sở Xây dựng
+							</div>
+						</div>
+					</div>
+					<div class="mb-4 d-flex align-items-center justify-content-center pt-2 pb-2 c-rounded diagrams-item">
+						<div class="d-flex align-items-center pl-3 pr-3 w-100">
+							<div class="dig-icon p-2">
+								<img src="/custom-img/svg-icon/plan-investment.svg" style="width: 4rem;" />
+							</div>
+							<div class="ml-2 flex-fill text-white">
+								Sở Kế hoạch<br/>& Đầu tư
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="flex-fill d-flex flex-column m-1 mr-4 p-2 rounded" style="border: 2px solid #e0e0e0; background-color: #f0f0f0;">
-				<div class="text-center mb-3">XỮ LÝ DỮ LIỆU</div>
-				<div class="text-center flex-fill d-flex flex-column pl-2 pr-2">
-					
+			<div class="d-flex justify-content-around">
+				<div class="d-flex flex-column align-items-center">
+					<div class="flex-fill d-flex align-items-center">
+						<el-icon :size="30"><Right/></el-icon>
+					</div>
+					<div class="flex-fill d-flex align-items-center">
+						<el-icon :size="30"><Right/></el-icon>
+					</div>
 				</div>
 			</div>
-			<div class="flex-fill d-flex flex-column m-1  mr-4 p-2 rounded" style="border: 2px solid #e0e0e0; background-color: #f0f0f0;">
-				<div class="text-center mb-3">DATA WARE HOUSE</div>
-				<div class="text-center flex-fill d-flex flex-column pl-2 pr-2">
-					
+			<div class="flex-fill d-flex flex-column m-1 mr-0 p-0 c-rounded diagrams-block"
+					style="flex-basis: 20% !important;">
+				<div class="text-center mb-3 mt-0 bg-navy p-2 dig-header">
+					<strong class="text-white">TỔNG HỢP DỮ LIỆU</strong>
+				</div>
+				<el-scrollbar class="flex-fill d-flex flex-column pl-2 pr-3 mb-2">
+					<el-card :body-style="{ padding: '0.5rem 0.5rem' }"
+							class="mb-2"
+							v-for="item in 20" :key="item">
+						<div class="d-flex align-items-center">
+							<div>
+								<img :src="`/custom-img/svg-icon/${(item % 2 === 0 ? 'database-icon' : 'ms-excel')}.svg`"
+										style="width: 3.5rem;" />
+							</div>
+							<div class="ml-2 flex-fill" style="line-height: 1.2rem;">
+								<div><strong class="text-navy">Database 1</strong></div>
+								<div class="text-muted" style="font-size: 85%;">DataLake - Partition/Db1</div>
+								<div class="text-muted" style="font-size: 85%;">Sở Thông Tin & Truyền Thông</div>
+							</div>
+							<div class="ml-2 text-left align-self-end">
+								<div class="text-muted d-flex align-items-center" style="font-size: 80%;">
+									<el-icon class="text-primary"><Clock /></el-icon>
+									<span class="ml-1">Hàng ngày</span>
+								</div>
+								<div class="text-muted d-flex align-items-center" style="font-size: 80%;">
+									<el-icon class="text-primary"><Loading /></el-icon>
+									<span class="ml-1">Đang xử lý..</span>
+								</div>
+							</div>
+						</div>
+					</el-card>
+				</el-scrollbar>
+			</div>
+			<div class="d-flex justify-content-around">
+				<div class="d-flex flex-column align-items-center">
+					<div class="flex-fill d-flex align-items-center">
+						<el-icon :size="30"><Right/></el-icon>
+					</div>
+					<div class="flex-fill d-flex align-items-center">
+						<el-icon :size="30"><Right/></el-icon>
+					</div>
 				</div>
 			</div>
-			<div class="flex-fill d-flex flex-column m-1 mr-0 p-2 rounded" style="border: 2px solid #e0e0e0; background-color: #f0f0f0;">
-				<div class="text-center mb-3">ENDPOINT DATA</div>
-				<div class="text-center flex-fill d-flex flex-column pl-2 pr-2">
-					
+			<div class="flex-fill d-flex flex-column m-1 mr-0 p-0 c-rounded diagrams-block"
+					style="flex-basis: 17% !important;">
+				<div class="text-center mb-3 mt-0 bg-navy p-2 dig-header">
+					<strong class="text-white">LƯU TRỮ DỮ LIỆU</strong>
 				</div>
+				<div class="flex-fill d-flex pl-4 pr-4">
+					<div class="d-flex flex-column align-items-center justify-content-center">
+						<div class="mb-5">
+							<el-card>
+								<div class="text-center">
+									<img :src="`/custom-img/svg-icon/database-icon.svg`"
+											style="width: 3.5rem;" />
+								</div>
+								<div class="text-center mt-2" style="line-height: 1.2rem;">
+									<strong>Data warehouse<br/>Database</strong>
+								</div>
+							</el-card>
+						</div>						
+						<div>
+							<el-card>
+								<div class="text-center">
+									<img :src="`/custom-img/svg-icon/database-icon.svg`"
+											style="width: 3.5rem;" />
+								</div>
+								<div class="text-center mt-2" style="line-height: 1.2rem;">
+									<strong>Operational Data<br/>Store(OOS)</strong>
+								</div>
+							</el-card>
+						</div>
+					</div>
+					<div class="ml-4 d-flex flex-column align-items-center justify-content-center">
+						<div v-for="item in 6" :key="item" class="mb-3 mt-3">
+							<el-card>
+								<div class="text-center pl-1 pr-1" style="line-height: 1.2rem;">
+									Data Mart
+								</div>
+							</el-card>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-around">
+				<div class="d-flex flex-column align-items-center">
+					<div class="flex-fill d-flex align-items-center">
+						<el-icon :size="30"><Right/></el-icon>
+					</div>
+					<div class="flex-fill d-flex align-items-center">
+						<el-icon :size="30"><Right/></el-icon>
+					</div>
+				</div>
+			</div>
+			<div class="flex-fill d-flex flex-column m-1 mr-0 p-0 c-rounded diagrams-block"
+					style="flex-basis: 20% !important;">
+				<div class="text-center mb-3 mt-0 bg-navy p-2 dig-header">
+					<strong class="text-white">ỨNG DỤNG</strong>
+				</div>
+				<el-scrollbar class="text-center flex-fill d-flex mb-2">
+					<div class="container-fluid">
+						<div class="row justify-content-center">
+							<div class="col-6" 
+									v-for="item in ['Tài chính','Giao thông','CNTT','Truyền thông','Wiki','Internet','Hạ tầng']" :key="item">
+								<el-card style="height: auto;" class="m-2">
+									<div class="pl-3 pr-3 w-100">
+										<div class="dig-icon p-2">
+											<img src="/custom-img/svg-icon/finance-icon.svg" style="width: 4rem;" />
+										</div>
+										<div class="text-navy">
+											<strong>{{item}}</strong>
+										</div>
+									</div>
+								</el-card>
+							</div>
+						</div>
+					</div>
+				</el-scrollbar>
 			</div>
 		</div>
 	</el-card>
