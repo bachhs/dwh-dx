@@ -24,7 +24,7 @@
 								style="width: 2.8rem;" />
 						</div>
 						<div class="ml-1 ml-md-2 text-left d-flex flex-column align-item-center justify-content-center"
-								style="line-height: 1.4rem;">
+							style="line-height: 1.4rem;">
 							<div><strong class="text-white">SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN QUANG</strong></div>
 							<div class="d-none d-md-block text-warning">
 								KHO DỮ LIỆU DÙNG CHUNG
@@ -65,10 +65,30 @@
 				</li>
 				<li class="nav-item ml-3">
 					<!-- Sidebar user (optional) -->
-					<div class="image">
-						<img src="/img/user2-160x160.jpg" style="width: 2.8rem;" class="img-circle elevation-2"
-							alt="User Image">
-					</div>
+					<el-dropdown  trigger="click">
+						<div class="el-dropdown-link">							
+							<div class="image">
+								<img src="/img/user2-160x160.jpg" style="width: 2.8rem;" class="img-circle elevation-2"
+									alt="User Image">
+							</div>
+						</div>
+						<template #dropdown>
+							<el-dropdown-menu>
+								<el-dropdown-item command="a">
+									<el-icon color="#409eff"><User /></el-icon>
+									<span>Hồ sơ của bạn</span>
+								</el-dropdown-item>
+								<el-dropdown-item command="b">
+									<el-icon color="#409eff"><Setting /></el-icon>
+									<span>Thiết lập tài khoản</span>
+								</el-dropdown-item>
+								<el-dropdown-item command="e" divided>
+									<el-icon color="#f00"><SwitchButton /></el-icon>
+									<span>Đăng xuất</span>
+								</el-dropdown-item>
+							</el-dropdown-menu>
+						</template>
+					</el-dropdown>
 				</li>
 			</ul>
 		</nav>
@@ -117,7 +137,7 @@
 									Nguồn dữ liệu
 								</p>
 							</a>
-						</li>						
+						</li>
 						<li class="nav-item">
 							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-edit"></i>
@@ -148,8 +168,8 @@
 									Trực quan dữ liệu
 								</p>
 							</a>
-						</li>	
-						<li class="nav-header">QUẢN TRỊ HỆ THỐNG</li>						
+						</li>
+						<li class="nav-header">QUẢN TRỊ HỆ THỐNG</li>
 						<li class="nav-item">
 							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-search"></i>
@@ -157,7 +177,7 @@
 									Báo cáo
 								</p>
 							</a>
-						</li>						
+						</li>
 						<li class="nav-item">
 							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-search"></i>
@@ -165,8 +185,8 @@
 									Quản trị
 								</p>
 							</a>
-						</li>			
-						<li class="nav-header">KHÁC</li>				
+						</li>
+						<li class="nav-header">KHÁC</li>
 						<li class="nav-item">
 							<a href="#" class="nav-link">
 								<i class="nav-icon fas fa-search"></i>
@@ -174,7 +194,7 @@
 									Hỗ trợ
 								</p>
 							</a>
-						</li>	
+						</li>
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -188,7 +208,8 @@
 
 			<!-- Main content -->
 			<section class="content">
-				<div class="container-fluid">
+				<div class="container-fluid p-0 pt-2 d-flex flex-column w-100"
+						style="height: calc(100vh - 4.6rem);">
 					<RouterView />
 				</div>
 			</section>
@@ -196,13 +217,13 @@
 		</div>
 		<!-- /.content-wrapper -->
 
-		<footer class="main-footer">
+		<!-- <footer class="main-footer">
 			<div class="float-right d-none d-sm-block">
 				<b>Version</b> 3.2.0
 			</div>
 			<strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
 			reserved.
-		</footer>
+		</footer> -->
 
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
