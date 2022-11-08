@@ -1,0 +1,28 @@
+body {
+  color: #333; }
+
+.bg-header-color {
+  background: #144dc6;
+  background: -moz-linear-gradient(0deg, #144dc6 0%, #1776c7 100%);
+  background: -webkit-linear-gradient(0deg, #144dc6 0%, #1776c7 100%);
+  background: linear-gradient(0deg, #144dc6 0%, #1776c7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#144dc6",endColorstr="#1776c7",GradientType=1); }
+
+.layout-fixed .main-sidebar {
+  top: calc(4rem - 1px); }
+.layout-fixed .main-header {
+  margin-left: 0 !important;
+  height: 4rem;
+  margin-top: 0; }
+.layout-fixed .navbar-badge {
+  font-size: .8rem;
+  right: 2px;
+  top: 7px; }
+.layout-fixed .sidebar .nav-link p {
+  position: initial; }
+.layout-fixed .content-wrapper {
+  color: #333; }
+  .layout-fixed .content-wrapper .content {
+    color: #333; }
+
+/*# sourceMappingURL=custom.css.map */

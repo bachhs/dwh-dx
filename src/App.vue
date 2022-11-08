@@ -1,91 +1,215 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+	import {
+		RouterLink,
+		RouterView
+	} from "vue-router";
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
+	<div class="wrapper w-100">
+		<!-- ./wrapper -->
+		<!-- Navbar -->
+		<nav class="main-header navbar navbar-expand bg-header-color d-flex align-items-center">
+			<!-- Left navbar links -->
+			<ul class="navbar-nav d-flex align-items-center">
+				<li class="nav-item d-inline-block d-md-none">
+					<a class="nav-link text-white pt-2 pl-1 pr-1" data-widget="pushmenu" href="#" role="button"><i
+							class="fas fa-bars text-white fa-2x"></i></a>
+				</li>
+				<li>
+					<div class="d-flex align-item-center ml-3 ml-md-2">
+						<div>
+							<img src="/custom-img/quochuy.png"
+								alt="KHO DỮ LIỆU DÙNG CHUNG - SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN QUANG"
+								style="width: 2.8rem;" />
+						</div>
+						<div class="ml-1 ml-md-2 text-left d-flex flex-column align-item-center justify-content-center"
+								style="line-height: 1.4rem;">
+							<div><strong class="text-white">SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN QUANG</strong></div>
+							<div class="d-none d-md-block text-warning">
+								KHO DỮ LIỆU DÙNG CHUNG
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it! s" />
+			<!-- Right navbar links -->
+			<ul class="navbar-nav ml-auto">
+				<!-- Notifications Dropdown Menu -->
+				<li class="nav-item dropdown">
+					<a class="nav-link" data-toggle="dropdown" href="#">
+						<i class="far fa-bell text-white fa-2x"></i>
+						<span class="badge badge-warning navbar-badge">15</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+						<span class="dropdown-item dropdown-header">15 Notifications</span>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item">
+							<i class="fas fa-envelope mr-2"></i> 4 new messages
+							<span class="float-right text-muted text-sm">3 mins</span>
+						</a>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item">
+							<i class="fas fa-users mr-2"></i> 8 friend requests
+							<span class="float-right text-muted text-sm">12 hours</span>
+						</a>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item">
+							<i class="fas fa-file mr-2"></i> 3 new reports
+							<span class="float-right text-muted text-sm">2 days</span>
+						</a>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+					</div>
+				</li>
+				<li class="nav-item ml-3">
+					<!-- Sidebar user (optional) -->
+					<div class="image">
+						<img src="/img/user2-160x160.jpg" style="width: 2.8rem;" class="img-circle elevation-2"
+							alt="User Image">
+					</div>
+				</li>
+			</ul>
+		</nav>
+		<!-- /.navbar -->
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar main-sidebar-custom sidebar-dark-primary">
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+			<!-- Sidebar -->
+			<div class="sidebar">
 
-  <RouterView />
+				<!-- Sidebar Menu -->
+				<nav class="mt-2">
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+						data-accordion="false">
+						<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+
+						<li class="nav-item">
+							<a href="#" class="nav-link active">
+								<i class="nav-icon fas fa-home"></i>
+								<p>
+									Trang chủ
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-bell"></i>
+								<p>
+									Thông báo
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-search"></i>
+								<p>
+									Tìm kiếm
+								</p>
+							</a>
+						</li>
+						<li class="nav-header">DỮ LIỆU</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-search"></i>
+								<p>
+									Nguồn dữ liệu
+								</p>
+							</a>
+						</li>						
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-edit"></i>
+								<p>
+									Giám sát dữ liệu
+									<i class="fas fa-angle-left right"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="#" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Tổng hợp dữ liệu</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Xử lý dữ liệu</p>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-search"></i>
+								<p>
+									Trực quan dữ liệu
+								</p>
+							</a>
+						</li>	
+						<li class="nav-header">QUẢN TRỊ HỆ THỐNG</li>						
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-search"></i>
+								<p>
+									Báo cáo
+								</p>
+							</a>
+						</li>						
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-search"></i>
+								<p>
+									Quản trị
+								</p>
+							</a>
+						</li>			
+						<li class="nav-header">KHÁC</li>				
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-search"></i>
+								<p>
+									Hỗ trợ
+								</p>
+							</a>
+						</li>	
+					</ul>
+				</nav>
+				<!-- /.sidebar-menu -->
+			</div>
+			<!-- /.sidebar -->
+
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<RouterView />
+				</div>
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<footer class="main-footer">
+			<div class="float-right d-none d-sm-block">
+				<b>Version</b> 3.2.0
+			</div>
+			<strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+			reserved.
+		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- /.control-sidebar -->
+	</div>
+
+
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
