@@ -30,6 +30,19 @@ body {
   -ms-flex-direction: column !important;
   flex-direction: column !important; }
 
+.table thead th {
+  font-weight: bold; }
+  .table thead th button {
+    background-color: transparent;
+    font-weight: bold;
+    border: none !important;
+    outline: none !important; }
+  .table thead th div {
+    font-weight: bold; }
+
+.badge.badge-lg {
+  font-size: 0.9rem; }
+
 .bg-header-color {
   background: #02274a;
   background: -moz-radial-gradient(circle, #02274a 0%, #0e3f6c 100%);

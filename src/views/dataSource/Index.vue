@@ -44,17 +44,15 @@
                     </div>
                     <div class="ml-1">
                         <el-button size="large" type="primary">
-                            <el-icon style="vertical-align: middle">
+                            <el-icon :size="20" style="vertical-align: middle">
                                 <Plus />
                             </el-icon>
-                            <span>Thêm</span>
                         </el-button>
 
                         <el-button size="large" type="primary">
-                            <el-icon style="vertical-align: middle">
+                            <el-icon :size="20" style="vertical-align: middle">
                                 <Refresh />
                             </el-icon>
-                            <span>Làm mới</span>
                         </el-button>
                     </div>
                 </div>

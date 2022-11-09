@@ -65,6 +65,29 @@ body{
     }
 }
 
+.table{
+    thead{
+        th{
+            font-weight: bold;
+            button {
+                background-color: transparent;
+                font-weight: bold;
+                border: none !important;
+                outline: none !important;
+            }
+            div{
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.badge{
+    &.badge-lg{
+        font-size: 0.9rem;
+    }
+}
+
 .bg-header-color{
     background: rgb(2, 39, 74);
     background: -moz-radial-gradient(circle, rgba(2, 39, 74, 1) 0%, rgba(14, 63, 108, 1) 100%);
