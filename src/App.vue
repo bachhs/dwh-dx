@@ -106,41 +106,41 @@
 						<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
 						<li class="nav-item">
-							<a href="#" class="nav-link active">
+							<router-link to="/" class="nav-link" active-class="active">
 								<i class="nav-icon fas fa-home"></i>
 								<p>
 									Trang chủ
 								</p>
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link">
+							<router-link to="/notification" class="nav-link" active-class="active">
 								<i class="nav-icon fas fa-bell"></i>
 								<p>
 									Thông báo
 								</p>
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link">
+							<router-link to="/search" class="nav-link" active-class="active">
 								<i class="nav-icon fas fa-search"></i>
 								<p>
 									Tìm kiếm
 								</p>
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-header">DỮ LIỆU</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-search"></i>
+							<router-link to="/data-source" class="nav-link" active-class="active">
+								<i class="nav-icon fas fa-database"></i>
 								<p>
 									Nguồn dữ liệu
 								</p>
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-item">
 							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-edit"></i>
+								<i class="nav-icon far fa-binoculars"></i>
 								<p>
 									Giám sát dữ liệu
 									<i class="fas fa-angle-left right"></i>
@@ -148,52 +148,52 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
+									<router-link to="/data-synthesis" class="nav-link" active-class="active">
+										<i class="fas fa-sync-alt nav-icon"></i>
 										<p>Tổng hợp dữ liệu</p>
-									</a>
+									</router-link>
 								</li>
 								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
+									<router-link to="/data-processing" class="nav-link" active-class="active">
+										<i class="fas fa-fire-alt nav-icon"></i>
 										<p>Xử lý dữ liệu</p>
-									</a>
+									</router-link>
 								</li>
 							</ul>
 						</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-search"></i>
+							<router-link to="/data-visualization" class="nav-link" active-class="active">
+								<i class="nav-icon fas fa-chart-line"></i>
 								<p>
 									Trực quan dữ liệu
 								</p>
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-header">QUẢN TRỊ HỆ THỐNG</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-search"></i>
+							<router-link to="/report" class="nav-link" active-class="active">
+								<i class="nav-icon far fa-file-alt"></i>
 								<p>
 									Báo cáo
 								</p>
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-search"></i>
+							<router-link to="/administration" class="nav-link" active-class="active">
+								<i class="nav-icon fas fa-toolbox"></i>
 								<p>
 									Quản trị
 								</p>
-							</a>
+							</router-link>
 						</li>
 						<li class="nav-header">KHÁC</li>
 						<li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-search"></i>
+							<router-link to="/support" class="nav-link" active-class="active">
+								<i class="nav-icon far fa-question-circle"></i>
 								<p>
 									Hỗ trợ
 								</p>
-							</a>
+							</router-link>
 						</li>
 					</ul>
 				</nav>

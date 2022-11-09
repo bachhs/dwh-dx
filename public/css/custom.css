@@ -1,6 +1,19 @@
 body {
   color: #333; }
 
+.el-scrollbar.d-flex .el-scrollbar__wrap, .el-scrollbar.d-flex .el-scrollbar__view {
+  display: -ms-flexbox !important;
+  display: flex !important; }
+.el-scrollbar.flex-fill .el-scrollbar__wrap, .el-scrollbar.flex-fill .el-scrollbar__view {
+  ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important; }
+.el-scrollbar.justify-content-center .el-scrollbar__wrap, .el-scrollbar.justify-content-center .el-scrollbar__view {
+  -ms-flex-pack: center !important;
+  justify-content: center !important; }
+.el-scrollbar.flex-column .el-scrollbar__wrap, .el-scrollbar.flex-column .el-scrollbar__view {
+  -ms-flex-direction: column !important;
+  flex-direction: column !important; }
+
 .bg-header-color {
   background: #02274a;
   background: -moz-radial-gradient(circle, #02274a 0%, #0e3f6c 100%);
@@ -28,34 +41,49 @@ body {
   -webkit-border-radius: 8px !important;
   -moz-border-radius: 8px !important;
   border-radius: 8px !important; }
-.layout-fixed .diagrams .diagrams-block {
-  border: 3px solid #001f3f;
-  height: calc(100vh - 7.4rem);
-  background: #91c9ff;
-  background: -moz-linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
-  background: -webkit-linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
-  background: linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#91c9ff", endColorstr="#96cafb", GradientType=1); }
-  .layout-fixed .diagrams .diagrams-block .dig-header {
-    position: relative;
-    margin-top: -3px;
-    margin-left: -3px;
-    margin-right: -3px;
-    -webkit-border-top-left-radius: 8px;
-    -webkit-border-top-right-radius: 8px;
-    -moz-border-radius-topleft: 8px;
-    -moz-border-radius-topright: 8px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px; }
-  .layout-fixed .diagrams .diagrams-block .diagrams-item {
-    background: #243747;
-    background: linear-gradient(90deg, #243747 0%, #4b74a0 100%);
-    background: -moz-linear-gradient(90deg, #243747 0%, #4b74a0 100%);
-    background: -webkit-linear-gradient(90deg, #243747 0%, #4b74a0 100%);
-    width: 100%; }
-    .layout-fixed .diagrams .diagrams-block .diagrams-item .dig-icon {
-      -webkit-border-radius: 8px;
-      -moz-border-radius: 8px;
-      border-radius: 8px; }
+.layout-fixed .diagrams {
+  min-width: 1626px; }
+  .layout-fixed .diagrams .diagrams-block {
+    border: 3px solid #02274a;
+    height: calc(100vh - 7.4rem);
+    background: #91c9ff;
+    background: -moz-linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
+    background: -webkit-linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
+    background: linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#91c9ff", endColorstr="#96cafb", GradientType=1); }
+    .layout-fixed .diagrams .diagrams-block .dig-header {
+      position: relative;
+      margin-top: -3px;
+      margin-left: -3px;
+      margin-right: -3px;
+      -webkit-border-top-left-radius: 8px;
+      -webkit-border-top-right-radius: 8px;
+      -moz-border-radius-topleft: 8px;
+      -moz-border-radius-topright: 8px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px; }
+    .layout-fixed .diagrams .diagrams-block .diagrams-item {
+      border: 2px solid #4b749d;
+      background: #243747;
+      background: linear-gradient(90deg, #243747 0%, #4b74a0 100%);
+      background: -moz-linear-gradient(90deg, #243747 0%, #4b74a0 100%);
+      background: -webkit-linear-gradient(90deg, #243747 0%, #4b74a0 100%);
+      width: 100%; }
+      .layout-fixed .diagrams .diagrams-block .diagrams-item .dig-icon {
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px; }
+      .layout-fixed .diagrams .diagrams-block .diagrams-item:hover {
+        border-color: #02274a; }
+    .layout-fixed .diagrams .diagrams-block label {
+      user-select: none !important;
+      cursor: pointer; }
+      .layout-fixed .diagrams .diagrams-block label .dataSourceUnit-radio {
+        visibility: hidden !important; }
+        .layout-fixed .diagrams .diagrams-block label .dataSourceUnit-radio:checked + .diagrams-item {
+          border-color: rgba(255, 190, 12, 0.863);
+          box-shadow: 0px 0px 10px 5px #ff9900;
+          -webkit-box-shadow: 0px 0px 10px 5px #ff9900;
+          -moz-box-shadow: 0px 0px 10px 5px #ff9900; }
 
 /*# sourceMappingURL=custom.css.map */
