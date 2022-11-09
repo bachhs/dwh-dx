@@ -14,6 +14,22 @@ body {
   -ms-flex-direction: column !important;
   flex-direction: column !important; }
 
+.flex-column .el-scrollbar.flex-fill .el-scrollbar__view {
+  height: 1px !important; }
+
+.el-card.d-flex .el-card__body {
+  display: -ms-flexbox !important;
+  display: flex !important; }
+.el-card.flex-fill .el-card__body {
+  ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important; }
+.el-card.justify-content-center .el-card__body {
+  -ms-flex-pack: center !important;
+  justify-content: center !important; }
+.el-card.flex-column .el-card__body {
+  -ms-flex-direction: column !important;
+  flex-direction: column !important; }
+
 .bg-header-color {
   background: #02274a;
   background: -moz-radial-gradient(circle, #02274a 0%, #0e3f6c 100%);

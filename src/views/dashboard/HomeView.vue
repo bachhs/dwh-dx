@@ -6,7 +6,7 @@
 	<el-card class="box-card w-100 flex-fill"
 		:body-style="{ padding: '0.5rem 0.8rem' }">
 		<el-scrollbar>
-			<div class="d-flex mt-1 mb-2 diagrams">
+			<div class="d-flex mt-1 mb-2 diagrams animate__animated animate__zoomIn">
 				<div class="d-flex flex-column m-1 ml-0 p-0 c-rounded diagrams-block"
 						style="flex-basis: 20% !important;">
 					<div class="text-center mb-3 mt-0 bg-navy p-2 dig-header">
