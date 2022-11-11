@@ -64,12 +64,19 @@
                             <div class="col-12 col-sm-6 col-md-4 mb-3"
                                  v-for="(itemDemo) in 99" :key="itemDemo">
                                 <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
-                                    <div><strong class="text-navy">Demo data source {{ itemDemo }}</strong></div>
-                                    <div>Loại: Postgre</div>
-                                    <div class="text-muted" style="font-size: 85%;"><span>Chưa có mô tả</span></div>
-                                    <div class="text-muted" style="font-size: 85%;">
-                                        Nguồn: Sở Y Tế
-                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <img src="/custom-img/postgre.png" style="width: 5rem;" />
+                                        </div>
+                                        <div class="ml-2">
+                                            <div><strong class="text-navy">Demo data source {{ itemDemo }}</strong></div>
+                                            <div>Loại: Postgre</div>
+                                            <div class="text-muted" style="font-size: 85%;"><span>Chưa có mô tả</span></div>
+                                            <div class="text-muted" style="font-size: 85%;">
+                                                Nguồn: Sở Y Tế
+                                            </div>
+                                        </div>
+                                    </div>                                    
                                 </el-card>
                             </div>
                         </div>

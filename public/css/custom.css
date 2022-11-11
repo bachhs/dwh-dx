@@ -75,11 +75,11 @@ body {
   .layout-fixed .diagrams .diagrams-block {
     border: 3px solid #02274a;
     height: calc(100vh - 7.4rem);
-    background: #91c9ff;
-    background: -moz-linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
-    background: -webkit-linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
-    background: linear-gradient(90deg, #91c9ff 0%, #96cafb 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#91c9ff", endColorstr="#96cafb", GradientType=1); }
+    background: #d0e8ff;
+    background: -moz-linear-gradient(90deg, #d0e8ff 0%, #abcbe9 100%);
+    background: -webkit-linear-gradient(90deg, #d0e8ff 0%, #abcbe9 100%);
+    background: linear-gradient(90deg, #d0e8ff 0%, #abcbe9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d0e8ff", endColorstr="#abcbe9", GradientType=1); }
     .layout-fixed .diagrams .diagrams-block .dig-header {
       position: relative;
       margin-top: -3px;

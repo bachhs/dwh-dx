@@ -45,31 +45,35 @@
 						<strong class="text-white">TỔNG HỢP DỮ LIỆU</strong>
 					</div>
 					<el-scrollbar class="flex-fill d-flex flex-column pl-2 pr-3 mb-2">
-						<el-card :body-style="{ padding: '0.5rem 0.5rem' }"
-								class="mb-2"
-								v-for="item in 20" :key="item">
-							<div class="d-flex align-items-center">
-								<div>
-									<img :src="`/custom-img/svg-icon/${(item % 2 === 0 ? 'database-icon' : 'ms-excel')}.svg`"
+						<div class="w-100">
+							<el-card :body-style="{ padding: '0.5rem 0.5rem' }" class="mb-2" v-for="item in 20" :key="item">
+								<div class="d-flex align-items-center">
+									<div>
+										<img :src="`/custom-img/svg-icon/${(item % 2 === 0 ? 'database-icon' : 'ms-excel')}.svg`"
 											style="width: 3.5rem;" />
-								</div>
-								<div class="ml-2 flex-fill" style="line-height: 1.2rem;">
-									<div><strong class="text-navy">Database 1</strong></div>
-									<div class="text-muted" style="font-size: 85%;">DataLake - Partition/Db1</div>
-									<div class="text-muted" style="font-size: 85%;">Sở Thông Tin & Truyền Thông</div>
-								</div>
-								<div class="ml-2 text-left align-self-end">
-									<div class="text-muted d-flex align-items-center" style="font-size: 80%;">
-										<el-icon class="text-primary"><Clock /></el-icon>
-										<span class="ml-1">Hàng ngày</span>
 									</div>
-									<div class="text-muted d-flex align-items-center" style="font-size: 80%;">
-										<el-icon class="text-primary"><Loading /></el-icon>
-										<span class="ml-1">Đang xử lý..</span>
+									<div class="ml-2 flex-fill" style="line-height: 1.2rem;">
+										<div><strong class="text-navy">Database 1</strong></div>
+										<div class="text-muted" style="font-size: 85%;">DataLake - Partition/Db1</div>
+										<div class="text-muted" style="font-size: 85%;">Sở Thông Tin & Truyền Thông</div>
+									</div>
+									<div class="ml-2 text-left align-self-end">
+										<div class="text-muted d-flex align-items-center" style="font-size: 80%;">
+											<el-icon class="text-primary">
+												<Clock />
+											</el-icon>
+											<span class="ml-1">Hàng ngày</span>
+										</div>
+										<div class="text-muted d-flex align-items-center" style="font-size: 80%;">
+											<el-icon class="text-primary">
+												<Loading />
+											</el-icon>
+											<span class="ml-1">Đang xử lý..</span>
+										</div>
 									</div>
 								</div>
-							</div>
-						</el-card>
+							</el-card>
+						</div>
 					</el-scrollbar>
 				</div>
 				<div class="d-flex justify-content-around">

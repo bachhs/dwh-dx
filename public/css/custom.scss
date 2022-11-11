@@ -134,11 +134,11 @@ body{
         .diagrams-block{
             border: 3px solid rgb(2, 39, 74);
             height: calc(100vh - 7.4rem);
-            background: rgb(145, 201, 255);
-                background: -moz-linear-gradient(90deg, rgba(145, 201, 255, 1) 0%, rgba(150, 202, 251, 1) 100%);
-                background: -webkit-linear-gradient(90deg, rgba(145, 201, 255, 1) 0%, rgba(150, 202, 251, 1) 100%);
-                background: linear-gradient(90deg, rgba(145, 201, 255, 1) 0%, rgba(150, 202, 251, 1) 100%);
-                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#91c9ff", endColorstr="#96cafb", GradientType=1);
+            background: #d0e8ff;
+                background: -moz-linear-gradient(90deg, #d0e8ff 0%, #abcbe9 100%);
+                background: -webkit-linear-gradient(90deg, #d0e8ff 0%, #abcbe9 100%);
+                background: linear-gradient(90deg, #d0e8ff 0%, #abcbe9 100%);;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d0e8ff", endColorstr="#abcbe9", GradientType=1);
             .dig-header{
                 position: relative;
                 margin-top: -3px;
