@@ -1,13 +1,12 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 
-const BASE_URL = "http://14.225.11.182:8081/api/v1";
-
 export default {
   setup() {
     const datasources = ref([]);
     const typeDataFormat = ref("");
     const filterQuery = ref("");
+    const sourceData = ref([]);
     const options = ref([
       {
         value: "Option1",
@@ -31,12 +30,14 @@ export default {
       },
     ]);
 
-    async function getDataSources() {
-      const response = await axios.get(`${BASE_URL}/datasources`, {
-        params: { page: 1, limit: 20 },
-      });
+    async function getDataSources(): Promise<void> {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/datasources`,
+        {
+          params: { page: 1, limit: 20 },
+        }
+      );
       datasources.value = response.data.content;
-      console.log(datasources.value);
     }
 
     onMounted(() => {
@@ -45,6 +46,10 @@ export default {
 
     return {
       datasources,
+      typeDataFormat,
+      filterQuery,
+      sourceData,
+      options,
       getDataSources,
     };
   },
