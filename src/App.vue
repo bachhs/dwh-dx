@@ -6,37 +6,23 @@ import { RouterLink, RouterView } from "vue-router";
   <div class="wrapper w-100">
     <!-- ./wrapper -->
     <!-- Navbar -->
-    <nav
-      class="main-header navbar navbar-expand bg-header-color d-flex align-items-center"
-    >
+    <nav class="main-header navbar navbar-expand bg-header-color d-flex align-items-center">
       <!-- Left navbar links -->
       <ul class="navbar-nav d-flex align-items-center">
         <li class="nav-item d-inline-block d-md-none">
-          <a
-            class="nav-link text-white pt-2 pl-1 pr-1"
-            data-widget="pushmenu"
-            href="#"
-            role="button"
-            ><i class="fas fa-bars text-white fa-2x"></i
-          ></a>
+          <a class="nav-link text-white pt-2 pl-1 pr-1" data-widget="pushmenu" href="#" role="button"><i
+              class="fas fa-bars text-white fa-2x"></i></a>
         </li>
         <li>
           <div class="d-flex align-item-center ml-3 ml-md-2">
             <div>
-              <img
-                src="/custom-img/quochuy.png"
-                alt="KHO DỮ LIỆU DÙNG CHUNG - SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN QUANG"
-                style="width: 2.8rem"
-              />
+              <img src="/custom-img/quochuy.png"
+                alt="KHO DỮ LIỆU DÙNG CHUNG - SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN QUANG" style="width: 2.8rem" />
             </div>
-            <div
-              class="ml-1 ml-md-2 text-left d-flex flex-column align-item-center justify-content-center"
-              style="line-height: 1.4rem"
-            >
+            <div class="ml-1 ml-md-2 text-left d-flex flex-column align-item-center justify-content-center"
+              style="line-height: 1.4rem">
               <div>
-                <strong class="text-white"
-                  >SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN QUANG</strong
-                >
+                <strong class="text-white">SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN QUANG</strong>
               </div>
               <div class="d-none d-md-block text-warning">
                 KHO DỮ LIỆU DÙNG CHUNG
@@ -72,9 +58,7 @@ import { RouterLink, RouterView } from "vue-router";
               <span class="float-right text-muted text-sm">2 days</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer"
-              >See All Notifications</a
-            >
+            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
         </li>
         <li class="nav-item ml-3">
@@ -82,26 +66,28 @@ import { RouterLink, RouterView } from "vue-router";
           <el-dropdown trigger="click">
             <div class="el-dropdown-link">
               <div class="image">
-                <img
-                  src="/img/user2-160x160.jpg"
-                  style="width: 2.8rem"
-                  class="img-circle elevation-2"
-                  alt="User Image"
-                />
+                <img src="/img/user2-160x160.jpg" style="width: 2.8rem" class="img-circle elevation-2"
+                  alt="User Image" />
               </div>
             </div>
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item command="a">
-                  <el-icon color="#409eff"><User /></el-icon>
+                  <el-icon color="#409eff">
+                    <User />
+                  </el-icon>
                   <span>Hồ sơ của bạn</span>
                 </el-dropdown-item>
                 <el-dropdown-item command="b">
-                  <el-icon color="#409eff"><Setting /></el-icon>
+                  <el-icon color="#409eff">
+                    <Setting />
+                  </el-icon>
                   <span>Thiết lập tài khoản</span>
                 </el-dropdown-item>
                 <el-dropdown-item command="e" divided>
-                  <el-icon color="#f00"><SwitchButton /></el-icon>
+                  <el-icon color="#f00">
+                    <SwitchButton />
+                  </el-icon>
                   <span>Đăng xuất</span>
                 </el-dropdown-item>
               </el-dropdown-menu>
@@ -117,12 +103,7 @@ import { RouterLink, RouterView } from "vue-router";
       <div class="sidebar">
         <!-- Sidebar Menu -->
         <nav class="mt-4">
-          <ul
-            class="nav nav-pills nav-sidebar flex-column"
-            data-widget="treeview"
-            role="menu"
-            data-accordion="false"
-          >
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
             <li class="nav-item">
@@ -132,11 +113,7 @@ import { RouterLink, RouterView } from "vue-router";
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link
-                to="/notification"
-                class="nav-link"
-                active-class="active"
-              >
+              <router-link to="/notification" class="nav-link" active-class="active">
                 <i class="nav-icon fas fa-bell"></i>
                 <p>Thông báo</p>
               </router-link>
@@ -149,40 +126,32 @@ import { RouterLink, RouterView } from "vue-router";
             </li>
             <li class="nav-header">DỮ LIỆU</li>
             <li class="nav-item">
-              <router-link
-                to="/data-source"
-                class="nav-link"
-                active-class="active"
-              >
+              <router-link to="/data-source" class="nav-link" active-class="active">
                 <i class="nav-icon fas fa-database"></i>
                 <p>Nguồn dữ liệu</p>
               </router-link>
             </li>
             <li class="nav-item">
+              <router-link to="/datasource-pipeline" class="nav-link" active-class="active">
+                <i class="nav-icon fas fa-database"></i>
+                <p>Thu thập dữ liệu</p>
+              </router-link>
+            </li>
+            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon far fa-binoculars"></i>
-                <p>
-                  Giám sát dữ liệu
-                  <i class="fas fa-angle-left right"></i>
+                <p>Giám sát dữ liệu <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <router-link
-                    to="/data-synthesis"
-                    class="nav-link"
-                    active-class="active"
-                  >
+                  <router-link to="/data-synthesis" class="nav-link" active-class="active">
                     <i class="fas fa-sync-alt nav-icon"></i>
                     <p>Tổng hợp dữ liệu</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link
-                    to="/data-processing"
-                    class="nav-link"
-                    active-class="active"
-                  >
+                  <router-link to="/data-processing" class="nav-link" active-class="active">
                     <i class="fas fa-fire-alt nav-icon"></i>
                     <p>Xử lý dữ liệu</p>
                   </router-link>
@@ -190,11 +159,7 @@ import { RouterLink, RouterView } from "vue-router";
               </ul>
             </li>
             <li class="nav-item">
-              <router-link
-                to="/data-visualization"
-                class="nav-link"
-                active-class="active"
-              >
+              <router-link to="/data-visualization" class="nav-link" active-class="active">
                 <i class="nav-icon fas fa-chart-line"></i>
                 <p>Trực quan dữ liệu</p>
               </router-link>
@@ -207,11 +172,7 @@ import { RouterLink, RouterView } from "vue-router";
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link
-                to="/administration"
-                class="nav-link"
-                active-class="active"
-              >
+              <router-link to="/administration" class="nav-link" active-class="active">
                 <i class="nav-icon fas fa-toolbox"></i>
                 <p>Quản trị</p>
               </router-link>
@@ -234,10 +195,7 @@ import { RouterLink, RouterView } from "vue-router";
     <div class="content-wrapper">
       <!-- Main content -->
       <section class="content">
-        <div
-          class="container-fluid p-0 pt-2 d-flex flex-column w-100"
-          style="height: calc(100vh - 4.6rem)"
-        >
+        <div class="container-fluid p-0 pt-2 d-flex flex-column w-100" style="height: calc(100vh - 4.6rem)">
           <RouterView />
         </div>
       </section>
