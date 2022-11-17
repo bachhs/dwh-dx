@@ -13,14 +13,25 @@
 				<div class="d-flex align-items-center">
 					<div class="ml-1 mr-1">
 						<el-select v-model="sourceData" filterable placeholder="Nguồn dữ liệu.." size="large">
+							<el-option label="All" value="" />
 							<el-option v-for="item in organization" :key="item.id" :label="item.name"
 								:value="item.id" />
 						</el-select>
 					</div>
 					<div class="ml-1 mr-1">
 						<el-select v-model="typeDataFormat" filterable placeholder="Loại dữ liệu.." size="large">
-							<el-option v-for="item in options" :key="item.value" :label="item.label"
-								:value="item.value" />
+							<el-option v-for="item in typeOfData" :key="item.id" :label="item.name"
+								:value="item.id" style="height: auto;">
+								<div class="d-flex align-items-center">
+									<div class="mt-1 mb-1">
+										<img :src="`/icons/databases/${item.iconName}`"
+											style="width: 2rem;" />
+									</div>
+									<div class="ml-3">
+										{{item.name}}
+									</div>
+								</div>
+							</el-option>
 						</el-select>
 					</div>
 					<div class="ml-1 mr-1">

@@ -8,7 +8,7 @@ export default {
 		const datasources = ref([]);
 		const typeDataFormat = ref("");
 		const filterQuery = ref("");
-		const sourceData = ref([]);
+		const sourceData = ref('');
 		const options = ref([
 			{
 				value: "Option1",
@@ -56,6 +56,6 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(useDataCategoryStore, ['organization']),
+		...mapState(useDataCategoryStore, ['organization', 'typeOfData']),
 	},
 };
