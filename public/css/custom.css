@@ -52,16 +52,34 @@ body {
 
 .layout-fixed .main-sidebar {
   top: calc(4rem - 1px); }
+.layout-fixed.sidebar-collapse .main-header {
+  margin-left: 0 !important; }
+.layout-fixed.sidebar-collapse .navbar-nav .nav-link {
+  white-space: nowrap !important; }
 .layout-fixed .main-header {
   margin-left: 0 !important;
   height: 4rem;
   margin-top: 0; }
+.layout-fixed .navbar-nav a.nav-link:hover {
+  background-color: #07325a; }
+.layout-fixed .navbar-nav a.nav-link.nav-bars-btn {
+  padding: 0.3rem 0.8rem;
+  -webkit-border-radius: 3px !important;
+  -moz-border-radius: 3px !important;
+  border-radius: 3px !important;
+  width: 3rem;
+  height: auto;
+  text-align: center; }
 .layout-fixed .navbar-badge {
   font-size: .8rem;
   right: 2px;
   top: 7px; }
 .layout-fixed .sidebar .nav-link p {
-  position: initial; }
+  position: initial;
+  white-space: nowrap !important; }
+.layout-fixed .sidebar .nav-treeview > .nav-item > .nav-link.active {
+  background-color: #007bff !important;
+  color: #fff !important; }
 .layout-fixed .content-wrapper {
   color: #333; }
   .layout-fixed .content-wrapper .content {
@@ -73,7 +91,7 @@ body {
 .layout-fixed .diagrams {
   min-width: 1626px; }
   .layout-fixed .diagrams .diagrams-block {
-    border: 3px solid #02274a;
+    border: 3px solid #88c6ff;
     height: calc(100vh - 7.4rem);
     background: #d0e8ff;
     background: -moz-linear-gradient(90deg, #d0e8ff 0%, #abcbe9 100%);
@@ -94,25 +112,28 @@ body {
     .layout-fixed .diagrams .diagrams-block .diagrams-item {
       border: 2px solid #4b749d;
       background: #243747;
-      background: linear-gradient(90deg, #243747 0%, #4b74a0 100%);
-      background: -moz-linear-gradient(90deg, #243747 0%, #4b74a0 100%);
-      background: -webkit-linear-gradient(90deg, #243747 0%, #4b74a0 100%);
+      background: linear-gradient(90deg, #82abcd 0%, #4275ab 100%);
+      background: -moz-linear-gradient(90deg, #82abcd 0%, #4275ab 100%);
+      background: -webkit-linear-gradient(90deg, #82abcd 0%, #4275ab 100%);
       width: 100%; }
       .layout-fixed .diagrams .diagrams-block .diagrams-item .dig-icon {
         -webkit-border-radius: 8px;
         -moz-border-radius: 8px;
         border-radius: 8px; }
       .layout-fixed .diagrams .diagrams-block .diagrams-item:hover {
-        border-color: #02274a; }
+        border-color: #0d6dc5;
+        box-shadow: 0px 0px 10px 5px #fff;
+        -webkit-box-shadow: 0px 0px 10px 5px #fff;
+        -moz-box-shadow: 0px 0px 10px 5px #fff; }
     .layout-fixed .diagrams .diagrams-block label {
       user-select: none !important;
       cursor: pointer; }
       .layout-fixed .diagrams .diagrams-block label .dataSourceUnit-radio {
         visibility: hidden !important; }
         .layout-fixed .diagrams .diagrams-block label .dataSourceUnit-radio:checked + .diagrams-item {
-          border-color: rgba(255, 190, 12, 0.863);
-          box-shadow: 0px 0px 10px 5px #ff9900;
-          -webkit-box-shadow: 0px 0px 10px 5px #ff9900;
-          -moz-box-shadow: 0px 0px 10px 5px #ff9900; }
+          border-color: #0d6dc5;
+          box-shadow: 0px 0px 10px 5px #fff;
+          -webkit-box-shadow: 0px 0px 10px 5px #fff;
+          -moz-box-shadow: 0px 0px 10px 5px #fff; }
 
 /*# sourceMappingURL=custom.css.map */

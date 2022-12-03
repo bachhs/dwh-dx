@@ -12,8 +12,8 @@
 		<nav class="main-header navbar navbar-expand bg-header-color d-flex align-items-center">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav d-flex align-items-center">
-				<li class="nav-item d-inline-block d-md-none">
-					<a class="nav-link text-white pt-2 pl-1 pr-1" data-widget="pushmenu" href="#" role="button"><i
+				<li class="nav-item d-inline-block">
+					<a class="nav-link text-white nav-bars-btn pl-1 pr-1" data-widget="pushmenu" href="#" role="button"><i
 							class="fas fa-bars text-white fa-2x"></i></a>
 				</li>
 				<li>
@@ -117,7 +117,7 @@
 								<p>Trang chủ</p>
 							</router-link>
 						</li>
-						<li class="nav-item">
+						<!-- <li class="nav-item">
 							<router-link to="/notification" class="nav-link" active-class="active">
 								<i class="nav-icon fas fa-bell"></i>
 								<p>Thông báo</p>
@@ -128,7 +128,7 @@
 								<i class="nav-icon fas fa-search"></i>
 								<p>Tìm kiếm</p>
 							</router-link>
-						</li>
+						</li> -->
 						<li class="nav-header">DỮ LIỆU</li>
 						<li class="nav-item">
 							<router-link to="/data-source" class="nav-link" active-class="active">

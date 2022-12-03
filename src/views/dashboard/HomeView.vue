@@ -11,8 +11,8 @@
           class="d-flex flex-column m-1 ml-0 p-0 c-rounded diagrams-block"
           style="flex-basis: 20% !important"
         >
-          <div class="text-center mb-3 mt-0 bg-navy p-2 dig-header">
-            <strong class="text-white">DỮ LIỆU NGUỒN</strong>
+          <div class="text-center mb-3 mt-0 p-2 dig-header">
+            <strong class="text-navy">DỮ LIỆU NGUỒN</strong>
           </div>
           <el-scrollbar
             class="text-center flex-fill d-flex flex-column pl-3 pr-3 mb-2 justify-content-center"
@@ -59,8 +59,8 @@
           class="flex-fill d-flex flex-column m-1 mr-0 p-0 c-rounded diagrams-block"
           style="flex-basis: 20% !important"
         >
-          <div class="text-center mb-3 mt-0 bg-navy p-2 dig-header">
-            <strong class="text-white">TỔNG HỢP DỮ LIỆU</strong>
+          <div class="text-center mb-3 mt-0 p-2 dig-header">
+            <strong class="text-navy">TỔNG HỢP DỮ LIỆU</strong>
           </div>
           <el-scrollbar class="flex-fill d-flex flex-column pl-2 pr-3 mb-2">
             <div class="w-100">
@@ -127,8 +127,8 @@
           class="flex-fill d-flex flex-column m-1 mr-0 p-0 c-rounded diagrams-block"
           style="flex-basis: 17% !important"
         >
-          <div class="text-center mb-3 mt-0 bg-navy p-2 dig-header">
-            <strong class="text-white">LƯU TRỮ DỮ LIỆU</strong>
+          <div class="text-center mb-3 mt-0 p-2 dig-header">
+            <strong class="text-navy">LƯU TRỮ DỮ LIỆU</strong>
           </div>
           <div class="flex-fill d-flex pl-4 pr-4">
             <div
@@ -191,8 +191,8 @@
           class="flex-fill d-flex flex-column m-1 mr-0 p-0 c-rounded diagrams-block"
           style="flex-basis: 20% !important"
         >
-          <div class="text-center mb-3 mt-0 bg-navy p-2 dig-header">
-            <strong class="text-white">ỨNG DỤNG</strong>
+          <div class="text-center mb-3 mt-0 p-2 dig-header">
+            <strong class="text-navy">ỨNG DỤNG</strong>
           </div>
           <el-scrollbar class="text-center flex-fill d-flex mb-2">
             <div class="container-fluid">
