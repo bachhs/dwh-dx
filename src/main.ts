@@ -6,7 +6,8 @@ import "element-plus/dist/index.css";
 import axios from "axios";
 import App from "./App.vue";
 import router from "./router";
-
+import NoData from "@/components/NoData.vue";
+import moment from 'moment';
 import "./assets/main.css";
 
 const axiosInstance = axios.create({
@@ -21,8 +22,21 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(ElementPlus);
+app.component('no-data', NoData);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 	app.component(key, component);
+}
+
+app.config.globalProperties.$filters = {
+	prettyDate(value:any) {
+		if (!value) value = new Date()
+		return moment(value).calendar(null, {
+			sameDay: '[Today] HH:mm:ss',
+			lastDay: '[Yesterday] HH:mm:ss',
+			lastWeek: 'DD/MM/YYYY HH:mm:ss',
+			sameElse: 'DD/MM/YYYY HH:mm:ss',
+		});
+	}
 }
 
 

@@ -2,7 +2,8 @@ import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { organizationApi } from "@/api/organizationApi";
 export const useDataCategoryStore = defineStore("dataCategory", () => {
-	const organization = ref([]);
+	const defaultOrganization = ref(0);
+	const organization = ref(new Array<any>([]));
 	const typeOfData = ref([
 		{ id: 1, type: "database", name: "PostgreSQL", iconName: "postgresql.svg" },
 		{ id: 2, type: "database", name: "Microsoft SQL Server", iconName: "microsoft-sql-server.svg" },
@@ -20,10 +21,12 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 	function getOrganization() {
 		organizationApi.organizationList().then((response: any) => {
 			organization.value = response.data.content;
+			if(organization.value.length > 0) defaultOrganization.value = organization.value[0].id
 		});
 	}
 	return { 
 		organization, 
+		defaultOrganization,
 		typeOfData,
 		getOrganization 
 	};
