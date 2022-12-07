@@ -2,7 +2,7 @@
 <template>
     <div class="flex-fill d-flex flex-column w-100"
         v-loading="isLoading">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center pr-3">
             <div class="flex-fill d-none d-md-block">
                 <h4>
                     <i class="fas fa-database text-lightblue mr-2"></i>
@@ -10,13 +10,13 @@
                 </h4>
             </div>
             <div class="d-flex align-items-center">
-                <div class="ml-1 mr-1">
+                <div class="ml-1 mr-1 d-none d-md-block">
                     <el-select v-model="sourceData" filterable placeholder="Nguồn dữ liệu.." size="large">
                         <el-option label="All" value="" />
                         <el-option v-for="item in organization" :key="item.id" :label="item.name" :value="item.id" />
                     </el-select>
                 </div>
-                <div class="ml-1 mr-1">
+                <div class="ml-1 mr-1 d-none d-md-block">
                     <el-select v-model="typeDataFormat" filterable placeholder="Loại dữ liệu.." size="large">
                         <el-option v-for="item in typeOfData" :key="item.id" :label="item.name" :value="item.id"
                             style="height: auto;">
@@ -63,7 +63,7 @@
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 mb-3" 
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3" 
                                 v-for="ds in datasources" :key="ds.id">
                                 <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
                                     <div class="d-flex">
@@ -102,12 +102,26 @@
                                             </div>
                                         </div>                                        
                                         <div class="ml-2 align-self-start">
-                                            <el-button size="large" link
-                                                @click="$emit('onChangeView', { viewName: 'ModifyData', data: ds })">
-                                                <el-icon :size="20" style="vertical-align: middle">
-                                                    <Edit />
-                                                </el-icon>
-                                            </el-button>
+                                            <div>
+                                                <el-tooltip class="box-item" effect="dark" content="Xem chi tiết" placement="top">
+                                                    <el-button size="large" link class="text-primary"
+                                                        @click="$emit('onChangeView', { viewName: 'ViewDetail', data: ds })">
+                                                        <el-icon :size="20" style="vertical-align: middle">
+                                                            <View />
+                                                        </el-icon>
+                                                    </el-button>
+                                                </el-tooltip>
+                                            </div>
+                                            <div class="mt-2">
+                                                <el-tooltip class="box-item text-nowrap" effect="dark" content="Chỉnh sửa" placement="top">
+                                                    <el-button size="large" link  class="text-primary"
+                                                        @click="$emit('onChangeView', { viewName: 'ModifyData', data: ds })">
+                                                        <el-icon :size="20" style="vertical-align: middle">
+                                                            <Edit />
+                                                        </el-icon>
+                                                    </el-button>
+                                                </el-tooltip>
+                                            </div>
                                         </div>
                                     </div>
                                 </el-card>

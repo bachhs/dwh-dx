@@ -11,6 +11,10 @@ export default {
             loader: () => import("@/views/dataSource/AddModifyDataSource.vue"),
             loadingComponent: SkeletonBox
         }),
+        ViewDetail:  defineAsyncComponent({
+            loader: () => import("@/views/dataSource/ViewDetail.vue"),
+            loadingComponent: SkeletonBox
+        }),
     },
     setup(){
         const isChangeViewLoading = ref(false);
@@ -52,6 +56,14 @@ export default {
                             dataItem : paramsObject.data,
                         };
                         currentComponent.value = "AddModifyData";
+                        break;
+                    case "ViewDetail":
+                        viewSettings.value = {
+                            viewName: "ViewDetail",
+                            title : "Chi tiết nguồn dữ liệu",
+                            dataItem : paramsObject.data,
+                        };
+                        currentComponent.value = "ViewDetail";
                         break;
                 }
                 await nextTick();

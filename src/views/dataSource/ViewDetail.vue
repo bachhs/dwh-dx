@@ -1,0 +1,193 @@
+<script lang="ts" src="@/scripts/dataSource/viewDetail.ts"></script>
+<template>
+    <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill d-none d-md-block">
+                <h4 class="mb-0">
+                    <i class="fas fa-info-circle text-lightblue mr-2"></i>
+                    <strong v-if="(ds && ds.name)">
+                        {{ ds.name }}
+                    </strong>
+                </h4>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="ml-1 mr-4">
+                    <!-- <el-button size="large" type="primary">
+                        <el-icon><CircleCheck /></el-icon>
+                        <span>Lưu dữ liệu</span>
+                    </el-button> -->
+
+                    <el-button size="medium" type="danger"
+                        @click="$emit('onChangeView', { viewName: 'ListData', data: null })">
+                        <div>
+                            Thoát
+                        </div>
+                    </el-button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-fill mt-2 pr-0" v-if="ds">
+            <div class="flex-fill pb-0 pt-2 mr-4">
+                <div class="hoz-content-wrap mb-2 mb-md-0" >
+                    <el-scrollbar style="max-width: 100%;">
+                        <div class="scrollbar-flex-content">
+                            <div class="card p-2 pl-3 pr-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                                <div>Đơn vị</div>
+                                <h5 class="mt-1">{{ ds.organization }}</h5>
+                            </div>
+                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                                <div>Dialect</div>
+                                <h5 class="mt-1">{{ ds.dialect }}</h5>
+                            </div>
+                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                                <div>Ngày khởi tạo</div>
+                                <h5 class="mt-1">{{ $filters.prettyDate(ds.created_at) }}</h5>
+                            </div>
+                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                                <div>Host</div>
+                                <h5 class="mt-1">{{ ds.host }}</h5>
+                            </div>
+                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                                <div>Port</div>
+                                <h5 class="mt-1">{{ ds.port }}</h5>
+                            </div>
+                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                                <div>Username</div>
+                                <h5 class="mt-1">{{ ds.username }}</h5>
+                            </div>
+                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                                <div>Trạng thái</div>
+                                <h5 class="mt-1">{{ ds.status ? "Good" : "Not good" }}</h5>
+                            </div>
+                        </div>
+                    </el-scrollbar>
+                </div>
+                <div>
+                    <el-tabs type="border-card" class="tab-data">
+                        <el-tab-pane>
+                            <template #label>
+                                <div class="custom-tabs-label">
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <i class="fas fa-table"></i>
+                                        </div>
+                                        <div class="ml-1">Table <span class="ml-1 label label-counting">292</span></div>
+                                    </div>
+                                </div>
+                            </template>
+                            <div>
+                                <el-scrollbar style="height: calc(100vh - 21rem);">
+                                    <div class="mr-3 pl-1 pt-2">
+                                        <div class="card p-2" v-for="item in 20" :key="item">
+                                            <div>
+                                                <el-button link class="text-navy">
+                                                    <span><i class="fas fa-table mr-1"></i>
+                                                        <strong>datasource_cdc</strong></span>
+                                                </el-button>
+                                            </div>
+                                            <div class="text-muted">
+                                                <span>No Owner</span>
+                                                <span class="ml-2">No Tier</span>
+                                                <span class="ml-2">Type: Regular</span>
+                                            </div>
+                                            <div class="text-muted">Setup Prometheus monitor service(Hadoop,
+                                                openmetadata,datahub, keycloak ....)</div>
+                                            <div>
+                                                <small class="text-muted">demo_app.public</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </el-scrollbar>
+                            </div>
+                        </el-tab-pane>
+                        <el-tab-pane>
+                            <template #label>
+                                <div class="custom-tabs-label">
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <i class="fas fa-glasses"></i>
+                                        </div>
+                                        <div class="ml-1">View <span class="ml-1 label label-counting">5</span></div>
+                                    </div>
+                                </div>
+                            </template>
+                            <div>
+                                <el-scrollbar style="height: calc(100vh - 21rem);">
+                                    <div class="mr-3 pl-1 pt-2">
+                                        <div class="card p-2" v-for="item in 5" :key="item">
+                                            <div>
+                                                <el-button link class="text-navy">
+                                                    <span><i class="fas fa-table mr-1"></i>
+                                                        <strong>View {{item}}</strong></span>
+                                                </el-button>
+                                            </div>
+                                            <div class="text-muted">
+                                                <span>No Owner</span>
+                                                <span class="ml-2">No Tier</span>
+                                                <span class="ml-2">Type: Regular</span>
+                                            </div>
+                                            <div class="text-muted">Setup Prometheus monitor service(Hadoop,
+                                                openmetadata,datahub, keycloak ....)</div>
+                                            <div>
+                                                <small class="text-muted">demo_app.public</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </el-scrollbar>
+                            </div>
+                        </el-tab-pane>
+                    </el-tabs>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style scoped lang="scss">
+.hoz-content-wrap{
+    width: calc(100vw - 3rem);
+}
+
+
+.scrollbar-flex-content {
+    display: flex;
+}
+
+.scrollbar-demo-item {
+    flex-shrink: 0;
+    width: auto;
+}
+
+.label-counting {
+    font-size: 75%;
+    padding: 0.1rem 0.3rem !important;
+}
+
+.tab-data {
+    .el-tabs__item {
+        .custom-tabs-label {
+            .label-counting {
+                background: #909399 !important;
+                color: #fff;
+            }
+        }
+
+        &.is-active {
+            .custom-tabs-label {
+                color: #001f3f !important;
+
+                .label-counting {
+                    background: #001f3f linear-gradient(180deg, #26415c, #001f3f) repeat-x !important;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px){
+    .hoz-content-wrap{
+        width: calc(100vw - 3rem - 250px);
+    }
+}
+</style>

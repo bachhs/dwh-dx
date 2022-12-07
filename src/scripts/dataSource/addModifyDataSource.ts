@@ -11,6 +11,7 @@ export default {
 			nameOfDS: "",
 			descOfDS: "",
 			organizationSelected: appState.defaultOrganization,
+			typeOfDataIn: 1,
 			typeOfDataSourceSelected: 1
 		});
 		onMounted(() =>{
@@ -19,6 +20,7 @@ export default {
 					nameOfDS: props.viewSettings.dataItem.name,
 					descOfDS: props.viewSettings.dataItem.name,
 					organizationSelected: appState.defaultOrganization,
+					typeOfDataIn: 1,
 					typeOfDataSourceSelected: 1
 				}
 			}
