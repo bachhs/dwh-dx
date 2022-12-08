@@ -15,13 +15,17 @@ export default {
             loader: () => import("@/views/dataSource/viewDetails/TablesAndViews.vue"),
             loadingComponent: SkeletonBox
         }),
+        TableDetails: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/viewDetails/TableDetails.vue"),
+            loadingComponent: SkeletonBox
+        }),
     },
 	setup(props:any) { 
 		const isLoading = ref(false);
 		const ds = ref(null);
 		const currentView = ref('SchemasList');
         const processingEvent = (evtParams:any) => {
-            currentView.value = "TablesAndViews";
+            currentView.value = evtParams.eventName;
         };
 		onMounted(() =>{
 			ds.value = props.viewSettings.dataItem;

@@ -29,33 +29,33 @@
         <div class="d-flex flex-fill mt-2 pr-0" v-if="ds">
             <div class="flex-fill pb-0 pt-2 mr-4">
                 <div class="hoz-content-wrap mb-2 mb-md-0" >
-                    <el-scrollbar style="max-width: 100%;">
-                        <div class="scrollbar-flex-content">
-                            <div class="card p-2 pl-3 pr-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                    <el-scrollbar style="max-width: 100%;" >
+                        <div class="scrollbar-flex-content mt-1 ml-1">
+                            <div class="card p-2 pl-3 pr-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Đơn vị</div>
                                 <h5 class="mt-1">{{ ds.organization }}</h5>
                             </div>
-                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Dialect</div>
                                 <h5 class="mt-1">{{ ds.dialect }}</h5>
                             </div>
-                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Ngày khởi tạo</div>
                                 <h5 class="mt-1">{{ $filters.prettyDate(ds.created_at) }}</h5>
                             </div>
-                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Host</div>
                                 <h5 class="mt-1">{{ ds.host }}</h5>
                             </div>
-                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Port</div>
                                 <h5 class="mt-1">{{ ds.port }}</h5>
                             </div>
-                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Username</div>
                                 <h5 class="mt-1">{{ ds.username }}</h5>
                             </div>
-                            <div class="card p-2 pl-3 pr-3 ml-3 bg-gradient-navy text-nowrap scrollbar-demo-item">
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Trạng thái</div>
                                 <h5 class="mt-1">{{ ds.status ? "Good" : "Not good" }}</h5>
                             </div>
@@ -80,7 +80,7 @@
     display: flex;
 }
 
-.scrollbar-demo-item {
+.scrollbar-dbinfo-item {
     flex-shrink: 0;
     width: auto;
 }

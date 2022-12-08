@@ -19,8 +19,9 @@
                     <div class="mr-3 pl-1 pt-2">
                         <div class="card p-2" v-for="item in 20" :key="item">
                             <div>
-                                <el-button link class="text-navy">
-                                    <span><i class="fas fa-table mr-1"></i>
+                                <el-button link class="text-navy"
+                                    @click="$emit('processingEvent', { eventName: 'TableDetails', dataItem: {} })">
+                                    <span><i class="fa-solid fa-table-cells mr-1"></i>
                                         <strong>datasource_cdc</strong></span>
                                 </el-button>
                             </div> 

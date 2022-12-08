@@ -15,8 +15,11 @@
             <tbody>
                 <tr>
                     <td>
-                        <el-button link @click="$emit('processingEvent', { eventName: 'TablesAndViews', dataItem: {} })">
-                            <strong class="text-primary" style="font-size: 1rem;">information_schema</strong>
+                        <el-button link class="link-schema"
+                            @click="$emit('processingEvent', { eventName: 'TablesAndViews', dataItem: {} })">
+                            <strong class="text-navy" style="font-size: 1rem;">
+                                <i class="fa-solid fa-cube"></i> information_schema
+                            </strong>
                         </el-button>
                     </td>
                     <td>No description</td>
@@ -25,8 +28,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <el-button link @click="$emit('processingEvent', { eventName: 'TablesAndViews', dataItem: {} })">
-                            <strong class="text-primary" style="font-size: 1rem;">public</strong>
+                        <el-button link  class="link-schema"
+                            @click="$emit('processingEvent', { eventName: 'TablesAndViews', dataItem: {} })">
+                            <strong class="text-navy" style="font-size: 1rem;">
+                                <i class="fa-solid fa-cube"></i> public
+                            </strong>
                         </el-button>
                     </td>
                     <td>No description</td>
@@ -56,6 +62,11 @@
             tr{                
                 &:nth-of-type(even) {
                     background-color: #e5e5e5;
+                }
+                .link-schema{
+                    &:hover{
+                        text-decoration: underline;
+                    }
                 }
             }
         }
