@@ -19,6 +19,10 @@ export default {
             loader: () => import("@/views/dataSource/viewDetails/TableDetails.vue"),
             loadingComponent: SkeletonBox
         }),
+        ColumnDetails: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/viewDetails/ColumnDetails.vue"),
+            loadingComponent: SkeletonBox
+        }),
     },
 	setup(props:any) { 
 		const isLoading = ref(false);
@@ -35,6 +39,9 @@ export default {
                     break;
                 case 'TableDetails':
                     breadcrumbs.value = [ds.value.name, 'information_schema', 'datasource_cdc'];
+                    break;
+                case 'ColumnDetails':
+                    breadcrumbs.value = [ds.value.name, 'information_schema', 'datasource_cdc', 'id'];
                     break;
             }
             currentView.value = evtParams.eventName;

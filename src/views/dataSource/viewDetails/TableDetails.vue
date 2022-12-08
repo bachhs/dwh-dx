@@ -245,9 +245,10 @@
                                 <tbody>
                                     <tr v-for="column in listColumns" :key="column.name">
                                         <td>
-                                            <a class="text-navy" href="#">
+                                            <el-button link class="text-navy" 
+                                                @click="$emit('processingEvent', { eventName: 'ColumnDetails', dataItem: {} })">
                                                 <strong>{{column.name}}</strong>
-                                            </a>
+                                            </el-button>
                                         </td>
                                         <td>
                                             <div>{{column.dataType}}</div>
