@@ -6,7 +6,10 @@
                 <h4 class="mb-0">
                     <i class="fas fa-info-circle text-lightblue mr-2"></i>
                     <strong v-if="(ds && ds.name)">
-                        {{ ds.name }}
+                        <span v-for="(breadcrumbItem, indexBredcumb) in breadcrumbs" :key="indexBredcumb">
+                            <el-icon v-if="(indexBredcumb > 0)" size="14" class="ml-2"><ArrowRight /></el-icon>
+                            {{breadcrumbItem}}
+                        </span>
                     </strong>
                 </h4>
             </div>

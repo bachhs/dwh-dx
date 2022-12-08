@@ -22,17 +22,31 @@ export default {
     },
 	setup(props:any) { 
 		const isLoading = ref(false);
-		const ds = ref(null);
+		const ds:any = ref(null);
 		const currentView = ref('SchemasList');
+		const breadcrumbs = ref(new Array<string>());
         const processingEvent = (evtParams:any) => {
+            switch(evtParams.eventName){
+                case 'SchemasList':
+                    breadcrumbs.value = [ds.value.name];
+                    break;
+                case 'TablesAndViews':
+                    breadcrumbs.value = [ds.value.name, 'information_schema'];
+                    break;
+                case 'TableDetails':
+                    breadcrumbs.value = [ds.value.name, 'information_schema', 'datasource_cdc'];
+                    break;
+            }
             currentView.value = evtParams.eventName;
         };
 		onMounted(() =>{
 			ds.value = props.viewSettings.dataItem;
+            breadcrumbs.value = [props.viewSettings.dataItem.name]
 		});
 		return { 
 			isLoading,
             ds,
+            breadcrumbs,
             currentView,
             processingEvent,
 		};

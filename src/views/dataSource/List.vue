@@ -103,7 +103,7 @@
                                         </div>                                        
                                         <div class="ml-2 align-self-start">
                                             <div>
-                                                <el-tooltip class="box-item" effect="dark" content="Xem chi tiết" placement="top">
+                                                <el-tooltip class="box-item" effect="dark" content="Xem chi tiết" placement="left">
                                                     <el-button size="large" link class="text-primary"
                                                         @click="$emit('onChangeView', { viewName: 'ViewDetail', data: ds })">
                                                         <el-icon :size="20" style="vertical-align: middle">
@@ -113,7 +113,7 @@
                                                 </el-tooltip>
                                             </div>
                                             <div class="mt-2">
-                                                <el-tooltip class="box-item text-nowrap" effect="dark" content="Chỉnh sửa" placement="top">
+                                                <el-tooltip class="box-item text-nowrap" effect="dark" content="Chỉnh sửa" placement="left">
                                                     <el-button size="large" link  class="text-primary"
                                                         @click="$emit('onChangeView', { viewName: 'ModifyData', data: ds })">
                                                         <el-icon :size="20" style="vertical-align: middle">
