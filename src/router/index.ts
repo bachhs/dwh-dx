@@ -23,6 +23,11 @@ const router = createRouter({
       component: () => import("@/views/dataSource/Index.vue"),
     },
     {
+      path: "/datasource-pipeline",
+      name: "datasourcePipeline",
+      component: () => import("@/views/datasourcePipeline/Index.vue"),
+    },
+    {
       path: "/data-synthesis",
       name: "dataSynthesis",
       component: () => import("@/views/dataMonitoring/dataSynthesis.vue"),
