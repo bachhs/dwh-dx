@@ -1,4 +1,4 @@
-<script lang="ts" src="@/scripts/dataSource"></script>
+<script lang="ts" src="@/scripts/dataSource/index.ts"></script>
 <template>
   <el-card
     class="box-card w-100 d-flex flex-fill flex-column"
