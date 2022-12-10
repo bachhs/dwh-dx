@@ -1,9 +1,9 @@
 import axios from "axios";
 export const dataSourceApi = {
-    dataSourceList(){
+    dataSourceList(params:{ page:number, size:number }){
         return axios.get(
             `/datasources`,
-            { params: { page: 1, limit: 30 } }
+            { params: { page: params.page, size: params.size } }
         );
     }
 }

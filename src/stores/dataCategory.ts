@@ -18,9 +18,38 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 		{ id: 11, type: "database", name: "Redis", iconName: "redis.svg" }
 	]);
 
+	const organizationList = ref([
+		{
+			id: 1,
+			name: "Sở Thông Tin \r\n& Truyền Thông",
+			imgUrl: "/custom-img/svg-icon/thong-tin-truyen-thong.svg",
+		},
+		{
+			id: 2,
+			name: "Sở Y Tế",
+			imgUrl: "/custom-img/svg-icon/medical.svg",
+		},
+		{
+			id: 3,
+			name: "Sở Giao thông\r\nvận tải",
+			imgUrl: "/custom-img/svg-icon/traffic-jam.svg",
+		},
+		{
+			id: 4,
+			name: "Sở Xây dựng",
+			imgUrl: "/custom-img/svg-icon/construction.svg",
+		},
+		{
+			id: 5,
+			name: "Sở Kế hoạch\r\n& Đầu tư",
+			imgUrl: "/custom-img/svg-icon/plan-investment.svg",
+		},
+	]);
+
 	function getOrganization() {
 		organizationApi.organizationList().then((response: any) => {
-			organization.value = response.data.content;
+			//organization.value = response.data.content;
+			organization.value = organizationList.value;
 			if(organization.value.length > 0) defaultOrganization.value = organization.value[0].id
 		});
 	}

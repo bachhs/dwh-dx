@@ -3,7 +3,7 @@
     <div class="flex-fill d-flex flex-column w-100"
         v-loading="isLoading">
         <div class="d-flex align-items-center pr-3">
-            <div class="flex-fill d-none d-md-block">
+            <div class="flex-fill d-none d-sm-none d-md-none d-lg-block">
                 <h4>
                     <i class="fas fa-database text-lightblue mr-2"></i>
                     <strong>Nguồn dữ liệu</strong>
@@ -11,8 +11,12 @@
             </div>
             <div class="d-flex align-items-center">
                 <div class="ml-1 mr-1 d-none d-md-block">
-                    <el-select v-model="sourceData" filterable placeholder="Nguồn dữ liệu.." size="large">
-                        <el-option label="All" value="" />
+                    <el-select  style="width: 15rem;"
+                        v-model="sourceData" 
+                        filterable 
+                        placeholder="Nguồn dữ liệu.." 
+                        size="large">
+                        <el-option label="All" value=""/>
                         <el-option v-for="item in organization" :key="item.id" :label="item.name" :value="item.id" />
                     </el-select>
                 </div>
@@ -41,7 +45,7 @@
                         </template>
                     </el-input>
                 </div>
-                <div class="ml-1">
+                <div class="ml-1 text-nowrap">
                     <el-button size="large" type="primary"
                         @click="$emit('onChangeView', { viewName: 'AddData', data: {} })">
                         <el-icon :size="20" style="vertical-align: middle">
@@ -59,12 +63,12 @@
         </div>
         <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
             <div class="flex-fill d-flex flex-column"
-                v-if="(datasources && datasources.length > 0)">
+                v-if="(datasources.data && datasources.data.length > 0)">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3" 
-                                v-for="ds in datasources" :key="ds.id">
+                                v-for="ds in datasources.data" :key="ds.id">
                                 <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
                                     <div class="d-flex">
                                         <div>
@@ -137,7 +141,15 @@
                         <span><strong>Last update:</strong> 2 seconds ago</span>
                     </div>
                     <div>
-                        <el-pagination class="" background layout="total, sizes, prev, pager, next, jumper" :total="1000" />
+                        <el-pagination v-if="(datasources.data && datasources.data.length > 0)"
+                            class="" background 
+                            layout="total, sizes, prev, pager, next, jumper" 
+                            v-model:current-page="datasources.pagination.page"
+                            :page-size="datasources.pagination.size"
+                            :page-count="datasources.pagination.totalPages"
+                            :total="datasources.pagination.totalElements"
+                            @size-change="getDataSources"
+                            @current-change="getDataSources"/>
                     </div>
                 </div>
             </div>

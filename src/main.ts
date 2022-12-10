@@ -42,6 +42,7 @@ app.config.globalProperties.$filters = {
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 //axios.defaults.withCredentials = true;
+//http://14.225.11.182:8081/swagger-ui/index.html
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 axios.interceptors.request.use(
 	function (config) {

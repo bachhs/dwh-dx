@@ -1,5 +1,8 @@
 body {
-  color: #333; }
+  color: #333;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden; }
 
 .el-scrollbar.d-flex .el-scrollbar__wrap, .el-scrollbar.d-flex .el-scrollbar__view {
   display: -ms-flexbox !important;

@@ -1,17 +1,26 @@
 import { ref, onMounted } from "vue";
 import { mapState } from "pinia";
-import axios from "axios";
+import { dataSourceApi } from "@/api/dataSourceApi";
 import { useDataCategoryStore } from '@/stores/dataCategory';
+import { useRoute } from 'vue-router';
 
 export default {
     props: ['viewSettings'],
 	emits: ['onChangeView'],
 	setup() {
 		const isLoading = ref(false);
-		const datasources = ref([]);
+		const datasources = ref({ 
+			data: [], 
+			pagination: { 
+				page: 1, 
+				size: 15,
+				totalElements: 0, 
+				totalPages: 1 
+			} 
+		});
 		const typeDataFormat = ref("");
 		const filterQuery = ref("");
-		const sourceData = ref('');
+		const sourceData:any = ref('');
 		const options = ref([
 			{
 				value: "Option1",
@@ -35,20 +44,33 @@ export default {
 			},
 		]);
 
-		const getDataSources = () => {
+		const getDataSources = (pageNumber:number = 1) => {
 			isLoading.value = true;
-			axios.get(
-				`/datasources`, { params: { page: 1, limit: 20 } }
-			).then(response =>{
-				datasources.value = response.data.content;
+			let pagination:any = datasources.value.pagination;
+			dataSourceApi.dataSourceList({ page: pageNumber, size: pagination.size })
+			.then(response =>{
+				datasources.value.pagination = {
+					page : pageNumber,					
+					size : response.data.size,
+					totalElements: response.data.totalElements,
+					totalPages: response.data.totalPages
+				};
+				datasources.value.data = response.data.content;
 				isLoading.value = false;
 			}).catch(() =>{
 				isLoading.value = false;
 			});
 		}
 
+		const route = useRoute();
 		onMounted(() => {
-			getDataSources();
+			if(route.query.organization){
+				const organizationId:any = route.query.organization || "";
+				if(organizationId && organizationId !== ""){
+					sourceData.value = parseInt(organizationId);
+				}
+			}
+			getDataSources(1);
 		});
 
 		return {
