@@ -115,6 +115,38 @@ body{
     }
 }
 
+.el-step {
+    &.is-simple {
+ 
+        .el-step__title {
+            &.is-success {
+                color: #0db596 !important;
+                font-weight: bold !important;
+            }
+        }
+
+        .el-step__head {
+            .el-step__icon {
+                width: 20px !important;
+                height: 20px !important;
+                font-size: 17px; 
+                .el-step__icon-inner{
+                    &.is-status {
+                        transform: scale(1) translateY(-2px);
+                    }
+                }
+            }
+            &.is-success {
+                color: #fff !important;
+                border-color: #0db596 !important;
+                .el-step__icon {
+                    background-color: #0db596 !important;
+                }
+            }
+        }
+    }
+}
+
 .table{
     thead{
         th{

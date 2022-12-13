@@ -48,6 +48,21 @@ body {
   -ms-flex-direction: column !important;
   flex-direction: column !important; }
 
+.el-step.is-simple .el-step__title.is-success {
+  color: #0db596 !important;
+  font-weight: bold !important; }
+.el-step.is-simple .el-step__head .el-step__icon {
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 17px; }
+  .el-step.is-simple .el-step__head .el-step__icon .el-step__icon-inner.is-status {
+    transform: scale(1) translateY(-2px); }
+.el-step.is-simple .el-step__head.is-success {
+  color: #fff !important;
+  border-color: #0db596 !important; }
+  .el-step.is-simple .el-step__head.is-success .el-step__icon {
+    background-color: #0db596 !important; }
+
 .table thead th {
   font-weight: bold; }
   .table thead th button {

@@ -3,6 +3,7 @@ import { mapState } from "pinia";
 import { dataSourceApi } from "@/api/dataSourceApi";
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { useRoute } from 'vue-router';
+import { ElMessage, ElMessageBox } from 'element-plus';
 
 export default {
     props: ['viewSettings'],
@@ -60,7 +61,32 @@ export default {
 			}).catch(() =>{
 				isLoading.value = false;
 			});
-		}
+		};
+
+		const deleteDataSource = (item:any) =>{
+			ElMessageBox.confirm(
+				`Đồng ý sẽ xoá nguồn dữ liệu <strong class="text-primary">${item.name}</strong>. Tiếp tục?`, 'Xác nhận xoá', {
+					dangerouslyUseHTMLString: true,
+					confirmButtonText: 'Đồng ý xoá',
+					cancelButtonText: 'Không xoá',
+					type: 'warning',
+				}
+			)
+			.then(() => {
+				ElMessage({
+					dangerouslyUseHTMLString: true,
+					type: 'success',
+					message: `Đã xoá nguồn dữ liệu <strong class="text-primary">${item.name}</strong>`,
+				})
+			})
+			.catch(() => {
+				ElMessage({
+					dangerouslyUseHTMLString: true,
+					type: 'info',
+					message: `Đã huỷ bỏ lệnh xoá nguồn dữ liệu <strong class="text-primary">${item.name}</strong>`,
+				})
+			})
+		};
 
 		const route = useRoute();
 		onMounted(() => {
@@ -81,6 +107,7 @@ export default {
 			sourceData,
 			options,
 			getDataSources,
+			deleteDataSource,
 		};
 	},
 	computed: {

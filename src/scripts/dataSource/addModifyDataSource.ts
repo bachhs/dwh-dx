@@ -7,6 +7,8 @@ export default {
 	emits: ['onChangeView'],
 	setup(props:any) { 
 		const isLoading = ref(false);
+		const stepWizard = ref(1);
+		const totalStepWizard = 4;
 		const itemModel = ref({
 			nameOfDS: "",
 			descOfDS: "",
@@ -27,7 +29,9 @@ export default {
 		});
 		return { 
 			isLoading,
-			itemModel
+			stepWizard,
+			totalStepWizard,
+			itemModel,
 		};
 	},
 	computed: {

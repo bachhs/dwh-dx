@@ -108,7 +108,7 @@
                                         <div class="ml-2 align-self-start">
                                             <div>
                                                 <el-tooltip class="box-item" effect="dark" content="Xem chi tiết" placement="left">
-                                                    <el-button size="large" link class="text-primary"
+                                                    <el-button size="large" link class="text-navy"
                                                         @click="$emit('onChangeView', { viewName: 'ViewDetail', data: ds })">
                                                         <el-icon :size="20" style="vertical-align: middle">
                                                             <View />
@@ -118,10 +118,20 @@
                                             </div>
                                             <div class="mt-2">
                                                 <el-tooltip class="box-item text-nowrap" effect="dark" content="Chỉnh sửa" placement="left">
-                                                    <el-button size="large" link  class="text-primary"
+                                                    <el-button size="large" link  class="text-navy"
                                                         @click="$emit('onChangeView', { viewName: 'ModifyData', data: ds })">
                                                         <el-icon :size="20" style="vertical-align: middle">
                                                             <Edit />
+                                                        </el-icon>
+                                                    </el-button>
+                                                </el-tooltip>
+                                            </div>
+                                            <div class="mt-2">
+                                                <el-tooltip class="box-item text-nowrap" effect="dark" content="Xoá" placement="left">
+                                                    <el-button size="large" link  class="text-danger"
+                                                        @click="deleteDataSource(ds)">
+                                                        <el-icon :size="20" style="vertical-align: middle">
+                                                            <Delete />
                                                         </el-icon>
                                                     </el-button>
                                                 </el-tooltip>
