@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default {
   setup() {
-    const pipelines = ref([]);
+    const pipelines = ref(new Array<any>([]));
 
     async function getPipelines(): Promise<void> {
       const response = await axios.get(
