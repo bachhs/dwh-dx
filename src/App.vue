@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from "vue-router";
 import { useDataCategoryStore } from "@/stores/dataCategory";
 const dataCategoryStore = useDataCategoryStore();
 dataCategoryStore.getOrganization();
+dataCategoryStore.getAppParams();
 </script>
 
 <template>

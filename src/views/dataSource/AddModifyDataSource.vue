@@ -85,7 +85,7 @@
                     </div>
                     <div class="row mt-2 w-100">
                         <div class="col-12 col-md-2 type-datasource-item" 
-                            v-for="item in typeOfData" :key="item.id">
+                            v-for="item in typeOfDataSource" :key="item.id">
                             <label class="d-block">
                                 <input type="radio" class="radio-selection" 
                                 :value="item.id" v-model="itemModel.typeOfDataSourceSelected"/>

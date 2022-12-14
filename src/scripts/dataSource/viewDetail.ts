@@ -59,6 +59,6 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(useDataCategoryStore, ['organization', 'typeOfData']),
+		...mapState(useDataCategoryStore, ['organization', 'typeOfDataSource']),
 	},
 };

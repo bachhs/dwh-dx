@@ -1,23 +1,11 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { organizationApi } from "@/api/organizationApi";
+import { appParamsApi } from "@/api/appParamsApi";
 export const useDataCategoryStore = defineStore("dataCategory", () => {
 	const defaultOrganization = ref(0);
 	const organization = ref(new Array<any>([]));
-	const typeOfData = ref([
-		{ id: 1, type: "database", name: "PostgreSQL", iconName: "postgresql.svg" },
-		{ id: 2, type: "database", name: "Microsoft SQL Server", iconName: "microsoft-sql-server.svg" },
-		{ id: 3, type: "database", name: "MySQL", iconName: "mysql.svg" },
-		{ id: 4, type: "database", name: "Oracle", iconName: "oracle.svg" },
-		{ id: 5, type: "database", name: "MongoDB", iconName: "mongodb.svg" },
-		{ id: 6, type: "database", name: "Cassandra", iconName: "postgresql.svg" },
-		{ id: 7, type: "database", name: "MariaDB", iconName: "mariadb.svg" },
-		{ id: 8, type: "database", name: "IBM Db2", iconName: "ibmdb2.svg" },
-		{ id: 9, type: "database", name: "SQLite", iconName: "sqlite.svg" },
-		{ id: 10, type: "database", name: "Elasticsearch", iconName: "elasticsearch.svg" },
-		{ id: 11, type: "database", name: "Redis", iconName: "redis.svg" }
-	]);
-
+	const typeOfDataSource = ref(new Array<any>([]));
 	const organizationList = ref([
 		{
 			id: 1,
@@ -46,6 +34,23 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 		},
 	]);
 
+	function getAppParams() {
+		appParamsApi.getAllParams().then((response:any) => {
+			let tDataSourceItems = response.data.content.filter((x:any) => x.type === "database");
+			tDataSourceItems.forEach((typeDtsItem:any) => {
+				try{
+					typeDtsItem.value = JSON.parse(typeDtsItem.value);
+					typeDtsItem.iconName = typeDtsItem.value.iconName;
+					typeDtsItem.name = typeDtsItem.key;
+					typeDtsItem.id = typeDtsItem.key;
+				}
+				catch(errorParse){
+					console.error(errorParse);
+				}
+			});
+			typeOfDataSource.value = tDataSourceItems;
+		});
+	}
 	function getOrganization() {
 		organizationApi.organizationList().then((response: any) => {
 			//organization.value = response.data.content;
@@ -56,7 +61,8 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 	return { 
 		organization, 
 		defaultOrganization,
-		typeOfData,
-		getOrganization 
+		typeOfDataSource,
+		getOrganization,
+		getAppParams,
 	};
 });
