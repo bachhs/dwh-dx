@@ -22,7 +22,7 @@
                 </div>
                 <div class="ml-1 mr-1 d-none d-md-block">
                     <el-select v-model="typeDataFormat" filterable placeholder="Loại dữ liệu.." size="large">
-                        <el-option v-for="item in typeOfDataSource" :key="item.id" :label="item.name" :value="item.id"
+                        <el-option v-for="item in databaseEngineOptions" :key="item.id" :label="item.name" :value="item.id"
                             style="height: auto;">
                             <div class="d-flex align-items-center">
                                 <div class="mt-1 mb-1">

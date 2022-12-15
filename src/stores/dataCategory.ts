@@ -5,7 +5,8 @@ import { appParamsApi } from "@/api/appParamsApi";
 export const useDataCategoryStore = defineStore("dataCategory", () => {
 	const defaultOrganization = ref(0);
 	const organization = ref(new Array<any>([]));
-	const typeOfDataSource = ref(new Array<any>([]));
+	const databaseEngineOptions = ref(new Array<any>([]));
+	const fileTypeDataSourceOptions = ref(new Array<any>([]));
 	const organizationList = ref([
 		{
 			id: 1,
@@ -48,7 +49,10 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 					console.error(errorParse);
 				}
 			});
-			typeOfDataSource.value = tDataSourceItems;
+			databaseEngineOptions.value = tDataSourceItems;
+
+			let fileTypeDtsItems = response.data.content.filter((x:any) => x.type === "file");
+			fileTypeDataSourceOptions.value = fileTypeDtsItems;
 		});
 	}
 	function getOrganization() {
@@ -61,7 +65,8 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 	return { 
 		organization, 
 		defaultOrganization,
-		typeOfDataSource,
+		databaseEngineOptions,
+		fileTypeDataSourceOptions,
 		getOrganization,
 		getAppParams,
 	};

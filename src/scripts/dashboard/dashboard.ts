@@ -10,6 +10,6 @@ export default {
     return data;
   },
 	computed: {
-		...mapState(useDataCategoryStore, ['organization', 'typeOfDataSource']),
+		...mapState(useDataCategoryStore, ['organization', 'databaseEngineOptions']),
 	},
 };
