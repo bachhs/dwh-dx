@@ -2,10 +2,16 @@ import { ref, onMounted, reactive } from "vue";
 import { mapState } from "pinia";
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import type { FormInstance, FormRules } from 'element-plus';
+import { FileSelector, Dropzone, DialogButton } from "vue3-file-selector";
 const appState = useDataCategoryStore();
 export default {
     props: ['viewSettings'],
 	emits: ['onChangeView'],
+	components: {
+		FileSelector,
+		Dropzone,
+		DialogButton,
+	},
 	setup(props:any) { 
 		const isLoading = ref(false);
 		const stepWizard = ref(1);
@@ -31,7 +37,12 @@ export default {
 					{ min: 3, message: 'Nhập tối thiểu 3 ký tự..', trigger: 'blur' },
 				],
 			})
-		}
+		};
+ 
+		const controllerUpload = new AbortController();
+		const fileSelectorRef = ref<any>(null)
+		const files = ref([]);
+
 		const submitForm = {
 			submitStep1 : async (formElStep1: FormInstance | undefined) => {
 				if (!formElStep1) return
@@ -76,6 +87,10 @@ export default {
 			itemModel,
 			ruleFormStep1Ref, 
 			rules,
+			controllerUpload: controllerUpload,
+			files,
+			fileSelectorRef,
+			fileTypeAccept: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'],
 			submitStep,
 		};
 	},
