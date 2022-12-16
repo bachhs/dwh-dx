@@ -49,8 +49,9 @@
                     </el-button>
                 </div>
             </div>
-        </div>
-        <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
+        </div> 
+        <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0"
+            v-if="(listElements.data && listElements.data.length > 0)">
             <el-scrollbar class="w-100 flex-fill">
                 <div class="mt-2 mr-3">
                     <table class="table table-striped table-head-fixed text-nowrap table-borderless">
@@ -92,10 +93,10 @@
                             </tr>
                         </thead>
                         <tbody class=" ">
-                            <tr v-for="(itemDemo) in 99" :key="itemDemo">
-                                <td class="pl-2">Sở TTTT - Database {{ itemDemo }}</td>
-                                <td class="pl-2">DataLake - Partition/Db{{ itemDemo }}</td>
-                                <td class="pl-2 text-center">Hàng tháng</td>
+                            <tr v-for="element in listElements.data" :key="element.id">
+                                <td class="pl-2">Sở TTTT - Database {{ element.id }}</td>
+                                <td class="pl-2">DataLake - Partition/Db{{ element.id }}</td>
+                                <td class="pl-2 text-center">{{ element.schedule }}</td>
                                 <td class="pl-2 text-center">13-12-2022. 4:00:05 PM</td>
                                 <td class="pl-2 text-center">13-01-2024. 4:00:05 PM</td>
                                 <td class="pl-2 text-center">
@@ -126,12 +127,23 @@
                     <el-icon class="text-primary mt-1 mr-1">
                         <Clock />
                     </el-icon>
-                    <span><strong>Last update:</strong> 2 seconds ago</span>
+                    <span><strong>Last update:</strong> {{lastDataLoading}}</span>
                 </div>
                 <div>
-                    <el-pagination class="" background layout="total, sizes, prev, pager, next, jumper" :total="1000" />
+                    <el-pagination v-if="(listElements.data && listElements.data.length > 0)"
+                            class="" background 
+                            layout="total, sizes, prev, pager, next, jumper" 
+                            v-model:current-page="listElements.pagination.page"
+                            :page-size="listElements.pagination.size"
+                            :page-count="listElements.pagination.totalPages"
+                            :total="listElements.pagination.totalElements"
+                            @size-change="getListData"
+                            @current-change="getListData"/>
                 </div>
             </div>
+        </div>
+        <div v-else class="flex-fill d-flex flex-column">
+            <no-data/>
         </div>
     </div>
 </template>
