@@ -7,34 +7,6 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 	const organization = ref(new Array<any>([]));
 	const databaseEngineOptions = ref(new Array<any>([]));
 	const fileTypeDataSourceOptions = ref(new Array<any>([]));
-	const organizationList = ref([
-		{
-			id: 1,
-			name: "Sở Thông Tin \r\n& Truyền Thông",
-			imgUrl: "/custom-img/svg-icon/thong-tin-truyen-thong.svg",
-		},
-		{
-			id: 2,
-			name: "Sở Y Tế",
-			imgUrl: "/custom-img/svg-icon/medical.svg",
-		},
-		{
-			id: 3,
-			name: "Sở Giao thông\r\nvận tải",
-			imgUrl: "/custom-img/svg-icon/traffic-jam.svg",
-		},
-		{
-			id: 4,
-			name: "Sở Xây dựng",
-			imgUrl: "/custom-img/svg-icon/construction.svg",
-		},
-		{
-			id: 5,
-			name: "Sở Kế hoạch\r\n& Đầu tư",
-			imgUrl: "/custom-img/svg-icon/plan-investment.svg",
-		},
-	]);
-
 	function getAppParams() {
 		appParamsApi.getAllParams().then((response:any) => {
 			let tDataSourceItems = response.data.content.filter((x:any) => x.type === "database");
@@ -42,7 +14,7 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 				try{
 					typeDtsItem.value = JSON.parse(typeDtsItem.value);
 					typeDtsItem.iconName = typeDtsItem.value.iconName;
-					typeDtsItem.name = typeDtsItem.key;
+					typeDtsItem.name = typeDtsItem.label;
 					typeDtsItem.id = typeDtsItem.key;
 				}
 				catch(errorParse){
@@ -58,7 +30,7 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 	function getOrganization() {
 		organizationApi.organizationList().then((response: any) => {
 			//organization.value = response.data.content;
-			organization.value = organizationList.value;
+			organization.value = response.data.content.map((item:any) =>{ return {...item, imgUrl: item.path } });
 			if(organization.value.length > 0) defaultOrganization.value = organization.value[0].id
 		});
 	}

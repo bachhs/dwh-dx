@@ -12,16 +12,19 @@
             <div class="d-flex align-items-center">
                 <div class="ml-1 mr-1 d-none d-md-block">
                     <el-select  style="width: 15rem;"
-                        v-model="sourceData" 
+                        v-model="filterData.organization_id" 
                         filterable 
-                        placeholder="Nguồn dữ liệu.." 
-                        size="large">
+                        placeholder="Tổ chức.." 
+                        size="large"
+                        @change="filterDataFn">
                         <el-option label="All" value=""/>
                         <el-option v-for="item in organization" :key="item.id" :label="item.name" :value="item.id" />
                     </el-select>
                 </div>
                 <div class="ml-1 mr-1 d-none d-md-block">
-                    <el-select v-model="typeDataFormat" filterable placeholder="Loại dữ liệu.." size="large">
+                    <el-select v-model="filterData.dialect" filterable placeholder="Database engine.." size="large"
+                        @change="filterDataFn">
+                        <el-option label="All" value=""/>
                         <el-option v-for="item in databaseEngineOptions" :key="item.id" :label="item.name" :value="item.id"
                             style="height: auto;">
                             <div class="d-flex align-items-center">
@@ -36,8 +39,10 @@
                     </el-select>
                 </div>
                 <div class="ml-1 mr-1">
-                    <el-input v-model="filterQuery" filterable placeholder="Nhập để lọc dữ liệu.." size="large"
-                        style="min-width: 16rem">
+                    <el-input v-model="filterData.name" filterable placeholder="Nhập để lọc dữ liệu.." size="large"
+                        style="min-width: 16rem" 
+                        @input="filterDataDebounceFn"
+                        @keyup.enter.native="filterDataFn">
                         <template #prepend>
                             <el-icon style="vertical-align: middle">
                                 <Search />
@@ -53,7 +58,7 @@
                         </el-icon>
                     </el-button>
 
-                    <el-button size="large" type="primary" @click="getDataSources()">
+                    <el-button size="large" type="primary" @click="refreshDataFn()">
                         <el-icon :size="20" style="vertical-align: middle">
                             <Refresh />
                         </el-icon>

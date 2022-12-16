@@ -22,11 +22,11 @@
             </div>
             <div class="d-flex align-items-center">                
                 <div class="ml-1 mr-4">                    
-                    <el-button size="medium" type="primary">
+                    <el-button size="default" type="primary">
                         <el-icon><CircleCheck /></el-icon>
                         <span>Lưu dữ liệu</span>
                     </el-button>
-                    <el-button size="medium" type="danger"
+                    <el-button size="default" type="danger"
                         @click="$emit('onChangeView', { viewName: 'ListData', data: null })">
                         <div>
                             Thoát

@@ -20,7 +20,7 @@
                         <span>Lưu dữ liệu</span>
                     </el-button> -->
 
-                    <el-button size="medium" type="danger"
+                    <el-button size="default" type="danger"
                         @click="$emit('onChangeView', { viewName: 'ListData', data: null })">
                         <div>
                             Thoát

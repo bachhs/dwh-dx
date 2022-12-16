@@ -16,7 +16,7 @@
                         <span>Lưu dữ liệu</span>
                     </el-button> -->
 
-                    <el-button size="medium" type="danger"
+                    <el-button size="default" type="danger"
                         @click="$emit('onChangeView', { viewName: 'ListData', data: null })">
                         <div>
                             Thoát
@@ -148,6 +148,9 @@
                                         </label>
                                     </div>
                                 </div>
+                            </div>
+                            <div v-if="itemModel.typeOfDataIn === 'api'">
+                                <p>Vui lòng nhập endpoint API ở bước tiếp theo</p>
                             </div>
                         </div>
                         <div class="mb-1" v-if="stepWizard === 3">
@@ -284,7 +287,16 @@
                                 </div>
                             </div>  
                             <div v-if="itemModel.typeOfDataIn === 'api'">
-                                <div><strong>API URL</strong><span class="ml-1 text-danger">*</span></div>
+                                <div><strong>API method</strong><span class="ml-1 text-danger">*</span></div>
+                                <div class="mt-2">
+                                    <el-radio-group v-model="itemModel.apiMethod">
+                                        <el-radio-button :label="`GET`">GET</el-radio-button>
+                                        <el-radio-button :label="`POST`">POST</el-radio-button>
+                                        <el-radio-button :label="`PUT`">PUT</el-radio-button>
+                                        <el-radio-button :label="`DELETE`">DELETE</el-radio-button>
+                                    </el-radio-group>
+                                </div>
+                                <div class="mt-2"><strong>API URL</strong><span class="ml-1 text-danger">*</span></div>
                                 <div class="mt-2">
                                     <el-input v-model="itemModel.apiUrl" 
                                         size="large"

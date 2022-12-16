@@ -23,6 +23,8 @@ export default {
 			typeOfDataIn: "database",
 			databaseEngineSelected: 'postgresql',
 			fileTypeSelected: 'csv',
+			apiMethod: 'GET', 
+			apiUrl: '',
 		});
 
 		const ruleFormStep1Ref = ref<FormInstance>();
@@ -77,6 +79,8 @@ export default {
 					typeOfDataIn: "database",
 					databaseEngineSelected: 'postgresql',
 					fileTypeSelected: 'csv',
+					apiMethod: 'GET', 
+					apiUrl: '',
 				}
 			}
 		});
