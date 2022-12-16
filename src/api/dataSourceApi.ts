@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { Nullable } from "element-plus/es/components/cascader-panel/src/node";
 export const dataSourceApi = {
-    dataSourceList(params:{ page:number, size:number, organization_id:Nullable<string>, dialect:string, name:string }){
+    dataSourceList(params:any){
         let requestParams:any = { 
             page: params.page,
             size: params.size,

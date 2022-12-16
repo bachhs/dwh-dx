@@ -1,34 +1,37 @@
-<script lang="ts" setup>
-    import { reactive } from 'vue';
-    const data = reactive({
-        test: 1,
-    });
-</script>
+<script lang="ts" src="@/scripts/datasourcePipeline/datasourcePipeline/listData.ts"></script>
 <template>
     <div class="flex-fill d-flex flex-column w-100">
         <div class="d-flex align-items-center">
             <div class="flex-fill d-none d-md-block">
-                <h4><i class="fas fa-refresh text-navy"></i> <strong>Tổng hợp dữ liệu</strong></h4>
+                <h4><i class="fas fa-refresh text-navy"></i> <strong>{{moduleName}}</strong></h4>
             </div>
             <div class="d-flex align-items-center">
                 <div class="ml-1 mr-1">
                     <el-select filterable placeholder="Dữ liệu nguồn.." size="large">
-                        <el-option v-for="item in (new Array<any>([]))" :key="item.value" :label="item.label" :value="item.value" />
+                        <el-option v-for="item in dataSourceOptions" :key="item.id" :label="item.label" :value="item.id" />
                     </el-select>
                 </div>
                 <div class="ml-1 mr-1">
                     <el-select filterable placeholder="Dữ liệu đích.." size="large">
-                        <el-option v-for="item in (new Array<any>([]))" :key="item.value" :label="item.label" :value="item.value" />
+                        <el-option  label="DataLake" :value="0" />
+                        <el-option  label="Data Warehouse" :value="1" />
+                        <el-option  label="Operational Data Store(OOS)" :value="2" />
                     </el-select>
                 </div>
                 <div class="ml-1 mr-1">
                     <el-select filterable placeholder="Lịch thu thập.." size="large">
-                        <el-option v-for="item in (new Array<any>([]))" :key="item.value" :label="item.label" :value="item.value" />
+                        <el-option  label="Hàng giờ" :value="0" />
+                        <el-option  label="Hàng ngày" :value="1" />
+                        <el-option  label="Hàng tuần" :value="2" />
+                        <el-option  label="Hàng tháng" :value="3" />
+                        <el-option  label="Thủ công" :value="4" />
                     </el-select>
                 </div>
                 <div class="ml-1 mr-1">
                     <el-select filterable placeholder="Trạng thái.." size="large">
-                        <el-option v-for="item in (new Array<any>([]))" :key="item.value" :label="item.label" :value="item.value" />
+                        <el-option  label="Đang xử lý" :value="0" />
+                        <el-option  label="Hoàn thành" :value="1" />
+                        <el-option  label="Không thành công" :value="-1" />
                     </el-select>
                 </div> 
                 <div class="ml-1">

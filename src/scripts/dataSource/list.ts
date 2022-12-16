@@ -9,6 +9,7 @@ export default {
     props: ['viewSettings'],
 	emits: ['onChangeView'],
 	setup() {
+        const moduleName = 'Nguồn dữ liệu';
 		const filterDataSource = ref({
 			organization_id: '',
 			dialect: '',
@@ -27,7 +28,7 @@ export default {
 		} = usePaginationList(dataSourceApi.dataSourceList, filterDataSource);
 
 		const deleteDataSource = (item:any) =>{
-			deleteElement(dataSourceApi.deleteDataSource(item.id), 'nguồn dữ liệu', item.name);
+			deleteElement(dataSourceApi.deleteDataSource(item.id), moduleName, item.name);
 		};
 
 		const route = useRoute();

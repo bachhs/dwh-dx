@@ -1,4 +1,4 @@
-<script lang="ts" src="@/scripts/dataMonitoring/dataProcessing.ts">
+<script lang="ts" src="@/scripts/datasourcePipeline/dataProcessing.ts">
 
 </script>
 <template>
@@ -32,16 +32,6 @@
                             <el-option v-for="item in options" :key="item.value" :label="item.label"
                                 :value="item.value" />
                         </el-select>
-                    </div>
-                    <div class="ml-1 mr-1">
-                        <el-input v-model="filterQuery" filterable placeholder="Nhập để lọc dữ liệu.." size="large"
-                            style="min-width: 16rem;">
-                            <template #prepend>
-                                <el-icon style="vertical-align: middle">
-                                    <Search />
-                                </el-icon>
-                            </template>
-                        </el-input>
                     </div>
                     <div class="ml-1">
                         <el-button size="large" type="primary">

@@ -1,5 +1,5 @@
 import axios from "axios";
-export const dataSourcePipelineApi = {
+export const datasourcePipelineApi = {
     dtsPipelineList(params:{ page:number, size:number }){
         let requestParams:any = { 
             page: params.page,
@@ -20,19 +20,19 @@ export const dataSourcePipelineApi = {
             `/pipeline/${pipelineId}`
         );
     },
-    addDataSource(dtsId:number, data:any){
+    addDtsPipeline(dtsId:number, data:any){
         return axios.post(
             `/datasources/${dtsId}/pipeline`, 
             data
         );
     },
-    updateDataSource(pipelineId:number, data:any){
+    updateDtsPipeline(pipelineId:number, data:any){
         return axios.put(
             `/pipeline/${pipelineId}`, 
             data
         );
     },
-    deleteDataSource(dtsId:number){
+    deleteDtsPipeline(dtsId:number){
         return axios.delete(
             `/pipeline/${dtsId}`
         );
