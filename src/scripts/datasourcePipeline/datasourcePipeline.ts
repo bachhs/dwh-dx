@@ -3,11 +3,11 @@ import SkeletonBox from "@/components/SkeletonBox.vue";
 export default {
     components: {
         ListData: defineAsyncComponent({
-            loader: () => import("@/views/dataMonitoring/dataSynthesis/List.vue"),
+            loader: () => import("@/views/datasourcePipeline/datasourcePipeline/List.vue"),
             loadingComponent: SkeletonBox
         }),
         AddModifyData: defineAsyncComponent({
-            loader: () => import("@/views/dataMonitoring/dataSynthesis/AddModify.vue"),
+            loader: () => import("@/views/datasourcePipeline/datasourcePipeline/AddModify.vue"),
             loadingComponent: SkeletonBox
         }),
     },

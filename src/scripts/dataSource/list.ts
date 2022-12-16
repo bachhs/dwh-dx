@@ -2,7 +2,7 @@ import { ref, onMounted } from "vue";
 import { mapState } from "pinia";
 import { dataSourceApi } from "@/api/dataSourceApi";
 import { useDataCategoryStore } from '@/stores/dataCategory';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import usePaginationList from '@/scripts/_baseScripts/_usePaginationList';
 
 export default {
@@ -31,11 +31,15 @@ export default {
 		};
 
 		const route = useRoute();
+		const router = useRouter();
 		onMounted(() => {
 			if(route.query.organization){
 				const organizationId:any = route.query.organization || "";
 				if(organizationId && organizationId !== ""){
-					filterData.value.organization_id = organizationId;
+					filterData.value.organization_id = parseInt(organizationId);
+					let query = Object.assign({}, route.query);
+					delete query.color;
+					router.replace({ query: {} });
 				}
 			}
 			getListData(1);

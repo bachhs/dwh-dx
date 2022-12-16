@@ -30,17 +30,7 @@
                     <el-select filterable placeholder="Trạng thái.." size="large">
                         <el-option v-for="item in (new Array<any>([]))" :key="item.value" :label="item.label" :value="item.value" />
                     </el-select>
-                </div>
-                <div class="ml-1 mr-1">
-                    <el-input filterable placeholder="Nhập để lọc dữ liệu.." size="large"
-                        style="min-width: 16rem;">
-                        <template #prepend>
-                            <el-icon style="vertical-align: middle">
-                                <Search />
-                            </el-icon>
-                        </template>
-                    </el-input>
-                </div>
+                </div> 
                 <div class="ml-1">
                     <el-button size="large" type="primary"
                         @click="$emit('onChangeView', { viewName: 'AddData', data: {} })">

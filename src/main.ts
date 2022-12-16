@@ -37,7 +37,8 @@ app.config.globalProperties.$filters = {
 			sameElse: 'DD/MM/YYYY HH:mm:ss',
 		});
 	}
-}
+};
+app.config.globalProperties.$router = router;
 
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';

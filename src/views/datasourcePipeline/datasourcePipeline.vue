@@ -1,4 +1,4 @@
-<script lang="ts" src="@/scripts/dataMonitoring/dataSynthesis.ts">
+<script lang="ts" src="@/scripts/datasourcePipeline/datasourcePipeline.ts">
     
 </script>
 <template>

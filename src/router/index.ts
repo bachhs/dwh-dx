@@ -22,20 +22,20 @@ const router = createRouter({
       name: "dataSource",
       component: () => import("@/views/dataSource/Index.vue"),
     },
+    // {
+    //   path: "/datasource-pipeline",
+    //   name: "datasourcePipeline",
+    //   component: () => import("@/views/datasourcePipeline/Index.vue"),
+    // },
     {
       path: "/datasource-pipeline",
       name: "datasourcePipeline",
-      component: () => import("@/views/datasourcePipeline/Index.vue"),
+      component: () => import("@/views/datasourcePipeline/datasourcePipeline.vue"),
     },
     {
-      path: "/data-synthesis",
-      name: "dataSynthesis",
-      component: () => import("@/views/dataMonitoring/dataSynthesis.vue"),
-    },
-    {
-      path: "/data-processing",
+      path: "/datasource-processing",
       name: "dataProcessing",
-      component: () => import("@/views/dataMonitoring/dataProcessing.vue"),
+      component: () => import("@/views/datasourcePipeline/dataProcessing.vue"),
     },
     {
       path: "/data-visualization",

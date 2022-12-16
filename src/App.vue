@@ -138,13 +138,13 @@ dataCategoryStore.getAppParams();
 							</router-link>
 						</li>
 						<li class="nav-item">
-							<router-link to="/data-synthesis" class="nav-link" active-class="active">
+							<router-link to="/datasource-pipeline" class="nav-link" active-class="active">
 								<i class="fas fa-sync-alt nav-icon"></i>
 								<p>Tổng hợp dữ liệu</p>
 							</router-link>
 						</li>
 						<li class="nav-item">
-							<router-link to="/data-processing" class="nav-link" active-class="active">
+							<router-link to="/datasource-processing" class="nav-link" active-class="active">
 								<i class="fas fa-fire-alt nav-icon"></i>
 								<p>Xử lý dữ liệu</p>
 							</router-link>
