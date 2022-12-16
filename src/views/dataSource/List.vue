@@ -68,12 +68,12 @@
         </div>
         <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
             <div class="flex-fill d-flex flex-column"
-                v-if="(datasources.data && datasources.data.length > 0)">
+                v-if="(listElements.data && listElements.data.length > 0)">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3" 
-                                v-for="ds in datasources.data" :key="ds.id">
+                                v-for="ds in listElements.data" :key="ds.id">
                                 <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
                                     <div class="d-flex">
                                         <div>
@@ -153,18 +153,18 @@
                         <el-icon class="text-primary mt-1 mr-1">
                             <Clock />
                         </el-icon>
-                        <span><strong>Last update:</strong> 2 seconds ago</span>
+                        <span><strong>Last update:</strong> {{lastDataLoading}}</span>
                     </div>
                     <div>
-                        <el-pagination v-if="(datasources.data && datasources.data.length > 0)"
+                        <el-pagination v-if="(listElements.data && listElements.data.length > 0)"
                             class="" background 
                             layout="total, sizes, prev, pager, next, jumper" 
-                            v-model:current-page="datasources.pagination.page"
-                            :page-size="datasources.pagination.size"
-                            :page-count="datasources.pagination.totalPages"
-                            :total="datasources.pagination.totalElements"
-                            @size-change="getDataSources"
-                            @current-change="getDataSources"/>
+                            v-model:current-page="listElements.pagination.page"
+                            :page-size="listElements.pagination.size"
+                            :page-count="listElements.pagination.totalPages"
+                            :total="listElements.pagination.totalElements"
+                            @size-change="getListData"
+                            @current-change="getListData"/>
                     </div>
                 </div>
             </div>
