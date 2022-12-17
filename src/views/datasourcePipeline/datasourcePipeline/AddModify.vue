@@ -46,7 +46,7 @@
                     </div>
                 </el-form>  
                 <div>
-                    <div class="alert alert-warning alert-dismissible">
+                    <div class="alert alert-warning alert-dismissible"> 
                         <h5><i class="fa-solid fa-circle-info"></i> Thông tin</h5>
                         <div>
                             Tiến trình lấy dữ liệu nguồn từ <strong>Sở TTTT - Database 1</strong> đến dữ liệu đích <strong>DataLake - Partition/Db1</strong> 
