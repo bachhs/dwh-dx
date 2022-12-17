@@ -140,7 +140,7 @@ dataCategoryStore.getAppParams();
 						<li class="nav-item">
 							<router-link to="/datasource-pipeline" class="nav-link" active-class="active">
 								<i class="fas fa-sync-alt nav-icon"></i>
-								<p>Tổng hợp dữ liệu</p>
+								<p>Thu thập dữ liệu</p>
 							</router-link>
 						</li>
 						<li class="nav-item">

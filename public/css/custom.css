@@ -28,6 +28,8 @@ body {
   position: absolute;
   top: -2px;
   background-color: inherit; }
+.table.table-head-fixed tbody tr td {
+  vertical-align: middle; }
 
 .label {
   -webkit-border-radius: 5px;

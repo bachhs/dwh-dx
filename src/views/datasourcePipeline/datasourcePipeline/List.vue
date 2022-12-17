@@ -96,7 +96,9 @@
                             <tr v-for="element in listElements.data" :key="element.id">
                                 <td class="pl-2">Sở TTTT - Database {{ element.id }}</td>
                                 <td class="pl-2">DataLake - Partition/Db{{ element.id }}</td>
-                                <td class="pl-2 text-center">{{ element.schedule }}</td>
+                                <td class="pl-2 text-center">
+                                    <div>{{getCronExpressionReadable(element.schedule)}} ({{ element.schedule }})</div>
+                                </td>
                                 <td class="pl-2 text-center">13-12-2022. 4:00:05 PM</td>
                                 <td class="pl-2 text-center">13-01-2024. 4:00:05 PM</td>
                                 <td class="pl-2 text-center">
