@@ -4,16 +4,20 @@ body {
   max-height: 100vh;
   overflow: hidden; }
 
-.el-scrollbar.d-flex .el-scrollbar__wrap, .el-scrollbar.d-flex .el-scrollbar__view {
+.el-scrollbar.d-flex .el-scrollbar__wrap,
+.el-scrollbar.d-flex .el-scrollbar__view {
   display: -ms-flexbox !important;
   display: flex !important; }
-.el-scrollbar.flex-fill .el-scrollbar__wrap, .el-scrollbar.flex-fill .el-scrollbar__view {
+.el-scrollbar.flex-fill .el-scrollbar__wrap,
+.el-scrollbar.flex-fill .el-scrollbar__view {
   ms-flex: 1 1 auto !important;
   flex: 1 1 auto !important; }
-.el-scrollbar.justify-content-center .el-scrollbar__wrap, .el-scrollbar.justify-content-center .el-scrollbar__view {
+.el-scrollbar.justify-content-center .el-scrollbar__wrap,
+.el-scrollbar.justify-content-center .el-scrollbar__view {
   -ms-flex-pack: center !important;
   justify-content: center !important; }
-.el-scrollbar.flex-column .el-scrollbar__wrap, .el-scrollbar.flex-column .el-scrollbar__view {
+.el-scrollbar.flex-column .el-scrollbar__wrap,
+.el-scrollbar.flex-column .el-scrollbar__view {
   -ms-flex-direction: column !important;
   flex-direction: column !important; }
 
@@ -172,5 +176,18 @@ body {
           -moz-box-shadow: 0px 0px 10px 5px #fff; }
 .layout-fixed .el-popper[role=tooltip] {
   white-space: nowrap; }
+
+.radio-custom-item label {
+  cursor: pointer; }
+.radio-custom-item .radio-selection {
+  visibility: hidden;
+  display: none; }
+  .radio-custom-item .radio-selection:checked + .el-card {
+    background-color: #5ca6e5;
+    color: #fff; }
+    .radio-custom-item .radio-selection:checked + .el-card .item--name {
+      font-weight: 600; }
+    .radio-custom-item .radio-selection:checked + .el-card .organization-item--icon-selected {
+      display: block !important; }
 
 /*# sourceMappingURL=custom.css.map */

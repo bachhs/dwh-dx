@@ -7,6 +7,10 @@ export default {
     props: ['viewSettings'],
 	emits: ['onChangeView'],
     components: {
+        DatabaseList: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/viewDetails/DatabaseList.vue"),
+            loadingComponent: SkeletonBox
+        }),
         SchemasList: defineAsyncComponent({
             loader: () => import("@/views/dataSource/viewDetails/SchemasList.vue"),
             loadingComponent: SkeletonBox
@@ -27,21 +31,24 @@ export default {
 	setup(props:any) { 
 		const isLoading = ref(false);
 		const ds:any = ref(null);
-		const currentView = ref('SchemasList');
+		const currentView = ref('DatabaseList');
 		const breadcrumbs = ref(new Array<string>());
         const processingEvent = (evtParams:any) => {
             switch(evtParams.eventName){
-                case 'SchemasList':
+                case 'DatabaseList':
                     breadcrumbs.value = [ds.value.name];
                     break;
+                case 'SchemasList':
+                    breadcrumbs.value = [ds.value.name, 'database 1'];
+                    break;
                 case 'TablesAndViews':
-                    breadcrumbs.value = [ds.value.name, 'information_schema'];
+                    breadcrumbs.value = [ds.value.name, 'database 1', 'information_schema'];
                     break;
                 case 'TableDetails':
-                    breadcrumbs.value = [ds.value.name, 'information_schema', 'datasource_cdc'];
+                    breadcrumbs.value = [ds.value.name, 'database 1', 'information_schema', 'datasource_cdc'];
                     break;
                 case 'ColumnDetails':
-                    breadcrumbs.value = [ds.value.name, 'information_schema', 'datasource_cdc', 'id'];
+                    breadcrumbs.value = [ds.value.name, 'database 1', 'information_schema', 'datasource_cdc', 'id'];
                     break;
             }
             currentView.value = evtParams.eventName;

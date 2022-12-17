@@ -14,7 +14,7 @@
 						<label class="d-block w-100 p-2 mb-2 mr-2" 
 							v-for="(unitItem, indexUnit) in organization"
 							:key="indexUnit"
-							@dblclick="$router.push(`/data-source?organization=${unitItem.id}`)">
+							@click="$router.push(`/data-source?organization=${unitItem.id}`)">
 							<input class="dataSourceUnit-radio d-none" type="radio" name="dataSourceUnitSelection"
 								:value="indexUnit" v-model="indexSourceSelected" />
 							<div

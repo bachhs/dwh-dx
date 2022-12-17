@@ -3,11 +3,13 @@ import { mapState } from "pinia";
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import type { FormInstance, FormRules } from 'element-plus';
 import { cronstrueToString } from '@/helpers/cronstrueVI';
+const appState = useDataCategoryStore();
 export default {
     props: ['viewSettings'],
 	emits: ['onChangeView'],
 	setup(props:any){
-		const isLoading = ref(false);
+		const isLoading = ref(false);		
+		const organizationSelected = ref(appState.defaultOrganization);
 		const itemModel = ref({
 			id:1,
 			dataSource: "",
@@ -38,7 +40,7 @@ export default {
 			],
 		});
 
-		const getCronExpressionReadable = (cronExp) => {
+		const getCronExpressionReadable = (cronExp:string) => {
 			return cronstrueToString(cronExp, { locale: "vi", verbose: true, use24HourTimeFormat: true, });
 		};
 
@@ -61,8 +63,12 @@ export default {
 			ruleFormRef,
 			rules,
 			isLoading,
+			organizationSelected,
 			itemModel,
 			getCronExpressionReadable,
 		}
-	}
+	},
+	computed: {
+		...mapState(useDataCategoryStore, ['organization', 'databaseEngineOptions', 'fileTypeDataSourceOptions']),
+	},
 }

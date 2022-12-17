@@ -13,39 +13,67 @@
                 
             </div>
         </div>
-        <el-scrollbar class="d-flex flex-fill mt-3 pr-0">
-            <div class="w-100">
+        <el-scrollbar class="d-flex flex-fill mt-3 pr-2">
+            <div class="w-100 mr-2">
                 <el-form ref="ruleFormRef" :model="itemModel" :rules="rules"
-                    label-width="0" class="ruleForm" status-icon >                             
-                    <div class="mb-3">
-                        <div class="mt-0"><strong>Dữ liệu nguồn</strong><span class="ml-1 text-danger">*</span></div>
-                        <div class="mt-2">                                        
-                            <el-form-item label="" prop="dataSource">                                    
-                                <el-input v-model="itemModel.dataSource" size="large" placeholder="Schedule" clearable />
-                            </el-form-item>   
+                    label-width="0" class="ruleForm" status-icon >       
+                    <el-card>
+                        <div class="mt-0">
+                            <div class="row">
+                                <div class="col-12 col-md-3 organization-item radio-custom-item"
+                                    v-for="item in organization" :key="item.id">
+                                    <label  class="d-block">
+                                        <input type="radio" class="radio-selection" 
+                                            :value="item.id" v-model="organizationSelected"/>
+                                        <el-card :body-style="{ padding: '1rem 0.8rem' }"
+                                                style="height: auto; overflow: hidden;"
+                                                class="mb-3">
+                                            <div class="position-relative d-flex align-items-center">
+                                                <div class="flex-fill item--name text-nowrap" style="overflow-x: hidden;">
+                                                    {{item.name}}
+                                                </div>
+                                                <div class="ml-1 organization-item--icon-selected d-none">                                        
+                                                    <el-icon :size="20" color="white"><Check /></el-icon>
+                                                </div>
+                                            </div>                                            
+                                        </el-card>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>    
+                    </el-card>              
+                    <el-card class="mt-3">
+                        <div class="mb-1">
+                            <div class="mt-0"><strong>Dữ liệu nguồn</strong><span class="ml-1 text-danger">*</span></div>
+                            <div class="mt-2">                                        
+                                <el-form-item label="" prop="dataSource">                                    
+                                    <el-input v-model="itemModel.dataSource" size="large" placeholder="Schedule" clearable />
+                                </el-form-item>   
+                            </div>
+                            <div class="mt-2"><strong>Dữ liệu đích</strong><span class="ml-1 text-danger">*</span></div>
+                            <div class="mt-2">                                        
+                                <el-form-item label="" prop="dataDestination">                                    
+                                    <el-input v-model="itemModel.dataDestination" size="large" placeholder="Schedule" clearable />
+                                </el-form-item>   
+                            </div>
+                            <div class="mt-2"><strong>Lập lịch chạy tiến trình (Cron Expression)</strong><span class="ml-1 text-danger">*</span></div>
+                            <div class="mt-2">                                        
+                                <el-form-item label="" prop="schedule" class="mb-1">                                    
+                                    <el-input v-model="itemModel.schedule" size="large" placeholder="Schedule" clearable />
+                                </el-form-item> 
+                                <div class="mb-2">{{getCronExpressionReadable(itemModel.schedule)}}</div>
+                            </div>
+                            <div class="mt-2"><strong>Dag ID</strong><span class="ml-1 text-danger">*</span></div>
+                            <div class="mt-2">
+                                <el-form-item label="" prop="dag_id">                                            
+                                    <el-input v-model="itemModel.dag_id" size="large" 
+                                        placeholder="Dag ID" clearable />
+                                </el-form-item>
+                            </div>
                         </div>
-                        <div class="mt-2"><strong>Dữ liệu đích</strong><span class="ml-1 text-danger">*</span></div>
-                        <div class="mt-2">                                        
-                            <el-form-item label="" prop="dataDestination">                                    
-                                <el-input v-model="itemModel.dataDestination" size="large" placeholder="Schedule" clearable />
-                            </el-form-item>   
-                        </div>
-                        <div class="mt-2"><strong>Lập lịch chạy tiến trình (Cron Expression)</strong><span class="ml-1 text-danger">*</span></div>
-                        <div class="mt-2">                                        
-                            <el-form-item label="" prop="schedule">                                    
-                                <el-input v-model="itemModel.schedule" size="large" placeholder="Schedule" clearable />
-                            </el-form-item> 
-                        </div>
-                        <div class="mt-2"><strong>Dag ID</strong><span class="ml-1 text-danger">*</span></div>
-                        <div class="mt-2">
-                            <el-form-item label="" prop="dag_id">                                            
-                                <el-input v-model="itemModel.dag_id" size="large" 
-                                    placeholder="Dag ID" clearable />
-                            </el-form-item>
-                        </div>
-                    </div>
+                    </el-card>
                 </el-form>  
-                <div>
+                <!-- <div class="mt-3">
                     <div class="alert alert-warning alert-dismissible"> 
                         <h5><i class="fa-solid fa-circle-info"></i> Thông tin</h5>
                         <div>
@@ -53,8 +81,8 @@
                             được lập lịch vào <strong>{{getCronExpressionReadable(itemModel.schedule)}}</strong>
                         </div>
                     </div>                    
-                </div>
-                <div class="mt-3 mt-md-5 text-center">                    
+                </div> -->
+                <div class="mt-0 text-center">                    
                     <el-button size="large" type="primary">
                         <el-icon><CircleCheck /></el-icon>
                         <span>Lưu dữ liệu</span>
