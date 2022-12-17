@@ -1,15 +1,15 @@
 <script setup lang="ts">
-    import { ref } from 'vue';
-    const activityFilter = ref('All Activity');
-    const contentHeight = "calc(100vh - 23rem)";
-    const contentNodataHeight = "calc(100vh - 24rem)";
-    const contentNodataWithFilterHeight = "calc(100vh - 28rem)";
-    const listColumns = [
-        { name: "id", dataType: "bigint", isPrimaryKey: true },
-        { name: "name", dataType: "varchar(1)" },
-        { name: "max_value_column", dataType: "varchar(1)" },
-        { name: "max_value", dataType: "varchar(1)" },
-    ];
+import { ref } from "vue";
+const activityFilter = ref("All Activity");
+const contentHeight = "calc(100vh - 23rem)";
+const contentNodataHeight = "calc(100vh - 24rem)";
+const contentNodataWithFilterHeight = "calc(100vh - 28rem)";
+const listColumns = [
+    { name: "id", dataType: "bigint", isPrimaryKey: true },
+    { name: "name", dataType: "varchar(1)" },
+    { name: "max_value_column", dataType: "varchar(1)" },
+    { name: "max_value", dataType: "varchar(1)" },
+];
 </script>
 <template>
     <div>
@@ -32,7 +32,10 @@
                     <el-scrollbar :style="`height: ${contentHeight};`">
                         <div class="mr-3 pl-1 pt-2">
                             <div class="mb-4">
-                                <el-input placeholder="Find in table" class="input-with-select">
+                                <el-input
+                                    placeholder="Find in table"
+                                    class="input-with-select"
+                                >
                                     <template #append>
                                         <el-button>
                                             <el-icon><Search /></el-icon>
@@ -40,7 +43,9 @@
                                     </template>
                                 </el-input>
                             </div>
-                            <table class="table table-borderless table-customize table-head-fixed text-nowrap table-striped">
+                            <table
+                                class="table table-borderless table-customize table-head-fixed text-nowrap table-striped"
+                            >
                                 <thead>
                                     <tr>
                                         <th>Column name</th>
@@ -50,19 +55,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="column in listColumns" :key="column.name">
+                                    <tr
+                                        v-for="column in listColumns"
+                                        :key="column.name"
+                                    >
                                         <td>
-                                            <strong class="text-navy" style="font-size: 1rem;">
-                                                <i class="fa-solid fa-key" v-if="column.isPrimaryKey"></i> {{column.name}}
+                                            <strong
+                                                class="text-navy"
+                                                style="font-size: 1rem"
+                                            >
+                                                <i
+                                                    class="fa-solid fa-key"
+                                                    v-if="column.isPrimaryKey"
+                                                ></i>
+                                                {{ column.name }}
                                             </strong>
                                         </td>
-                                        <td>{{column.dataType}}</td>
+                                        <td>{{ column.dataType }}</td>
                                         <td>No description</td>
                                         <td>
                                             <el-button size="small">
                                                 <div>
                                                     <el-icon><Plus /></el-icon>
-                                                    <span class="ml-1">Add tag</span>
+                                                    <span class="ml-1"
+                                                        >Add tag</span
+                                                    >
                                                 </div>
                                             </el-button>
                                         </td>
@@ -80,11 +97,14 @@
                             <div>
                                 <i class="fas fa-history"></i>
                             </div>
-                            <div class="ml-1">Activity Feeds & Tasks <span class="ml-1 label label-counting">5</span></div>
+                            <div class="ml-1">
+                                Activity Feeds & Tasks
+                                <span class="ml-1 label label-counting">5</span>
+                            </div>
                         </div>
                     </div>
                 </template>
-                <div>                    
+                <div>
                     <el-scrollbar :style="`height: ${contentHeight};`">
                         <div class="mb-3">
                             <el-radio-group v-model="activityFilter">
@@ -93,8 +113,10 @@
                             </el-radio-group>
                         </div>
                         <div class="mr-3 pl-1 pt-2">
-                            <div class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataWithFilterHeight};`">
+                            <div
+                                class="flex-fill d-flex flex-column"
+                                :style="`height: ${contentNodataWithFilterHeight};`"
+                            >
                                 <no-data />
                             </div>
                         </div>
@@ -115,8 +137,10 @@
                 <div>
                     <el-scrollbar :style="`height: ${contentHeight};`">
                         <div class="mr-3 pl-1 pt-2">
-                            <div class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataHeight};`">
+                            <div
+                                class="flex-fill d-flex flex-column"
+                                :style="`height: ${contentNodataHeight};`"
+                            >
                                 <no-data />
                             </div>
                         </div>
@@ -137,8 +161,10 @@
                 <div>
                     <el-scrollbar :style="`height: ${contentHeight};`">
                         <div class="mr-3 pl-1 pt-2">
-                            <div class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataHeight};`">
+                            <div
+                                class="flex-fill d-flex flex-column"
+                                :style="`height: ${contentNodataHeight};`"
+                            >
                                 <no-data />
                             </div>
                         </div>
@@ -163,64 +189,89 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-md-3">
                                         <div class="info-box">
-                                            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-list-ol"></i></span>
+                                            <span
+                                                class="info-box-icon bg-info elevation-1"
+                                                ><i class="fas fa-list-ol"></i
+                                            ></span>
                                             <div class="info-box-content">
-                                                <span class="info-box-text">Row Count</span>
+                                                <span class="info-box-text"
+                                                    >Row Count</span
+                                                >
                                                 <span class="info-box-number">
                                                     10 rows
                                                 </span>
                                             </div>
-                            
                                         </div>
-                            
                                     </div>
-                            
+
                                     <div class="col-12 col-sm-6 col-md-3">
                                         <div class="info-box mb-3">
-                                            <span class="info-box-icon bg-navy elevation-1"><i class="fas fa-columns"></i></span>
+                                            <span
+                                                class="info-box-icon bg-navy elevation-1"
+                                                ><i class="fas fa-columns"></i
+                                            ></span>
                                             <div class="info-box-content">
-                                                <span class="info-box-text">Column Count</span>
-                                                <span class="info-box-number">4 columns</span>
+                                                <span class="info-box-text"
+                                                    >Column Count</span
+                                                >
+                                                <span class="info-box-number"
+                                                    >4 columns</span
+                                                >
                                             </div>
-                            
                                         </div>
-                            
                                     </div>
-                            
-                            
+
                                     <div class="clearfix hidden-md-up"></div>
                                     <div class="col-12 col-sm-6 col-md-3">
                                         <div class="info-box mb-3">
-                                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-tablets"></i></span>
+                                            <span
+                                                class="info-box-icon bg-success elevation-1"
+                                                ><i class="fas fa-tablets"></i
+                                            ></span>
                                             <div class="info-box-content">
-                                                <span class="info-box-text">Table Sample %</span>
-                                                <span class="info-box-number">100%</span>
+                                                <span class="info-box-text"
+                                                    >Table Sample %</span
+                                                >
+                                                <span class="info-box-number"
+                                                    >100%</span
+                                                >
                                             </div>
-                            
                                         </div>
-                            
                                     </div>
-                            
+
                                     <div class="col-12 col-sm-6 col-md-3">
                                         <div class="info-box mb-3">
-                                            <span class="info-box-icon bg-lightblue elevation-1"><i class="far fa-thumbs-up"></i></span>
+                                            <span
+                                                class="info-box-icon bg-lightblue elevation-1"
+                                                ><i class="far fa-thumbs-up"></i
+                                            ></span>
                                             <div class="info-box-content">
-                                                <span class="info-box-text">Status</span>
+                                                <span class="info-box-text"
+                                                    >Status</span
+                                                >
                                                 <span class="info-box-number">
-                                                    <span class="text-success">Success 0</span>
-                                                    <span class="text-orange ml-2">Aborted 0</span>
-                                                    <span class="text-danger ml-2">Failed 0</span>
+                                                    <span class="text-success"
+                                                        >Success 0</span
+                                                    >
+                                                    <span
+                                                        class="text-orange ml-2"
+                                                        >Aborted 0</span
+                                                    >
+                                                    <span
+                                                        class="text-danger ml-2"
+                                                        >Failed 0</span
+                                                    >
                                                 </span>
                                             </div>
-                            
                                         </div>
-                            
                                     </div>
-                            
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <el-input placeholder="Find in table" class="input-with-select">
+                                <el-input
+                                    placeholder="Find in table"
+                                    class="input-with-select"
+                                >
                                     <template #append>
                                         <el-button>
                                             <el-icon><Search /></el-icon>
@@ -228,7 +279,9 @@
                                     </template>
                                 </el-input>
                             </div>
-                            <table class="table table-borderless table-customize table-head-fixed text-nowrap table-stripped"> 
+                            <table
+                                class="table table-borderless table-customize table-head-fixed text-nowrap table-stripped"
+                            >
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -243,34 +296,68 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="column in listColumns" :key="column.name">
+                                    <tr
+                                        v-for="column in listColumns"
+                                        :key="column.name"
+                                    >
                                         <td>
-                                            <el-button link class="text-navy" 
-                                                @click="$emit('processingEvent', { eventName: 'ColumnDetails', dataItem: {} })">
-                                                <strong>{{column.name}}</strong>
+                                            <el-button
+                                                link
+                                                class="text-navy"
+                                                @click="
+                                                    $emit('processingEvent', {
+                                                        eventName:
+                                                            'ColumnDetails',
+                                                        dataItem: {},
+                                                    })
+                                                "
+                                            >
+                                                <strong>{{
+                                                    column.name
+                                                }}</strong>
                                             </el-button>
                                         </td>
                                         <td>
-                                            <div>{{column.dataType}}</div>
+                                            <div>{{ column.dataType }}</div>
                                         </td>
                                         <td>
-                                            <div data-testid="profiler-progress-bar-container" class="ant-row">
+                                            <div
+                                                data-testid="profiler-progress-bar-container"
+                                                class="ant-row"
+                                            >
                                                 <div>
-                                                    <el-progress :stroke-width="10" :percentage="70"/>
+                                                    <el-progress
+                                                        :stroke-width="10"
+                                                        :percentage="70"
+                                                    />
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div data-testid="profiler-progress-bar-container" class="ant-row">
+                                            <div
+                                                data-testid="profiler-progress-bar-container"
+                                                class="ant-row"
+                                            >
                                                 <div>
-                                                    <el-progress :stroke-width="10" :percentage="50" color="#5cb87a"/>
+                                                    <el-progress
+                                                        :stroke-width="10"
+                                                        :percentage="50"
+                                                        color="#5cb87a"
+                                                    />
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div data-testid="profiler-progress-bar-container" class="ant-row">
+                                            <div
+                                                data-testid="profiler-progress-bar-container"
+                                                class="ant-row"
+                                            >
                                                 <div>
-                                                    <el-progress :stroke-width="10" :percentage="20" color="#f56c6c"/>
+                                                    <el-progress
+                                                        :stroke-width="10"
+                                                        :percentage="20"
+                                                        color="#f56c6c"
+                                                    />
                                                 </div>
                                             </div>
                                         </td>
@@ -280,23 +367,26 @@
                                         </td>
                                         <td class="text-center">
                                             <span>
-                                                <i class="fas fa-circle text-success"></i>
+                                                <i
+                                                    class="fas fa-circle text-success"
+                                                ></i>
                                                 <span class="ml-1">0</span>
                                             </span>
                                             <span class="ml-3">
-                                                <i class="fas fa-circle text-warning"></i>
+                                                <i
+                                                    class="fas fa-circle text-warning"
+                                                ></i>
                                                 <span class="ml-1">0</span>
                                             </span>
                                             <span class="ml-3">
-                                                <i class="fas fa-circle text-danger"></i>
+                                                <i
+                                                    class="fas fa-circle text-danger"
+                                                ></i>
                                                 <span class="ml-1">0</span>
                                             </span>
                                         </td>
-                                        <td>
-                                            
-                                        </td>
+                                        <td></td>
                                     </tr>
-                                    
                                 </tbody>
                             </table>
                         </div>
@@ -317,8 +407,10 @@
                 <div>
                     <el-scrollbar :style="`height: ${contentHeight};`">
                         <div class="mr-3 pl-1 pt-2">
-                            <div class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataHeight};`">
+                            <div
+                                class="flex-fill d-flex flex-column"
+                                :style="`height: ${contentNodataHeight};`"
+                            >
                                 <no-data />
                             </div>
                         </div>
@@ -339,8 +431,10 @@
                 <div>
                     <el-scrollbar :style="`height: ${contentHeight};`">
                         <div class="mr-3 pl-1 pt-2">
-                            <div class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataHeight};`">
+                            <div
+                                class="flex-fill d-flex flex-column"
+                                :style="`height: ${contentNodataHeight};`"
+                            >
                                 <no-data />
                             </div>
                         </div>
@@ -350,7 +444,6 @@
         </el-tabs>
     </div>
 </template>
-
 
 <style scoped lang="scss">
 .tab-data {
@@ -367,7 +460,8 @@
                 color: #001f3f !important;
 
                 .label-counting {
-                    background: #001f3f linear-gradient(180deg, #26415c, #001f3f) repeat-x !important;
+                    background: #001f3f
+                        linear-gradient(180deg, #26415c, #001f3f) repeat-x !important;
                     color: #fff;
                 }
             }
