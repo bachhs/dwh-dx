@@ -3,20 +3,29 @@
     <div class="flex-fill d-flex flex-column w-100"
         v-loading="isLoading">
         <div class="d-flex align-items-center">
-            <div class="flex-fill d-none d-md-block">
-                <h4 class="mb-0">
+            <div class="flex-fill">
+                <h4 class="mb-0 d-none d-md-block">
                     <i class="fas fa-database text-lightblue mr-2"></i>
                     <strong>{{viewSettings.title}}</strong>
                 </h4>
+                <div>
+                    <strong v-if="stepWizard === 1">Thông tin định danh</strong>
+                    <strong v-if="stepWizard === 2">Loại dữ liệu</strong>
+                    <strong v-if="stepWizard === 3">Cấu hình kết nối</strong>
+                    <strong v-if="stepWizard === 4">Xem lại và lưu</strong>
+                </div>
             </div>
             <div class="d-flex align-items-center">                
-                <div class="ml-1 mr-4">                    
-                    <!-- <el-button size="large" type="primary">
-                        <el-icon><CircleCheck /></el-icon>
-                        <span>Lưu dữ liệu</span>
-                    </el-button> -->
+                <div class="ml-1 mr-4 w-100">   
+                    <el-button size="default" link type="danger"
+                        @click="$emit('onChangeView', { viewName: 'ListData', data: null })">
+                        <div>
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </el-button>
 
                     <el-button size="default" type="danger"
+                        class="d-none d-md-block"
                         @click="$emit('onChangeView', { viewName: 'ListData', data: null })">
                         <div>
                             Thoát
@@ -25,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="mt-3 pr-4">
+        <div class="mt-3 pr-4 d-none d-md-block">
             <el-steps :active="stepWizard" class="w-100" simple 
                 finish-status="success">
                 <el-step title="Thông tin định danh"/>
@@ -34,11 +43,10 @@
                 <el-step title="Xem lại và lưu"/>
             </el-steps>
         </div>
-        <el-scrollbar class="d-flex flex-fill mt-3 pr-0">
+        <el-scrollbar class="d-flex flex-fill mt-0 mt-md-3 pr-0">
             <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4">
                 <div>
-                    <el-card class="flex-fill d-flex flex-column w-100"
-                    style="height: 500px">
+                    <el-card class="flex-fill d-flex flex-column w-100 mt-1">
                         <div  v-if="stepWizard === 1">
                             <el-form ref="ruleFormStep1Ref" :model="itemModel" :rules="rules.step1"
                                 label-width="0" class="ruleForm" status-icon>                             

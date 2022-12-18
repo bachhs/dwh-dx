@@ -5,7 +5,7 @@ import { dataSourceApi } from "@/api/dataSourceApi";
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { stringCompareFn } from '@/helpers/compareFn';
 import usePaginationList from '@/scripts/_baseScripts/_usePaginationList';
-import { cronstrueToString } from '@/helpers/cronstrueVI';
+import { getCronExpressionReadable } from '@/helpers/stringHelper';
 export default {
     props: ['viewSettings'],
 	emits: ['onChangeView'],
@@ -44,11 +44,7 @@ export default {
                 });
             })
             .catch(error => console.error(error));
-        };
-
-		const getCronExpressionReadable = (cronExp) => {
-			return cronstrueToString(cronExp, { locale: "vi", verbose: true, use24HourTimeFormat: true, });
-		};
+        }; 
 
 		const deleteDtsPipeline = (item:any) =>{
 			deleteElement(datasourcePipelineApi.deleteDtsPipeline(item.id), moduleName, item.name);

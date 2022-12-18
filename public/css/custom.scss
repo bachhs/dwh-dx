@@ -142,8 +142,9 @@ body {
     &.is-simple {
 
         .el-step__title {
+            white-space: nowrap !important;
             &.is-success {
-                color: #0db596 !important;
+                color: #0b6abd  !important;
                 font-weight: bold !important;
             }
         }
@@ -163,10 +164,10 @@ body {
 
             &.is-success {
                 color: #fff !important;
-                border-color: #0db596 !important;
+                border-color: #0b6abd  !important;
 
                 .el-step__icon {
-                    background-color: #0db596 !important;
+                    background-color: #0b6abd  !important;
                 }
             }
         }

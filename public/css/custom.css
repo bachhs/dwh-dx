@@ -54,9 +54,11 @@ body {
   -ms-flex-direction: column !important;
   flex-direction: column !important; }
 
-.el-step.is-simple .el-step__title.is-success {
-  color: #0db596 !important;
-  font-weight: bold !important; }
+.el-step.is-simple .el-step__title {
+  white-space: nowrap !important; }
+  .el-step.is-simple .el-step__title.is-success {
+    color: #0b6abd  !important;
+    font-weight: bold !important; }
 .el-step.is-simple .el-step__head .el-step__icon {
   width: 20px !important;
   height: 20px !important;
@@ -65,9 +67,9 @@ body {
     transform: scale(1) translateY(-2px); }
 .el-step.is-simple .el-step__head.is-success {
   color: #fff !important;
-  border-color: #0db596 !important; }
+  border-color: #0b6abd  !important; }
   .el-step.is-simple .el-step__head.is-success .el-step__icon {
-    background-color: #0db596 !important; }
+    background-color: #0b6abd  !important; }
 
 .table thead th {
   font-weight: bold; }
