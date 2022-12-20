@@ -1,16 +1,7 @@
-<script setup lang="ts">
-import { ref } from "vue";
-const activityFilter = ref("All Activity");
-const contentHeight = "calc(100vh - 23rem)";
-const contentNodataHeight = "calc(100vh - 24rem)";
-const contentNodataWithFilterHeight = "calc(100vh - 28rem)";
-const listColumns = [
-    { name: "id", dataType: "bigint", isPrimaryKey: true },
-    { name: "name", dataType: "varchar(1)" },
-    { name: "max_value_column", dataType: "varchar(1)" },
-    { name: "max_value", dataType: "varchar(1)" },
-];
-</script>
+<script
+    lang="ts"
+    src="@/scripts/dataSource/viewDetails/tableDetail.ts"
+></script>
 <template>
     <div>
         <div>
@@ -56,7 +47,7 @@ const listColumns = [
                                 </thead>
                                 <tbody>
                                     <tr
-                                        v-for="column in listColumns"
+                                        v-for="column in columns"
                                         :key="column.name"
                                     >
                                         <td>
@@ -297,7 +288,7 @@ const listColumns = [
                                 </thead>
                                 <tbody>
                                     <tr
-                                        v-for="column in listColumns"
+                                        v-for="column in columns"
                                         :key="column.name"
                                     >
                                         <td>

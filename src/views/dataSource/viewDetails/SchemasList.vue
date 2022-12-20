@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr v-for="s in schemas" v-bind:key="s.id">
                     <td>
                         <el-button
                             link
@@ -21,34 +21,13 @@
                             @click="
                                 $emit('processingEvent', {
                                     eventName: 'TablesAndViews',
-                                    dataItem: {},
+                                    dataItem: s,
                                 })
                             "
                         >
                             <strong class="text-navy" style="font-size: 1rem">
                                 <i class="fa-solid fa-cube"></i>
-                                information_schema
-                            </strong>
-                        </el-button>
-                    </td>
-                    <td>No description</td>
-                    <td>--</td>
-                    <td>- 0th pctile</td>
-                </tr>
-                <tr>
-                    <td>
-                        <el-button
-                            link
-                            class="link-schema"
-                            @click="
-                                $emit('processingEvent', {
-                                    eventName: 'TablesAndViews',
-                                    dataItem: {},
-                                })
-                            "
-                        >
-                            <strong class="text-navy" style="font-size: 1rem">
-                                <i class="fa-solid fa-cube"></i> public
+                                {{ s.name }}
                             </strong>
                         </el-button>
                     </td>

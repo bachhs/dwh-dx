@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr v-for="d in databases" v-bind:key="d.id">
                     <td>
                         <el-button
                             link
@@ -25,37 +25,20 @@
                             @click="
                                 $emit('processingEvent', {
                                     eventName: 'SchemasList',
-                                    dataItem: {},
+                                    dataItem: d,
                                 })
                             "
                         >
                             <strong class="text-navy" style="font-size: 1rem">
-                                <i class="fa-solid fa-database"></i> Database 1
+                                <i class="fa-solid fa-database"></i>
+                                {{ d.name }}
                             </strong>
                         </el-button>
                     </td>
-                    <td>No description</td>
-                    <td>PostgreSQL</td>
-                    <td>--</td>
-                    <td>- 0th pctile</td>
-                </tr>
-                <tr>
-                    <td>
-                        <el-button
-                            link
-                            class="link-schema"
-                            @click="
-                                $emit('processingEvent', {
-                                    eventName: 'SchemasList',
-                                    dataItem: {},
-                                })
-                            "
-                        >
-                            <strong class="text-navy" style="font-size: 1rem">
-                                <i class="fa-solid fa-database"></i> Database 2
-                            </strong>
-                        </el-button>
-                    </td>
+                    <!-- <td>{{ d.description }}</td>
+                    <td>{{ d.engine }}</td>
+                    <td>{{ d.owner }}</td>
+                    <td>{{ d.usage }}</td> -->
                     <td>No description</td>
                     <td>PostgreSQL</td>
                     <td>--</td>

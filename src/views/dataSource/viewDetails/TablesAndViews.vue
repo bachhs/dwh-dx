@@ -21,7 +21,7 @@
             <div>
                 <el-scrollbar style="height: calc(100vh - 21rem)">
                     <div class="mr-3 pl-1 pt-2">
-                        <div class="card p-2" v-for="item in 20" :key="item">
+                        <div class="card p-2" v-for="t in tables" :key="t.id">
                             <div>
                                 <el-button
                                     link
@@ -36,9 +36,9 @@
                                     <span
                                         ><i
                                             class="fa-solid fa-table-cells mr-1"
-                                        ></i>
-                                        <strong>datasource_cdc</strong></span
-                                    >
+                                        />
+                                        <strong>{{ t.name }}</strong>
+                                    </span>
                                 </el-button>
                             </div>
                             <div class="text-muted">
