@@ -1,4 +1,4 @@
-<script lang="ts" src="@/scripts/dataSource/addModifyDataSource.ts"></script>
+<script lang="ts" src="@/scripts/dataSource/addDataSource.ts"></script>
 <template>
     <div class="flex-fill d-flex flex-column w-100"
         v-loading="isLoading">
@@ -8,7 +8,7 @@
                     <i class="fas fa-database text-lightblue mr-2"></i>
                     <strong>{{viewSettings.title}}</strong>
                 </h4>
-                <div>
+                <div class="d-block d-md-none">
                     <strong v-if="stepWizard === 1">Thông tin định danh</strong>
                     <strong v-if="stepWizard === 2">Loại dữ liệu</strong>
                     <strong v-if="stepWizard === 3">Cấu hình kết nối</strong>
@@ -18,6 +18,7 @@
             <div class="d-flex align-items-center">                
                 <div class="ml-1 mr-4 w-100">   
                     <el-button size="default" link type="danger"
+                        class="d-block d-md-none"
                         @click="$emit('onChangeView', { viewName: 'ListData', data: null })">
                         <div>
                             <i class="fas fa-times"></i>
