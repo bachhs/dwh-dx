@@ -7,8 +7,12 @@ export default {
             loader: () => import("@/views/dataSource/List.vue"),
             loadingComponent: SkeletonBox,
         }),
-        AddModifyData: defineAsyncComponent({
-            loader: () => import("@/views/dataSource/AddModifyDataSource.vue"),
+        AddData: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/AddDataSource.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        ModifyData : defineAsyncComponent({
+            loader: () => import("@/views/dataSource/ModifyDataSource.vue"),
             loadingComponent: SkeletonBox,
         }),
         ViewDetail: defineAsyncComponent({
@@ -47,7 +51,7 @@ export default {
                             title: "Thêm mới nguồn dữ liệu",
                             dataItem: new Object({}),
                         };
-                        currentComponent.value = "AddModifyData";
+                        currentComponent.value = "AddData";
                         break;
                     case "ModifyData":
                         viewSettings.value = {
@@ -55,7 +59,7 @@ export default {
                             title: "Chỉnh sửa nguồn dữ liệu",
                             dataItem: paramsObject.data,
                         };
-                        currentComponent.value = "AddModifyData";
+                        currentComponent.value = "ModifyData";
                         break;
                     case "ViewDetail":
                         viewSettings.value = {
