@@ -1,3 +1,4 @@
+import { dataSourceApi } from "@/api/dataSourceApi";
 import axios from "axios";
 import { onMounted, ref } from "vue";
 
@@ -30,8 +31,11 @@ export default {
             schemaName: string,
             tableName: string
         ) => {
-            const res = await axios(
-                `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/column`
+            const res = await dataSourceApi.fetchColumns(
+                datasourceName,
+                databaseName,
+                schemaName,
+                tableName
             );
 
             columns.value = parseColumns(res.data.columns);

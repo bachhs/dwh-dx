@@ -1,4 +1,4 @@
-import axios from "axios";
+import { dataSourceApi } from "@/api/dataSourceApi";
 import { onMounted, ref } from "vue";
 
 export default {
@@ -7,9 +7,7 @@ export default {
     setup(props: any) {
         const databases = ref([]);
         const fetchDatabases = async (datasourceName: string) => {
-            const res = await axios(
-                `/meta/database_service/${datasourceName}/database`
-            );
+            const res = await dataSourceApi.fetchDatabases(datasourceName);
 
             databases.value = res.data.data;
         };
