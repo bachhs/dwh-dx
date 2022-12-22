@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import { organizationApi } from "@/api/organizationApi";
 import { appParamsApi } from "@/api/appParamsApi";
 export const useDataCategoryStore = defineStore("dataCategory", () => {
-	const defaultOrganization = ref(0);
+	const defaultOrganization = ref<any>({});
 	const organization = ref(new Array<any>([]));
 	const databaseEngineOptions = ref(new Array<any>([]));
 	const fileTypeDataSourceOptions = ref(new Array<any>([]));
@@ -31,7 +31,7 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 		organizationApi.organizationList().then((response: any) => {
 			//organization.value = response.data.content;
 			organization.value = response.data.content.map((item:any) =>{ return {...item, imgUrl: item.path } });
-			if(organization.value.length > 0) defaultOrganization.value = organization.value[0].id
+			if(organization.value.length > 0) defaultOrganization.value = organization.value[0]
 		});
 	}
 	return { 

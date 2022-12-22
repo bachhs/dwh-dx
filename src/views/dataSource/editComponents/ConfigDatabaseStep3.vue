@@ -37,7 +37,7 @@
                 </div>
                 <div class="mt-1">
                     <el-input
-                        v-model="itemModel.Username"
+                        v-model="itemModel.username"
                         size="large"
                         placeholder="Username"
                         clearable />
@@ -49,7 +49,7 @@
                 </div>
                 <div class="mt-1">
                     <el-input
-                        v-model="itemModel.Password"
+                        v-model="itemModel.password"
                         type="password"
                         size="large"
                         placeholder="Password"
@@ -64,7 +64,7 @@
                 </div>
                 <div class="mt-1">
                     <el-input
-                        v-model="itemModel.DBName"
+                        v-model="itemModel.dbName"
                         size="large"
                         placeholder="DB name"
                         clearable />

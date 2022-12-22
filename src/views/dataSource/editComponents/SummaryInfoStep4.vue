@@ -1,8 +1,32 @@
 <script lang="ts" setup>
+    import { ref } from "vue";
+    import { useDataCategoryStore } from '@/stores/dataCategory';
+    const appState = useDataCategoryStore();
     const props = defineProps({
         dataSourceItem: { type: Object, required: true },
     });
     const itemModel = props.dataSourceItem;
+    const getDataSourceType = (val:string) => {
+        switch(val){
+            case "database":
+                return "Database";
+                break;
+            case "file":
+                return "File";
+                break;
+            case "api":
+                return "API";
+                break;
+        }
+        return "Không xác định";
+    };
+    const getDataEngineItem = (key:string) =>{
+        let paramItem = appState.databaseEngineOptions.find((pItem:any) => pItem.key === key);
+        if(paramItem) return paramItem;
+        return { name: "Không xác định" };
+    }
+    const dataEngineItem = getDataEngineItem(itemModel.databaseEngineSelected);
+    const showPassword = ref(false);
 </script>
 <template>
     <div>
@@ -31,16 +55,27 @@
                 <tr>
                     <td>Dữ liệu thuộc đơn vị</td>
                     <td>
-                        Bộ thông tin và truyền thông
+                        {{itemModel.organizationName}}
                     </td>
                 </tr>
                 <tr>
                     <td>Loại dữ liệu</td>
-                    <td>Database</td>
+                    <td>{{getDataSourceType(itemModel.typeOfDataIn)}}</td>
                 </tr>
-                <tr>
-                    <td>Database Engine</td>
-                    <td>PostgreSQL</td>
+                <tr v-if="itemModel.typeOfDataIn === 'database'">
+                    <td style="vertical-align: middle;">Database Engine</td>
+                    <td style="vertical-align: middle;">
+                        <div class="d-flex align-items-center">
+                            <div class="mt-1 mb-1 mr-2"
+                                v-if="dataEngineItem.iconName">
+                                <img :src="`/icons/databases/${dataEngineItem.iconName}`"
+                                    style=" height: 1.5rem; " />
+                            </div>
+                            <div>
+                                {{dataEngineItem.name}}
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td>IP address/ Host name</td>
@@ -53,18 +88,25 @@
                 <tr>
                     <td>Username</td>
                     <td>
-                        {{ itemModel.Username }}
+                        {{ itemModel.username }}
                     </td>
                 </tr>
                 <tr>
                     <td>Password</td>
                     <td>
-                        {{ itemModel.Password }}
+                        <div class="d-flex align-items-center">
+                            <span v-if="showPassword">{{ itemModel.password }}</span>
+                            <span v-else>{{ itemModel.password.replace(/./g, '*') }}</span>
+                            <el-button link class="ml-3"
+                                @click="showPassword = !showPassword">
+                                <i class="far fa-eye"></i>
+                            </el-button>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>DB name</td>
-                    <td>{{ itemModel.DBName }}</td>
+                    <td>{{ itemModel.dbName }}</td>
                 </tr>
             </tbody>
         </table>

@@ -40,15 +40,21 @@ export default {
         const itemModel = ref({
             nameOfDS: '',
             descOfDS: '',
-            organizationSelected: appState.defaultOrganization,
+            organizationSelected: appState.defaultOrganization.id,
+            organizationName: appState.defaultOrganization.name,
             typeOfDataIn: 'database',
             databaseEngineSelected: 'postgresql',
-            fileTypeSelected: 'csv',
+            fileTypeSelected: 'xlsx',
             apiMethod: 'GET',
             apiUrl: '',
+            host: "",
+            port: 5432,
+            username: "",
+            password: "",
+            dbName: "",
         });
 
-        const identityStep1Ref = ref<InstanceType<IdentityStep1>>(); 
+        const identityStep1Ref = ref<InstanceType<any>>(); 
         const submitStep = (stepIndex: number) => {
             switch (stepIndex) {
                 case 1:
@@ -86,20 +92,22 @@ export default {
         };
 
         onMounted(() => {
-            if (
-                props.viewSettings &&
-                props.viewSettings.viewName === 'ModifyData' &&
-                props.viewSettings.dataItem != null
-            ) {
+            if ( props.viewSettings && props.viewSettings.viewName === 'ModifyData' && props.viewSettings.dataItem != null) {
                 itemModel.value = {
                     nameOfDS: props.viewSettings.dataItem.name,
                     descOfDS: props.viewSettings.dataItem.name,
-                    organizationSelected: appState.defaultOrganization,
+                    organizationSelected: appState.defaultOrganization.id,
+                    organizationName: appState.defaultOrganization.name,
                     typeOfDataIn: 'database',
                     databaseEngineSelected: 'postgresql',
                     fileTypeSelected: 'csv',
                     apiMethod: 'GET',
                     apiUrl: '',
+                    host: "",
+                    port: 5432,
+                    username: "",
+                    password: "",
+                    dbName: "",
                 };
             }
         });

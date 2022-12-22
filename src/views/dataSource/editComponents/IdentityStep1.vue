@@ -47,7 +47,8 @@
                             type="radio"
                             class="radio-selection"
                             :value="item.id"
-                            v-model=" itemModel.organizationSelected " />
+                            v-model=" itemModel.organizationSelected "
+                            @change="onOrganizationChanged(item)" />
                         <el-card
                             :body-style="{ padding: '1rem 0.8rem', }" 
                             style=" height: auto; overflow: hidden; "
@@ -115,6 +116,9 @@
                 console.log('error submit!', fields);
             }
         });
+    };
+    const onOrganizationChanged = (itemOrg:any) =>{
+        itemModel.organizationName = itemOrg.name;
     };
     defineExpose({
         submitData,

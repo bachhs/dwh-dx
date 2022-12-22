@@ -1,103 +1,140 @@
-import { ref, onMounted, reactive, defineAsyncComponent } from "vue";
-import { mapState } from "pinia";
+import { ref, onMounted, reactive, defineAsyncComponent } from 'vue';
+import { mapState } from 'pinia';
 import { useDataCategoryStore } from '@/stores/dataCategory';
-import type { FormInstance, FormRules } from 'element-plus';
-import { FileSelector, Dropzone, DialogButton } from "vue3-file-selector";
 import { dataSourceApi } from '@/api/dataSourceApi';
-import { humanFileSize } from "@/helpers/ultilityFunctions";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 const appState = useDataCategoryStore();
 export default {
     props: ['viewSettings'],
-	emits: ['onChangeView'],
-	components: {
-		FileSelector,
-		Dropzone,
-		DialogButton,
-	},
-	setup(props:any) { 
-		const isLoading = ref(false);
-		const totalStepWizard = 4;
-		const itemModel = ref({
-			nameOfDS: "",
-			descOfDS: "",
-			organizationSelected: appState.defaultOrganization,
-			typeOfDataIn: "database",
-			databaseEngineSelected: 'postgresql',
-			fileTypeSelected: 'csv',
-			apiMethod: 'GET', 
-			apiUrl: '',
-		});
+    emits: ['onChangeView'],
+    components: {
+        IdentityStep1: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/IdentityStep1.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        DataSourceTypeDBStep2: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/DataSourceTypeDBStep2.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        DataSourceTypeFileStep2: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/DataSourceTypeFileStep2.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        DataSourceTypeAPIStep2: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/DataSourceTypeAPIStep2.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        ConfigDatabaseStep3: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/ConfigDatabaseStep3.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        SummaryInfoStep4: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/SummaryInfoStep4.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+    },
+	setup(props: any) {
+        const isLoading = ref(false);
+        const stepWizard = ref(1);
+        const totalStepWizard = 4;
+        const itemModel = ref({
+            nameOfDS: '',
+            descOfDS: '',
+            organizationSelected: appState.defaultOrganization.id,
+            organizationName: appState.defaultOrganization.name,
+            typeOfDataIn: 'database',
+            databaseEngineSelected: 'postgresql',
+            fileTypeSelected: 'csv',
+            apiMethod: 'GET',
+            apiUrl: '',
+            host: "",
+            port: 5432,
+            username: "",
+            password: "",
+            dbName: "",
+        });
 
-		const ruleFormStep1Ref = ref<FormInstance>();
-		const rules = {
-			step1: reactive<FormRules>({
-				nameOfDS: [
-					{ required: true, message: 'Vui lòng không bỏ trống..', trigger: 'blur' },
-					{ min: 3, message: 'Nhập tối thiểu 3 ký tự..', trigger: 'blur' },
-				],
-				descOfDS: [
-					{ required: true, message: 'Vui lòng không bỏ trống..', trigger: 'blur' },
-					{ min: 3, message: 'Nhập tối thiểu 3 ký tự..', trigger: 'blur' },
-				],
-			})
-		};
- 
-		const controllerUpload = new AbortController();
-		const fileSelectorRef = ref<any>(null)
-		const files = ref([]);
+        const identityStep1Ref = ref<InstanceType<any>>(); 
+        const submitStep = (stepIndex: number) => {
+            switch (stepIndex) {
+                case 1:
+                    console.log('identityStep1Ref', identityStep1Ref.value);
+                    if (!identityStep1Ref || !identityStep1Ref.value) return;
+                    identityStep1Ref.value?.submitData();
+                    break;
+                case 2:
+                    stepWizard.value = stepWizard.value + 1;
+                    break;
+                default:
+                    stepWizard.value = stepWizard.value + 1;
+                    break;
+            }
+        };
 
-		const submitForm = {
-			submitStep1 : async (formElStep1: FormInstance | undefined) => {
-				if (!formElStep1) return
-				await formElStep1.validate((valid, fields) => {
-					if (valid) {
-						
-					} else {
-						console.log('error submit!', fields)
-					}
-				})
-			},
-		}
-		const submitStep =(stepIndex:number) =>{
-			switch(stepIndex){
-				case 1:
-					submitForm.submitStep1(ruleFormStep1Ref.value);
-					break;
-				case 2:
-					break;
-				default:
-					break;
-			}
-		};
-		onMounted(() =>{
-			if(props.viewSettings && props.viewSettings.viewName === "ModifyData" && props.viewSettings.dataItem != null){
-				itemModel.value = {
-					nameOfDS: props.viewSettings.dataItem.name,
-					descOfDS: props.viewSettings.dataItem.name,
-					organizationSelected: appState.defaultOrganization,
-					typeOfDataIn: "database",
-					databaseEngineSelected: 'postgresql',
-					fileTypeSelected: 'csv',
-					apiMethod: 'GET', 
-					apiUrl: '',
-				}
-			}
-		});
-		return { 
-			isLoading,
-			totalStepWizard,
-			itemModel,
-			ruleFormStep1Ref, 
-			rules,
-			controllerUpload: controllerUpload,
-			files,
-			fileSelectorRef,
-			fileTypeAccept: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'],
-			submitStep,
-		};
-	},
-	computed: {
-		...mapState(useDataCategoryStore, ['organization', 'databaseEngineOptions', 'fileTypeDataSourceOptions']),
-	},
+        const addDatasource = () => {
+            try {
+                const data = {
+                    name: itemModel.value.nameOfDS,
+                    description: itemModel.value.descOfDS,
+                    type: 'database',
+                    host: '14.225.11.178',
+                    port: 5432,
+                    dialect: 'postgresql',
+                    database: 'covid_report',
+                    username: 'minhdao',
+                    password: '1a2s3d4f',
+                };
+
+                dataSourceApi.addDataSource(1, data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        onMounted(() => {
+            if ( props.viewSettings && props.viewSettings.viewName === 'ModifyData' && props.viewSettings.dataItem != null ) {
+                let dataSourceItem = props.viewSettings.dataItem;
+                itemModel.value = {
+                    nameOfDS: dataSourceItem.name,
+                    descOfDS: dataSourceItem.name,
+                    organizationSelected: appState.defaultOrganization.id,
+                    organizationName: dataSourceItem.organization,
+                    typeOfDataIn: dataSourceItem.type,
+                    databaseEngineSelected: dataSourceItem.dialect,
+                    fileTypeSelected: 'xlsx',
+                    apiMethod: 'GET',
+                    apiUrl: '',
+                    host: dataSourceItem.host,
+                    port: dataSourceItem.port,
+                    username: dataSourceItem.username,
+                    password: dataSourceItem.password,
+                    dbName: dataSourceItem.database,
+                };
+            }
+        });
+        return {
+            isLoading,
+            stepWizard,
+            totalStepWizard,
+            identityStep1Ref,
+            itemModel,
+            // controllerUpload: controllerUpload,
+            // files,
+            // fileSelectorRef,
+            // fileTypeAccept: [
+            //     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            //     'application/vnd.ms-excel',
+            // ],
+            submitStep,
+            addDatasource,
+            //humanFileSize,
+        };
+    },
+    computed: {
+        ...mapState(useDataCategoryStore, [
+            'organization',
+            'databaseEngineOptions',
+            'fileTypeDataSourceOptions',
+        ]),
+    },
 };
