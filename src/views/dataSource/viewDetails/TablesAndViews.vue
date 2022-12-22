@@ -13,7 +13,7 @@
                         </div>
                         <div class="ml-1">
                             Table
-                            <span class="ml-1 label label-counting">292</span>
+                            <span class="ml-1 label label-counting">{{tables.length}}</span>
                         </div>
                     </div>
                 </div>
