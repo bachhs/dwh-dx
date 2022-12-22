@@ -89,12 +89,13 @@ export default {
                     databaseSelected = currentViewPropsValue.databaseSelected;
                     schemasSelected = currentViewPropsValue.schemasSelected;
                     tableSelected = currentViewPropsValue.tableSelected;
+                    columnSelected = evtParams.dataItem;
                     viewProps = { 
                         ...viewProps, 
                         databaseSelected: databaseSelected,
                         schemasSelected: schemasSelected,
                         tableSelected: tableSelected,
-                        columnSelected: evtParams.dataItem
+                        columnSelected: columnSelected
                     };
                     breadcrumbs.value.push({ view: "SchemasList", label: databaseSelected.name, data: databaseSelected });
                     breadcrumbs.value.push({ view: "TablesAndViews", label: schemasSelected.name, data: schemasSelected });

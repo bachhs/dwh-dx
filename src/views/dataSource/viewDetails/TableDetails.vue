@@ -51,16 +51,22 @@
                                         :key="column.name"
                                     >
                                         <td>
-                                            <strong
+                                            <el-button
+                                                link
                                                 class="text-navy"
-                                                style="font-size: 1rem"
-                                            >
-                                                <i
-                                                    class="fa-solid fa-key"
-                                                    v-if="column.isPrimaryKey"
-                                                ></i>
-                                                {{ column.name }}
-                                            </strong>
+                                                @click="$emit('processingEvent', { eventName: 'ColumnDetails', dataItem: column, })">
+                                                <strong
+                                                    class="text-navy"
+                                                    style="font-size: 1rem"
+                                                >
+                                                    <i
+                                                        class="fa-solid fa-key"
+                                                        v-if="column.isPrimaryKey"
+                                                    ></i>
+                                                    {{ column.name }}
+                                                </strong>
+                                            </el-button>
+                                            
                                         </td>
                                         <td>{{ column.dataType }}</td>
                                         <td>No description</td>
