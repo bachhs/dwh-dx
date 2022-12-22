@@ -76,16 +76,20 @@ export default {
                 const data = {
                     name: itemModel.value.nameOfDS,
                     description: itemModel.value.descOfDS,
-                    type: 'database',
-                    host: '14.225.11.178',
-                    port: 5432,
-                    dialect: 'postgresql',
-                    database: 'covid_report',
-                    username: 'minhdao',
-                    password: '1a2s3d4f',
+                    type: itemModel.value.typeOfDataIn,
+                    host: itemModel.value.host,
+                    port: itemModel.value.port,
+                    dialect: itemModel.value.databaseEngineSelected,
+                    database: itemModel.value.dbName,
+                    username: itemModel.value.username,
+                    password: itemModel.value.password,
                 };
+                dataSourceApi.addDatasource(itemModel.value.organizationSelected, data)
+                .then((response:any) =>{
+                    this.$emit('onChangeView', { viewName: 'ListData', data: null, });
+                })
+                .catch(error => console.error(error));
 
-                dataSourceApi.addDataSource(1, data);
             } catch (err) {
                 console.log(err);
             }

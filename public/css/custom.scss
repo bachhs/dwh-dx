@@ -23,6 +23,16 @@ body {
     overflow: hidden;
 }
 
+::selection {
+    background: #409eff;
+    color: #fff;
+}
+
+::-moz-selection {
+    background: #409eff;
+    color: #fff;
+}
+
 .el-button{
     &.el-button--primary{
         &:focus{

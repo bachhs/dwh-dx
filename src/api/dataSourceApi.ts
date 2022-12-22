@@ -22,11 +22,14 @@ export const dataSourceApi = {
     getDataSourceDetail(dtsId: number) {
         return axios.get(`/datasource/${dtsId}`);
     },
-    updateDataSource(dtsId: number, data: any) {
-        return axios.put(`/datasource/${dtsId}`, data);
+    updateDataSource(dtsId: number, datasourceInfo: DatasourceInfo) {
+        return axios.put(`/datasource/${dtsId}`, datasourceInfo);
     },
-    addDataSource(organizationId: number, data: any) {
-        return axios.post(`/organization/${organizationId}/datasource`, data);
+    addDatasource(organizationId: number, datasourceInfo: DatasourceInfo) {
+        return axios.post(
+            `/organization/${organizationId}/datasource`,
+            datasourceInfo
+        );
     },
     deleteDataSource(dtsId: number) {
         return axios.delete(`/datasource/${dtsId}`);
@@ -56,12 +59,6 @@ export const dataSourceApi = {
     ) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/column`
-        );
-    },
-    addDatasource(organizationId: number, datasourceInfo: DatasourceInfo) {
-        return axios.post(
-            `/organization/${organizationId}/datasource`,
-            datasourceInfo
         );
     },
 };
