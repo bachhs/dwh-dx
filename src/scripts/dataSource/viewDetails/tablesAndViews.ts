@@ -1,9 +1,9 @@
-import { dataSourceApi } from "@/api/dataSourceApi";
-import { onMounted, ref } from "vue";
+import { dataSourceApi } from '@/api/dataSourceApi';
+import { onMounted, ref } from 'vue';
 
 export default {
-    props: ["viewSettings"],
-    emits: ["onChangeView", "processingEvent"],
+    props: ['viewSettings'],
+    emits: ['onChangeView', 'processingEvent'],
     setup(props: any) {
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
@@ -24,7 +24,11 @@ export default {
         };
         onMounted(() => {
             // hard code for now
-            fetchTables(dataSourceSelected.name, databaseSelected.name, schemasSelected.name);
+            fetchTables(
+                dataSourceSelected.name,
+                databaseSelected.name,
+                schemasSelected.name
+            );
         });
         return {
             tables,

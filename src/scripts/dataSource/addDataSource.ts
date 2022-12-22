@@ -1,12 +1,13 @@
-import { ref, onMounted, reactive } from "vue";
-import { mapState } from "pinia";
-import { useDataCategoryStore } from "@/stores/dataCategory";
-import type { FormInstance, FormRules } from "element-plus";
-import { FileSelector, Dropzone, DialogButton } from "vue3-file-selector";
+import { ref, onMounted, reactive } from 'vue';
+import { mapState } from 'pinia';
+import { useDataCategoryStore } from '@/stores/dataCategory';
+import type { FormInstance, FormRules } from 'element-plus';
+import { FileSelector, Dropzone, DialogButton } from 'vue3-file-selector';
+import { dataSourceApi } from '@/api/dataSourceApi';
 const appState = useDataCategoryStore();
 export default {
-    props: ["viewSettings"],
-    emits: ["onChangeView"],
+    props: ['viewSettings'],
+    emits: ['onChangeView'],
     components: {
         FileSelector,
         Dropzone,
@@ -17,14 +18,14 @@ export default {
         const stepWizard = ref(1);
         const totalStepWizard = 4;
         const itemModel = ref({
-            nameOfDS: "",
-            descOfDS: "",
+            nameOfDS: '',
+            descOfDS: '',
             organizationSelected: appState.defaultOrganization,
-            typeOfDataIn: "database",
-            databaseEngineSelected: "postgresql",
-            fileTypeSelected: "csv",
-            apiMethod: "GET",
-            apiUrl: "",
+            typeOfDataIn: 'database',
+            databaseEngineSelected: 'postgresql',
+            fileTypeSelected: 'csv',
+            apiMethod: 'GET',
+            apiUrl: '',
         });
 
         const ruleFormStep1Ref = ref<FormInstance>();
@@ -33,25 +34,25 @@ export default {
                 nameOfDS: [
                     {
                         required: true,
-                        message: "Vui lòng không bỏ trống..",
-                        trigger: "blur",
+                        message: 'Vui lòng không bỏ trống..',
+                        trigger: 'blur',
                     },
                     {
                         min: 3,
-                        message: "Nhập tối thiểu 3 ký tự..",
-                        trigger: "blur",
+                        message: 'Nhập tối thiểu 3 ký tự..',
+                        trigger: 'blur',
                     },
                 ],
                 descOfDS: [
                     {
                         required: true,
-                        message: "Vui lòng không bỏ trống..",
-                        trigger: "blur",
+                        message: 'Vui lòng không bỏ trống..',
+                        trigger: 'blur',
                     },
                     {
                         min: 3,
-                        message: "Nhập tối thiểu 3 ký tự..",
-                        trigger: "blur",
+                        message: 'Nhập tối thiểu 3 ký tự..',
+                        trigger: 'blur',
                     },
                 ],
             }),
@@ -68,7 +69,7 @@ export default {
                     if (valid) {
                         stepWizard.value = stepWizard.value + 1;
                     } else {
-                        console.log("error submit!", fields);
+                        console.log('error submit!', fields);
                     }
                 });
             },
@@ -86,21 +87,41 @@ export default {
                     break;
             }
         };
+
+        const addDatasource = () => {
+            try {
+                const data = {
+                    name: itemModel.value.nameOfDS,
+                    type: 'database',
+                    host: '14.225.11.178',
+                    port: 5432,
+                    dialect: 'postgresql',
+                    database: 'covid_report',
+                    username: 'minhdao',
+                    password: '1a2s3d4f',
+                };
+
+                dataSourceApi.addDataSource(1, data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
         onMounted(() => {
             if (
                 props.viewSettings &&
-                props.viewSettings.viewName === "ModifyData" &&
+                props.viewSettings.viewName === 'ModifyData' &&
                 props.viewSettings.dataItem != null
             ) {
                 itemModel.value = {
                     nameOfDS: props.viewSettings.dataItem.name,
                     descOfDS: props.viewSettings.dataItem.name,
                     organizationSelected: appState.defaultOrganization,
-                    typeOfDataIn: "database",
-                    databaseEngineSelected: "postgresql",
-                    fileTypeSelected: "csv",
-                    apiMethod: "GET",
-                    apiUrl: "",
+                    typeOfDataIn: 'database',
+                    databaseEngineSelected: 'postgresql',
+                    fileTypeSelected: 'csv',
+                    apiMethod: 'GET',
+                    apiUrl: '',
                 };
             }
         });
@@ -115,17 +136,18 @@ export default {
             files,
             fileSelectorRef,
             fileTypeAccept: [
-                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                "application/vnd.ms-excel",
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'application/vnd.ms-excel',
             ],
             submitStep,
+            addDatasource,
         };
     },
     computed: {
         ...mapState(useDataCategoryStore, [
-            "organization",
-            "databaseEngineOptions",
-            "fileTypeDataSourceOptions",
+            'organization',
+            'databaseEngineOptions',
+            'fileTypeDataSourceOptions',
         ]),
     },
 };

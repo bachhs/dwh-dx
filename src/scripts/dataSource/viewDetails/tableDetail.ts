@@ -23,7 +23,7 @@ export default {
         const databaseSelected = props.viewSettings.databaseSelected;
         const schemasSelected = props.viewSettings.schemasSelected;
         const tableSelected = props.viewSettings.tableSelected;
-        
+
         const activityFilter = ref("All Activity");
         const contentHeight = "calc(100vh - 23rem)";
         const contentNodataHeight = "calc(100vh - 24rem)";

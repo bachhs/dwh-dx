@@ -1,4 +1,5 @@
-import axios from "axios";
+import type DatasourceInfo from '@/scripts/dataSource/type';
+import axios from 'axios';
 
 export const dataSourceApi = {
     dataSourceList(params: any) {
@@ -9,12 +10,12 @@ export const dataSourceApi = {
         if (
             params.organization_id &&
             params.organization_id !== null &&
-            params.organization_id !== ""
+            params.organization_id !== ''
         )
             requestParams.organization_id = params.organization_id;
-        if (params.dialect && params.dialect !== null && params.dialect !== "")
+        if (params.dialect && params.dialect !== null && params.dialect !== '')
             requestParams.dialect = params.dialect;
-        if (params.name && params.name !== null && params.name !== "")
+        if (params.name && params.name !== null && params.name !== '')
             requestParams.name = params.name;
         return axios.get(`/datasources`, { params: requestParams });
     },
@@ -55,6 +56,12 @@ export const dataSourceApi = {
     ) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/column`
+        );
+    },
+    addDatasource(organizationId: number, datasourceInfo: DatasourceInfo) {
+        return axios.post(
+            `/organization/${organizationId}/datasource`,
+            datasourceInfo
         );
     },
 };
