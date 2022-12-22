@@ -42,7 +42,6 @@ export default {
                 schemaName,
                 tableName
             );
-            console.log('res', res);
             columns.value = parseColumns(res.data.columns);
         };
 
