@@ -43,14 +43,18 @@
 </template>
 
 <script lang="ts" setup>
-    import { ref } from 'vue';
+    import { ref, watch } from 'vue';
     //import { FileSelector, Dropzone, DialogButton } from 'vue3-file-selector';
     //import { humanFileSize } from "@/helpers/ultilityFunctions";
     const props = defineProps({
         dataSourceItem: { type: Object, required: true },
         fileTypeDataSourceOptions: { type: Array<any>, required: true },
     });
-    const itemModel = props.dataSourceItem;
+    const itemModel = ref<any>(props.dataSourceItem);
+    watch(() => props.dataSourceItem, (newVal) =>{
+        itemModel.value = newVal;
+        console.log('dataSourceItem changed',newVal);
+    });
     // const controllerUpload = new AbortController();
     // const fileSelectorRef = ref<any>(null);
     // const files = ref([]);

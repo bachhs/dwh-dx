@@ -43,7 +43,6 @@ export default {
                             title: "Nguồn dữ liệu",
                             dataItem: new Object(null),
                         };
-                        currentComponent.value = "ListData";
                         break;
                     case "AddData":
                         viewSettings.value = {
@@ -51,7 +50,6 @@ export default {
                             title: "Thêm mới nguồn dữ liệu",
                             dataItem: new Object({}),
                         };
-                        currentComponent.value = "AddData";
                         break;
                     case "ModifyData":
                         viewSettings.value = {
@@ -59,7 +57,6 @@ export default {
                             title: "Chỉnh sửa nguồn dữ liệu",
                             dataItem: paramsObject.data,
                         };
-                        currentComponent.value = "ModifyData";
                         break;
                     case "ViewDetail":
                         viewSettings.value = {
@@ -67,10 +64,10 @@ export default {
                             title: "Chi tiết nguồn dữ liệu",
                             dataItem: paramsObject.data,
                         };
-                        currentComponent.value = "ViewDetail";
                         break;
                 }
                 await nextTick();
+                currentComponent.value = paramsObject.viewName;
                 isChangeViewLoading.value = false;
             }, 100);
         };

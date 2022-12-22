@@ -1,11 +1,15 @@
 <script lang="ts" setup>
-    import { ref } from "vue";
+    import { ref, watch } from "vue";
     import { useDataCategoryStore } from '@/stores/dataCategory';
     const appState = useDataCategoryStore();
     const props = defineProps({
         dataSourceItem: { type: Object, required: true },
     });
-    const itemModel = props.dataSourceItem;
+    const itemModel = ref<any>(props.dataSourceItem);
+    watch(() => props.dataSourceItem, (newVal) =>{
+        itemModel.value = newVal;
+        console.log('dataSourceItem changed',newVal);
+    });
     const getDataSourceType = (val:string) => {
         switch(val){
             case "database":

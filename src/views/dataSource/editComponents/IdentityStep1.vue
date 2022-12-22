@@ -1,5 +1,6 @@
 <template>
     <el-form
+        v-if="itemModel"
         ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
         label-width="0" class="ruleForm" status-icon >
         <div class="mb-3">
@@ -37,7 +38,7 @@
             <div>
                 <strong>Đơn vị cung cấp</strong><span class="ml-1 text-danger">*</span>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-2" v-if="organization">
                 <div
                     class="col-12 col-md-3 organization-item"
                     v-for="item in organization"
@@ -71,13 +72,17 @@
     </el-form>
 </template>
 <script lang="ts" setup>
-    import { ref, reactive } from 'vue';
+    import { ref, reactive, watch } from 'vue';
     import type { FormInstance, FormRules } from 'element-plus';
     const props = defineProps({
         dataSourceItem: { type: Object, required: true },
         organization: { type: Array<any>, required: true }
     });
-    const itemModel = props.dataSourceItem;
+    const itemModel = ref<any>(props.dataSourceItem);
+    watch(() => props.dataSourceItem, (newVal) =>{
+        itemModel.value = newVal;
+        console.log('dataSourceItem changed',newVal);
+    });
     const ruleFormStep1Ref = ref<FormInstance>();
     const rules = reactive<FormRules>({
         nameOfDS: [
@@ -119,7 +124,7 @@
     };
     const onOrganizationChanged = (itemOrg:any) =>{
         itemModel.organizationName = itemOrg.name;
-    };
+    }; 
     defineExpose({
         submitData,
     });

@@ -1,4 +1,4 @@
-import { ref, onMounted, reactive, defineAsyncComponent } from 'vue';
+import { ref, onMounted, defineAsyncComponent } from 'vue';
 import { mapState } from 'pinia';
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { dataSourceApi } from '@/api/dataSourceApi';
@@ -90,7 +90,7 @@ export default {
                 console.log(err);
             }
         };
-
+ 
         onMounted(() => {
             if ( props.viewSettings && props.viewSettings.viewName === 'ModifyData' && props.viewSettings.dataItem != null ) {
                 let dataSourceItem = props.viewSettings.dataItem;
@@ -110,6 +110,7 @@ export default {
                     password: dataSourceItem.password,
                     dbName: dataSourceItem.database,
                 };
+                console.log('onMounted Modify');
             }
         });
         return {

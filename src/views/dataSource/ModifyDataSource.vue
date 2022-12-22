@@ -52,7 +52,8 @@
                 <div>
                     <el-scrollbar style="height: calc(100vh - 15rem)">
                         <div class="mr-3 pl-1 pt-2">
-                            <IdentityStep1 ref="identityStep1Ref"
+                            <IdentityStep1 v-if="itemModel" 
+                                            ref="identityStep1Ref"
                                             :dataSourceItem="itemModel"
                                             :organization="organization"
                                             @onFormSubmit="(valid:Boolean) => {  }"/>
@@ -84,14 +85,14 @@
                                 </el-radio-group>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'database'">
-                                <DataSourceTypeDBStep2 :dataSourceItem="itemModel"
+                                <DataSourceTypeDBStep2 v-if="itemModel" :dataSourceItem="itemModel"
                                                      :databaseEngineOptions="databaseEngineOptions"/>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
-                                <DataSourceTypeFileStep2 :dataSourceItem="itemModel"
+                                <DataSourceTypeFileStep2 v-if="itemModel" :dataSourceItem="itemModel"
                                                     :fileTypeDataSourceOptions="fileTypeDataSourceOptions"/>
                             </div>
-                            <div v-if="itemModel.typeOfDataIn === 'api'">
+                            <div v-if="itemModel && itemModel.typeOfDataIn === 'api'">
                                 <p>
                                     Vui lòng nhập endpoint API ở bước tiếp theo
                                 </p>
@@ -122,7 +123,7 @@
                                     ><span class="ml-1 text-danger">*</span>
                                 </div>
                                 <div class="mt-2">
-                                    <ConfigDatabaseStep3 :dataSourceItem="itemModel"/>
+                                    <ConfigDatabaseStep3 v-if="itemModel" :dataSourceItem="itemModel"/>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +147,7 @@
                     <el-scrollbar style="height: calc(100vh - 15rem)">
                         <div class="mr-3 pl-1 pt-2">
                             <div class="mt-3">
-                                <SummaryInfoStep4 :dataSourceItem="itemModel" />
+                                <SummaryInfoStep4 v-if="itemModel" :dataSourceItem="itemModel" />
                             </div>
                         </div>
                     </el-scrollbar>

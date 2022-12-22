@@ -11,7 +11,7 @@
             </div>
             <div class="d-flex align-items-center">
                 <div class="ml-1 mr-1 d-none d-md-block">
-                    <el-select
+                    <el-select v-if="organization"
                         style="width: 15rem"
                         v-model="filterData.organization_id"
                         filterable
@@ -27,7 +27,7 @@
                     </el-select>
                 </div>
                 <div class="ml-1 mr-1 d-none d-md-block">
-                    <el-select
+                    <el-select v-if="databaseEngineOptions"
                         v-model="filterData.dialect"
                         filterable
                         placeholder="Database engine.."

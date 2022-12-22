@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row mt-2 w-100">
+        <div class="row mt-2 w-100" v-if="databaseEngineOptions">
             <div
                 class="col-12 col-md-2 type-datasource-item"
                 v-for="item in databaseEngineOptions"
@@ -37,11 +37,16 @@
 </template>
 
 <script lang="ts" setup>
+    import { ref, watch } from 'vue';
     const props = defineProps({
         dataSourceItem: { type: Object, required: true },
         databaseEngineOptions: { type: Array<any>, required: true },
     });
-    const itemModel = props.dataSourceItem;
+    const itemModel = ref<any>(props.dataSourceItem);
+    watch(() => props.dataSourceItem, (newVal) =>{
+        itemModel.value = newVal;
+        console.log('dataSourceItem changed',newVal);
+    });
 </script>
 
 <style scoped lang="scss">

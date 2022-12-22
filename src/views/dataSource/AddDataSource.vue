@@ -54,7 +54,7 @@
                 <div>
                     <el-card class="flex-fill d-flex flex-column w-100 mt-1">
                         <div v-if="stepWizard === 1">
-                            <IdentityStep1 ref="identityStep1Ref"
+                            <IdentityStep1 v-if="itemModel" ref="identityStep1Ref"
                                             :dataSourceItem="itemModel"
                                             :organization="organization"
                                             @onFormSubmit="(valid:Boolean) => { if(valid) stepWizard = stepWizard + 1 }"/>
@@ -72,11 +72,11 @@
                                 </el-radio-group>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'database'">
-                                <DataSourceTypeDBStep2 :dataSourceItem="itemModel"
+                                <DataSourceTypeDBStep2 v-if="itemModel" :dataSourceItem="itemModel"
                                                      :databaseEngineOptions="databaseEngineOptions"/>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
-                                <DataSourceTypeFileStep2 :dataSourceItem="itemModel"
+                                <DataSourceTypeFileStep2 v-if="itemModel" :dataSourceItem="itemModel"
                                                     :fileTypeDataSourceOptions="fileTypeDataSourceOptions"/>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'api'">
@@ -92,7 +92,7 @@
                                     ><span class="ml-1 text-danger">*</span>
                                 </div>
                                 <div class="mt-2">
-                                    <ConfigDatabaseStep3 :dataSourceItem="itemModel"/>
+                                    <ConfigDatabaseStep3 v-if="itemModel" :dataSourceItem="itemModel"/>
                                 </div>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
@@ -177,7 +177,7 @@
                                 </div> -->
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'api'">
-                                <DataSourceTypeAPIStep2 :dataSourceItem="itemModel"/>
+                                <DataSourceTypeAPIStep2 v-if="itemModel" :dataSourceItem="itemModel"/>
                             </div>
                         </div>
                         <div class="mt-0" v-if="stepWizard === 4">
@@ -188,7 +188,7 @@
                                     </h5>
                                 </div>
                                 <div class="mt-3">
-                                    <SummaryInfoStep4 :dataSourceItem="itemModel" />
+                                    <SummaryInfoStep4 v-if="itemModel" :dataSourceItem="itemModel" />
                                 </div>
                             </div>
                         </div>
