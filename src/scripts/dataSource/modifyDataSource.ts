@@ -1,8 +1,11 @@
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive, defineAsyncComponent } from "vue";
 import { mapState } from "pinia";
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import type { FormInstance, FormRules } from 'element-plus';
 import { FileSelector, Dropzone, DialogButton } from "vue3-file-selector";
+import { dataSourceApi } from '@/api/dataSourceApi';
+import { humanFileSize } from "@/helpers/ultilityFunctions";
+import SkeletonBox from "@/components/SkeletonBox.vue";
 const appState = useDataCategoryStore();
 export default {
     props: ['viewSettings'],
@@ -14,7 +17,6 @@ export default {
 	},
 	setup(props:any) { 
 		const isLoading = ref(false);
-		const stepWizard = ref(1);
 		const totalStepWizard = 4;
 		const itemModel = ref({
 			nameOfDS: "",
@@ -50,7 +52,7 @@ export default {
 				if (!formElStep1) return
 				await formElStep1.validate((valid, fields) => {
 					if (valid) {
-						stepWizard.value = stepWizard.value + 1;
+						
 					} else {
 						console.log('error submit!', fields)
 					}
@@ -63,10 +65,8 @@ export default {
 					submitForm.submitStep1(ruleFormStep1Ref.value);
 					break;
 				case 2:
-					stepWizard.value = stepWizard.value + 1;
 					break;
 				default:
-					stepWizard.value = stepWizard.value + 1;
 					break;
 			}
 		};
@@ -86,7 +86,6 @@ export default {
 		});
 		return { 
 			isLoading,
-			stepWizard,
 			totalStepWizard,
 			itemModel,
 			ruleFormStep1Ref, 

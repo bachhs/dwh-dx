@@ -1,17 +1,37 @@
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive, defineAsyncComponent } from 'vue';
 import { mapState } from 'pinia';
 import { useDataCategoryStore } from '@/stores/dataCategory';
-import type { FormInstance, FormRules } from 'element-plus';
-import { FileSelector, Dropzone, DialogButton } from 'vue3-file-selector';
 import { dataSourceApi } from '@/api/dataSourceApi';
+import SkeletonBox from "@/components/SkeletonBox.vue";
 const appState = useDataCategoryStore();
 export default {
     props: ['viewSettings'],
     emits: ['onChangeView'],
     components: {
-        FileSelector,
-        Dropzone,
-        DialogButton,
+        IdentityStep1: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/IdentityStep1.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        DataSourceTypeDBStep2: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/DataSourceTypeDBStep2.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        DataSourceTypeFileStep2: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/DataSourceTypeFileStep2.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        DataSourceTypeAPIStep2: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/DataSourceTypeAPIStep2.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        ConfigDatabaseStep3: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/ConfigDatabaseStep3.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        SummaryInfoStep4: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/editComponents/SummaryInfoStep4.vue"),
+            loadingComponent: SkeletonBox,
+        }),
     },
     setup(props: any) {
         const isLoading = ref(false);
@@ -28,56 +48,13 @@ export default {
             apiUrl: '',
         });
 
-        const ruleFormStep1Ref = ref<FormInstance>();
-        const rules = {
-            step1: reactive<FormRules>({
-                nameOfDS: [
-                    {
-                        required: true,
-                        message: 'Vui lòng không bỏ trống..',
-                        trigger: 'blur',
-                    },
-                    {
-                        min: 3,
-                        message: 'Nhập tối thiểu 3 ký tự..',
-                        trigger: 'blur',
-                    },
-                ],
-                descOfDS: [
-                    {
-                        required: true,
-                        message: 'Vui lòng không bỏ trống..',
-                        trigger: 'blur',
-                    },
-                    {
-                        min: 3,
-                        message: 'Nhập tối thiểu 3 ký tự..',
-                        trigger: 'blur',
-                    },
-                ],
-            }),
-        };
-
-        const controllerUpload = new AbortController();
-        const fileSelectorRef = ref<any>(null);
-        const files = ref([]);
-
-        const submitForm = {
-            submitStep1: async (formElStep1: FormInstance | undefined) => {
-                if (!formElStep1) return;
-                await formElStep1.validate((valid, fields) => {
-                    if (valid) {
-                        stepWizard.value = stepWizard.value + 1;
-                    } else {
-                        console.log('error submit!', fields);
-                    }
-                });
-            },
-        };
+        const identityStep1Ref = ref<InstanceType<IdentityStep1>>(); 
         const submitStep = (stepIndex: number) => {
             switch (stepIndex) {
                 case 1:
-                    submitForm.submitStep1(ruleFormStep1Ref.value);
+                    console.log('identityStep1Ref', identityStep1Ref.value);
+                    if (!identityStep1Ref || !identityStep1Ref.value) return;
+                    identityStep1Ref.value?.submitData();
                     break;
                 case 2:
                     stepWizard.value = stepWizard.value + 1;
@@ -130,18 +107,18 @@ export default {
             isLoading,
             stepWizard,
             totalStepWizard,
+            identityStep1Ref,
             itemModel,
-            ruleFormStep1Ref,
-            rules,
-            controllerUpload: controllerUpload,
-            files,
-            fileSelectorRef,
-            fileTypeAccept: [
-                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'application/vnd.ms-excel',
-            ],
+            // controllerUpload: controllerUpload,
+            // files,
+            // fileSelectorRef,
+            // fileTypeAccept: [
+            //     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            //     'application/vnd.ms-excel',
+            // ],
             submitStep,
             addDatasource,
+            //humanFileSize,
         };
     },
     computed: {

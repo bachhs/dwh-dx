@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import { useDataCategoryStore } from "@/stores/dataCategory";
 const dataCategoryStore = useDataCategoryStore();
 dataCategoryStore.getOrganization();
 dataCategoryStore.getAppParams();
+const linkTime = ref((new Date()).getTime());
+onMounted(() =>{
+    setInterval(() =>{
+        linkTime.value = (new Date()).getTime();
+    }, 1000);
+})
 </script>
 
 <template>
@@ -171,7 +178,7 @@ dataCategoryStore.getAppParams();
                         <li class="nav-header">DỮ LIỆU</li>
                         <li class="nav-item">
                             <router-link
-                                to="/data-source"
+                                :to="`/data-source?t=${linkTime}`"
                                 class="nav-link"
                                 active-class="active"
                             >
@@ -279,7 +286,7 @@ dataCategoryStore.getAppParams();
                     class="container-fluid p-0 pt-2 d-flex flex-column w-100"
                     style="height: calc(100vh - 4.6rem)"
                 >
-                    <RouterView />
+                    <RouterView :key="$route.fullPath"/>
                 </div>
             </section>
             <!-- /.content -->

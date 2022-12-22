@@ -372,9 +372,7 @@
                     <el-scrollbar style="height: calc(100vh - 15rem)">
                         <div class="mr-3 pl-1 pt-2">
                             <div class="mt-3">
-                                <table
-                                    class="table table-hover text-nowrap"
-                                >
+                                <table class="table table-hover text-nowrap" >
                                     <thead>
                                         <tr>
                                             <th style="width: 1%">

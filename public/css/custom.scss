@@ -23,6 +23,17 @@ body {
     overflow: hidden;
 }
 
+.el-button{
+    &.el-button--primary{
+        &:focus{
+            color: #fff;
+            border-color: #409eff !important;
+            background-color: #409eff !important;
+            outline: 0;
+        }
+    }
+}
+
 .el-scrollbar {
     &.d-flex {
 
