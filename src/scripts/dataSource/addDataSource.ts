@@ -92,6 +92,7 @@ export default {
             try {
                 const data = {
                     name: itemModel.value.nameOfDS,
+                    description: itemModel.value.descOfDS,
                     type: 'database',
                     host: '14.225.11.178',
                     port: 5432,

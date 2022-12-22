@@ -9,5 +9,6 @@ export interface DSConnection {
 
 export default interface Datasource extends DSConnection {
     name: string;
+    description?: string;
     type: string;
 }
