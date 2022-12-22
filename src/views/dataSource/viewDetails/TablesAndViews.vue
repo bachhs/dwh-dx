@@ -29,7 +29,7 @@
                                     @click="
                                         $emit('processingEvent', {
                                             eventName: 'TableDetails',
-                                            dataItem: {},
+                                            dataItem: t,
                                         })
                                     "
                                 >
@@ -42,12 +42,11 @@
                                 </el-button>
                             </div>
                             <div class="text-muted">
-                                Setup Prometheus monitor service(Hadoop,
-                                openmetadata,datahub, keycloak ....)
+                                {{t.id}}
                             </div>
                             <div>
                                 <small class="text-muted"
-                                    >demo_app.public</small
+                                    >{{t.fullyQualifiedName}}</small
                                 >
                             </div>
                         </div>
@@ -55,7 +54,7 @@
                 </el-scrollbar>
             </div>
         </el-tab-pane>
-        <el-tab-pane>
+        <!-- <el-tab-pane>
             <template #label>
                 <div class="custom-tabs-label">
                     <div class="d-flex align-items-center">
@@ -94,7 +93,7 @@
                     </div>
                 </el-scrollbar>
             </div>
-        </el-tab-pane>
+        </el-tab-pane> -->
     </el-tabs>
 </template>
 

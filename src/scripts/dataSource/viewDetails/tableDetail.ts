@@ -17,8 +17,13 @@ function parseColumns(columns: any[]): any[] {
 
 export default {
     props: ["viewSettings"],
-    emits: ["onChangeView"],
+    emits: ["onChangeView", "processingEvent"],
     setup(props: any) {
+        const dataSourceSelected = props.viewSettings.dataSourceItem;
+        const databaseSelected = props.viewSettings.databaseSelected;
+        const schemasSelected = props.viewSettings.schemasSelected;
+        const tableSelected = props.viewSettings.tableSelected;
+        
         const activityFilter = ref("All Activity");
         const contentHeight = "calc(100vh - 23rem)";
         const contentNodataHeight = "calc(100vh - 24rem)";
@@ -37,17 +42,17 @@ export default {
                 schemaName,
                 tableName
             );
-
+            console.log('res', res);
             columns.value = parseColumns(res.data.columns);
         };
 
         onMounted(() => {
             // hard code for now
             fetchColumns(
-                "demo_app_26_10_23",
-                "demo_app",
-                "public",
-                "task_result"
+                dataSourceSelected.name,
+                databaseSelected.name,
+                schemasSelected.name,
+                tableSelected.name
             );
         });
         return {

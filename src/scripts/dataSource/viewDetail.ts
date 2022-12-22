@@ -37,51 +37,88 @@ export default {
         const isLoading = ref(false);
         const ds: any = ref(null);
         const currentView = ref("DatabaseList");
-        const breadcrumbs = ref(new Array<string>());
+        const currentViewProps = ref({});
+        const breadcrumbs = ref(new Array<any>());
         const processingEvent = (evtParams: any) => {
+            let currentViewPropsValue = currentViewProps.value;
+            let viewProps = {};
+            viewProps.viewName = evtParams.eventName;
+            viewProps.dataSourceItem = ds.value;
+            breadcrumbs.value = [{ view: "DatabaseList", label: ds.value.name, data: ds.value }];
+            let databaseSelected = null;
+            let schemasSelected = null;
+            let tableSelected = null;
+            let columnSelected = null;
             switch (evtParams.eventName) {
                 case "DatabaseList":
-                    breadcrumbs.value = [ds.value.name];
                     break;
                 case "SchemasList":
-                    breadcrumbs.value = [ds.value.name, "database 1"];
+                    databaseSelected = evtParams.dataItem;
+                    viewProps = { 
+                        ...viewProps, 
+                        databaseSelected: databaseSelected
+                    };
+                    breadcrumbs.value.push({ view: "SchemasList", label: databaseSelected.name, data: databaseSelected });
                     break;
                 case "TablesAndViews":
-                    breadcrumbs.value = [
-                        ds.value.name,
-                        "database 1",
-                        "information_schema",
-                    ];
+                    databaseSelected = currentViewPropsValue.databaseSelected;
+                    schemasSelected = evtParams.dataItem;
+                    viewProps = { 
+                        ...viewProps, 
+                        databaseSelected: databaseSelected,
+                        schemasSelected: schemasSelected
+                    };
+                    breadcrumbs.value.push({ view: "SchemasList", label: databaseSelected.name, data: databaseSelected });
+                    breadcrumbs.value.push({ view: "TablesAndViews", label: schemasSelected.name, data: schemasSelected });
                     break;
                 case "TableDetails":
-                    breadcrumbs.value = [
-                        ds.value.name,
-                        "database 1",
-                        "information_schema",
-                        "datasource_cdc",
-                    ];
+                    databaseSelected = currentViewPropsValue.databaseSelected;
+                    schemasSelected = currentViewPropsValue.schemasSelected;
+                    tableSelected = evtParams.dataItem;
+                    viewProps = { 
+                        ...viewProps, 
+                        databaseSelected: databaseSelected,
+                        schemasSelected: schemasSelected,
+                        tableSelected: tableSelected
+                    };
+                    breadcrumbs.value.push({ view: "SchemasList", label: databaseSelected.name, data: databaseSelected });
+                    breadcrumbs.value.push({ view: "TablesAndViews", label: schemasSelected.name, data: schemasSelected });
+                    breadcrumbs.value.push({ view: "TableDetails", label: tableSelected.name, data: tableSelected });
                     break;
                 case "ColumnDetails":
-                    breadcrumbs.value = [
-                        ds.value.name,
-                        "database 1",
-                        "information_schema",
-                        "datasource_cdc",
-                        "id",
-                    ];
+                    databaseSelected = currentViewPropsValue.databaseSelected;
+                    schemasSelected = currentViewPropsValue.schemasSelected;
+                    tableSelected = currentViewPropsValue.tableSelected;
+                    viewProps = { 
+                        ...viewProps, 
+                        databaseSelected: databaseSelected,
+                        schemasSelected: schemasSelected,
+                        tableSelected: tableSelected,
+                        columnSelected: evtParams.dataItem
+                    };
+                    breadcrumbs.value.push({ view: "SchemasList", label: databaseSelected.name, data: databaseSelected });
+                    breadcrumbs.value.push({ view: "TablesAndViews", label: schemasSelected.name, data: schemasSelected });
+                    breadcrumbs.value.push({ view: "TableDetails", label: tableSelected.name, data: tableSelected });
+                    breadcrumbs.value.push({ view: "ColumnDetails", label: columnSelected.name, data: columnSelected });
                     break;
             }
+            currentViewProps.value = { ...viewProps };
             currentView.value = evtParams.eventName;
         };
         onMounted(() => {
             ds.value = props.viewSettings.dataItem;
-            breadcrumbs.value = [props.viewSettings.dataItem.name];
+            let viewProps = {};
+            viewProps.viewName = "DatabaseList";
+            viewProps.dataSourceItem = ds.value;
+            currentViewProps.value = { ...viewProps };
+            breadcrumbs.value = [{ view: "DatabaseList", label: ds.value.name, data: ds.value }];
         });
         return {
             isLoading,
             ds,
             breadcrumbs,
             currentView,
+            currentViewProps,
             processingEvent,
         };
     },

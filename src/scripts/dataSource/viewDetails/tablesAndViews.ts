@@ -3,8 +3,11 @@ import { onMounted, ref } from "vue";
 
 export default {
     props: ["viewSettings"],
-    emits: ["onChangeView"],
+    emits: ["onChangeView", "processingEvent"],
     setup(props: any) {
+        const dataSourceSelected = props.viewSettings.dataSourceItem;
+        const databaseSelected = props.viewSettings.databaseSelected;
+        const schemasSelected = props.viewSettings.schemasSelected;
         const tables = ref([]);
         const fetchTables = async (
             datasourceName: string,
@@ -21,7 +24,7 @@ export default {
         };
         onMounted(() => {
             // hard code for now
-            fetchTables("demo_app_26_10_23", "demo_app", "public");
+            fetchTables(dataSourceSelected.name, databaseSelected.name, schemasSelected.name);
         });
         return {
             tables,

@@ -3,17 +3,17 @@ import { onMounted, ref } from "vue";
 
 export default {
     props: ["viewSettings"],
-    emits: ["onChangeView"],
+    emits: ["onChangeView", "processingEvent"],
     setup(props: any) {
+        const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databases = ref([]);
         const fetchDatabases = async (datasourceName: string) => {
             const res = await dataSourceApi.fetchDatabases(datasourceName);
-
             databases.value = res.data.data;
         };
         onMounted(() => {
             // hard code for now
-            fetchDatabases("demo_app_26_10_23");
+            fetchDatabases(dataSourceSelected.name);
         });
         return {
             databases,

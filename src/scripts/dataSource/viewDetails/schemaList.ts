@@ -3,8 +3,10 @@ import { onMounted, ref } from "vue";
 
 export default {
     props: ["viewSettings"],
-    emits: ["onChangeView"],
+    emits: ["onChangeView", "processingEvent"],
     setup(props: any) {
+        const dataSourceSelected = props.viewSettings.dataSourceItem;
+        const databaseSelected = props.viewSettings.databaseSelected;
         const schemas = ref([]);
         const fetchSchemas = async (
             datasourceName: string,
@@ -19,7 +21,7 @@ export default {
         };
         onMounted(() => {
             // hard code for now
-            fetchSchemas("demo_app_26_10_23", "demo_app");
+            fetchSchemas(dataSourceSelected.name, databaseSelected.name);
         });
         return {
             schemas,

@@ -3,24 +3,20 @@
     <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
         <div class="d-flex align-items-center">
             <div class="flex-fill d-none d-md-block">
-                <h4 class="mb-0">
+                <h4 class="mb-0 d-flex align-items-center" v-if="ds && ds.name">
                     <i class="fas fa-info-circle text-lightblue mr-2"></i>
-                    <strong v-if="ds && ds.name">
-                        <span
-                            v-for="(
-                                breadcrumbItem, indexBredcumb
-                            ) in breadcrumbs"
-                            :key="indexBredcumb"
-                        >
-                            <el-icon
-                                v-if="indexBredcumb > 0"
-                                size="14"
-                                class="ml-2"
-                                ><ArrowRight
-                            /></el-icon>
-                            {{ breadcrumbItem }}
-                        </span>
-                    </strong>
+                    <el-button link style="font-size: 90%; padding: 0; margin: 0;"
+                        v-for="(breadcrumbItem, indexBredcumb) in breadcrumbs"
+                        :key="indexBredcumb"
+                        @click="processingEvent({ eventName: breadcrumbItem.view, dataItem: breadcrumbItem.data })">
+                        <el-icon
+                            v-if="indexBredcumb > 0"
+                            size="14"
+                            class="ml-1 mr-1"
+                            ><ArrowRight
+                        /></el-icon>
+                        {{ breadcrumbItem.label }}
+                    </el-button>
                 </h4>
             </div>
             <div class="d-flex align-items-center">
@@ -103,6 +99,7 @@
                     <component
                         :is="currentView"
                         @processingEvent="processingEvent"
+                        :viewSettings="currentViewProps"
                     ></component>
                 </div>
             </div>

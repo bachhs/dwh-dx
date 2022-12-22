@@ -21,9 +21,11 @@
 								class="d-flex align-items-center justify-content-center pt-2 pb-2 c-rounded diagrams-item">
 								<div class="d-flex align-items-center pl-2 pr-2 w-100">
 									<div class="dig-icon p-2">
-										<img :src="unitItem.imgUrl" style="width: 4rem" />
+										<img v-if="unitItem && unitItem.imgUrl"
+											:src="unitItem.imgUrl" style="width: 4rem" />
 									</div>
 									<div class="ml-2 flex-fill text-white"
+										v-if="unitItem && unitItem.name"
 										v-html="unitItem.name.replace(`\r\n`, `<br/>`)"></div>
 								</div>
 							</div>
