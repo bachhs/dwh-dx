@@ -36,8 +36,8 @@ export default {
     },
     setup(props: any, context:any) {
         const isLoading = ref(false);
-        const stepWizard = ref(1);
-        const totalStepWizard = 3;
+        const stepWizard = ref(0);
+        const totalStepWizard = 2;
         const itemModel = ref({
             nameOfDS: '',
             descOfDS: '',
@@ -59,11 +59,11 @@ export default {
         const identityStep3Ref = ref<InstanceType<any>>();
         const submitStep = (stepIndex: number) => {
             switch (stepIndex) {
-                case 1:
+                case 0:
                     if (!identityStep1Ref || !identityStep1Ref.value) return;
                     identityStep1Ref.value?.submitData();
                     break;
-                case 2:
+                case 1:
                     if (!identityStep3Ref || !identityStep3Ref.value) return;
                     identityStep3Ref.value?.submitData();
                     break;

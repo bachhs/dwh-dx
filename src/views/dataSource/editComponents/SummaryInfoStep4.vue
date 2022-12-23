@@ -37,9 +37,9 @@
 </script>
 <template>
     <div>
-        <table class="table table-hover text-nowrap" >
+        <table class="table table-hover table-striped table-borderless text-nowrap" >
             <thead>
-                <tr>
+                <tr style="background-color: #b9d5ff;">
                     <th style="width: 1%">
                         Tên thông tin
                     </th>

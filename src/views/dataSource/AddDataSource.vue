@@ -8,10 +8,10 @@
                     <strong>{{ viewSettings.title }}</strong>
                 </h4>
                 <div class="d-block d-md-none">
-                    <strong v-if="stepWizard === 1">Thông tin định danh</strong>
-                    <strong v-if="stepWizard === 2">Thông tin kết nối</strong>
+                    <strong v-if="stepWizard === 0">Thông tin định danh</strong>
+                    <strong v-if="stepWizard === 1">Thông tin kết nối</strong>
                     <!-- <strong v-if="stepWizard === 3">Cấu hình kết nối</strong> -->
-                    <strong v-if="stepWizard === 3">Xem lại và lưu</strong>
+                    <strong v-if="stepWizard === 2">Xem lại và lưu</strong>
                 </div>
             </div>
             <div class="d-flex align-items-center">
@@ -63,7 +63,7 @@
             <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4">
                 <div>
                     <el-card class="flex-fill d-flex flex-column w-100 mt-1">
-                        <div v-if="stepWizard === 1">
+                        <div v-if="stepWizard === 0">
                             <IdentityStep1
                                 v-if="itemModel"
                                 ref="identityStep1Ref"
@@ -71,7 +71,7 @@
                                 :organization="organization"
                                 @onFormSubmit="(valid) => { if(valid) stepWizard = stepWizard + 1 }" />
                         </div>
-                        <div v-if="stepWizard === 2">
+                        <div v-if="stepWizard === 1">
                             <div>
                                 <strong>Nguồn dữ liệu</strong
                                 ><span class="ml-1 text-danger">*</span>
@@ -110,7 +110,7 @@
                                     :dataSourceItem="itemModel" />
                             </div>
                         </div>
-                        <div class="mt-0" v-if="stepWizard === 3">
+                        <div class="mt-0" v-if="stepWizard === 2">
                             <div>
                                 <div class="text-center w-100">
                                     <h5>
@@ -132,7 +132,7 @@
                     <el-button
                         size="large"
                         type="primary"
-                        v-if="stepWizard > 1"
+                        v-if="stepWizard > 0"
                         class="mr-1 ml-1"
                         @click="stepWizard = stepWizard - 1">
                         <el-icon class="mr-2"><DArrowLeft /></el-icon>
