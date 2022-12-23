@@ -51,7 +51,7 @@
                 </template>
                 <div>
                     <el-scrollbar style="height: calc(100vh - 15rem)">
-                        <div class="mr-3 pl-1 pt-2">
+                        <div class="mr-0 mr-md-3 pl-1 pt-2">
                             <IdentityStep1 v-if="itemModel" 
                                             ref="identityStep1Ref"
                                             :dataSourceItem="itemModel"
@@ -84,7 +84,7 @@
                 </template>
                 <div>
                     <el-scrollbar style="height: calc(100vh - 15rem)">
-                        <div class="mr-3 pl-1 pt-2">
+                        <div class="mr-0 mr-md-3 pl-1 pt-2">
                             <div class="mt-2">
                                 <el-radio-group v-model="itemModel.typeOfDataIn" >
                                     <el-radio-button :label="`database`">Database</el-radio-button>
@@ -95,7 +95,7 @@
                             <div v-if="itemModel.typeOfDataIn === 'database'">
                                 <DataSourceTypeDBStep2 v-if="itemModel" :dataSourceItem="itemModel"
                                                      :databaseEngineOptions="databaseEngineOptions"/>
-                                <div class=mb-2>
+                                <div class="mb-2 mt-3">
                                     <strong>Cấu hình kết nối</strong><span class="ml-1 text-danger">*</span>
                                 </div>
                                 <ConfigDatabaseStep3
@@ -140,7 +140,7 @@
                 </template>
                 <div>
                     <el-scrollbar style="height: calc(100vh - 15rem)">
-                        <div class="mr-3 pl-1 pt-2">
+                        <div class="mr-0 mr-md-3 pl-1 pt-2">
                             <div class="mt-3">
                                 <SummaryInfoStep4 v-if="itemModel" :dataSourceItem="itemModel" />
                             </div>

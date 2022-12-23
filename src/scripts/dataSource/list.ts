@@ -37,9 +37,11 @@ export default {
         };
 
         const getDbEngineIcon = (key:string) =>{
-            if(key){
-                return databaseEnginesMap[key].value.iconName;
-            }
+            try{
+                if(key){
+                    return databaseEnginesMap[key].value.iconName;
+                }
+            }catch{}
             return "postgre.png";
         };
 

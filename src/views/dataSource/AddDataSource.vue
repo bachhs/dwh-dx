@@ -89,7 +89,7 @@
                                     v-if="itemModel"
                                     :dataSourceItem="itemModel"
                                     :databaseEngineOptions="databaseEngineOptions" />
-                                <div class=mb-2>
+                                <div class="mb-2 mt-3">
                                     <strong>Cấu hình kết nối</strong><span class="ml-1 text-danger">*</span>
                                 </div>
                                 <ConfigDatabaseStep3
