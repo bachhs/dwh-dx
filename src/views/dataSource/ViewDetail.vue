@@ -46,54 +46,51 @@
                 <div class="hoz-content-wrap mb-2 mb-md-0">
                     <el-scrollbar style="max-width: 100%">
                         <div class="scrollbar-flex-content mt-1 ml-1">
-                            <div
-                                class="card p-2 pl-3 pr-3 text-nowrap scrollbar-dbinfo-item"
-                            >
+                            <div class="card p-2 pl-3 pr-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Đơn vị</div>
                                 <h5 class="mt-1">{{ ds.organization.name }}</h5>
                             </div>
-                            <div
-                                class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"
-                            >
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Dialect</div>
                                 <h5 class="mt-1">{{ ds.dialect }}</h5>
                             </div>
-                            <div
-                                class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"
-                            >
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Ngày khởi tạo</div>
                                 <h5 class="mt-1">
                                     {{ $filters.prettyDate(ds.created_at) }}
                                 </h5>
                             </div>
-                            <div
-                                class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"
-                            >
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Host</div>
                                 <h5 class="mt-1">{{ ds.host }}</h5>
                             </div>
-                            <div
-                                class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"
-                            >
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Port</div>
                                 <h5 class="mt-1">{{ ds.port }}</h5>
                             </div>
-                            <div
-                                class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"
-                            >
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Username</div>
                                 <h5 class="mt-1">{{ ds.username }}</h5>
                             </div>
-                            <div
-                                class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"
-                            >
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Trạng thái</div>
                                 <h5 class="mt-1">
                                     {{ ds.status ? "Good" : "Not good" }}
                                 </h5>
                             </div>
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"
+                                v-if="ds.metaData && ds.metaData.version">
+                                <div>Version</div>
+                                <h5 class="mt-1">
+                                    {{ ds.metaData.version }}
+                                </h5>
+                            </div>
                         </div>
                     </el-scrollbar>
+                </div>
+                <div class="card p-2 pl-3 pr-3"
+                    v-if="ds.metaData.description">
+                    {{ds.metaData.description}}
                 </div>
                 <div>
                     <component

@@ -6,6 +6,7 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 	const defaultOrganization = ref<any>({});
 	const organization = ref(new Array<any>([]));
 	const databaseEngineOptions = ref(new Array<any>([]));
+	const databaseEnginesMap = ref<any>({});
 	const fileTypeDataSourceOptions = ref(new Array<any>([]));
 	function getAppParams() {
 		appParamsApi.getAllParams().then((response:any) => {
@@ -22,6 +23,10 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 				}
 			});
 			databaseEngineOptions.value = tDataSourceItems;
+			databaseEnginesMap.value = tDataSourceItems.reduce(function(acc, cur, i) {
+				acc[cur.key] = cur;
+				return acc;
+			}, {});
 
 			let fileTypeDtsItems = response.data.content.filter((x:any) => x.type === "file");
 			fileTypeDataSourceOptions.value = fileTypeDtsItems;
@@ -38,6 +43,7 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 		organization, 
 		defaultOrganization,
 		databaseEngineOptions,
+		databaseEnginesMap,
 		fileTypeDataSourceOptions,
 		getOrganization,
 		getAppParams,

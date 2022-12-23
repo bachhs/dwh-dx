@@ -1,6 +1,7 @@
 import { defineAsyncComponent, ref, onMounted } from "vue";
 import { mapState } from "pinia";
 import { useDataCategoryStore } from "@/stores/dataCategory";
+import { getDataSourceMetaData } from "@/helpers/dataSourceHelper";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 const appState = useDataCategoryStore();
 export default {
@@ -113,6 +114,9 @@ export default {
             viewProps.dataSourceItem = ds.value;
             currentViewProps.value = { ...viewProps };
             breadcrumbs.value = [{ view: "DatabaseList", label: ds.value.name, data: ds.value }];
+            getDataSourceMetaData(ds.value.name).then((metaData:any) =>{
+                ds.value.metaData = metaData;
+            });
         });
         return {
             isLoading,

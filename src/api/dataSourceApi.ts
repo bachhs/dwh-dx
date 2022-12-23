@@ -34,6 +34,9 @@ export const dataSourceApi = {
     deleteDataSource(dtsId: number) {
         return axios.delete(`/datasource/${dtsId}`);
     },
+    getDataSourceMetaData(datasourceName: string) {
+        return axios(`/meta/database_service/${datasourceName}`);
+    },
     fetchDatabases(datasourceName: string) {
         return axios(`/meta/database_service/${datasourceName}/database`);
     },

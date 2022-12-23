@@ -4,7 +4,8 @@ import { dataSourceApi } from "@/api/dataSourceApi";
 import { useDataCategoryStore } from "@/stores/dataCategory";
 import { useRoute, useRouter } from "vue-router";
 import usePaginationList from "@/scripts/_baseScripts/_usePaginationList";
-
+const dataCategoryState = useDataCategoryStore(); 
+const databaseEnginesMap = dataCategoryState.databaseEnginesMap;
 export default {
     props: ["viewSettings"],
     emits: ["onChangeView"],
@@ -35,6 +36,13 @@ export default {
             );
         };
 
+        const getDbEngineIcon = (key:string) =>{
+            if(key){
+                return databaseEnginesMap[key].value.iconName;
+            }
+            return "postgre.png";
+        };
+
         const route = useRoute();
         const router = useRouter();
         onMounted(() => {
@@ -55,6 +63,7 @@ export default {
             lastDataLoading,
             filterData,
             getListData,
+            getDbEngineIcon,
             filterDataFn,
             refreshDataFn,
             filterDataDebounceFn,
@@ -65,6 +74,7 @@ export default {
         ...mapState(useDataCategoryStore, [
             "organization",
             "databaseEngineOptions",
+            "databaseEnginesMap"
         ]),
     },
 };

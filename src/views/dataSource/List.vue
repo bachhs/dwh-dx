@@ -106,7 +106,7 @@
                                     <div class="d-flex">
                                         <div>
                                             <img
-                                                src="/custom-img/postgre.png"
+                                                :src="`/icons/databases/${getDbEngineIcon(ds.dialect)}`"
                                                 class="mt-1"
                                                 style="width: 5rem"/>
                                         </div>
