@@ -21,7 +21,12 @@
                         link
                         type="danger"
                         class="d-block d-md-none"
-                        @click="$emit('onChangeView', { viewName: 'ListData', data: null, })" >
+                        @click="
+                            $emit('onChangeView', {
+                                viewName: 'ListData',
+                                data: null,
+                            })
+                        ">
                         <div>
                             <i class="fas fa-times"></i>
                         </div>
@@ -31,7 +36,12 @@
                         size="default"
                         type="danger"
                         class="d-none d-md-block"
-                        @click="$emit('onChangeView', { viewName: 'ListData', data: null, })" >
+                        @click="
+                            $emit('onChangeView', {
+                                viewName: 'ListData',
+                                data: null,
+                            })
+                        ">
                         <div>Thoát</div>
                     </el-button>
                 </div>
@@ -42,7 +52,7 @@
                 :active="stepWizard"
                 class="w-100"
                 simple
-                finish-status="success" >
+                finish-status="success">
                 <el-step title="Thông tin định danh" />
                 <el-step title="Loại dữ liệu" />
                 <el-step title="Cấu hình kết nối" />
@@ -54,10 +64,12 @@
                 <div>
                     <el-card class="flex-fill d-flex flex-column w-100 mt-1">
                         <div v-if="stepWizard === 1">
-                            <IdentityStep1 v-if="itemModel" ref="identityStep1Ref"
-                                            :dataSourceItem="itemModel"
-                                            :organization="organization"
-                                            @onFormSubmit="(valid:Boolean) => { if(valid) stepWizard = stepWizard + 1 }"/>
+                            <IdentityStep1
+                                v-if="itemModel"
+                                ref="identityStep1Ref"
+                                :dataSourceItem="itemModel"
+                                :organization="organization"
+                                @onFormSubmit="(valid:Boolean) => { if(valid) stepWizard = stepWizard + 1 }" />
                         </div>
                         <div v-if="stepWizard === 2">
                             <div>
@@ -65,19 +77,34 @@
                                 ><span class="ml-1 text-danger">*</span>
                             </div>
                             <div class="mt-2">
-                                <el-radio-group v-model="itemModel.typeOfDataIn" >
-                                    <el-radio-button :label="`database`">Database</el-radio-button>
-                                    <el-radio-button disabled :label="`file`" >File</el-radio-button>
-                                    <el-radio-button disabled :label="`api`" >API</el-radio-button>
+                                <el-radio-group
+                                    v-model="itemModel.typeOfDataIn">
+                                    <el-radio-button :label="`database`"
+                                        >Database</el-radio-button
+                                    >
+                                    <el-radio-button disabled :label="`file`"
+                                        >File</el-radio-button
+                                    >
+                                    <el-radio-button disabled :label="`api`"
+                                        >API</el-radio-button
+                                    >
                                 </el-radio-group>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'database'">
-                                <DataSourceTypeDBStep2 v-if="itemModel" :dataSourceItem="itemModel"
-                                                     :databaseEngineOptions="databaseEngineOptions"/>
+                                <DataSourceTypeDBStep2
+                                    v-if="itemModel"
+                                    :dataSourceItem="itemModel"
+                                    :databaseEngineOptions="
+                                        databaseEngineOptions
+                                    " />
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
-                                <DataSourceTypeFileStep2 v-if="itemModel" :dataSourceItem="itemModel"
-                                                    :fileTypeDataSourceOptions="fileTypeDataSourceOptions"/>
+                                <DataSourceTypeFileStep2
+                                    v-if="itemModel"
+                                    :dataSourceItem="itemModel"
+                                    :fileTypeDataSourceOptions="
+                                        fileTypeDataSourceOptions
+                                    " />
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'api'">
                                 <p>
@@ -92,7 +119,9 @@
                                     ><span class="ml-1 text-danger">*</span>
                                 </div>
                                 <div class="mt-2">
-                                    <ConfigDatabaseStep3 v-if="itemModel" :dataSourceItem="itemModel"/>
+                                    <ConfigDatabaseStep3
+                                        v-if="itemModel"
+                                        :dataSourceItem="itemModel" />
                                 </div>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
@@ -177,7 +206,9 @@
                                 </div> -->
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'api'">
-                                <DataSourceTypeAPIStep2 v-if="itemModel" :dataSourceItem="itemModel"/>
+                                <DataSourceTypeAPIStep2
+                                    v-if="itemModel"
+                                    :dataSourceItem="itemModel" />
                             </div>
                         </div>
                         <div class="mt-0" v-if="stepWizard === 4">
@@ -188,20 +219,23 @@
                                     </h5>
                                 </div>
                                 <div class="mt-3">
-                                    <SummaryInfoStep4 v-if="itemModel" :dataSourceItem="itemModel" />
+                                    <SummaryInfoStep4
+                                        v-if="itemModel"
+                                        :dataSourceItem="itemModel" />
                                 </div>
                             </div>
                         </div>
                     </el-card>
                 </div>
-                <div class="text-center mt-3 pt-4 pb-4"
-                    style="background-color: #f5f7fa" >
+                <div
+                    class="text-center mt-3 pt-4 pb-4"
+                    style="background-color: #f5f7fa">
                     <el-button
                         size="large"
                         type="primary"
                         v-if="stepWizard > 1"
                         class="mr-1 ml-1"
-                        @click="stepWizard = stepWizard - 1" >
+                        @click="stepWizard = stepWizard - 1">
                         <el-icon class="mr-2"><DArrowLeft /></el-icon>
                         <span>Quay lại</span>
                     </el-button>
@@ -211,7 +245,7 @@
                         type="primary"
                         v-if="stepWizard < totalStepWizard"
                         class="mr-1 ml-1"
-                        @click="submitStep(stepWizard)" >
+                        @click="submitStep(stepWizard)">
                         <span>Bước tiếp theo</span>
                         <el-icon class="ml-2"><DArrowRight /></el-icon>
                     </el-button>
@@ -221,7 +255,7 @@
                         type="primary"
                         v-if="stepWizard === totalStepWizard"
                         class="mr-1 ml-1"
-                        @click="addDatasource()" >
+                        @click="addDatasource()">
                         <el-icon><CircleCheck /></el-icon>
                         <span>Lưu dữ liệu</span>
                     </el-button>
