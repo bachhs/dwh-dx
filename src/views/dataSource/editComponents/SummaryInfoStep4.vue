@@ -9,7 +9,6 @@
     const dataEngineItem = ref<any>({});
     const itemModel = ref<any>(props.dataSourceItem);
     const getDataEngineItem = (key:string) =>{
-        console.log('getDataEngineItem', key);
         let paramItem = appState.databaseEngineOptions.find((pItem:any) => pItem.key === key);
         if(paramItem) return paramItem;
         return { name: "Không xác định" };
