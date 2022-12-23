@@ -50,7 +50,7 @@
                                 class="card p-2 pl-3 pr-3 text-nowrap scrollbar-dbinfo-item"
                             >
                                 <div>Đơn vị</div>
-                                <h5 class="mt-1">{{ ds.organization }}</h5>
+                                <h5 class="mt-1">{{ ds.organization.name }}</h5>
                             </div>
                             <div
                                 class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"
