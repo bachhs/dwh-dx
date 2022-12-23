@@ -1,5 +1,6 @@
 import { ref, onMounted, reactive, defineAsyncComponent } from 'vue';
 import { mapState } from 'pinia';
+import { ElMessage } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { dataSourceApi } from '@/api/dataSourceApi';
 import SkeletonBox from "@/components/SkeletonBox.vue";
@@ -33,7 +34,7 @@ export default {
             loadingComponent: SkeletonBox,
         }),
     },
-    setup(props: any) {
+    setup(props: any, context:any) {
         const isLoading = ref(false);
         const stepWizard = ref(1);
         const totalStepWizard = 4;
@@ -72,6 +73,7 @@ export default {
         };
 
         const addDatasource = () => {
+            isLoading.value = true;
             try {
                 const data = {
                     name: itemModel.value.nameOfDS,
@@ -86,12 +88,26 @@ export default {
                 };
                 dataSourceApi.addDatasource(itemModel.value.organizationSelected, data)
                 .then((response:any) =>{
-                    this.$emit('onChangeView', { viewName: 'ListData', data: null, });
+                    if(response.data.code === 20000){
+                        ElMessage({
+                            message: response.data.message,
+                            type: 'success',
+                        });
+                        context.emit('onChangeView', { viewName: 'ListData', data: null, });
+                    }
+                    else{
+                        ElMessage.error(`Oops, ${response.data.message}`)
+                    }
+                    isLoading.value = false;
                 })
-                .catch(error => console.error(error));
+                .catch(error => {
+                    console.error(error);
+                    isLoading.value = false;
+                });
 
             } catch (err) {
                 console.log(err);
+                isLoading.value = false;
             }
         };
 

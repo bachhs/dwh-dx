@@ -124,7 +124,7 @@
                                                     <div
                                                         class="text-muted"
                                                         style="font-size: 85%" >
-                                                        {{ ds.organization }}
+                                                        <span v-if="ds.organization">{{ ds.organization.name }}</span>
                                                     </div>
                                                     <div
                                                         class="text-muted"

@@ -56,7 +56,15 @@
                                             ref="identityStep1Ref"
                                             :dataSourceItem="itemModel"
                                             :organization="organization"
-                                            @onFormSubmit="(valid:Boolean) => {  }"/>
+                                            @onFormSubmit="(valid:Boolean) => { if(valid) { updateDatasource(); } }"/>
+                                <div class="text-center mt-3 pt-4 pb-4"
+                                    style="background-color: #f5f7fa">
+                                <el-button type="primary" size="large"
+                                    @click="submitTab(1);">
+                                    <el-icon><CircleCheck /></el-icon>
+                                    <span>SAVE CHANGE</span>
+                                </el-button>
+                            </div>
                         </div>
                     </el-scrollbar>
                 </div>
@@ -97,6 +105,14 @@
                                     Vui lòng nhập endpoint API ở bước tiếp theo
                                 </p>
                             </div>
+                            <div class="text-center mt-3 pt-4 pb-4"
+                                        style="background-color: #f5f7fa">
+                                <el-button type="primary" size="large"
+                                    @click="updateDatasource()">
+                                    <el-icon><CircleCheck /></el-icon>
+                                    <span>SAVE CHANGE</span>
+                                </el-button>
+                            </div>
                         </div>
                     </el-scrollbar>
                 </div>
@@ -124,6 +140,14 @@
                                 </div>
                                 <div class="mt-2">
                                     <ConfigDatabaseStep3 v-if="itemModel" :dataSourceItem="itemModel"/>
+                                </div>
+                                <div class="text-center mt-3 pt-4 pb-4"
+                                        style="background-color: #f5f7fa">
+                                    <el-button type="primary" size="large"
+                                        @click="updateDatasource()">
+                                        <el-icon><CircleCheck /></el-icon>
+                                        <span>SAVE CHANGE</span>
+                                    </el-button>
                                 </div>
                             </div>
                         </div>

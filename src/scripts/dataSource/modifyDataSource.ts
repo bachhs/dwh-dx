@@ -1,5 +1,6 @@
 import { ref, onMounted, defineAsyncComponent } from 'vue';
 import { mapState } from 'pinia';
+import { ElMessage } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { dataSourceApi } from '@/api/dataSourceApi';
 import SkeletonBox from "@/components/SkeletonBox.vue";
@@ -37,68 +38,83 @@ export default {
         const isLoading = ref(false);
         const stepWizard = ref(1);
         const totalStepWizard = 4;
+        const dataSourceItem = props.viewSettings.dataItem;
         const itemModel = ref({
-            nameOfDS: '',
-            descOfDS: '',
-            organizationSelected: appState.defaultOrganization.id,
-            organizationName: appState.defaultOrganization.name,
-            typeOfDataIn: 'database',
-            databaseEngineSelected: 'postgresql',
-            fileTypeSelected: 'csv',
+            nameOfDS: dataSourceItem.name,
+            descOfDS: dataSourceItem.name,
+            organizationSelected: dataSourceItem.organization.id,
+            organizationName: dataSourceItem.organization.name,
+            typeOfDataIn: dataSourceItem.type,
+            databaseEngineSelected: dataSourceItem.dialect,
+            fileTypeSelected: 'xlsx',
             apiMethod: 'GET',
             apiUrl: '',
-            host: "",
-            port: 5432,
-            username: "",
-            password: "",
-            dbName: "",
+            host: dataSourceItem.host,
+            port: dataSourceItem.port,
+            username: dataSourceItem.username,
+            password: dataSourceItem.password,
+            dbName: dataSourceItem.database,
         });
 
+        const updateDatasource = () => {
+            isLoading.value = true;
+            try {
+                const data = {
+                    name: itemModel.value.nameOfDS,
+                    description: itemModel.value.descOfDS,
+                    type: itemModel.value.typeOfDataIn,
+                    host: itemModel.value.host,
+                    port: itemModel.value.port,
+                    dialect: itemModel.value.databaseEngineSelected,
+                    database: itemModel.value.dbName,
+                    username: itemModel.value.username,
+                    password: itemModel.value.password,
+                };
+                dataSourceApi.updateDataSource(dataSourceItem.id, data)
+                .then((response:any) =>{
+                    if(response.data.code === 20000){
+                        ElMessage({
+                            message: response.data.message,
+                            type: 'success',
+                        });
+                    }
+                    else{
+                        ElMessage.error(`Oops, ${response.data.message}`)
+                    }
+                    isLoading.value = false;
+                })
+                .catch(error => {
+                    console.error(error);
+                    isLoading.value = false;
+                });
+            } catch (err) {
+                console.log(err);
+                isLoading.value = false;
+            }
+        }; 
+ 
         const identityStep1Ref = ref<InstanceType<any>>(); 
-        const submitStep = (stepIndex: number) => {
-            switch (stepIndex) {
+        const submitTab = (tabIndex: number) => {
+            switch (tabIndex) {
                 case 1:
                     console.log('identityStep1Ref', identityStep1Ref.value);
                     if (!identityStep1Ref || !identityStep1Ref.value) return;
                     identityStep1Ref.value?.submitData();
                     break;
                 case 2:
-                    stepWizard.value = stepWizard.value + 1;
                     break;
                 default:
-                    stepWizard.value = stepWizard.value + 1;
                     break;
             }
         };
-
-        const addDatasource = () => {
-            try {
-                const data = {
-                    name: itemModel.value.nameOfDS,
-                    description: itemModel.value.descOfDS,
-                    type: 'database',
-                    host: '14.225.11.178',
-                    port: 5432,
-                    dialect: 'postgresql',
-                    database: 'covid_report',
-                    username: 'minhdao',
-                    password: '1a2s3d4f',
-                };
-
-                dataSourceApi.addDataSource(1, data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
- 
         onMounted(() => {
             if ( props.viewSettings && props.viewSettings.viewName === 'ModifyData' && props.viewSettings.dataItem != null ) {
-                let dataSourceItem = props.viewSettings.dataItem;
+                //let dataSourceItem = props.viewSettings.dataItem;
                 itemModel.value = {
                     nameOfDS: dataSourceItem.name,
                     descOfDS: dataSourceItem.name,
-                    organizationSelected: appState.defaultOrganization.id,
-                    organizationName: dataSourceItem.organization,
+                    organizationSelected: dataSourceItem.organization.id,
+                    organizationName: dataSourceItem.organization.name,
                     typeOfDataIn: dataSourceItem.type,
                     databaseEngineSelected: dataSourceItem.dialect,
                     fileTypeSelected: 'xlsx',
@@ -110,7 +126,6 @@ export default {
                     password: dataSourceItem.password,
                     dbName: dataSourceItem.database,
                 };
-                console.log('onMounted Modify');
             }
         });
         return {
@@ -119,16 +134,8 @@ export default {
             totalStepWizard,
             identityStep1Ref,
             itemModel,
-            // controllerUpload: controllerUpload,
-            // files,
-            // fileSelectorRef,
-            // fileTypeAccept: [
-            //     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            //     'application/vnd.ms-excel',
-            // ],
-            submitStep,
-            addDatasource,
-            //humanFileSize,
+            submitTab,
+            updateDatasource,
         };
     },
     computed: {
