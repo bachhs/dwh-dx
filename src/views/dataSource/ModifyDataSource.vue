@@ -4,9 +4,9 @@
         v-loading="isLoading">
         <div class="d-flex align-items-center">
             <div class="flex-fill">
-                <h4 class="mb-0 d-none d-md-block">
+                <h4 class="mb-0">
                     <i class="fas fa-database text-lightblue mr-2"></i>
-                    <strong>{{viewSettings.title}} [<span class="text-primary">{{viewSettings.dataItem.name}}</span>]</strong>
+                    <strong><span class="d-none d-md-inline">{{viewSettings.title}} </span> [<span class="text-primary">{{viewSettings.dataItem.name}}</span>]</strong>
                 </h4>
                 <div class="d-block d-md-none">
                     <!-- <strong v-if="stepWizard === 1">Thông tin định danh</strong>
@@ -77,7 +77,7 @@
                                 <i class="far fa-list-alt"></i>
                             </div>
                             <div class="ml-1">
-                                Loại dữ liệu
+                                Thông tin kết nối
                             </div>
                         </div>
                     </div>
@@ -88,27 +88,35 @@
                             <div class="mt-2">
                                 <el-radio-group v-model="itemModel.typeOfDataIn" >
                                     <el-radio-button :label="`database`">Database</el-radio-button>
-                                    <el-radio-button disabled :label="`file`" >File</el-radio-button>
-                                    <el-radio-button disabled :label="`api`" >API</el-radio-button>
+                                    <el-radio-button disabled :label="`file`">File</el-radio-button>
+                                    <el-radio-button disabled :label="`api`">API</el-radio-button>
                                 </el-radio-group>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'database'">
                                 <DataSourceTypeDBStep2 v-if="itemModel" :dataSourceItem="itemModel"
                                                      :databaseEngineOptions="databaseEngineOptions"/>
+                                <div class=mb-2>
+                                    <strong>Cấu hình kết nối</strong><span class="ml-1 text-danger">*</span>
+                                </div>
+                                <ConfigDatabaseStep3
+                                    ref="identityStep3Ref"
+                                    v-if="itemModel"
+                                    :dataSourceItem="itemModel"
+                                    @onFormSubmit="(valid) => { if(valid) { updateDatasource(); } }" />
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
                                 <DataSourceTypeFileStep2 v-if="itemModel" :dataSourceItem="itemModel"
                                                     :fileTypeDataSourceOptions="fileTypeDataSourceOptions"/>
                             </div>
-                            <div v-if="itemModel && itemModel.typeOfDataIn === 'api'">
-                                <p>
-                                    Vui lòng nhập endpoint API ở bước tiếp theo
-                                </p>
+                            <div v-if="itemModel.typeOfDataIn === 'api'">
+                                <DataSourceTypeAPIStep2
+                                    v-if="itemModel"
+                                    :dataSourceItem="itemModel" />
                             </div>
                             <div class="text-center mt-3 pt-4 pb-4"
                                         style="background-color: #f5f7fa">
                                 <el-button type="primary" size="large"
-                                    @click="updateDatasource()">
+                                    @click="submitTab(2);">
                                     <el-icon><CircleCheck /></el-icon>
                                     <span>SAVE CHANGE</span>
                                 </el-button>
@@ -116,44 +124,7 @@
                         </div>
                     </el-scrollbar>
                 </div>
-            </el-tab-pane>
-            <el-tab-pane>
-                <template #label>
-                    <div class="custom-tabs-label">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <i class="fas fa-plug"></i>
-                            </div>
-                            <div class="ml-1">
-                                Cấu hình kết nối
-                            </div>
-                        </div>
-                    </div>
-                </template>
-                <div>
-                    <el-scrollbar style="height: calc(100vh - 15rem)">
-                        <div class="mr-3 pl-1 pt-2">
-                            <div v-if="itemModel.typeOfDataIn === 'database'">
-                                <div>
-                                    <strong>Cấu hình kết nối</strong
-                                    ><span class="ml-1 text-danger">*</span>
-                                </div>
-                                <div class="mt-2">
-                                    <ConfigDatabaseStep3 v-if="itemModel" :dataSourceItem="itemModel"/>
-                                </div>
-                                <div class="text-center mt-3 pt-4 pb-4"
-                                        style="background-color: #f5f7fa">
-                                    <el-button type="primary" size="large"
-                                        @click="updateDatasource()">
-                                        <el-icon><CircleCheck /></el-icon>
-                                        <span>SAVE CHANGE</span>
-                                    </el-button>
-                                </div>
-                            </div>
-                        </div>
-                    </el-scrollbar>
-                </div>
-            </el-tab-pane>
+            </el-tab-pane>            
             <el-tab-pane>
                 <template #label>
                     <div class="custom-tabs-label">

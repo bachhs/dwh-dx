@@ -112,7 +112,6 @@
     });
     const emit = defineEmits(['onFormSubmit']);
     const submitData = async () => {
-        console.log('submitData', ruleFormStep1Ref);
         if (!ruleFormStep1Ref || !ruleFormStep1Ref.value) return;
         await ruleFormStep1Ref.value.validate((valid, fields) => {
             if (valid) {

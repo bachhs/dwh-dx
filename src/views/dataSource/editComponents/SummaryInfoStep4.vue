@@ -1,14 +1,25 @@
 <script lang="ts" setup>
-    import { ref, watch } from "vue";
+    import { ref, watch, onMounted } from "vue";
     import { useDataCategoryStore } from '@/stores/dataCategory';
     const appState = useDataCategoryStore();
     const props = defineProps({
         dataSourceItem: { type: Object, required: true },
     });
+    const showPassword = ref(false);
+    const dataEngineItem = ref<any>({});
     const itemModel = ref<any>(props.dataSourceItem);
+    const getDataEngineItem = (key:string) =>{
+        console.log('getDataEngineItem', key);
+        let paramItem = appState.databaseEngineOptions.find((pItem:any) => pItem.key === key);
+        if(paramItem) return paramItem;
+        return { name: "Không xác định" };
+    }
     watch(() => props.dataSourceItem, (newVal) =>{
         itemModel.value = newVal;
-        console.log('dataSourceItem changed',newVal);
+        dataEngineItem.value = getDataEngineItem(newVal.databaseEngineSelected);
+    });
+    onMounted(() =>{        
+        dataEngineItem.value = getDataEngineItem(itemModel.value.databaseEngineSelected);
     });
     const getDataSourceType = (val:string) => {
         switch(val){
@@ -24,13 +35,6 @@
         }
         return "Không xác định";
     };
-    const getDataEngineItem = (key:string) =>{
-        let paramItem = appState.databaseEngineOptions.find((pItem:any) => pItem.key === key);
-        if(paramItem) return paramItem;
-        return { name: "Không xác định" };
-    }
-    const dataEngineItem = getDataEngineItem(itemModel.databaseEngineSelected);
-    const showPassword = ref(false);
 </script>
 <template>
     <div>
@@ -71,11 +75,11 @@
                     <td style="vertical-align: middle;">
                         <div class="d-flex align-items-center">
                             <div class="mt-1 mb-1 mr-2"
-                                v-if="dataEngineItem.iconName">
+                                v-if="dataEngineItem && dataEngineItem !== null && dataEngineItem.iconName">
                                 <img :src="`/icons/databases/${dataEngineItem.iconName}`"
                                     style=" height: 1.5rem; " />
                             </div>
-                            <div>
+                            <div v-if="dataEngineItem && dataEngineItem !== null">
                                 {{dataEngineItem.name}}
                             </div>
                         </div>

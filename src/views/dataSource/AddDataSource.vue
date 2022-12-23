@@ -9,9 +9,9 @@
                 </h4>
                 <div class="d-block d-md-none">
                     <strong v-if="stepWizard === 1">Thông tin định danh</strong>
-                    <strong v-if="stepWizard === 2">Loại dữ liệu</strong>
-                    <strong v-if="stepWizard === 3">Cấu hình kết nối</strong>
-                    <strong v-if="stepWizard === 4">Xem lại và lưu</strong>
+                    <strong v-if="stepWizard === 2">Thông tin kết nối</strong>
+                    <!-- <strong v-if="stepWizard === 3">Cấu hình kết nối</strong> -->
+                    <strong v-if="stepWizard === 3">Xem lại và lưu</strong>
                 </div>
             </div>
             <div class="d-flex align-items-center">
@@ -54,8 +54,8 @@
                 simple
                 finish-status="success">
                 <el-step title="Thông tin định danh" />
-                <el-step title="Loại dữ liệu" />
-                <el-step title="Cấu hình kết nối" />
+                <el-step title="Thông tin kết nối" />
+                <!-- <el-step title="Cấu hình kết nối" /> -->
                 <el-step title="Xem lại và lưu" />
             </el-steps>
         </div>
@@ -69,7 +69,7 @@
                                 ref="identityStep1Ref"
                                 :dataSourceItem="itemModel"
                                 :organization="organization"
-                                @onFormSubmit="(valid:Boolean) => { if(valid) stepWizard = stepWizard + 1 }" />
+                                @onFormSubmit="(valid) => { if(valid) stepWizard = stepWizard + 1 }" />
                         </div>
                         <div v-if="stepWizard === 2">
                             <div>
@@ -79,131 +79,30 @@
                             <div class="mt-2">
                                 <el-radio-group
                                     v-model="itemModel.typeOfDataIn">
-                                    <el-radio-button :label="`database`"
-                                        >Database</el-radio-button
-                                    >
-                                    <el-radio-button disabled :label="`file`"
-                                        >File</el-radio-button
-                                    >
-                                    <el-radio-button disabled :label="`api`"
-                                        >API</el-radio-button
-                                    >
+                                    <el-radio-button :label="`database`">Database</el-radio-button>
+                                    <el-radio-button disabled :label="`file`">File</el-radio-button>
+                                    <el-radio-button :label="`api`">API</el-radio-button>
                                 </el-radio-group>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'database'">
                                 <DataSourceTypeDBStep2
                                     v-if="itemModel"
                                     :dataSourceItem="itemModel"
-                                    :databaseEngineOptions="
-                                        databaseEngineOptions
-                                    " />
+                                    :databaseEngineOptions="databaseEngineOptions" />
+                                <div class=mb-2>
+                                    <strong>Cấu hình kết nối</strong><span class="ml-1 text-danger">*</span>
+                                </div>
+                                <ConfigDatabaseStep3
+                                    ref="identityStep3Ref"
+                                    v-if="itemModel"
+                                    :dataSourceItem="itemModel"
+                                    @onFormSubmit="(valid) => { if(valid) stepWizard = stepWizard + 1 }" />
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
                                 <DataSourceTypeFileStep2
                                     v-if="itemModel"
                                     :dataSourceItem="itemModel"
-                                    :fileTypeDataSourceOptions="
-                                        fileTypeDataSourceOptions
-                                    " />
-                            </div>
-                            <div v-if="itemModel.typeOfDataIn === 'api'">
-                                <p>
-                                    Vui lòng nhập endpoint API ở bước tiếp theo
-                                </p>
-                            </div>
-                        </div>
-                        <div class="mb-1" v-if="stepWizard === 3">
-                            <div v-if="itemModel.typeOfDataIn === 'database'">
-                                <div>
-                                    <strong>Cấu hình kết nối</strong
-                                    ><span class="ml-1 text-danger">*</span>
-                                </div>
-                                <div class="mt-2">
-                                    <ConfigDatabaseStep3
-                                        v-if="itemModel"
-                                        :dataSourceItem="itemModel" />
-                                </div>
-                            </div>
-                            <div v-if="itemModel.typeOfDataIn === 'file'">
-                                <div>
-                                    <strong>Chọn file tải lên hoặc URL</strong
-                                    ><span class="ml-1 text-danger">*</span>
-                                </div>
-                                <div class="mt-2">
-                                    <el-input
-                                        v-model="itemModel.fileUrl"
-                                        size="large"
-                                        placeholder="Dán URL file dữ liệu nguồn vào đây..">
-                                        <template #prepend>URL</template>
-                                    </el-input>
-                                </div>
-                                <!-- <div class="mt-3">
-                                    <file-selector
-                                        v-model="files"
-                                        ref="fileSelectorRef"
-                                        :accept="[fileTypeAccept]"
-                                        :allowMultiple="false">
-                                        <dropzone v-slot="{ hovered }">
-                                            <div
-                                                class="w-100 upload-dropzone-wrap p-2 pl-4 pr-4 text-center d-flex align-items-center justify-content-center mb-4"
-                                                style="min-height: 10rem"
-                                                :class="{ 'border-blue-200': hovered, }">
-                                                <div>
-                                                    <div class="mb-3 mt-2">
-                                                        <img v-if="!files || files.length === 0"
-                                                            src="/custom-img/fileUploadEmpty.svg"
-                                                            style="width: 4rem;"/>
-                                                        <img v-else
-                                                            src="/custom-img/fileUploadSelected.svg"
-                                                            style="width: 4rem; "
-                                                            xml:space="preserve" />
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div
-                                                            v-for="file in files"
-                                                            :key="file.name"
-                                                            class="mb-2">
-                                                            Bạn đã chọn file
-                                                            <strong class="text-navy">{{ file.name }}</strong>.
-                                                            <div>
-                                                                Kích thước file: {{ humanFileSize( file.size ) }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div
-                                                            class="mb-2"
-                                                            v-if="!files || files.length === 0">
-                                                            <h6>
-                                                                Kéo file vào đây hoặc
-                                                                <em>Nhấn nút chọn file bên dưới</em>
-                                                                để tải lên file của bạn</h6>
-                                                            <div class="text-muted">
-                                                                File csv, xls, xlsx.
-                                                            </div>
-                                                        </div>
-                                                        <dialog-button
-                                                            v-if="!files || files.length === 0"
-                                                            class="el-button mb-3">
-                                                            Chọn file tải lên
-                                                        </dialog-button>
-                                                        <div v-else>
-                                                            <div>
-                                                                <el-button link class="mb-3 text-danger"
-                                                                    @click=" removeFile() " >
-                                                                    <el-icon>
-                                                                        <Delete />
-                                                                    </el-icon>
-                                                                    <span >Remove file</span >
-                                                                </el-button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </dropzone>
-                                    </file-selector>
-                                </div> -->
+                                    :fileTypeDataSourceOptions="fileTypeDataSourceOptions" />
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'api'">
                                 <DataSourceTypeAPIStep2
@@ -211,7 +110,7 @@
                                     :dataSourceItem="itemModel" />
                             </div>
                         </div>
-                        <div class="mt-0" v-if="stepWizard === 4">
+                        <div class="mt-0" v-if="stepWizard === 3">
                             <div>
                                 <div class="text-center w-100">
                                     <h5>

@@ -94,14 +94,16 @@ export default {
         }; 
  
         const identityStep1Ref = ref<InstanceType<any>>(); 
+        const identityStep3Ref = ref<InstanceType<any>>();
         const submitTab = (tabIndex: number) => {
             switch (tabIndex) {
                 case 1:
-                    console.log('identityStep1Ref', identityStep1Ref.value);
                     if (!identityStep1Ref || !identityStep1Ref.value) return;
                     identityStep1Ref.value?.submitData();
                     break;
                 case 2:
+                    if (!identityStep3Ref || !identityStep3Ref.value) return;
+                    identityStep3Ref.value?.submitData();
                     break;
                 default:
                     break;
@@ -133,6 +135,7 @@ export default {
             stepWizard,
             totalStepWizard,
             identityStep1Ref,
+            identityStep3Ref,
             itemModel,
             submitTab,
             updateDatasource,
