@@ -46,7 +46,6 @@
     const itemModel = ref<any>(props.dataSourceItem);
     watch(() => props.dataSourceItem, (newVal) =>{
         itemModel.value = newVal;
-        console.log('dataSourceItem changed',newVal);
     });
 </script>
 

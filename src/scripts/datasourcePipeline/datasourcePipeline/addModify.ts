@@ -7,9 +7,9 @@ const appState = useDataCategoryStore();
 export default {
     props: ['viewSettings'],
 	emits: ['onChangeView'],
-	setup(props:any){
+	setup(props:any, { emit }){
 		const isLoading = ref(false);		
-		const organizationSelected = ref(appState.defaultOrganization);
+		const organizationSelected = ref(appState.defaultOrganization.id);
 		const itemModel = ref({
 			id:1,
 			dataSource: "",
@@ -44,6 +44,17 @@ export default {
 			return cronstrueToString(cronExp, { locale: "vi", verbose: true, use24HourTimeFormat: true, });
 		};
 
+		const submitData = async () =>{
+			if (!ruleFormRef || !ruleFormRef.value) return;
+			await ruleFormRef.value.validate((valid, fields) => {
+				if (valid) {
+					emit("onFormSubmit", valid);
+				} else {
+					console.log('error submit!', fields);
+				}
+			});
+		};
+
 		onMounted(() =>{
 			if(props.viewSettings && props.viewSettings.viewName === "ModifyData" 
 				&& props.viewSettings.dataItem != null){
@@ -66,6 +77,7 @@ export default {
 			organizationSelected,
 			itemModel,
 			getCronExpressionReadable,
+			submitData,
 		}
 	},
 	computed: {

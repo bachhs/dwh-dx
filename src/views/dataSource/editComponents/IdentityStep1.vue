@@ -2,7 +2,7 @@
     <el-form
         v-if="itemModel"
         ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
-        label-width="0" class="ruleForm" status-icon >
+        label-width="0" class="ruleForm">
         <div class="mb-3">
             <div>
                 <strong>Tên nguồn dữ liệu</strong
@@ -81,7 +81,6 @@
     const itemModel = ref<any>(props.dataSourceItem);
     watch(() => props.dataSourceItem, (newVal) =>{
         itemModel.value = newVal;
-        console.log('dataSourceItem changed',newVal);
     });
     const ruleFormStep1Ref = ref<FormInstance>();
     const rules = reactive<FormRules>({

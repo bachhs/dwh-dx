@@ -39,10 +39,13 @@ export default {
         const getDbEngineIcon = (key:string) =>{
             try{
                 if(key){
+                    console.log(databaseEnginesMap[key].value.iconName);
                     return databaseEnginesMap[key].value.iconName;
                 }
-            }catch{}
-            return "postgre.png";
+            }catch(error){
+                console.error(error);
+            }
+            return "postgresql.svg";
         };
 
         const route = useRoute();

@@ -39,7 +39,7 @@
     <div>
         <table class="table table-hover table-striped table-borderless text-nowrap" >
             <thead>
-                <tr style="background-color: #b9d5ff;">
+                <tr style="background-color: #dceaff;">
                     <th style="width: 1%">
                         Tên thông tin
                     </th>

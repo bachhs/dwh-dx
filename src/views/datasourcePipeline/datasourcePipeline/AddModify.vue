@@ -83,7 +83,8 @@
                     </div>                    
                 </div> -->
                 <div class="mt-3 text-center">                    
-                    <el-button size="large" type="primary">
+                    <el-button size="large" type="primary"
+                        @click="submitData">
                         <el-icon><CircleCheck /></el-icon>
                         <span>Lưu dữ liệu</span>
                     </el-button>

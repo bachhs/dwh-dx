@@ -3,7 +3,7 @@
         <el-form
             v-if="itemModel"
             ref="ruleFormStep3Ref" :model="itemModel" :rules="rules" 
-            label-width="0" class="ruleForm" status-icon >
+            label-width="0" class="ruleForm">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 mb-1">
                     <div>

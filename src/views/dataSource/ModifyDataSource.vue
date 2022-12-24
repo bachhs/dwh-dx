@@ -89,7 +89,7 @@
                                 <el-radio-group v-model="itemModel.typeOfDataIn" >
                                     <el-radio-button :label="`database`">Database</el-radio-button>
                                     <el-radio-button disabled :label="`file`">File</el-radio-button>
-                                    <el-radio-button disabled :label="`api`">API</el-radio-button>
+                                    <el-radio-button :label="`api`">API</el-radio-button>
                                 </el-radio-group>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'database'">
