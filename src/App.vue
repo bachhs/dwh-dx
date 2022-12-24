@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
+import { navItems } from '@/helpers/navigationItems';
 import { useDataCategoryStore } from '@/stores/dataCategory';
 const dataCategoryStore = useDataCategoryStore();
 dataCategoryStore.getOrganization();
@@ -147,180 +148,19 @@ onMounted(() => {
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
-                        <li class="nav-item">
-                            <router-link
-                                to="/"
+                        <li v-bind:class="{ 'nav-item': navItem.type === 'link', 'nav-header': navItem.type === 'navHeader' }"
+                            v-for="(navItem, navItemIndex) in navItems" :key="navItemIndex">
+                            <router-link v-if="navItem.type === 'link'"
+                                :to="`${navItem.url}?t=${linkTime}`"
                                 class="nav-link"
                                 active-class="active">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>Trang chủ</p>
+                                <i :class="`nav-icon ${navItem.icon}`"></i>
+                                <p>{{navItem.name}}</p>
                             </router-link>
-                        </li>
-                        <!-- <li class="nav-item">
-							<router-link to="/notification" class="nav-link" active-class="active">
-								<i class="nav-icon fas fa-bell"></i>
-								<p>Thông báo</p>
-							</router-link>
-						</li>
-						<li class="nav-item">
-							<router-link to="/search" class="nav-link" active-class="active">
-								<i class="nav-icon fas fa-search"></i>
-								<p>Tìm kiếm</p>
-							</router-link>
-						</li> -->
-                        <!-- demo -->
-                        <li class="nav-header">BẢO MẬT</li>
-                        <li class="nav-item">
-                            <router-link :to="'/security'" class="nav-link">
-                                <i class="nav-icon fas fa-shield-halved"></i>
-                                <p>Cấu hình bảo mật</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-header">LUỒNG DỮ LIỆU</li>
-                        <li class="nav-item">
-                            <router-link :to="'/data-flow'" class="nav-link">
-                                <i class="nav-icon fas fa-wind"></i>
-                                <p>Cấu hình luồng dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-header">DATALAKE</li>
-                        <li class="nav-item">
-                            <router-link
-                                :to="`/data-source?t=${linkTime}`"
-                                class="nav-link"
-                                active-class="active">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>Nguồn dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-header">KHO DỮ LIỆU</li>
-                        <li class="nav-item">
-                            <router-link
-                                :to="'/data-warehouse'"
-                                class="nav-link">
-                                <i class="nav-icon fas fa-warehouse"></i>
-                                <p>Cấu hình kho dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-header">PHÂN TÍCH DỮ LIỆU</li>
-                        <li class="nav-item">
-                            <router-link :to="'/analytics'" class="nav-link">
-                                <i
-                                    class="nav-icon fas fa-magnifying-glass-chart"></i>
-                                <p>Cấu hình phân tích dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-header">CÔNG CỤ TÌM KIẾM</li>
-                        <li class="nav-item">
-                            <router-link
-                                :to="'/search-engine'"
-                                class="nav-link">
-                                <i class="nav-icon fas fa-magnifying-glass"></i>
-                                <p>Cấu hình công cụ tìm kiếm</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-header">TRỰC QUAN DỮ LIỆU</li>
-                        <li class="nav-item">
-                            <router-link
-                                :to="'/data-visualization'"
-                                class="nav-link">
-                                <i class="nav-icon fas fa-chart-line"></i>
-                                <p>Trực quan dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-header">QUẢN TRỊ DỮ LIỆU</li>
-                        <li class="nav-item">
-                            <router-link :to="'/governance'" class="nav-link">
-                                <i class="nav-icon fas fa-landmark"></i>
-                                <p>Cấu hình quản trị dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-header">QUẢN TRỊ VÀ VẬN HÀNH</li>
-                        <li class="nav-item">
-                            <router-link
-                                :to="'/administration'"
-                                class="nav-link">
-                                <i class="nav-icon fas fa-toolbox"></i>
-                                <p>Quản trị hệ thống</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="'/'" class="nav-link">
-                                <i class="nav-icon fas fa-gauge-high"></i>
-                                <p>Tình trạng vận hành</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/report"
-                                class="nav-link"
-                                active-class="active">
-                                <i class="nav-icon far fa-file-alt"></i>
-                                <p>Báo cáo</p>
-                            </router-link>
-                        </li>
-                        <!-- End of demo -->
-                        <li class="nav-header">DỮ LIỆU</li>
-                        <li class="nav-item">
-                            <router-link
-                                :to="`/data-source?t=${linkTime}`"
-                                class="nav-link"
-                                active-class="active">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>Nguồn dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/datasource-pipeline"
-                                class="nav-link"
-                                active-class="active">
-                                <i class="fas fa-sync-alt nav-icon"></i>
-                                <p>Thu thập dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/datasource-processing"
-                                class="nav-link"
-                                active-class="active">
-                                <i class="fas fa-fire-alt nav-icon"></i>
-                                <p>Xử lý dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <!-- <li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="nav-icon far fa-binoculars"></i>
-								<p>
-									Giám sát dữ liệu
-									<i class="fas fa-angle-left right"></i>
-								</p>
-							</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item">
-									<router-link to="/data-synthesis" class="nav-link" active-class="active">
-										<i class="fas fa-sync-alt nav-icon"></i>
-										<p>Tổng hợp dữ liệu</p>
-									</router-link>
-								</li>
-								<li class="nav-item">
-									<router-link to="/data-processing" class="nav-link" active-class="active">
-										<i class="fas fa-fire-alt nav-icon"></i>
-										<p>Xử lý dữ liệu</p>
-									</router-link>
-								</li>
-							</ul>
-						</li> -->
-                        <li class="nav-header">KHÁC</li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/support"
-                                class="nav-link"
-                                active-class="active">
-                                <i class="nav-icon far fa-question-circle"></i>
-                                <p>Hỗ trợ</p>
-                            </router-link>
-                        </li>
+                            <span v-if="navItem.type === 'navHeader'">
+                                {{navItem.name}}
+                            </span>
+                        </li>                        
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
