@@ -3,11 +3,13 @@ import { mapState } from "pinia";
 import { useDataCategoryStore } from "@/stores/dataCategory";
 import { getDataSourceMetaData } from "@/helpers/dataSourceHelper";
 import SkeletonBox from "@/components/SkeletonBox.vue";
+import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
 const appState = useDataCategoryStore();
 export default {
     props: ["viewSettings"],
     emits: ["onChangeView"],
     components: {
+        SetDescriptionModal,
         DatabaseList: defineAsyncComponent({
             loader: () =>
                 import("@/views/dataSource/viewDetails/DatabaseList.vue"),
@@ -41,8 +43,8 @@ export default {
         const currentViewProps = ref({});
         const breadcrumbs = ref(new Array<any>());
         const processingEvent = (evtParams: any) => {
-            let currentViewPropsValue = currentViewProps.value;
-            let viewProps = {};
+            let currentViewPropsValue:any = currentViewProps.value;
+            let viewProps:any = {};
             viewProps.viewName = evtParams.eventName;
             viewProps.dataSourceItem = ds.value;
             breadcrumbs.value = [{ view: "DatabaseList", label: ds.value.name, data: ds.value }];
@@ -109,7 +111,7 @@ export default {
         };
         onMounted(() => {
             ds.value = props.viewSettings.dataItem;
-            let viewProps = {};
+            let viewProps:any = {};
             viewProps.viewName = "DatabaseList";
             viewProps.dataSourceItem = ds.value;
             currentViewProps.value = { ...viewProps };

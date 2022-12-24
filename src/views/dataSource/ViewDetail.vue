@@ -87,7 +87,23 @@
                 </div>
                 <div class="card p-2 pl-3 pr-3"
                     v-if="ds.metaData.description">
-                    {{ds.metaData.description}}
+                    <div class="d-flex">
+                        <div class="flex-fill" v-html="ds.metaData.description">
+                            
+                        </div>
+                        <div class="ml-2">
+                            <SetDescriptionModal>
+                                <template #label>
+                                    <div class="m-2 d-flex align-items-center">
+                                        <el-icon :size="20">
+                                            <Edit />
+                                        </el-icon>
+                                        <span class="ml-2">Edit</span>
+                                    </div>
+                                </template>
+                            </SetDescriptionModal>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <component
