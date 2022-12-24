@@ -1,4 +1,8 @@
-import type { AddTagCategoryRequest, ListTagResponse } from '@/types/tag';
+import type {
+    AddTagCategoryRequest,
+    AddTagRequest,
+    ListTagResponse,
+} from '@/types/tag';
 import axios from 'axios';
 
 export const tagApi = {
@@ -14,13 +18,13 @@ export const tagApi = {
     deleteTagCategory(tagCategoryName: string) {
         return axios.delete(`/meta/tag/${tagCategoryName}`);
     },
-    createTag(tagCategoryName: string, request: AddTagCategoryRequest) {
+    createTag(tagCategoryName: string, request: AddTagRequest) {
         return axios.post(`/meta/tag/${tagCategoryName}`, request);
     },
     updateTag(
         tagCategoryName: string,
         tagName: string,
-        request: AddTagCategoryRequest
+        request: AddTagRequest
     ) {
         return axios.put(`/meta/tag/${tagCategoryName}/${tagName}`, request);
     },
