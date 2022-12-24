@@ -1,4 +1,6 @@
 import { dataSourceApi } from '@/api/dataSourceApi';
+import { tagApi } from '@/api/tagApi';
+import type { Tag, TagCategory } from '@/types/tag';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import type { SampleData } from '../type';
@@ -32,6 +34,7 @@ export default {
 
         const columns = ref([] as any[]);
         const sampleData = ref<SampleData>();
+        const tagList = ref<string[]>();
 
         const fetchColumns = async (
             datasourceName: string,
@@ -64,6 +67,55 @@ export default {
             sampleData.value = res.data.sampleData;
         };
 
+        const fetchTagList = async () => {
+            const res = await tagApi.tagList();
+
+            tagList.value = res.data.data
+                .map((x) => x.children?.map((y) => y.fullyQualifiedName))
+                .filter((x) => x)
+                .flat();
+        };
+
+        const setTableDescription = async (
+            tableMetaId: string,
+            description: string
+        ) => {
+            await dataSourceApi.updateTableDescription(
+                tableMetaId,
+                description
+            );
+        };
+
+        const setColumnDescription = async (
+            tableMetaId: string,
+            columnId: number,
+            description: string
+        ) => {
+            await dataSourceApi.updateColumnDescription(
+                tableMetaId,
+                columnId,
+                description
+            );
+        };
+
+        const setTableTags = async (tableMetaId: string, tags: string[]) => {
+            await dataSourceApi.updateTableTags(tableMetaId, tags);
+        };
+
+        const setColumnTags = async (
+            tableMetaId: string,
+            columnId: number,
+            tags: string[]
+        ) => {
+            await dataSourceApi.updateColumnTags(tableMetaId, columnId, tags);
+        };
+
+        // sample table tags
+        setTableTags('8f2c2595-253e-4e00-937b-7e3d4a99bf5d', [
+            'PersonalData.Personal',
+            'PersonalData.SpecialCategory',
+        ]);
+
         onMounted(() => {
             // hard code for now
             fetchColumns(
@@ -72,6 +124,8 @@ export default {
                 schemasSelected.name,
                 tableSelected.name
             );
+
+            fetchTagList();
         });
         return {
             activityFilter,
@@ -81,6 +135,8 @@ export default {
             columns,
             fetchSampleData,
             sampleData,
+            fetchTagList,
+            tagList,
         };
     },
 };

@@ -74,4 +74,31 @@ export const dataSourceApi = {
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/sample`
         );
     },
+    updateTableDescription(tableMetaId: string, description: string) {
+        return axios.put(`/meta/table/${tableMetaId}/description`, {
+            description,
+        });
+    },
+    updateColumnDescription(
+        tableMetaId: string,
+        columnId: number,
+        description: string
+    ) {
+        return axios.put(
+            `/meta/table/${tableMetaId}/column/${columnId}/description`,
+            {
+                description,
+            }
+        );
+    },
+    updateTableTags(tableMetaId: string, tags: string[]) {
+        return axios.put(`/meta/table/${tableMetaId}/tags`, {
+            tags,
+        });
+    },
+    updateColumnTags(tableMetaId: string, columnId: number, tags: string[]) {
+        return axios.put(`/meta/table/${tableMetaId}/column/${columnId}/tags`, {
+            tags,
+        });
+    },
 };
