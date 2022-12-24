@@ -1,7 +1,6 @@
 <script
     lang="ts"
-    src="@/scripts/dataSource/viewDetails/tablesAndViews.ts"
-></script>
+    src="@/scripts/dataSource/viewDetails/tablesAndViews.ts"></script>
 <template>
     <el-tabs type="border-card" class="tab-data">
         <el-tab-pane>
@@ -13,7 +12,9 @@
                         </div>
                         <div class="ml-1">
                             Table
-                            <span class="ml-1 label label-counting">{{tables.length}}</span>
+                            <span class="ml-1 label label-counting">{{
+                                tables.length
+                            }}</span>
                         </div>
                     </div>
                 </div>
@@ -31,23 +32,21 @@
                                             eventName: 'TableDetails',
                                             dataItem: t,
                                         })
-                                    "
-                                >
+                                    ">
                                     <span
                                         ><i
-                                            class="fa-solid fa-table-cells mr-1"
-                                        />
+                                            class="fa-solid fa-table-cells mr-1" />
                                         <strong>{{ t.name }}</strong>
                                     </span>
                                 </el-button>
                             </div>
                             <div class="text-muted">
-                                {{t.id}}
+                                {{ t.id }}
                             </div>
                             <div>
-                                <small class="text-muted"
-                                    >{{t.fullyQualifiedName}}</small
-                                >
+                                <small class="text-muted">{{
+                                    t.fullyQualifiedName
+                                }}</small>
                             </div>
                         </div>
                     </div>

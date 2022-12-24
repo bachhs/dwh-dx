@@ -1,7 +1,6 @@
 <script
     lang="ts"
-    src="@/scripts/dataSource/viewDetails/tableDetail.ts"
-></script>
+    src="@/scripts/dataSource/viewDetails/tableDetail.ts"></script>
 <template>
     <div>
         <div>
@@ -25,8 +24,7 @@
                             <div class="mb-4">
                                 <el-input
                                     placeholder="Find in table"
-                                    class="input-with-select"
-                                >
+                                    class="input-with-select">
                                     <template #append>
                                         <el-button>
                                             <el-icon><Search /></el-icon>
@@ -35,8 +33,7 @@
                                 </el-input>
                             </div>
                             <table
-                                class="table table-borderless table-customize table-head-fixed text-nowrap table-striped"
-                            >
+                                class="table table-borderless table-customize table-head-fixed text-nowrap table-striped">
                                 <thead>
                                     <tr>
                                         <th>Column name</th>
@@ -48,25 +45,29 @@
                                 <tbody>
                                     <tr
                                         v-for="column in columns"
-                                        :key="column.name"
-                                    >
+                                        :key="column.name">
                                         <td>
                                             <el-button
                                                 link
                                                 class="text-navy"
-                                                @click="$emit('processingEvent', { eventName: 'ColumnDetails', dataItem: column, })">
+                                                @click="
+                                                    $emit('processingEvent', {
+                                                        eventName:
+                                                            'ColumnDetails',
+                                                        dataItem: column,
+                                                    })
+                                                ">
                                                 <strong
                                                     class="text-navy"
-                                                    style="font-size: 1rem"
-                                                >
+                                                    style="font-size: 1rem">
                                                     <i
                                                         class="fa-solid fa-key"
-                                                        v-if="column.isPrimaryKey"
-                                                    ></i>
+                                                        v-if="
+                                                            column.isPrimaryKey
+                                                        "></i>
                                                     {{ column.name }}
                                                 </strong>
                                             </el-button>
-                                            
                                         </td>
                                         <td>{{ column.dataType }}</td>
                                         <td>No description</td>
@@ -112,8 +113,7 @@
                         <div class="mr-3 pl-1 pt-2">
                             <div
                                 class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataWithFilterHeight};`"
-                            >
+                                :style="`height: ${contentNodataWithFilterHeight};`">
                                 <no-data />
                             </div>
                         </div>
@@ -136,8 +136,7 @@
                         <div class="mr-3 pl-1 pt-2">
                             <div
                                 class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataHeight};`"
-                            >
+                                :style="`height: ${contentNodataHeight};`">
                                 <no-data />
                             </div>
                         </div>
@@ -160,8 +159,7 @@
                         <div class="mr-3 pl-1 pt-2">
                             <div
                                 class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataHeight};`"
-                            >
+                                :style="`height: ${contentNodataHeight};`">
                                 <no-data />
                             </div>
                         </div>
@@ -267,8 +265,7 @@
                             <div class="mb-3">
                                 <el-input
                                     placeholder="Find in table"
-                                    class="input-with-select"
-                                >
+                                    class="input-with-select">
                                     <template #append>
                                         <el-button>
                                             <el-icon><Search /></el-icon>
@@ -277,8 +274,7 @@
                                 </el-input>
                             </div>
                             <table
-                                class="table table-borderless table-customize table-head-fixed text-nowrap table-stripped"
-                            >
+                                class="table table-borderless table-customize table-head-fixed text-nowrap table-stripped">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -295,8 +291,7 @@
                                 <tbody>
                                     <tr
                                         v-for="column in columns"
-                                        :key="column.name"
-                                    >
+                                        :key="column.name">
                                         <td>
                                             <el-button
                                                 link
@@ -307,8 +302,7 @@
                                                             'ColumnDetails',
                                                         dataItem: {},
                                                     })
-                                                "
-                                            >
+                                                ">
                                                 <strong>{{
                                                     column.name
                                                 }}</strong>
@@ -320,41 +314,35 @@
                                         <td>
                                             <div
                                                 data-testid="profiler-progress-bar-container"
-                                                class="ant-row"
-                                            >
+                                                class="ant-row">
                                                 <div>
                                                     <el-progress
                                                         :stroke-width="10"
-                                                        :percentage="70"
-                                                    />
+                                                        :percentage="70" />
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div
                                                 data-testid="profiler-progress-bar-container"
-                                                class="ant-row"
-                                            >
+                                                class="ant-row">
                                                 <div>
                                                     <el-progress
                                                         :stroke-width="10"
                                                         :percentage="50"
-                                                        color="#5cb87a"
-                                                    />
+                                                        color="#5cb87a" />
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div
                                                 data-testid="profiler-progress-bar-container"
-                                                class="ant-row"
-                                            >
+                                                class="ant-row">
                                                 <div>
                                                     <el-progress
                                                         :stroke-width="10"
                                                         :percentage="20"
-                                                        color="#f56c6c"
-                                                    />
+                                                        color="#f56c6c" />
                                                 </div>
                                             </div>
                                         </td>
@@ -365,20 +353,17 @@
                                         <td class="text-center">
                                             <span>
                                                 <i
-                                                    class="fas fa-circle text-success"
-                                                ></i>
+                                                    class="fas fa-circle text-success"></i>
                                                 <span class="ml-1">0</span>
                                             </span>
                                             <span class="ml-3">
                                                 <i
-                                                    class="fas fa-circle text-warning"
-                                                ></i>
+                                                    class="fas fa-circle text-warning"></i>
                                                 <span class="ml-1">0</span>
                                             </span>
                                             <span class="ml-3">
                                                 <i
-                                                    class="fas fa-circle text-danger"
-                                                ></i>
+                                                    class="fas fa-circle text-danger"></i>
                                                 <span class="ml-1">0</span>
                                             </span>
                                         </td>
@@ -406,8 +391,7 @@
                         <div class="mr-3 pl-1 pt-2">
                             <div
                                 class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataHeight};`"
-                            >
+                                :style="`height: ${contentNodataHeight};`">
                                 <no-data />
                             </div>
                         </div>
@@ -430,8 +414,7 @@
                         <div class="mr-3 pl-1 pt-2">
                             <div
                                 class="flex-fill d-flex flex-column"
-                                :style="`height: ${contentNodataHeight};`"
-                            >
+                                :style="`height: ${contentNodataHeight};`">
                                 <no-data />
                             </div>
                         </div>

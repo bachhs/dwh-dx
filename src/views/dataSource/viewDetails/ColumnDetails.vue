@@ -7,8 +7,7 @@
             <div class="col-12 col-sm-6 col-md-4 d-flex flex-column">
                 <el-card
                     class="flex-fill"
-                    :body-style="{ padding: '0.5rem 0.8rem' }"
-                >
+                    :body-style="{ padding: '0.5rem 0.8rem' }">
                     <div class="d-flex">
                         <div class="flex-fill">
                             <div>
@@ -38,8 +37,7 @@
             <div class="col-12 col-sm-6 col-md-4 d-flex flex-column">
                 <el-card
                     class="flex-fill"
-                    :body-style="{ padding: '0.5rem 0.8rem' }"
-                >
+                    :body-style="{ padding: '0.5rem 0.8rem' }">
                     <div>
                         <div><strong>Table Metrics Summary</strong></div>
                         <div class="d-flex mt-3 mb-2">
@@ -49,8 +47,7 @@
                                     border: 1px solid #e0e0e0;
                                     border-radius: 8px;
                                     background-color: #f7f7f7;
-                                "
-                            >
+                                ">
                                 <div>Row Count</div>
                                 <div class="mt-1">
                                     <h4>1</h4>
@@ -62,8 +59,7 @@
                                     border: 1px solid #e0e0e0;
                                     border-radius: 8px;
                                     background-color: #f7f7f7;
-                                "
-                            >
+                                ">
                                 <div>Column Count</div>
                                 <div class="mt-1">
                                     <h4>4</h4>
@@ -75,8 +71,7 @@
                                     border: 1px solid #e0e0e0;
                                     border-radius: 8px;
                                     background-color: #f7f7f7;
-                                "
-                            >
+                                ">
                                 <div>Table Sample</div>
                                 <div class="mt-1">
                                     <h4>100%</h4>
@@ -89,8 +84,7 @@
             <div class="col-12 col-sm-6 col-md-4 d-flex flex-column">
                 <el-card
                     class="flex-fill"
-                    :body-style="{ padding: '0.5rem 0.8rem' }"
-                >
+                    :body-style="{ padding: '0.5rem 0.8rem' }">
                     <div>
                         <div><strong>Table Tests Summary</strong></div>
                         <div class="d-flex mt-3 mb-2">
@@ -100,8 +94,7 @@
                                     border: 1px solid rgb(41 213 205);
                                     border-radius: 8px;
                                     background-color: rgb(196 255 225);
-                                "
-                            >
+                                ">
                                 <div class="text-success">
                                     <strong>Success</strong>
                                 </div>
@@ -115,8 +108,7 @@
                                     border: 1px solid rgb(253 178 67);
                                     border-radius: 8px;
                                     background-color: rgb(255 235 204);
-                                "
-                            >
+                                ">
                                 <div class="text-orange">
                                     <strong>Aborted</strong>
                                 </div>
@@ -130,8 +122,7 @@
                                     border: 1px solid rgb(255 155 155);
                                     border-radius: 8px;
                                     background-color: rgb(255 217 217);
-                                "
-                            >
+                                ">
                                 <div class="text-danger">
                                     <strong>Failed</strong>
                                 </div>
@@ -147,8 +138,7 @@
         <div class="mt-3">
             <el-card
                 class="flex-fill"
-                :body-style="{ padding: '0.5rem 0.8rem' }"
-            >
+                :body-style="{ padding: '0.5rem 0.8rem' }">
                 <div class="d-flex">
                     <div>
                         <div>
@@ -184,8 +174,7 @@
         <div class="mt-3">
             <el-card
                 class="flex-fill"
-                :body-style="{ padding: '0.5rem 0.8rem' }"
-            >
+                :body-style="{ padding: '0.5rem 0.8rem' }">
                 <div class="d-flex">
                     <div>
                         <div>

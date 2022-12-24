@@ -6,6 +6,10 @@ export interface DSConnection {
     username: string;
     password: string;
 }
+export interface SampleData {
+    columns: string[];
+    rows: string[][];
+}
 
 export default interface Datasource extends DSConnection {
     name: string;

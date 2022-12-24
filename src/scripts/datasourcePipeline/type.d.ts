@@ -24,6 +24,7 @@ export interface MetaPipeline {
     pipelineType: string;
     service: MetaService;
     sourceConfig: SourceConfig;
+    pipelineStatus: PipelineStatus[];
 }
 
 export interface ListPipelineResponse {
