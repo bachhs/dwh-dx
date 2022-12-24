@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { RouterLink, RouterView } from "vue-router";
-import { useDataCategoryStore } from "@/stores/dataCategory";
+import { ref, onMounted } from 'vue';
+import { RouterLink, RouterView } from 'vue-router';
+import { useDataCategoryStore } from '@/stores/dataCategory';
 const dataCategoryStore = useDataCategoryStore();
 dataCategoryStore.getOrganization();
 dataCategoryStore.getAppParams();
-const linkTime = ref((new Date()).getTime());
-onMounted(() =>{
-    setInterval(() =>{
-        linkTime.value = (new Date()).getTime();
+const linkTime = ref(new Date().getTime());
+onMounted(() => {
+    setInterval(() => {
+        linkTime.value = new Date().getTime();
     }, 1000);
-})
+});
 </script>
 
 <template>
@@ -18,8 +18,7 @@ onMounted(() =>{
         <!-- ./wrapper -->
         <!-- Navbar -->
         <nav
-            class="main-header navbar navbar-expand bg-header-color d-flex align-items-center"
-        >
+            class="main-header navbar navbar-expand bg-header-color d-flex align-items-center">
             <!-- Left navbar links -->
             <ul class="navbar-nav d-flex align-items-center">
                 <li class="nav-item d-inline-block">
@@ -37,13 +36,11 @@ onMounted(() =>{
                             <img
                                 src="/custom-img/quochuy.png"
                                 alt="KHO DỮ LIỆU DÙNG CHUNG - SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN QUANG"
-                                style="width: 2.8rem"
-                            />
+                                style="width: 2.8rem" />
                         </div>
                         <div
                             class="ml-1 ml-md-2 text-left d-flex flex-column align-item-center justify-content-center"
-                            style="line-height: 1.4rem"
-                        >
+                            style="line-height: 1.4rem">
                             <div>
                                 <strong class="text-white"
                                     >SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN
@@ -67,8 +64,7 @@ onMounted(() =>{
                         <span class="badge badge-warning navbar-badge">15</span>
                     </a>
                     <div
-                        class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
-                    >
+                        class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-item dropdown-header"
                             >15 Notifications</span
                         >
@@ -108,8 +104,7 @@ onMounted(() =>{
                                     src="/img/user2-160x160.jpg"
                                     style="width: 2.8rem"
                                     class="img-circle elevation-2"
-                                    alt="User Image"
-                                />
+                                    alt="User Image" />
                             </div>
                         </div>
                         <template #dropdown>
@@ -149,16 +144,14 @@ onMounted(() =>{
                         class="nav nav-pills nav-sidebar flex-column"
                         data-widget="treeview"
                         role="menu"
-                        data-accordion="false"
-                    >
+                        data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
                             <router-link
                                 to="/"
                                 class="nav-link"
-                                active-class="active"
-                            >
+                                active-class="active">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>Trang chủ</p>
                             </router-link>
@@ -175,13 +168,113 @@ onMounted(() =>{
 								<p>Tìm kiếm</p>
 							</router-link>
 						</li> -->
+                        <!-- demo -->
+                        <li class="nav-header">Bảo mật</li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/security'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Cấu hình bảo mật</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-header">Luồng dữ liệu</li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/data-flow'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Cấu hình luồng dữ liệu</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-header">Datalake</li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Cấu hình datalake</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-header">Kho dữ liệu</li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Cấu hình kho dữ liệu</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-header">Phân tích dữ liệu</li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Cấu hình phân tích dữ liệu</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-header">Công cụ tìm kiếm</li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Cấu hình công cụ tìm kiếm</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-header">Trực quan dữ liệu</li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Cấu hình trực quan dữ liệu</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-header">Quản trị dữ liệu</li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Cấu hình quản trị dữ liệu</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-header">Quản trị và vận hành</li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Quản trị hệ thống</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="'/'"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Tình trạng vận hành</p>
+                            </router-link>
+                        </li>
+                        <!-- End of demo -->
                         <li class="nav-header">DỮ LIỆU</li>
                         <li class="nav-item">
                             <router-link
                                 :to="`/data-source?t=${linkTime}`"
                                 class="nav-link"
-                                active-class="active"
-                            >
+                                active-class="active">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Nguồn dữ liệu</p>
                             </router-link>
@@ -190,8 +283,7 @@ onMounted(() =>{
                             <router-link
                                 to="/datasource-pipeline"
                                 class="nav-link"
-                                active-class="active"
-                            >
+                                active-class="active">
                                 <i class="fas fa-sync-alt nav-icon"></i>
                                 <p>Thu thập dữ liệu</p>
                             </router-link>
@@ -200,8 +292,7 @@ onMounted(() =>{
                             <router-link
                                 to="/datasource-processing"
                                 class="nav-link"
-                                active-class="active"
-                            >
+                                active-class="active">
                                 <i class="fas fa-fire-alt nav-icon"></i>
                                 <p>Xử lý dữ liệu</p>
                             </router-link>
@@ -233,8 +324,7 @@ onMounted(() =>{
                             <router-link
                                 to="/data-visualization"
                                 class="nav-link"
-                                active-class="active"
-                            >
+                                active-class="active">
                                 <i class="nav-icon fas fa-chart-line"></i>
                                 <p>Trực quan dữ liệu</p>
                             </router-link>
@@ -244,8 +334,7 @@ onMounted(() =>{
                             <router-link
                                 to="/report"
                                 class="nav-link"
-                                active-class="active"
-                            >
+                                active-class="active">
                                 <i class="nav-icon far fa-file-alt"></i>
                                 <p>Báo cáo</p>
                             </router-link>
@@ -254,8 +343,7 @@ onMounted(() =>{
                             <router-link
                                 to="/administration"
                                 class="nav-link"
-                                active-class="active"
-                            >
+                                active-class="active">
                                 <i class="nav-icon fas fa-toolbox"></i>
                                 <p>Quản trị</p>
                             </router-link>
@@ -265,8 +353,7 @@ onMounted(() =>{
                             <router-link
                                 to="/support"
                                 class="nav-link"
-                                active-class="active"
-                            >
+                                active-class="active">
                                 <i class="nav-icon far fa-question-circle"></i>
                                 <p>Hỗ trợ</p>
                             </router-link>
@@ -284,9 +371,8 @@ onMounted(() =>{
             <section class="content">
                 <div
                     class="container-fluid p-0 pt-2 d-flex flex-column w-100"
-                    style="height: calc(100vh - 4.6rem)"
-                >
-                    <RouterView :key="$route.fullPath"/>
+                    style="height: calc(100vh - 4.6rem)">
+                    <RouterView :key="$route.fullPath" />
                 </div>
             </section>
             <!-- /.content -->
