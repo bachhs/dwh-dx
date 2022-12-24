@@ -148,19 +148,25 @@ onMounted(() => {
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
-                        <li v-bind:class="{ 'nav-item': navItem.type === 'link', 'nav-header': navItem.type === 'navHeader' }"
-                            v-for="(navItem, navItemIndex) in navItems" :key="navItemIndex">
-                            <router-link v-if="navItem.type === 'link'"
+                        <li
+                            v-bind:class="{
+                                'nav-item': navItem.type === 'link',
+                                'nav-header': navItem.type === 'navHeader',
+                            }"
+                            v-for="(navItem, navItemIndex) in navItems"
+                            :key="navItemIndex">
+                            <router-link
+                                v-if="navItem.type === 'link'"
                                 :to="`${navItem.url}?t=${linkTime}`"
                                 class="nav-link"
                                 active-class="active">
                                 <i :class="`nav-icon ${navItem.icon}`"></i>
-                                <p>{{navItem.name}}</p>
+                                <p>{{ navItem.name }}</p>
                             </router-link>
                             <span v-if="navItem.type === 'navHeader'">
-                                {{navItem.name}}
+                                {{ navItem.name }}
                             </span>
-                        </li>                        
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
