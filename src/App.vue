@@ -185,9 +185,12 @@ onMounted(() => {
                         </li>
                         <li class="nav-header">DATALAKE</li>
                         <li class="nav-item">
-                            <router-link :to="'/datalake'" class="nav-link">
-                                <i class="nav-icon fas fa-snowflake"></i>
-                                <p>Cấu hình datalake</p>
+                            <router-link
+                                :to="`/data-source?t=${linkTime}`"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Nguồn dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">KHO DỮ LIỆU</li>
@@ -219,7 +222,7 @@ onMounted(() => {
                         <li class="nav-header">TRỰC QUAN DỮ LIỆU</li>
                         <li class="nav-item">
                             <router-link
-                                :to="'/visualization'"
+                                :to="'/data-visualization'"
                                 class="nav-link">
                                 <i class="nav-icon fas fa-chart-line"></i>
                                 <p>Cấu hình trực quan dữ liệu</p>
@@ -235,9 +238,9 @@ onMounted(() => {
                         <li class="nav-header">QUẢN TRỊ VÀ VẬN HÀNH</li>
                         <li class="nav-item">
                             <router-link
-                                :to="'/admin-operation'"
+                                :to="'/administration'"
                                 class="nav-link">
-                                <i class="nav-icon fas fa-users-gear"></i>
+                                <i class="nav-icon fas fa-toolbox"></i>
                                 <p>Quản trị hệ thống</p>
                             </router-link>
                         </li>
@@ -245,6 +248,15 @@ onMounted(() => {
                             <router-link :to="'/'" class="nav-link">
                                 <i class="nav-icon fas fa-gauge-high"></i>
                                 <p>Tình trạng vận hành</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link
+                                to="/report"
+                                class="nav-link"
+                                active-class="active">
+                                <i class="nav-icon far fa-file-alt"></i>
+                                <p>Báo cáo</p>
                             </router-link>
                         </li>
                         <!-- End of demo -->
