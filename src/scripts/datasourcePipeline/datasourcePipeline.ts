@@ -1,6 +1,7 @@
 import { datasourcePipelineApi } from '@/api/datasourcePipelineApi';
 import SkeletonBox from '@/components/SkeletonBox.vue';
 import { defineAsyncComponent, nextTick, onMounted, ref } from 'vue';
+import type { ListPipelineResponse } from './type';
 export default {
     components: {
         ListData: defineAsyncComponent({
@@ -21,7 +22,7 @@ export default {
     setup() {
         const isChangeViewLoading = ref(false);
         const currentComponent = ref('ListData');
-        const pipelineResponse = ref();
+        const pipelineResponse = ref<ListPipelineResponse>();
         const viewSettings = ref({
             viewName: 'ListData',
             title: 'Tiến trình thu thập dữ liệu',
