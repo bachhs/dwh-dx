@@ -1,4 +1,18 @@
-import type { PagingPayload } from '@/types';
+import type { MetaService, PagingPayload } from '@/types';
+
+export interface SourceConfig {
+    config: {
+        type: string;
+    };
+}
+
+export interface PipelineStatus {
+    runId: string;
+    state: string;
+    startDate: number;
+    endDate: number;
+    timestamp: number;
+}
 
 export interface MetaPipeline {
     id: string;
@@ -8,6 +22,8 @@ export interface MetaPipeline {
     enabled: boolean;
     deleted: boolean;
     pipelineType: string;
+    service: MetaService;
+    sourceConfig: SourceConfig;
 }
 
 export interface ListPipelineResponse {

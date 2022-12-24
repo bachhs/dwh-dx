@@ -225,7 +225,7 @@ onMounted(() => {
                                 :to="'/data-visualization'"
                                 class="nav-link">
                                 <i class="nav-icon fas fa-chart-line"></i>
-                                <p>Cấu hình trực quan dữ liệu</p>
+                                <p>Trực quan dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">QUẢN TRỊ DỮ LIỆU</li>
@@ -311,34 +311,6 @@ onMounted(() => {
 								</li>
 							</ul>
 						</li> -->
-                        <li class="nav-item">
-                            <router-link
-                                to="/data-visualization"
-                                class="nav-link"
-                                active-class="active">
-                                <i class="nav-icon fas fa-chart-line"></i>
-                                <p>Trực quan dữ liệu</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-header">QUẢN TRỊ HỆ THỐNG</li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/report"
-                                class="nav-link"
-                                active-class="active">
-                                <i class="nav-icon far fa-file-alt"></i>
-                                <p>Báo cáo</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link
-                                to="/administration"
-                                class="nav-link"
-                                active-class="active">
-                                <i class="nav-icon fas fa-toolbox"></i>
-                                <p>Quản trị</p>
-                            </router-link>
-                        </li>
                         <li class="nav-header">KHÁC</li>
                         <li class="nav-item">
                             <router-link

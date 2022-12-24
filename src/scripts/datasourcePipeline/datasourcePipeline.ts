@@ -1,5 +1,6 @@
-import { defineAsyncComponent, ref, nextTick, reactive } from 'vue';
+import { datasourcePipelineApi } from '@/api/datasourcePipelineApi';
 import SkeletonBox from '@/components/SkeletonBox.vue';
+import { defineAsyncComponent, nextTick, onMounted, ref } from 'vue';
 export default {
     components: {
         ListData: defineAsyncComponent({
@@ -20,6 +21,7 @@ export default {
     setup() {
         const isChangeViewLoading = ref(false);
         const currentComponent = ref('ListData');
+        const pipelineResponse = ref();
         const viewSettings = ref({
             viewName: 'ListData',
             title: 'Tiến trình thu thập dữ liệu',
@@ -63,11 +65,30 @@ export default {
                 isChangeViewLoading.value = false;
             }, 100);
         };
+
+        const fetchMetaPipelines = async () => {
+            try {
+                const res = await datasourcePipelineApi.getMetaPipelines();
+
+                pipelineResponse.value = res.data;
+
+                console.log(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        onMounted(() => {
+            fetchMetaPipelines();
+        });
+
         return {
             isChangeViewLoading,
             currentComponent,
             viewSettings,
             changeView,
+            fetchMetaPipelines,
+            pipelineResponse,
         };
     },
 };

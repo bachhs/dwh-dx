@@ -24,8 +24,12 @@ export const datasourcePipelineApi = {
         return axios.delete(`/pipeline/${dtsId}`);
     },
     getMetaPipelines(datasourceName?: string) {
-        return axios.get<ListPipelineResponse>(
-            `meta/ingestion?datasourceName=${datasourceName || ''}`
-        );
+        if (datasourceName) {
+            return axios.get<ListPipelineResponse>(
+                `meta/ingestion?datasourceName=${datasourceName}`
+            );
+        } else {
+            return axios.get<ListPipelineResponse>(`meta/ingestion`);
+        }
     },
 };
