@@ -36,10 +36,10 @@ export default {
             })
             .then((response:any) =>{
                 dataSourceOptions.value = response.data.content
-                .sort((a:any, b:any) =>{ return stringCompareFn(a.organization, b.organization); }).map((item:any) =>{
+                .sort((a:any, b:any) =>{ return stringCompareFn(a.organization.name, b.organization.name); }).map((item:any) =>{
                     return {
                         id: item.id,
-                        label: `${item.organization} - ${item.name}`,
+                        label: `${item.name} (${item.organization.name})`,
                     }
                 });
             })
