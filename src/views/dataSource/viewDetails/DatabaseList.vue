@@ -1,12 +1,10 @@
 <script
     lang="ts"
-    src="@/scripts/dataSource/viewDetails/databaseList.ts"
-></script>
+    src="@/scripts/dataSource/viewDetails/databaseList.ts"></script>
 <template>
     <div>
         <table
-            class="table table-borderless table-customize table-head-fixed text-nowrap table-striped"
-        >
+            class="table table-borderless table-customize table-head-fixed text-nowrap table-striped">
             <thead>
                 <tr>
                     <th>Database Name</th>
@@ -27,8 +25,7 @@
                                     eventName: 'SchemasList',
                                     dataItem: d,
                                 })
-                            "
-                        >
+                            ">
                             <strong class="text-navy" style="font-size: 1rem">
                                 <i class="fa-solid fa-database"></i>
                                 {{ d.name }}

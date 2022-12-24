@@ -2,8 +2,7 @@
 <template>
     <div>
         <table
-            class="table table-borderless table-customize table-head-fixed text-nowrap table-striped"
-        >
+            class="table table-borderless table-customize table-head-fixed text-nowrap table-striped">
             <thead>
                 <tr>
                     <th>Schema Name</th>
@@ -23,8 +22,7 @@
                                     eventName: 'TablesAndViews',
                                     dataItem: s,
                                 })
-                            "
-                        >
+                            ">
                             <strong class="text-navy" style="font-size: 1rem">
                                 <i class="fa-solid fa-cube"></i>
                                 {{ s.name }}
