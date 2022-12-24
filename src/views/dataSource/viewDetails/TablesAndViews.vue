@@ -53,7 +53,7 @@
                 </el-scrollbar>
             </div>
         </el-tab-pane>
-        <!-- <el-tab-pane>
+        <el-tab-pane>
             <template #label>
                 <div class="custom-tabs-label">
                     <div class="d-flex align-items-center">
@@ -61,38 +61,19 @@
                             <i class="fas fa-glasses"></i>
                         </div>
                         <div class="ml-1">
-                            View
-                            <span class="ml-1 label label-counting">5</span>
+                            Database diagram
                         </div>
                     </div>
                 </div>
             </template>
             <div>
-                <el-scrollbar style="height: calc(100vh - 21rem)">
-                    <div class="mr-3 pl-1 pt-2">
-                        <div class="card p-2" v-for="item in 5" :key="item">
-                            <div>
-                                <el-button link class="text-navy">
-                                    <span
-                                        ><i class="fas fa-table mr-1"></i>
-                                        <strong>View {{ item }}</strong></span
-                                    >
-                                </el-button>
-                            </div>
-                            <div class="text-muted">
-                                Setup Prometheus monitor service(Hadoop,
-                                openmetadata,datahub, keycloak ....)
-                            </div>
-                            <div>
-                                <small class="text-muted"
-                                    >demo_app.public</small
-                                >
-                            </div>
-                        </div>
+                <div class="mr-3 pl-1 pt-2">
+                    <div>
+                        <div id="myDiagramDiv" style="background-color: white; width: 100%; height: calc(100vh - 21rem)"></div>
                     </div>
-                </el-scrollbar>
+                </div>
             </div>
-        </el-tab-pane> -->
+        </el-tab-pane>
     </el-tabs>
 </template>
 

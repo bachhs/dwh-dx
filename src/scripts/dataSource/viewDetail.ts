@@ -4,7 +4,8 @@ import { useDataCategoryStore } from "@/stores/dataCategory";
 import { getDataSourceMetaData } from "@/helpers/dataSourceHelper";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
-const appState = useDataCategoryStore();
+import { getDataEngineItem } from "@/helpers/ultilityFunctions";
+//const appState = useDataCategoryStore();
 export default {
     props: ["viewSettings"],
     emits: ["onChangeView"],
@@ -42,6 +43,7 @@ export default {
         const currentView = ref("DatabaseList");
         const currentViewProps = ref({});
         const breadcrumbs = ref(new Array<any>());
+        const dataEngineItem = ref<any>({});
         const processingEvent = (evtParams: any) => {
             let currentViewPropsValue:any = currentViewProps.value;
             let viewProps:any = {};
@@ -119,6 +121,7 @@ export default {
             getDataSourceMetaData(ds.value.name).then((metaData:any) =>{
                 ds.value.metaData = metaData;
             });
+            dataEngineItem.value = getDataEngineItem(ds.value.dialect);
         });
         return {
             isLoading,
@@ -127,6 +130,7 @@ export default {
             currentView,
             currentViewProps,
             processingEvent,
+            dataEngineItem,
         };
     },
     computed: {

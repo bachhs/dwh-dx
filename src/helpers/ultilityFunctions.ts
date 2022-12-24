@@ -1,3 +1,6 @@
+import { useDataCategoryStore } from '@/stores/dataCategory';
+const appState = useDataCategoryStore();
+
 const humanFileSize = (sizeInBytes : number, si : boolean = false, dp : number = 1) => {
     const thresh = si ? 1000 : 1024;
     if (Math.abs(sizeInBytes) < thresh) {
@@ -15,4 +18,10 @@ const humanFileSize = (sizeInBytes : number, si : boolean = false, dp : number =
     return sizeInBytes.toFixed(dp) + ' ' + units[u];
 };
 
-export {humanFileSize};
+const getDataEngineItem = (key:string) =>{
+    let paramItem = appState.databaseEngineOptions.find((pItem:any) => pItem.key === key);
+    if(paramItem) return paramItem;
+    return { name: "Không xác định" };
+}
+
+export { humanFileSize , getDataEngineItem };

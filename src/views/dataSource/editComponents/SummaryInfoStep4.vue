@@ -1,18 +1,12 @@
 <script lang="ts" setup>
     import { ref, watch, onMounted } from "vue";
-    import { useDataCategoryStore } from '@/stores/dataCategory';
-    const appState = useDataCategoryStore();
+    import { getDataEngineItem } from "@/helpers/ultilityFunctions";
     const props = defineProps({
         dataSourceItem: { type: Object, required: true },
     });
     const showPassword = ref(false);
     const dataEngineItem = ref<any>({});
     const itemModel = ref<any>(props.dataSourceItem);
-    const getDataEngineItem = (key:string) =>{
-        let paramItem = appState.databaseEngineOptions.find((pItem:any) => pItem.key === key);
-        if(paramItem) return paramItem;
-        return { name: "Không xác định" };
-    }
     watch(() => props.dataSourceItem, (newVal) =>{
         itemModel.value = newVal;
         dataEngineItem.value = getDataEngineItem(newVal.databaseEngineSelected);

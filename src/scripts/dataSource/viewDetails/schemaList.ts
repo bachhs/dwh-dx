@@ -1,13 +1,17 @@
 import { dataSourceApi } from "@/api/dataSourceApi";
 import { onMounted, ref } from "vue";
+import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
 
 export default {
     props: ["viewSettings"],
     emits: ["onChangeView", "processingEvent"],
+    components: {
+        SetDescriptionModal,
+    },
     setup(props: any) {
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
-        const contentHeight = dataSourceSelected.metaData.description ? 'calc(100vh - 25.5rem)' : 'calc(100vh - 23rem)';
+        const contentHeight = 'calc(100vh - 23rem)';
         const schemas = ref([]);
         const fetchSchemas = async (
             datasourceName: string,

@@ -30,7 +30,20 @@
                                 </strong>
                             </el-button>
                         </td>
-                        <td>No description</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div>No description</div>
+                                <SetDescriptionModal>
+                                    <template #label>
+                                        <span class="m-2 d-flex align-items-center">
+                                            <el-icon :size="20">
+                                                <Edit />
+                                            </el-icon>
+                                        </span>
+                                    </template>
+                                </SetDescriptionModal>
+                            </div>   
+                        </td>
                         <td>--</td>
                         <td>- 0th pctile</td>
                     </tr>

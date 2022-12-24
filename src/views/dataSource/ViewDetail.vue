@@ -52,13 +52,17 @@
                             </div>
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Dialect</div>
-                                <h5 class="mt-1">{{ ds.dialect }}</h5>
-                            </div>
-                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
-                                <div>Ngày khởi tạo</div>
-                                <h5 class="mt-1">
-                                    {{ $filters.prettyDate(ds.created_at) }}
-                                </h5>
+                                <!-- <h5 class="mt-1">{{ ds.dialect }}</h5> -->
+                                <div class="d-flex align-items-center">
+                                    <div class="mt-1 mb-1 mr-2"
+                                        v-if="dataEngineItem && dataEngineItem !== null && dataEngineItem.iconName">
+                                        <img :src="`/icons/databases/${dataEngineItem.iconName}`"
+                                            style=" height: 1.5rem; " />
+                                    </div>
+                                    <div v-if="dataEngineItem && dataEngineItem !== null">
+                                        <h5 class="mt-1">{{dataEngineItem.name}}</h5>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Host</div>
@@ -82,10 +86,32 @@
                                     {{ ds.metaData.version }}
                                 </h5>
                             </div>
+                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
+                                <div>Ngày khởi tạo</div>
+                                <h5 class="mt-1">
+                                    {{ $filters.prettyDate(ds.created_at) }}
+                                </h5>
+                            </div>
+                            <div class="flex-fill d-none d-md-flex align-items-center card p-2 pl-3 pr-3 ml-3 mr-1 scrollbar-dbinfo-item">
+                                <el-tooltip placement="bottom" raw-content 
+                                    v-if="ds.metaData && ds.metaData.description">
+                                    <template #content>
+                                        <div style="width: 400px; max-width: 100%; white-space: normal;">
+                                            <div>
+                                                {{ds.metaData.description}}
+                                            </div>
+                                        </div>
+                                    </template>                                    
+                                    <div class="text-normal line-clamp-2" 
+                                        v-html="ds.metaData.description">
+                                
+                                    </div>
+                                </el-tooltip>
+                            </div>
                         </div>
                     </el-scrollbar>
                 </div>
-                <div class="card p-2 pl-3 pr-3"
+                <!-- <div class="card p-2 pl-3 pr-3"
                     v-if="ds.metaData.description">
                     <div class="d-flex">
                         <div class="flex-fill" v-html="ds.metaData.description">
@@ -104,7 +130,7 @@
                             </SetDescriptionModal>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div>
                     <component
                         :is="currentView"
@@ -135,5 +161,14 @@
     .hoz-content-wrap {
         width: calc(100vw - 3rem - 250px);
     }
+}
+
+.line-clamp-2{
+    white-space: normal !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 </style>
