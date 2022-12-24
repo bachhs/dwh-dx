@@ -185,21 +185,23 @@ onMounted(() => {
                         </li>
                         <li class="nav-header">DATALAKE</li>
                         <li class="nav-item">
-                            <router-link :to="'/'" class="nav-link">
+                            <router-link :to="'/datalake'" class="nav-link">
                                 <i class="nav-icon fas fa-snowflake"></i>
                                 <p>Cấu hình datalake</p>
                             </router-link>
                         </li>
                         <li class="nav-header">KHO DỮ LIỆU</li>
                         <li class="nav-item">
-                            <router-link :to="'/'" class="nav-link">
+                            <router-link
+                                :to="'/data-warehouse'"
+                                class="nav-link">
                                 <i class="nav-icon fas fa-warehouse"></i>
                                 <p>Cấu hình kho dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">PHÂN TÍCH DỮ LIỆU</li>
                         <li class="nav-item">
-                            <router-link :to="'/'" class="nav-link">
+                            <router-link :to="'/analytics'" class="nav-link">
                                 <i
                                     class="nav-icon fas fa-magnifying-glass-chart"></i>
                                 <p>Cấu hình phân tích dữ liệu</p>
@@ -207,28 +209,34 @@ onMounted(() => {
                         </li>
                         <li class="nav-header">CÔNG CỤ TÌM KIẾM</li>
                         <li class="nav-item">
-                            <router-link :to="'/'" class="nav-link">
+                            <router-link
+                                :to="'/search-engine'"
+                                class="nav-link">
                                 <i class="nav-icon fas fa-magnifying-glass"></i>
                                 <p>Cấu hình công cụ tìm kiếm</p>
                             </router-link>
                         </li>
                         <li class="nav-header">TRỰC QUAN DỮ LIỆU</li>
                         <li class="nav-item">
-                            <router-link :to="'/'" class="nav-link">
+                            <router-link
+                                :to="'/visualization'"
+                                class="nav-link">
                                 <i class="nav-icon fas fa-chart-line"></i>
                                 <p>Cấu hình trực quan dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">QUẢN TRỊ DỮ LIỆU</li>
                         <li class="nav-item">
-                            <router-link :to="'/'" class="nav-link">
+                            <router-link :to="'/governance'" class="nav-link">
                                 <i class="nav-icon fas fa-landmark"></i>
                                 <p>Cấu hình quản trị dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">QUẢN TRỊ VÀ VẬN HÀNH</li>
                         <li class="nav-item">
-                            <router-link :to="'/'" class="nav-link">
+                            <router-link
+                                :to="'/admin-operation'"
+                                class="nav-link">
                                 <i class="nav-icon fas fa-users-gear"></i>
                                 <p>Quản trị hệ thống</p>
                             </router-link>
