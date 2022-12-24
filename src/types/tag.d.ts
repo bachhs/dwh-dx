@@ -1,10 +1,16 @@
 import type { PagingPayload } from '.';
 
-export interface TagCategory {
-    id: string;
+export interface AddTagRequest {
     name: string;
     description: string;
-    categoryType: string;
+}
+
+export interface AddTagCategoryRequest extends AddTagRequest {
+    categoryType: 'Descriptive' | 'Classification';
+}
+
+export interface TagCategory extends AddTagCategoryRequest {
+    id: string;
     usageCount: number;
     deleted: boolean;
     children: Tag[];
