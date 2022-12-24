@@ -68,10 +68,7 @@
                                 <div>Port</div>
                                 <h5 class="mt-1">{{ ds.port }}</h5>
                             </div>
-                            <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
-                                <div>Username</div>
-                                <h5 class="mt-1">{{ ds.username }}</h5>
-                            </div>
+                            
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Trạng thái</div>
                                 <h5 class="mt-1">

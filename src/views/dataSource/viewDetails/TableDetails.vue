@@ -4,7 +4,7 @@
 <template>
     <div>
         <div>
-            Type: Regular | Usage - 0th pctile | 0 Queries | 4 Columns | 1 rows
+            Type: Regular | Usage - 0th pctile | 0 Queries | {{columns.length}} Columns | 1 rows
         </div>
         <el-tabs type="border-card" class="tab-data mt-3">
             <el-tab-pane>
@@ -52,8 +52,7 @@
                                                 class="text-navy"
                                                 @click="
                                                     $emit('processingEvent', {
-                                                        eventName:
-                                                            'ColumnDetails',
+                                                        eventName: 'ColumnDetails',
                                                         dataItem: column,
                                                     })
                                                 ">
@@ -62,9 +61,7 @@
                                                     style="font-size: 1rem">
                                                     <i
                                                         class="fa-solid fa-key"
-                                                        v-if="
-                                                            column.isPrimaryKey
-                                                        "></i>
+                                                        v-if="column.isPrimaryKey"></i>
                                                     {{ column.name }}
                                                 </strong>
                                             </el-button>

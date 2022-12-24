@@ -8,6 +8,7 @@ export default {
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
         const schemasSelected = props.viewSettings.schemasSelected;
+        const contentHeight = dataSourceSelected.metaData.description ? 'calc(100vh - 25.5rem)' : 'calc(100vh - 23rem)';
         const tables = ref([]);
         const fetchTables = async (
             datasourceName: string,
@@ -32,6 +33,7 @@ export default {
         });
         return {
             tables,
+            contentHeight,
         };
     },
 };

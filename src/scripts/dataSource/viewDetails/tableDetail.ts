@@ -26,7 +26,7 @@ export default {
         const tableSelected = props.viewSettings.tableSelected;
 
         const activityFilter = ref('All Activity');
-        const contentHeight = 'calc(100vh - 23rem)';
+        const contentHeight = dataSourceSelected.metaData.description ? 'calc(100vh - 25.5rem)' : 'calc(100vh - 23rem)';
         const contentNodataHeight = 'calc(100vh - 24rem)';
         const contentNodataWithFilterHeight = 'calc(100vh - 28rem)';
 

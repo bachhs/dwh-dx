@@ -20,7 +20,7 @@
                 </div>
             </template>
             <div>
-                <el-scrollbar style="height: calc(100vh - 21rem)">
+                <el-scrollbar :style="`height: ${contentHeight};`">
                     <div class="mr-3 pl-1 pt-2">
                         <div class="card p-2" v-for="t in tables" :key="t.id">
                             <div>
