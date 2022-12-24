@@ -206,4 +206,14 @@ body {
     .radio-custom-item .radio-selection:checked + .el-card .organization-item--icon-selected {
       display: block !important; }
 
+.ckeditor-container .ck-editor__editable {
+  min-height: 200px !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important; }
+  .ckeditor-container .ck-editor__editable p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important; }
+.ckeditor-container .ck-editor__editable_inline {
+  min-height: 200px !important; }
+
 /*# sourceMappingURL=custom.css.map */

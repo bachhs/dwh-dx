@@ -14,9 +14,10 @@
         <el-dialog
             v-model="centerDialogVisible"
             title="Warning"
-            width="30%"
             align-center>
-            <span>Open the dialog from the center from the screen</span>
+            <div class="ckeditor-container">
+                <ckeditor :editor="editorConfigs.editor" v-model="editorConfigs.editorData" :config="editorConfigs.editorConfig"></ckeditor>
+            </div>
             <template #footer>
             <span class="dialog-footer">
                 <el-button @click="centerDialogVisible = false">Cancel</el-button>
@@ -29,6 +30,15 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
+    import { ref } from 'vue';    
+    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
     const centerDialogVisible = ref(false)
+    const editorConfigs = ref({
+        editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+            // The configuration of the editor.
+            //height: '200px'
+        }
+    });
 </script>

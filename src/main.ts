@@ -7,6 +7,7 @@ import axios from "axios";
 import App from "./App.vue";
 import router from "./router";
 import NoData from "@/components/NoData.vue";
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import moment from "moment";
 import "./assets/main.css";
 
@@ -22,6 +23,7 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(ElementPlus);
+app.use(CKEditor);
 app.component("no-data", NoData);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);
