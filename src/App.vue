@@ -171,99 +171,69 @@ onMounted(() => {
                         <!-- demo -->
                         <li class="nav-header">Bảo mật</li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/security'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/security'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Cấu hình bảo mật</p>
                             </router-link>
                         </li>
                         <li class="nav-header">Luồng dữ liệu</li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/data-flow'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/data-flow'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Cấu hình luồng dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">Datalake</li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Cấu hình datalake</p>
                             </router-link>
                         </li>
                         <li class="nav-header">Kho dữ liệu</li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Cấu hình kho dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">Phân tích dữ liệu</li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Cấu hình phân tích dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">Công cụ tìm kiếm</li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Cấu hình công cụ tìm kiếm</p>
                             </router-link>
                         </li>
                         <li class="nav-header">Trực quan dữ liệu</li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Cấu hình trực quan dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">Quản trị dữ liệu</li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Cấu hình quản trị dữ liệu</p>
                             </router-link>
                         </li>
                         <li class="nav-header">Quản trị và vận hành</li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Quản trị hệ thống</p>
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link
-                                :to="'/'"
-                                class="nav-link"
-                                active-class="active">
+                            <router-link :to="'/'" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Tình trạng vận hành</p>
                             </router-link>
