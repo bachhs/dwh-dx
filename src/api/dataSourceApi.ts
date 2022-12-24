@@ -64,4 +64,14 @@ export const dataSourceApi = {
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/column`
         );
     },
+    fetchSampleData(
+        datasourceName: string,
+        databaseName: string,
+        schemaName: string,
+        tableName: string
+    ) {
+        return axios(
+            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/sample`
+        );
+    },
 };
