@@ -1,31 +1,31 @@
-import { defineAsyncComponent, ref, nextTick } from "vue";
-import SkeletonBox from "@/components/SkeletonBox.vue";
+import { defineAsyncComponent, ref, nextTick } from 'vue';
+import SkeletonBox from '@/components/SkeletonBox.vue';
 
 export default {
     components: {
         ListData: defineAsyncComponent({
-            loader: () => import("@/views/dataSource/List.vue"),
+            loader: () => import('@/views/dataSource/List.vue'),
             loadingComponent: SkeletonBox,
         }),
         AddData: defineAsyncComponent({
-            loader: () => import("@/views/dataSource/AddDataSource.vue"),
+            loader: () => import('@/views/dataSource/AddDataSource.vue'),
             loadingComponent: SkeletonBox,
         }),
-        ModifyData : defineAsyncComponent({
-            loader: () => import("@/views/dataSource/ModifyDataSource.vue"),
+        ModifyData: defineAsyncComponent({
+            loader: () => import('@/views/dataSource/ModifyDataSource.vue'),
             loadingComponent: SkeletonBox,
         }),
         ViewDetail: defineAsyncComponent({
-            loader: () => import("@/views/dataSource/ViewDetail.vue"),
+            loader: () => import('@/views/dataSource/ViewDetail.vue'),
             loadingComponent: SkeletonBox,
         }),
     },
     setup() {
         const isChangeViewLoading = ref(false);
-        const currentComponent = ref("ListData");
+        const currentComponent = ref('ListData');
         const viewSettings = ref({
-            viewName: "ListData",
-            title: "Nguồn dữ liệu",
+            viewName: 'ListData',
+            title: 'Nguồn dữ liệu',
             dataItem: new Object(null),
         });
         const changeView = (paramsObject: { viewName: string; data: any }) => {
@@ -37,31 +37,31 @@ export default {
             // });
             setTimeout(async () => {
                 switch (paramsObject.viewName) {
-                    case "ListData":
+                    case 'ListData':
                         viewSettings.value = {
-                            viewName: "ListData",
-                            title: "Nguồn dữ liệu",
+                            viewName: 'ListData',
+                            title: 'Nguồn dữ liệu',
                             dataItem: new Object(null),
                         };
                         break;
-                    case "AddData":
+                    case 'AddData':
                         viewSettings.value = {
-                            viewName: "AddData",
-                            title: "Thêm mới nguồn dữ liệu",
+                            viewName: 'AddData',
+                            title: 'Thêm mới nguồn dữ liệu',
                             dataItem: new Object({}),
                         };
                         break;
-                    case "ModifyData":
+                    case 'ModifyData':
                         viewSettings.value = {
-                            viewName: "ModifyData",
-                            title: "Chỉnh sửa nguồn dữ liệu",
+                            viewName: 'ModifyData',
+                            title: 'Chỉnh sửa nguồn dữ liệu',
                             dataItem: paramsObject.data,
                         };
                         break;
-                    case "ViewDetail":
+                    case 'ViewDetail':
                         viewSettings.value = {
-                            viewName: "ViewDetail",
-                            title: "Chi tiết nguồn dữ liệu",
+                            viewName: 'ViewDetail',
+                            title: 'Chi tiết nguồn dữ liệu',
                             dataItem: paramsObject.data,
                         };
                         break;
