@@ -138,7 +138,7 @@ onMounted(() => {
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary">
             <!-- Sidebar -->
-            <div class="sidebar" style="height: calc(100% + 1px);">
+            <div class="sidebar" style="height: calc(100% + 1px)">
                 <!-- Sidebar Menu -->
                 <nav class="mt-4">
                     <ul
