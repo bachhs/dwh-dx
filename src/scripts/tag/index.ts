@@ -1,6 +1,9 @@
 import { ref } from "vue";
+import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
 export default {
-    components: {},
+    components: {
+        SetDescriptionModal
+    },
     setup() {
         const tagSelected = ref<number>(1);
 
