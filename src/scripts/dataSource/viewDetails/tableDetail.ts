@@ -1,9 +1,10 @@
 import { dataSourceApi } from '@/api/dataSourceApi';
 import { tagApi } from '@/api/tagApi';
-import type { Tag, TagCategory } from '@/types/tag';
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
+// import type { Tag, TagCategory } from '@/types/tag';
+// import axios from 'axios';
+import { onMounted, ref, defineAsyncComponent } from 'vue';
 import type { SampleData } from '../type';
+import SkeletonBox from "@/components/SkeletonBox.vue";
 
 function parseColumns(columns: any[]): any[] {
     return columns.map((c) => {
@@ -21,6 +22,36 @@ function parseColumns(columns: any[]): any[] {
 export default {
     props: ['viewSettings'],
     emits: ['onChangeView', 'processingEvent'],
+    components : {
+        SchemaView: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/tableDetail/SchemaView.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        SampleDataView: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/tableDetail/SampleDataView.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        ActivityFeedsAndTaskView: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/tableDetail/ActivityFeedsAndTaskView.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        QueriesView: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/tableDetail/QueriesView.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        ProfilerDataQualityView: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/tableDetail/ProfilerDataQualityView.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        LineageView: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/tableDetail/LineageView.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+        CustomerPropertiesView: defineAsyncComponent({
+            loader: () => import("@/views/dataSource/tableDetail/CustomerPropertiesView.vue"),
+            loadingComponent: SkeletonBox,
+        }),
+    },
     setup(props: any) {
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
@@ -50,22 +81,7 @@ export default {
             );
             columns.value = parseColumns(res.data.columns);
         };
-
-        const fetchSampleData = async (
-            datasourceName: string,
-            databaseName: string,
-            schemaName: string,
-            tableName: string
-        ) => {
-            const res = await dataSourceApi.fetchSampleData(
-                datasourceName,
-                databaseName,
-                schemaName,
-                tableName
-            );
-
-            sampleData.value = res.data.sampleData;
-        };
+ 
 
         const fetchTagList = async () => {
             const res = await tagApi.tagList();
@@ -128,12 +144,12 @@ export default {
             fetchTagList();
         });
         return {
+            props,
             activityFilter,
             contentHeight,
             contentNodataHeight,
             contentNodataWithFilterHeight,
             columns,
-            fetchSampleData,
             sampleData,
             fetchTagList,
             tagList,
