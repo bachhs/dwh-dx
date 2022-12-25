@@ -111,8 +111,13 @@
                                                 style="width: 5rem"/>
                                         </div>
                                         <div class="ml-2 flex-fill">
-                                            <div>
-                                                <strong class="text-navy">{{ ds.name }}</strong>
+                                            <div class="mb-1">
+                                                <el-button
+                                                    size="large"
+                                                    link class="m-0 p-0" style="font-size: 1rem;"
+                                                    @click="$emit('onChangeView', { viewName: 'ViewDetail', data: ds, })" >                                                    
+                                                    <strong class="text-navy">{{ ds.name }}</strong>
+                                                </el-button>
                                             </div>
                                             <div class="d-flex">
                                                 <div class="flex-fill w-50">

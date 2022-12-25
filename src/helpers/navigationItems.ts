@@ -10,7 +10,7 @@ export const navItems = [
         name: 'BẢO MẬT',
     },
     {
-        type: 'link',
+        type: 'relative-link',
         name: 'Hệ thống xác thực tập trung',
         icon: 'fas fa-shield-halved',
         url: 'https://security.dtcsolution.com',
@@ -34,6 +34,12 @@ export const navItems = [
         name: 'Nguồn dữ liệu',
         icon: 'fas fa-database',
         url: '/data-source',
+    },
+    {
+        type: 'link',
+        name: 'Tags',
+        icon: 'fas fa-tags',
+        url: '/tags-manager',
     },
     {
         type: 'navHeader',

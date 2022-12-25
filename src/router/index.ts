@@ -22,6 +22,11 @@ const router = createRouter({
             name: "dataSource",
             component: () => import("@/views/dataSource/Index.vue"),
         },
+        {
+            path: "/tags-manager",
+            name: "tagManager",
+            component: () => import("@/views/tag/index.vue"),
+        },
         // {
         //   path: "/datasource-pipeline",
         //   name: "datasourcePipeline",

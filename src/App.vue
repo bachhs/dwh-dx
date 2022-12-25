@@ -150,19 +150,23 @@ onMounted(() => {
 
                         <li
                             v-bind:class="{
-                                'nav-item': navItem.type === 'link',
+                                'nav-item': ['link', 'relative-link'].includes(navItem.type),
                                 'nav-header': navItem.type === 'navHeader',
                             }"
                             v-for="(navItem, navItemIndex) in navItems"
                             :key="navItemIndex">
                             <router-link
                                 v-if="navItem.type === 'link'"
-                                :to="`${navItem.url}?t=${linkTime}`"
+                                :to="`${navItem.url}`"
                                 class="nav-link"
                                 active-class="active">
                                 <i :class="`nav-icon ${navItem.icon}`"></i>
                                 <p>{{ navItem.name }}</p>
                             </router-link>
+                            <a class="nav-link" :href="navItem.url" v-if="navItem.type === 'relative-link'" target="_blank">
+                                <i :class="`nav-icon ${navItem.icon}`"></i>
+                                <p>{{ navItem.name }}</p>
+                            </a>
                             <span v-if="navItem.type === 'navHeader'">
                                 {{ navItem.name }}
                             </span>
