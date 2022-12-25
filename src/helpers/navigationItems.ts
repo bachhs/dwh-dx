@@ -105,7 +105,7 @@ export const navItems = [
         type: 'link',
         name: 'Tình trạng vận hành',
         icon: 'fas fa-gauge-high',
-        url: '/operating-state',
+        url: '/monitor',
     },
     {
         type: 'link',
