@@ -13,7 +13,7 @@ export const navItems = [
         type: 'relative-link',
         name: 'Hệ thống xác thực tập trung',
         icon: 'fas fa-shield-halved',
-        url: 'https://security.dtcsolution.com',
+        url: 'https://security.dtcsolution.vn',
     },
     {
         type: 'navHeader',
