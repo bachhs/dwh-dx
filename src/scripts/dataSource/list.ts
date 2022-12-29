@@ -1,6 +1,7 @@
 import { ref, onMounted } from "vue";
 import { mapState } from "pinia";
 import { dataSourceApi } from "@/api/dataSourceApi";
+import { getDataSourceMetaData } from "@/helpers/dataSourceHelper";
 import { useDataCategoryStore } from "@/stores/dataCategory";
 import { useRoute, useRouter } from "vue-router";
 import usePaginationList from "@/scripts/_baseScripts/_usePaginationList";
@@ -28,6 +29,14 @@ export default {
             deleteElement,
         } = usePaginationList(dataSourceApi.dataSourceList, filterDataSource);
 
+        const onChangeWaitpoint = (ds:any, waypointState: any) => {
+            if(waypointState.going === 'IN'){
+                getDataSourceMetaData(ds.name).then((metaData:any) =>{
+                    ds.metaData = metaData;
+                });
+            }
+        };
+
         const deleteDataSource = (item: any) => {
             deleteElement(
                 dataSourceApi.deleteDataSource(item.id),
@@ -38,14 +47,16 @@ export default {
 
         const getDbEngineIcon = (key:string) =>{
             try{
-                if(key){
-                    console.log(databaseEnginesMap[key].value.iconName);
+                if(key && databaseEnginesMap[key]){
                     return databaseEnginesMap[key].value.iconName;
                 }
             }catch(error){
                 console.error(error);
             }
-            return "postgresql.svg";
+            setTimeout(() => {
+                getDbEngineIcon(key);
+            }, 2000);
+            return "exclaimationquestionmark.svg";
         };
 
         const route = useRoute();
@@ -72,6 +83,7 @@ export default {
             filterDataFn,
             refreshDataFn,
             filterDataDebounceFn,
+            onChangeWaitpoint,
             deleteDataSource,
         };
     },

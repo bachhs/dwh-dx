@@ -3,6 +3,7 @@ import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { dataSourceApi } from '@/api/dataSourceApi';
+import { updateDataSourceDescription } from "@/helpers/dataSourceHelper";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 const appState = useDataCategoryStore();
 export default {
@@ -91,8 +92,15 @@ export default {
                 .then((response:any) =>{
                     if(response.data.code === 20000){
                         ElMessage({
-                            message: response.data.message,
+                            message: "Thêm mới nguồn dữ liệu thành công",
                             type: 'success',
+                        });
+                        updateDataSourceDescription(itemModel.value.nameOfDS, itemModel.value.descOfDS)
+                        .then((metaData:any) =>{
+                            ElMessage({
+                                message: "Cập nhật mô tả nguồn dữ liệu thành công",
+                                type: 'success',
+                            });
                         });
                         context.emit('onChangeView', { viewName: 'ListData', data: null, });
                     }

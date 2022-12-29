@@ -2851,6 +2851,11 @@
     "@volar/vue-language-core" "1.0.9"
     "@volar/vue-typescript" "1.0.9"
 
+"vue-waypoint@^4.2.5":
+  "integrity" "sha512-RNtXen8DoysbxcMB5M8vrPvw3xqyftdFtKfcUenoCsfS0SFLkfQP6HtKhivZfL6LqIw8T1dXjXLo7qxTlnSzJQ=="
+  "resolved" "https://registry.npmjs.org/vue-waypoint/-/vue-waypoint-4.2.5.tgz"
+  "version" "4.2.5"
+
 "vue@^2.6.14 || ^3.2.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.41", "vue@3.2.41":
   "integrity" "sha512-uuuvnrDXEeZ9VUPljgHkqB5IaVO8SxhPpqF2eWOukVrBnRBx2THPSGQBnVRt0GrIG1gvCmFXMGbd7FqcT1ixNQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.41.tgz"

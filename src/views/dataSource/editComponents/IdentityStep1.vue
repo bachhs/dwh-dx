@@ -23,14 +23,15 @@
                 ><span class="ml-1 text-danger">*</span>
             </div>
             <div class="mt-2">
-                <el-form-item label="" prop="descOfDS">
-                    <el-input
+                <el-form-item label="" prop="descOfDS" class="w-100">
+                    <!-- <el-input
                         v-model="itemModel.descOfDS"
                         size="large"
                         :autosize="{ minRows: 2, maxRows: 4, }"
                         type="textarea"
                         placeholder="Mô tả nguồn dữ liệu"
-                        clearable />
+                        clearable /> -->
+                    <ckeditor class="w-100" v-model="itemModel.descOfDS" :editor="editorConfigs.editor" :config="editorConfigs.editorConfig"></ckeditor>
                 </el-form-item>
             </div>
         </div>
@@ -74,9 +75,18 @@
 <script lang="ts" setup>
     import { ref, reactive, watch } from 'vue';
     import type { FormInstance, FormRules } from 'element-plus';
+    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
     const props = defineProps({
         dataSourceItem: { type: Object, required: true },
         organization: { type: Array<any>, required: true }
+    });
+    const editorConfigs = ref({
+        editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+            // The configuration of the editor.
+            //height: '200px'
+        }
     });
     const itemModel = ref<any>(props.dataSourceItem);
     watch(() => props.dataSourceItem, (newVal) =>{

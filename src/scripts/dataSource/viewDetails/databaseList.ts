@@ -15,12 +15,16 @@ export default {
             const res = await dataSourceApi.fetchDatabases(datasourceName);
             databases.value = res.data.data;
         };
+        const refreshData = () =>{
+            fetchDatabases(dataSourceSelected.name);
+        };
         onMounted(() => {
             // hard code for now
             fetchDatabases(dataSourceSelected.name);
         });
         return {
             databases,
+            refreshData,
         };
     },
 };

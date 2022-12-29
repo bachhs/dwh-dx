@@ -131,6 +131,17 @@ export default {
             'PersonalData.Personal',
             'PersonalData.SpecialCategory',
         ]);
+        
+        const refreshData = () =>{
+            // hard code for now
+            fetchColumns(
+                dataSourceSelected.name,
+                databaseSelected.name,
+                schemasSelected.name,
+                tableSelected.name
+            );
+            fetchTagList();
+        };
 
         onMounted(() => {
             // hard code for now
@@ -140,7 +151,6 @@ export default {
                 schemasSelected.name,
                 tableSelected.name
             );
-
             fetchTagList();
         });
         return {
@@ -153,6 +163,7 @@ export default {
             sampleData,
             fetchTagList,
             tagList,
+            refreshData,
         };
     },
 };

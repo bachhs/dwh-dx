@@ -37,6 +37,11 @@ export const dataSourceApi = {
     getDataSourceMetaData(datasourceName: string) {
         return axios(`/meta/database_service/${datasourceName}`);
     },
+    updateDataSourceDescription(datasourceName: string, descriptionHtml: string){
+        return axios.put(`/meta/database_service/${datasourceName}/description`, {
+            "description": descriptionHtml
+        });
+    },
     fetchDatabases(datasourceName: string) {
         return axios(`/meta/database_service/${datasourceName}/database`);
     },

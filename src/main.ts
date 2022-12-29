@@ -8,6 +8,7 @@ import App from "./App.vue";
 import router from "./router";
 import NoData from "@/components/NoData.vue";
 import CKEditor from '@ckeditor/ckeditor5-vue';
+import { Waypoint } from "vue-waypoint";
 import moment from "moment";
 import "./assets/main.css";
 
@@ -25,6 +26,7 @@ app.use(router);
 app.use(ElementPlus);
 app.use(CKEditor);
 app.component("no-data", NoData);
+app.component("Waypoint", Waypoint);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);
 }

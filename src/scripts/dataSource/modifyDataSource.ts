@@ -3,6 +3,7 @@ import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { dataSourceApi } from '@/api/dataSourceApi';
+import { getDataSourceMetaData, updateDataSourceDescription } from "@/helpers/dataSourceHelper";
 import SkeletonBox from "@/components/SkeletonBox.vue";
 const appState = useDataCategoryStore();
 export default {
@@ -41,7 +42,7 @@ export default {
         const dataSourceItem = props.viewSettings.dataItem;
         const itemModel = ref({
             nameOfDS: dataSourceItem.name,
-            descOfDS: dataSourceItem.name,
+            descOfDS: (dataSourceItem.metaData && dataSourceItem.metaData.description ? dataSourceItem.metaData.description : ''),
             organizationSelected: dataSourceItem.organization.id,
             organizationName: dataSourceItem.organization.name,
             typeOfDataIn: dataSourceItem.type,
@@ -74,8 +75,15 @@ export default {
                 .then((response:any) =>{
                     if(response.data.code === 20000){
                         ElMessage({
-                            message: response.data.message,
+                            message: "Cập nhật nguồn dữ liệu thành công",
                             type: 'success',
+                        });                        
+                        updateDataSourceDescription(itemModel.value.nameOfDS, itemModel.value.descOfDS)
+                        .then((metaData:any) =>{
+                            ElMessage({
+                                message: "Cập nhật mô tả nguồn dữ liệu thành công",
+                                type: 'success',
+                            });
                         });
                     }
                     else{
@@ -112,22 +120,25 @@ export default {
         onMounted(() => {
             if ( props.viewSettings && props.viewSettings.viewName === 'ModifyData' && props.viewSettings.dataItem != null ) {
                 //let dataSourceItem = props.viewSettings.dataItem;
-                itemModel.value = {
-                    nameOfDS: dataSourceItem.name,
-                    descOfDS: dataSourceItem.name,
-                    organizationSelected: dataSourceItem.organization.id,
-                    organizationName: dataSourceItem.organization.name,
-                    typeOfDataIn: dataSourceItem.type,
-                    databaseEngineSelected: dataSourceItem.dialect,
-                    fileTypeSelected: 'xlsx',
-                    apiMethod: 'GET',
-                    apiUrl: '',
-                    host: dataSourceItem.host,
-                    port: dataSourceItem.port,
-                    username: dataSourceItem.username,
-                    password: dataSourceItem.password,
-                    dbName: dataSourceItem.database,
-                };
+                getDataSourceMetaData(dataSourceItem.name).then((metaData:any) =>{
+                    dataSourceItem.metaData = metaData;
+                    itemModel.value = {
+                        nameOfDS: dataSourceItem.name,
+                        descOfDS: (dataSourceItem.metaData && dataSourceItem.metaData.description ? dataSourceItem.metaData.description : ''),
+                        organizationSelected: dataSourceItem.organization.id,
+                        organizationName: dataSourceItem.organization.name,
+                        typeOfDataIn: dataSourceItem.type,
+                        databaseEngineSelected: dataSourceItem.dialect,
+                        fileTypeSelected: 'xlsx',
+                        apiMethod: 'GET',
+                        apiUrl: '',
+                        host: dataSourceItem.host,
+                        port: dataSourceItem.port,
+                        username: dataSourceItem.username,
+                        password: dataSourceItem.password,
+                        dbName: dataSourceItem.database,
+                    };
+                });
             }
         });
         return {

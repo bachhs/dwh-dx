@@ -1,7 +1,8 @@
 import { defineAsyncComponent, ref, onMounted } from "vue";
 import { mapState } from "pinia";
 import { useDataCategoryStore } from "@/stores/dataCategory";
-import { getDataSourceMetaData } from "@/helpers/dataSourceHelper";
+import { getDataSourceMetaData, updateDataSourceDescription } from "@/helpers/dataSourceHelper";
+import { ElMessage } from 'element-plus';
 import SkeletonBox from "@/components/SkeletonBox.vue";
 import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
 import { getDataEngineItem } from "@/helpers/ultilityFunctions";
@@ -111,6 +112,23 @@ export default {
             currentViewProps.value = { ...viewProps };
             currentView.value = evtParams.eventName;
         };
+
+        const currentViewRef = ref<InstanceType<any>>(); 
+        const refreshData = () =>{
+            if (!currentViewRef || !currentViewRef.value) return;
+            currentViewRef.value?.refreshData();
+        };
+
+        const updateDataSourceDesc = (descOfDS:string) =>{
+            updateDataSourceDescription(ds.value.name, descOfDS)
+            .then((metaData:any) =>{
+                ElMessage({
+                    message: "Cập nhật mô tả nguồn dữ liệu thành công",
+                    type: 'success',
+                });
+            });
+        }
+
         onMounted(() => {
             ds.value = props.viewSettings.dataItem;
             let viewProps:any = {};
@@ -125,12 +143,15 @@ export default {
         });
         return {
             isLoading,
+            currentViewRef,
             ds,
             breadcrumbs,
             currentView,
             currentViewProps,
             processingEvent,
             dataEngineItem,
+            updateDataSourceDesc,
+            refreshData,
         };
     },
     computed: {

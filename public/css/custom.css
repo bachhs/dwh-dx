@@ -216,4 +216,28 @@ body {
 .ckeditor-container .ck-editor__editable_inline {
   min-height: 200px !important; }
 
+.el-tooltip-text {
+  min-width: 280px;
+  max-width: 100%;
+  white-space: normal; }
+
+.line-clamp-1 {
+  white-space: normal !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1 !important;
+  -webkit-box-orient: vertical !important; }
+
+.line-clamp-2 {
+  white-space: normal !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important; }
+
+.w-100 .ck-editor {
+  width: 100% !important; }
+
 /*# sourceMappingURL=custom.css.map */

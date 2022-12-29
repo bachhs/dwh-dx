@@ -179,6 +179,16 @@ export default {
             );
             tables.value = res.data.tables;
         };
+        
+        const refreshData = async () =>{
+            // hard code for now
+            await fetchTables(
+                dataSourceSelected.name,
+                databaseSelected.name,
+                schemasSelected.name
+            );
+            initDbDiagram();
+        };
 
         onMounted(async () => {
             // hard code for now
@@ -192,6 +202,7 @@ export default {
         return {
             tables,
             contentHeight,
+            refreshData,
         };
     },
 };

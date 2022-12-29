@@ -21,21 +21,16 @@
             </div>
             <div class="d-flex align-items-center">
                 <div class="ml-1 mr-4">
-                    <!-- <el-button size="large" type="primary">
-                        <el-icon><CircleCheck /></el-icon>
-                        <span>Lưu dữ liệu</span>
-                    </el-button> -->
+                    <el-button type="primary"
+                        @click="refreshData">
+                        <el-icon><Refresh /></el-icon>
+                        <span>Refresh</span>
+                    </el-button>
 
                     <el-button
                         size="default"
                         type="danger"
-                        @click="
-                            $emit('onChangeView', {
-                                viewName: 'ListData',
-                                data: null,
-                            })
-                        "
-                    >
+                        @click="$emit('onChangeView', { viewName: 'ListData', data: null, })" >
                         <div>Thoát</div>
                     </el-button>
                 </div>
@@ -93,20 +88,36 @@
                                 </h5>
                             </div>
                             <div class="flex-fill d-none d-md-flex align-items-center card p-2 pl-3 pr-3 ml-3 mr-1 scrollbar-dbinfo-item">
-                                <el-tooltip placement="bottom" raw-content 
-                                    v-if="ds.metaData && ds.metaData.description">
-                                    <template #content>
-                                        <div style="width: 400px; max-width: 100%; white-space: normal;">
-                                            <div>
-                                                {{ds.metaData.description}}
+                                <div class="d-flex w-100">
+                                    <div class="flex-fill">
+                                        <el-tooltip placement="bottom" raw-content 
+                                            v-if="ds.metaData && ds.metaData.description">
+                                            <template #content>
+                                                <div class="el-tooltip-text">
+                                                    <div v-html="ds.metaData.description">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </template>                                    
+                                            <div class="text-normal text-left w-100 line-clamp-2" 
+                                                v-html="ds.metaData.description">
+                                        
                                             </div>
-                                        </div>
-                                    </template>                                    
-                                    <div class="text-normal line-clamp-2" 
-                                        v-html="ds.metaData.description">
-                                
+                                        </el-tooltip>
                                     </div>
-                                </el-tooltip>
+                                    <div>                                        
+                                        <SetDescriptionModal v-model="ds.metaData.description"
+                                            @onFormSubmit="updateDataSourceDesc">
+                                            <template #label>
+                                                <span class="m-2 d-flex align-items-center">
+                                                    <el-icon :size="20">
+                                                        <Edit />
+                                                    </el-icon>
+                                                </span>
+                                            </template>
+                                        </SetDescriptionModal>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </el-scrollbar>
@@ -132,7 +143,7 @@
                     </div>
                 </div> -->
                 <div>
-                    <component
+                    <component ref="currentViewRef"
                         :is="currentView"
                         @processingEvent="processingEvent"
                         :viewSettings="currentViewProps"
@@ -161,14 +172,5 @@
     .hoz-content-wrap {
         width: calc(100vw - 3rem - 250px);
     }
-}
-
-.line-clamp-2{
-    white-space: normal !important;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
 }
 </style>

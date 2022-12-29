@@ -102,10 +102,11 @@
                                 v-for="ds in listElements.data"
                                 :key="ds.id">
                                 <el-card :body-style="{ padding: '0.5rem 0.8rem' }"
-                                    class="w-100">
+                                    class="w-100"
+                                    v-bind:class="{ 'ds-health-error': !ds.status }">
                                     <div class="d-flex">
                                         <div>
-                                            <img
+                                            <img v-if="ds && ds.dialect"
                                                 :src="`/icons/databases/${getDbEngineIcon(ds.dialect)}`"
                                                 class="mt-1"
                                                 style="width: 5rem"/>
@@ -118,6 +119,24 @@
                                                     @click="$emit('onChangeView', { viewName: 'ViewDetail', data: ds, })" >                                                    
                                                     <strong class="text-navy">{{ ds.name }}</strong>
                                                 </el-button>
+                                            </div>
+                                                                            
+                                            <div
+                                                class="text-muted"
+                                                style="font-size: 85%" >
+                                                <Waypoint :tag="'div'" @change="(waypointState:any) => { onChangeWaitpoint(ds, waypointState) }">         
+                                                    <el-tooltip placement="bottom" raw-content 
+                                                        v-if="ds.metaData && ds.metaData.description">
+                                                        <template #content>
+                                                            <div class="el-tooltip-text">
+                                                                <div v-html="ds.metaData.description">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </template>
+                                                        <span class="line-clamp-1" v-html="ds.metaData.description.replace(/<[^>]*>/g, '')"></span>
+                                                    </el-tooltip>                                                   
+                                                </Waypoint>
                                             </div>
                                             <div class="d-flex">
                                                 <div class="flex-fill w-50">
@@ -138,8 +157,8 @@
                                                     </div>
                                                     <div
                                                         class="text-muted"
-                                                        style="font-size: 85%" >
-                                                        <span>Chưa có mô tả</span>
+                                                        style="font-size: 85%">
+                                                        {{ ds.status ? "Good" : "Not good" }}
                                                     </div>
                                                 </div>
                                                 <div
@@ -158,12 +177,7 @@
                                                         class="text-muted"
                                                         style="font-size: 85%">
                                                         <span>{{ ds.username }}</span>
-                                                    </div>
-                                                    <div
-                                                        class="text-muted"
-                                                        style="font-size: 85%">
-                                                        {{ ds.status ? "Good" : "Not good" }}
-                                                    </div>
+                                                    </div>    
                                                 </div>
                                             </div>
                                         </div>
@@ -266,3 +280,8 @@
         </div>
     </div>
 </template>
+<style scoped>
+.ds-health-error{
+    background-color: #ffe0e0;
+}
+</style>

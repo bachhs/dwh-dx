@@ -13,16 +13,19 @@
         </el-button>
         <el-dialog
             v-model="centerDialogVisible"
-            title="Warning"
+            title="Description"
             align-center>
+            <template #title>
+                <h5><strong>Cập nhật mô tả</strong></h5>
+            </template>
             <div class="ckeditor-container">
                 <ckeditor :editor="editorConfigs.editor" v-model="editorConfigs.editorData" :config="editorConfigs.editorConfig"></ckeditor>
             </div>
             <template #footer>
             <span class="dialog-footer">
                 <el-button @click="centerDialogVisible = false">Cancel</el-button>
-                <el-button type="primary" @click="centerDialogVisible = false">
-                    Confirm
+                <el-button type="primary" @click="sumitData">
+                    Lưu thay đổi
                 </el-button>
             </span>
             </template>
@@ -30,15 +33,27 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';    
+    import { ref, watch } from 'vue';    
     import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+    const props = defineProps({
+        modelValue: { type: String, required: false, default: '' }
+    });
+    const emit = defineEmits(['onFormSubmit', 'update:modelValue']);
     const centerDialogVisible = ref(false)
     const editorConfigs = ref({
         editor: ClassicEditor,
-        editorData: '',
+        editorData: props.modelValue,
         editorConfig: {
             // The configuration of the editor.
             //height: '200px'
         }
     });
+    watch(() => props.modelValue, (newVal) =>{
+        editorConfigs.value.editorData = newVal;
+    });
+    const sumitData = () =>{
+        emit("update:modelValue", editorConfigs.value.editorData);
+        emit("onFormSubmit", editorConfigs.value.editorData);
+        centerDialogVisible.value = false
+    };
 </script>

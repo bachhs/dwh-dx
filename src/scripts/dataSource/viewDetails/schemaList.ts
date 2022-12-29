@@ -21,9 +21,13 @@ export default {
                 datasourceName,
                 databaseName
             );
-
             schemas.value = res.data.data;
         };
+        
+        const refreshData = () =>{
+            fetchSchemas(dataSourceSelected.name, databaseSelected.name);
+        };
+
         onMounted(() => {
             // hard code for now
             fetchSchemas(dataSourceSelected.name, databaseSelected.name);
@@ -31,6 +35,7 @@ export default {
         return {
             schemas,
             contentHeight,
+            refreshData,
         };
     },
 };

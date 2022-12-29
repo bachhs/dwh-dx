@@ -39,8 +39,11 @@
                         <td>{{ d.usage }}</td> -->
                         <td>
                             <div class="d-flex align-items-center">
-                                <div>No description</div>
-                                <SetDescriptionModal>
+                                <div v-if="d.description">
+                                    <span class="line-clamp-1" v-html="d.description.replace(/<[^>]*>/g, '')"></span>
+                                </div>
+                                <div v-else>No description</div>
+                                <SetDescriptionModal v-model="d.description">
                                     <template #label>
                                         <span class="m-2 d-flex align-items-center">
                                             <el-icon :size="20">
