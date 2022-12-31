@@ -6,11 +6,11 @@
             <div class="col-12 col-md-2 d-flex flex-column">
                 <el-card class="flex-fill" :body-style="{ padding: '0px' }">
                     <div class="p-2 pl-3 pr-3">
-                        <div><strong class="text-navy">Tag Categories</strong></div>
+                        <div><strong class="text-navy">Danh mục tag</strong></div>
                         <div class="mt-3">
                             <el-button class="w-100">
                                 <el-icon><Plus /></el-icon>
-                                <span class="ml-3">Add tag</span>
+                                <span class="ml-2">Thêm danh mục tag</span>
                             </el-button>
                         </div>
                     </div>
@@ -53,8 +53,18 @@
                                 <h4><strong class="text-navy">{{tagSelected.name}}</strong></h4>
                             </div>
                             <div>
-                                <el-button type="primary">Add new tag</el-button>
-                                <el-button type="danger">Delete category</el-button>
+                                <el-button type="primary">
+                                    <el-icon><Refresh /></el-icon> 
+                                    <span class="ml-1 d-none d-md-inline">Làm mới</span>
+                                </el-button>
+                                <el-button class="ml-1 ml-md-2" type="primary">
+                                    <el-icon><Plus /></el-icon> 
+                                    <span class="ml-1 d-none d-md-inline">Thêm mới tag</span>
+                                </el-button>
+                                <el-button class="ml-1 ml-md-2" type="danger">
+                                    <el-icon><Delete /></el-icon>
+                                    <span class="ml-1 d-none d-md-inline">Xoá danh mục</span>
+                                </el-button>
                             </div>
                         </div>
                         <div class="mt-2 card p-3 pt-0 pb-0">

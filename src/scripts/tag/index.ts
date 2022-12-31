@@ -9,18 +9,29 @@ export default {
     setup() {
         const tagSelected = ref<any>();
         const tagItemData = ref<ListTagResponse>();
-        const getTagList = () => {
+        const getTagList = (isSetSelection:Boolean = true) => {
             tagApi.tagList().then((response:any) =>{
                 tagItemData.value = response.data;
-                if(tagItemData.value.data && tagItemData.value.data.length > 0) tagSelected.value = tagItemData.value.data[0];
+                if(isSetSelection){
+                    if(tagItemData.value && tagItemData.value.data && tagItemData.value.data.length > 0) {
+                        tagSelected.value = tagItemData.value.data[0];
+                    }
+                }
             });
         }
+
+        const refreshTagData = () => {
+            getTagList(false);
+            
+        };
+
         onMounted(() =>{
             getTagList();
         });
         return {
             tagSelected,
             tagItemData,
+            refreshTagData,
         };
     },
 };
