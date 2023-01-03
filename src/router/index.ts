@@ -23,15 +23,20 @@ const router = createRouter({
             component: () => import('@/views/dataSource/Index.vue'),
         },
         {
-            path: "/tags-manager",
-            name: "tagManager",
-            component: () => import("@/views/tag/index.vue"),
+            path: '/tags-manager',
+            name: 'tagManager',
+            component: () => import('@/views/tag/index.vue'),
         },
         // {
         //   path: "/datasource-pipeline",
         //   name: "datasourcePipeline",
         //   component: () => import("@/views/datasourcePipeline/Index.vue"),
         // },
+        {
+            path: '/data-flow',
+            name: 'dataFlow',
+            component: () => import('@/views/dataFlow/Index.vue'),
+        },
         {
             path: '/datasource-pipeline',
             name: 'datasourcePipeline',
