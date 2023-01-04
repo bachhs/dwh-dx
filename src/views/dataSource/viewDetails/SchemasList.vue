@@ -1,6 +1,25 @@
 <script lang="ts" src="@/scripts/dataSource/viewDetails/schemaList.ts"></script>
 <template>
     <el-scrollbar :style="`height: ${contentHeight};`">
+        <div class="mt-1 ml-1 mr-1 card p-2 pt-0 pb-0">
+            <div class="d-flex">
+                <div class="flex-fill">
+                    <div v-html="databaseSelected.description"></div>
+                </div>
+                <div class="ml-3">
+                    <SetDescriptionModal v-model="databaseSelected.description">
+                        <template #label>
+                            <div class="m-2 d-flex align-items-center">
+                                <el-icon :size="20">
+                                    <Edit />
+                                </el-icon>
+                                <span class="ml-0"></span>
+                            </div>
+                        </template>
+                    </SetDescriptionModal>
+                </div>
+            </div>
+        </div>
         <div>
             <table
                 class="table table-borderless table-customize table-head-fixed text-nowrap table-striped">
@@ -36,7 +55,8 @@
                                     <span class="line-clamp-1" v-html="s.description.replace(/<[^>]*>/g, '')"></span>
                                 </div>
                                 <div v-else>No description</div>
-                                <SetDescriptionModal v-model="s.description">
+                                <SetDescriptionModal v-model="s.description" 
+                                    @onFormSubmit="(descHtml:string) => { updateSchemaDesc(s.id, descHtml); }">
                                     <template #label>
                                         <span class="m-2 d-flex align-items-center">
                                             <el-icon :size="20">

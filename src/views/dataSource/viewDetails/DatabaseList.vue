@@ -43,7 +43,8 @@
                                     <span class="line-clamp-1" v-html="d.description.replace(/<[^>]*>/g, '')"></span>
                                 </div>
                                 <div v-else>No description</div>
-                                <SetDescriptionModal v-model="d.description">
+                                <SetDescriptionModal v-model="d.description"
+                                    @onFormSubmit="(descHtml:string) => { updateDatabseDesc(d.id, descHtml); }">
                                     <template #label>
                                         <span class="m-2 d-flex align-items-center">
                                             <el-icon :size="20">

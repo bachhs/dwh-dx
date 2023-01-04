@@ -45,10 +45,20 @@ export const dataSourceApi = {
     fetchDatabases(datasourceName: string) {
         return axios(`/meta/database_service/${datasourceName}/database`);
     },
+    updateDatabseDescription(metaId: string, descriptionHtml: string){
+        return axios.post(`/meta/database_service/database/${metaId}/description`, {
+            "description": descriptionHtml
+        });
+    },
     fetchSchemas(datasourceName: string, databaseName: string) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema`
         );
+    },
+    updateSchemaDescription(metaId:string, descriptionHtml: string){
+        return axios.post(`/meta/database_service/schema/${metaId}/description`, {
+            "description": descriptionHtml
+        });
     },
     fetchTables(
         datasourceName: string,

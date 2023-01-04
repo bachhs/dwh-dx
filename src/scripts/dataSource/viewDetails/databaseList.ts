@@ -1,6 +1,8 @@
 import { dataSourceApi } from "@/api/dataSourceApi";
 import { onMounted, ref } from "vue";
 import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
+import { updateDatabseDescription } from "@/helpers/dataSourceHelper";
+import { ElMessage } from 'element-plus';
 
 export default {
     props: ["viewSettings"],
@@ -15,6 +17,15 @@ export default {
             const res = await dataSourceApi.fetchDatabases(datasourceName);
             databases.value = res.data.data;
         };
+        const updateDatabseDesc = (metaId:string, description:string) => {
+            updateDatabseDescription(metaId, description).then((metaData:any) =>{
+                ElMessage({
+                    message: "Cập nhật mô tả database thành công",
+                    type: 'success',
+                });
+                fetchDatabases(dataSourceSelected.name);
+            });
+        };
         const refreshData = () =>{
             fetchDatabases(dataSourceSelected.name);
         };
@@ -25,6 +36,7 @@ export default {
         return {
             databases,
             refreshData,
+            updateDatabseDesc,
         };
     },
 };

@@ -9,7 +9,7 @@ export default {
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
         const schemasSelected = props.viewSettings.schemasSelected;
-        const contentHeight = 'calc(100vh - 23rem)';
+        const contentHeight = 'calc(100vh - 25rem)';
         const tables = ref([]);
         const initDbDiagram = () => {
             // Since 2.2 you can also author concise templates with method chaining instead of GraphObject.make
@@ -200,6 +200,7 @@ export default {
             initDbDiagram();
         });
         return {
+            schemasSelected,
             tables,
             contentHeight,
             refreshData,
