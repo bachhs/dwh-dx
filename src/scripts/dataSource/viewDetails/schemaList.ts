@@ -1,7 +1,7 @@
 import { dataSourceApi } from "@/api/dataSourceApi";
 import { onMounted, ref } from "vue";
 import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
-import { updateSchemaDescription } from "@/helpers/dataSourceHelper";
+import { updateDatabseDescription, updateSchemaDescription } from "@/helpers/dataSourceHelper";
 import { ElMessage } from 'element-plus';
 
 export default {
@@ -30,6 +30,16 @@ export default {
             fetchSchemas(dataSourceSelected.name, databaseSelected.name);
         };
 
+        const updateDatabseDesc = (metaId:string, description:string) => {
+            updateDatabseDescription(metaId, description).then((metaData:any) =>{
+                ElMessage({
+                    message: "Cập nhật mô tả database thành công",
+                    type: 'success',
+                });
+                fetchDatabases(dataSourceSelected.name);
+            });
+        };
+
         const updateSchemaDesc = (metaId:string, description:string) => {
             updateSchemaDescription(metaId, description).then((metaData:any) =>{
                 ElMessage({
@@ -49,6 +59,7 @@ export default {
             schemas,
             contentHeight,
             refreshData,
+            updateDatabseDesc,
             updateSchemaDesc,
         };
     },

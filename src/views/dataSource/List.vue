@@ -74,7 +74,7 @@
                     <el-button
                         size="large"
                         type="primary"
-                        @click="$emit('onChangeView', { viewName: 'AddData', data: {}, })">
+                        @click="$emit('onChangeView', { viewName: 'AddData', data: null, })">
                         <el-icon :size="20" style="vertical-align: middle">
                             <Plus />
                         </el-icon>
@@ -107,7 +107,7 @@
                                     <div class="d-flex">
                                         <div>
                                             <img v-if="ds && ds.dialect"
-                                                :src="`/icons/databases/${getDbEngineIcon(ds.dialect)}`"
+                                                v-lazy="`/icons/databases/${getDbEngineIcon(ds.dialect)}`"
                                                 class="mt-1"
                                                 style="width: 5rem"/>
                                         </div>
@@ -122,7 +122,7 @@
                                             </div>
                                                                             
                                             <div
-                                                class="text-muted"
+                                                class="text-muted mb-1"
                                                 style="font-size: 85%" >
                                                 <Waypoint :tag="'div'" @change="(waypointState:any) => { onChangeWaitpoint(ds, waypointState) }">         
                                                     <el-tooltip placement="bottom" raw-content 
@@ -142,47 +142,85 @@
                                                 <div class="flex-fill w-50">
                                                     <div
                                                         class="text-muted"
-                                                        style="font-size: 85%">
-                                                        {{ ds.dialect }}
-                                                    </div>
-                                                    <div
-                                                        class="text-muted"
                                                         style="font-size: 85%" >
-                                                        <span v-if="ds.organization">{{ ds.organization.name }}</span>
-                                                    </div>
-                                                    <div
-                                                        class="text-muted"
-                                                        style="font-size: 85%" >
-                                                        {{$filters.prettyDate(ds.created_at)}}
-                                                    </div>
-                                                    <div
-                                                        class="text-muted"
-                                                        style="font-size: 85%">
-                                                        {{ ds.status ? "Good" : "Not good" }}
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="ml-2 flex-fill w-50">
-                                                    <div style="font-size: 85%">
-                                                        <span class="text-muted">
-                                                            {{ ds.host }}
+                                                        <span v-if="ds.organization" class="d-flex align-items-center">
+                                                            <el-icon class="text-primary"><OfficeBuilding /></el-icon>
+                                                            <span class="ml-1">{{ ds.organization.name }}</span>
                                                         </span>
                                                     </div>
                                                     <div
                                                         class="text-muted"
                                                         style="font-size: 85%">
-                                                        Port {{ ds.port }}
+                                                        <span class="d-flex align-items-center">
+                                                            <el-icon class="text-primary"><Calendar /></el-icon>
+                                                            <span class="ml-1">{{$filters.prettyDate(ds.created_at)}}</span>
+                                                        </span>                                                        
                                                     </div>
+                                                </div>
+                                                <div
+                                                    class="ml-2 flex-fill w-50">
+                                                    <!-- <div style="font-size: 85%">
+                                                        <span class="text-muted">
+                                                            {{ ds.host }}
+                                                        </span>
+                                                    </div> -->
                                                     <div
                                                         class="text-muted"
                                                         style="font-size: 85%">
-                                                        <span>{{ ds.username }}</span>
-                                                    </div>    
+                                                        <span class="d-flex align-items-center">
+                                                            <el-icon class="text-primary"><Collection /></el-icon>
+                                                            <span class="ml-1">{{ ds.dialect }}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        class="text-muted">
+                                                        <span class="d-flex align-items-center">
+                                                            <el-icon v-if="ds.status" class="text-success"><SuccessFilled /></el-icon>
+                                                            <el-icon v-else class="text-danger"><CircleCloseFilled /></el-icon>
+                                                            <span style="font-size: 85%" class="ml-1">{{ ds.status ? "Good" : "Not good" }}</span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="ml-2 align-self-start">
-                                            <div>
+                                        <div class="ml-3 align-self-start">
+                                            <el-dropdown trigger="click">
+                                                <span class="el-dropdown-link">
+                                                    <el-icon><MoreFilled /></el-icon>
+                                                </span>
+                                                <template #dropdown>
+                                                    <el-dropdown-menu>
+                                                        <el-dropdown-item :icon="Edit" 
+                                                            @click="$emit( 'onChangeView', { viewName: 'ModifyData', data: ds, })">
+                                                            <el-icon
+                                                                :size="15"
+                                                                style="vertical-align: middle;" >
+                                                                <Edit />
+                                                            </el-icon>
+                                                            <span class="ml-1">Chỉnh sửa</span>
+                                                        </el-dropdown-item>
+                                                        <el-dropdown-item :icon="Edit" 
+                                                            @click="$emit( 'onChangeView', { viewName: 'AddData', data: ds, })">
+                                                            <el-icon
+                                                                :size="15"
+                                                                style="vertical-align: middle;" >
+                                                                <CopyDocument />
+                                                            </el-icon>
+                                                            <span class="ml-1">Sao chép</span>
+                                                        </el-dropdown-item>
+                                                        <el-dropdown-item :icon="Delete"
+                                                            @click="deleteDataSource(ds)">
+                                                            <el-icon
+                                                                :size="15" class="text-danger"
+                                                                style="vertical-align: middle;" >
+                                                                <Delete />
+                                                            </el-icon>                                                            
+                                                            <span class="ml-1">Xoá</span>
+                                                        </el-dropdown-item>
+                                                    </el-dropdown-menu>
+                                                </template>
+                                            </el-dropdown>
+                                            <!-- <div>
                                                 <el-tooltip
                                                     class="box-item"
                                                     effect="dark"
@@ -238,7 +276,7 @@
                                                         </el-icon>
                                                     </el-button>
                                                 </el-tooltip>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </el-card>

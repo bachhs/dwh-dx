@@ -3,13 +3,22 @@
     src="@/scripts/dataSource/viewDetails/tablesAndViews.ts"></script>
 <template>
     <div>
-        <div class="mt-1 ml-1 mr-1 card p-2 pt-0 pb-0">
+        <div class="mt-1 ml-1 mr-1 callout callout-info p-2 pt-0 pb-0">
             <div class="d-flex">
-                <div class="flex-fill">
-                    <div v-html="schemasSelected.description"></div>
+                <div class="flex-fill line-clamp-2 position-relative">
+                    <div v-if="schemasSelected.description" v-html="schemasSelected.description"></div>
+                    <div v-else>Không có mô tả</div>
+                    <div v-if="schemasSelected.description"
+                        class="position-absolute bg-white" style="right: 0; bottom: 0;">
+                        <ReadmoreModal
+                            :dotPrefix="true"
+                            :title="`Mô tả về ${schemasSelected.name}`" 
+                            :content="schemasSelected.description" />
+                    </div>
                 </div>
                 <div class="ml-3">
-                    <SetDescriptionModal v-model="schemasSelected.description">
+                    <SetDescriptionModal v-model="schemasSelected.description"
+                        @onFormSubmit="(descHtml:string) => { updateSchemaDesc(schemasSelected.id, descHtml); }">
                         <template #label>
                             <div class="m-2 d-flex align-items-center">
                                 <el-icon :size="20">
@@ -60,13 +69,13 @@
                                         </span>
                                     </el-button>
                                 </div>
-                                <div class="text-muted">
-                                    {{ t.id }}
-                                </div>
                                 <div>
                                     <small class="text-muted">{{
                                         t.fullyQualifiedName
                                     }}</small>
+                                </div>
+                                <div class="text-muted line-clamp-2" v-if="t.description">
+                                    {{ t.description }}
                                 </div>
                             </div>
                         </div>

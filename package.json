@@ -23,7 +23,8 @@
     "vue": "^3.2.41",
     "vue-router": "^4.1.5",
     "vue-waypoint": "^4.2.5",
-    "vue3-file-selector": "^1.0.3"
+    "vue3-file-selector": "^1.0.3",
+    "vue3-lazyload": "^0.3.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",

@@ -23,7 +23,9 @@
             </div>
             <template #footer>
             <span class="dialog-footer">
-                <el-button @click="centerDialogVisible = false">Cancel</el-button>
+                <el-button @click="centerDialogVisible = false">
+                    Bỏ qua
+                </el-button>
                 <el-button type="primary" @click="sumitData">
                     Lưu thay đổi
                 </el-button>

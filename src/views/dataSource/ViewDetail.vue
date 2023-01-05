@@ -87,7 +87,7 @@
                                     {{ $filters.prettyDate(ds.created_at) }}
                                 </h5>
                             </div>
-                            <div class="flex-fill d-none d-md-flex align-items-center card p-2 pl-3 pr-3 ml-3 mr-1 scrollbar-dbinfo-item">
+                            <div class="flex-fill d-none d-md-flex align-items-center card p-1 pl-3 pr-3 ml-3 mr-1 scrollbar-dbinfo-item">
                                 <div class="d-flex w-100">
                                     <div class="flex-fill">
                                         <el-tooltip placement="bottom" raw-content 

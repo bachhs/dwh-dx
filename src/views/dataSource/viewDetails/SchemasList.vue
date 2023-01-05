@@ -1,13 +1,22 @@
 <script lang="ts" src="@/scripts/dataSource/viewDetails/schemaList.ts"></script>
 <template>
     <el-scrollbar :style="`height: ${contentHeight};`">
-        <div class="mt-1 ml-1 mr-1 card p-2 pt-0 pb-0">
+        <div class="mt-1 ml-1 mr-1 callout callout-info p-2 pt-0 pb-0">
             <div class="d-flex">
-                <div class="flex-fill">
-                    <div v-html="databaseSelected.description"></div>
+                <div class="flex-fill line-clamp-2 position-relative">
+                    <div v-if="databaseSelected.description" v-html="databaseSelected.description"></div>
+                    <div v-else>Không có mô tả</div>
+                    <div v-if="databaseSelected.description"
+                        class="position-absolute bg-white" style="right: 0; bottom: 0;">
+                        <ReadmoreModal
+                            :dotPrefix="true"
+                            :title="`Mô tả về ${databaseSelected.name}`" 
+                            :content="databaseSelected.description" />
+                    </div>
                 </div>
                 <div class="ml-3">
-                    <SetDescriptionModal v-model="databaseSelected.description">
+                    <SetDescriptionModal v-model="databaseSelected.description"
+                        @onFormSubmit="(descHtml:string) => { updateDatabseDesc(databaseSelected.id, descHtml); }">
                         <template #label>
                             <div class="m-2 d-flex align-items-center">
                                 <el-icon :size="20">
@@ -26,7 +35,7 @@
                 <thead>
                     <tr>
                         <th>Schema Name</th>
-                        <th>Description</th>
+                        <th>Mô tả</th>
                         <th>Owner</th>
                         <th>Usage</th>
                     </tr>
@@ -54,7 +63,8 @@
                                 <div v-if="s.description">
                                     <span class="line-clamp-1" v-html="s.description.replace(/<[^>]*>/g, '')"></span>
                                 </div>
-                                <div v-else>No description</div>
+                                <div v-else>Không có mô tả</div>
+                                <ReadmoreModal v-if="s.description" :title="`Mô tả về ${s.name}`" :content="s.description" />
                                 <SetDescriptionModal v-model="s.description" 
                                     @onFormSubmit="(descHtml:string) => { updateSchemaDesc(s.id, descHtml); }">
                                     <template #label>

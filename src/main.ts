@@ -9,6 +9,8 @@ import router from "./router";
 import NoData from "@/components/NoData.vue";
 import CKEditor from '@ckeditor/ckeditor5-vue';
 import { Waypoint } from "vue-waypoint";
+import ReadmoreModal from "@/components/modals/ReadmoreModal.vue";
+import VueLazyLoad from 'vue3-lazyload';
 import moment from "moment";
 import "./assets/main.css";
 
@@ -25,8 +27,10 @@ app.use(createPinia());
 app.use(router);
 app.use(ElementPlus);
 app.use(CKEditor);
+app.use(VueLazyLoad);
 app.component("no-data", NoData);
 app.component("Waypoint", Waypoint);
+app.component("ReadmoreModal", ReadmoreModal);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);
 }

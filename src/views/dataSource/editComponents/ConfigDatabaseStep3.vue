@@ -43,7 +43,7 @@
                                 v-model="itemModel.dbName"
                                 size="large"
                                 placeholder="DB name"
-                                clearable />
+                                clearable  />
                         </el-form-item>
                     </div>
                 </div>
@@ -86,6 +86,7 @@
     import { ref, watch, reactive } from 'vue';
     import type { FormInstance, FormRules } from 'element-plus';
     const props = defineProps({
+        allowedEdit: { type: Boolean, required: false, default: true },
         dataSourceItem: { type: Object, required: true },
     });
     const itemModel = ref<any>(props.dataSourceItem);

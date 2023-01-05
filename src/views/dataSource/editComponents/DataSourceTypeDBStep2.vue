@@ -10,7 +10,7 @@
                     <input
                         type="radio"
                         class="radio-selection"
-                        :value="item.id"
+                        :value="item.id" :disabled="!allowedEdit"
                         v-model=" itemModel.databaseEngineSelected "/>
                     <el-card
                         :body-style="{ padding: '0.8rem 0.8rem', }"
@@ -24,7 +24,7 @@
                             <div class="text-center text-nowrap mt-1">
                                 <span class="item--name">{{ item.name }}</span>
                             </div>
-                            <div
+                            <div v-if="allowedEdit"
                                 class="d-none d-md-block position-absolute type-datasource-item--icon-selected d-none"
                                 style=" right: -0.5rem; top: -0.5rem; " >
                                 <el-icon :size="20" color="white" ><CircleCheck/></el-icon>
@@ -40,6 +40,7 @@
 <script lang="ts" setup>
     import { ref, watch } from 'vue';
     const props = defineProps({
+        allowedEdit: { type: Boolean, required: false, default: true },
         dataSourceItem: { type: Object, required: true },
         databaseEngineOptions: { type: Array<any>, required: true },
     });

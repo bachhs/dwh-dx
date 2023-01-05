@@ -1,15 +1,21 @@
 import { dataSourceApi } from '@/api/dataSourceApi';
 import { onMounted, ref } from 'vue';
 import go from "gojs";
+import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
+import { updateSchemaDescription } from "@/helpers/dataSourceHelper";
+import { ElMessage } from 'element-plus';
 
 export default {
     props: ['viewSettings'],
     emits: ['onChangeView', 'processingEvent'],
+    components: {
+        SetDescriptionModal,
+    },
     setup(props: any) {
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
         const schemasSelected = props.viewSettings.schemasSelected;
-        const contentHeight = 'calc(100vh - 25rem)';
+        const contentHeight = 'calc(100vh - 25.5rem)';
         const tables = ref([]);
         const initDbDiagram = () => {
             // Since 2.2 you can also author concise templates with method chaining instead of GraphObject.make
@@ -190,6 +196,15 @@ export default {
             initDbDiagram();
         };
 
+        const updateSchemaDesc = (metaId:string, description:string) => {
+            updateSchemaDescription(metaId, description).then((metaData:any) =>{
+                ElMessage({
+                    message: "Cập nhật mô tả schema thành công",
+                    type: 'success',
+                });
+            });
+        }; 
+
         onMounted(async () => {
             // hard code for now
             await fetchTables(
@@ -204,6 +219,7 @@ export default {
             tables,
             contentHeight,
             refreshData,
+            updateSchemaDesc,
         };
     },
 };

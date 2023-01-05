@@ -9,7 +9,7 @@
                 <thead>
                     <tr>
                         <th>Database Name</th>
-                        <th>Description</th>
+                        <th>Mô tả</th>
                         <th>Database engine</th>
                         <th>Owner</th>
                         <th>Usage</th>
@@ -42,7 +42,8 @@
                                 <div v-if="d.description">
                                     <span class="line-clamp-1" v-html="d.description.replace(/<[^>]*>/g, '')"></span>
                                 </div>
-                                <div v-else>No description</div>
+                                <div v-else>Không có mô tả</div>
+                                <ReadmoreModal v-if="d.description" :title="`Mô tả về ${d.name}`" :content="d.description" />
                                 <SetDescriptionModal v-model="d.description"
                                     @onFormSubmit="(descHtml:string) => { updateDatabseDesc(d.id, descHtml); }">
                                     <template #label>

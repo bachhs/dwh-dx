@@ -9,7 +9,7 @@
                     <input
                         type="radio"
                         class="radio-selection"
-                        :value="item.key"
+                        :value="item.key" :disabled="!allowedEdit"
                         v-model=" itemModel.fileTypeSelected "
                     />
                     <el-card
@@ -47,6 +47,7 @@
     //import { FileSelector, Dropzone, DialogButton } from 'vue3-file-selector';
     //import { humanFileSize } from "@/helpers/ultilityFunctions";
     const props = defineProps({
+        allowedEdit: { type: Boolean, required: false, default: true },
         dataSourceItem: { type: Object, required: true },
         fileTypeDataSourceOptions: { type: Array<any>, required: true },
     });

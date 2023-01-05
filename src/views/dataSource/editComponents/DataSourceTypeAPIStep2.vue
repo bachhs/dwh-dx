@@ -91,6 +91,7 @@
     import { restfulMethods } from "@/helpers/constants";
     import type { FormInstance, FormRules } from 'element-plus';
     const props = defineProps({
+        allowedEdit: { type: Boolean, required: false, default: true },
         dataSourceItem: { type: Object, required: true },
     });
     const itemModel = ref<any>(props.dataSourceItem);    

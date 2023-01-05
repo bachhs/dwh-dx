@@ -121,23 +121,44 @@ export default {
         };
 
         onMounted(() => {
-            if ( props.viewSettings && props.viewSettings.viewName === 'ModifyData' && props.viewSettings.dataItem != null) {
-                itemModel.value = {
-                    nameOfDS: props.viewSettings.dataItem.name,
-                    descOfDS: props.viewSettings.dataItem.name,
-                    organizationSelected: appState.defaultOrganization.id,
-                    organizationName: appState.defaultOrganization.name,
-                    typeOfDataIn: 'database',
-                    databaseEngineSelected: 'postgresql',
-                    fileTypeSelected: 'csv',
-                    apiMethod: 'GET',
-                    apiUrl: '',
-                    host: "",
-                    port: 5432,
-                    username: "",
-                    password: "",
-                    dbName: "",
-                };
+            if ( props.viewSettings) {
+                if(props.viewSettings.dataItem == null){
+                    itemModel.value = {
+                        nameOfDS: props.viewSettings.dataItem.name,
+                        descOfDS: props.viewSettings.dataItem.name,
+                        organizationSelected: appState.defaultOrganization.id,
+                        organizationName: appState.defaultOrganization.name,
+                        typeOfDataIn: 'database',
+                        databaseEngineSelected: 'postgresql',
+                        fileTypeSelected: 'csv',
+                        apiMethod: 'GET',
+                        apiUrl: '',
+                        host: "",
+                        port: 5432,
+                        username: "",
+                        password: "",
+                        dbName: "",
+                    };
+                }
+                else{
+                    let dataSourceItem = props.viewSettings.dataItem;
+                    itemModel.value = {
+                        nameOfDS: dataSourceItem.name,
+                        descOfDS: (dataSourceItem.metaData && dataSourceItem.metaData.description ? dataSourceItem.metaData.description : ''),
+                        organizationSelected: dataSourceItem.organization.id,
+                        organizationName: dataSourceItem.organization.name,
+                        typeOfDataIn: dataSourceItem.type,
+                        databaseEngineSelected: dataSourceItem.dialect,
+                        fileTypeSelected: 'xlsx',
+                        apiMethod: 'GET',
+                        apiUrl: '',
+                        host: dataSourceItem.host,
+                        port: dataSourceItem.port,
+                        username: dataSourceItem.username,
+                        password: dataSourceItem.password,
+                        dbName: dataSourceItem.database,
+                    };
+                }
             }
         });
         return {
