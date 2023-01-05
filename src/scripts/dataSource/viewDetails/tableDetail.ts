@@ -2,9 +2,10 @@ import { dataSourceApi } from '@/api/dataSourceApi';
 import { tagApi } from '@/api/tagApi';
 // import type { Tag, TagCategory } from '@/types/tag';
 // import axios from 'axios';
-import { onMounted, ref, defineAsyncComponent } from 'vue';
+import { onMounted, ref, defineAsyncComponent, nextTick } from 'vue';
 import type { SampleData } from '../type';
 import SkeletonBox from "@/components/SkeletonBox.vue";
+import { ElInput } from 'element-plus';
 
 function parseColumns(columns: any[]): any[] {
     return columns.map((c) => {
@@ -65,7 +66,30 @@ export default {
 
         const columns = ref([] as any[]);
         const sampleData = ref<SampleData>();
-        const tagList = ref<string[]>();
+        const tagList = ref<string[]>([]);
+        const inputValue = ref('');
+        const inputVisible = ref(false);
+        const InputRef = ref<InstanceType<typeof ElInput>>();
+
+        const handleClose = (tag: string) => {
+            tagList.value.splice(tagList.value.indexOf(tag), 1)
+        }
+
+        const showInput = () => {
+            inputVisible.value = true
+            nextTick(() => {
+                InputRef.value!.input!.focus()
+            })
+        }
+
+        const handleInputConfirm = () => {
+            if (inputValue.value) {
+                tagList.value.push(inputValue.value)
+            }
+            inputVisible.value = false
+            inputValue.value = ''
+        }
+
 
         const fetchColumns = async (
             datasourceName: string,
@@ -85,7 +109,6 @@ export default {
 
         const fetchTagList = async () => {
             const res = await tagApi.tagList();
-
             tagList.value = res.data.data
                 .map((x) => x.children?.map((y) => y.fullyQualifiedName))
                 .filter((x) => x)
@@ -164,6 +187,13 @@ export default {
             fetchTagList,
             tagList,
             refreshData,
+            
+            inputValue,
+            inputVisible,
+            InputRef,
+            handleClose,
+            showInput,
+            handleInputConfirm,
         };
     },
 };

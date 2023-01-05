@@ -52,7 +52,20 @@ const updateSchemaDescription = (metaId:string, descriptionHtml:string) => {
     });
 };
 
+const updateTableDescription = (metaId:string, descriptionHtml:string) => {
+    return new Promise((resolve, reject) =>{
+        dataSourceApi.updateTableDescription(metaId, descriptionHtml)
+        .then((response:any) => {
+            return resolve(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+};
+
 export { 
     getDataSourceMetaData, updateDataSourceDescription, updateSchemaDescription,
-    updateDatabseDescription
+    updateDatabseDescription, updateTableDescription
 };

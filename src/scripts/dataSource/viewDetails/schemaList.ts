@@ -36,7 +36,6 @@ export default {
                     message: "Cập nhật mô tả database thành công",
                     type: 'success',
                 });
-                fetchDatabases(dataSourceSelected.name);
             });
         };
 

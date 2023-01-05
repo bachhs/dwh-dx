@@ -53,9 +53,7 @@ export default {
             }catch(error){
                 console.error(error);
             }
-            setTimeout(() => {
-                getDbEngineIcon(key);
-            }, 2000);
+            console.log('getDbEngineIcon', key);
             return "exclaimationquestionmark.svg";
         };
 

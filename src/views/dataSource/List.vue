@@ -19,7 +19,7 @@
                         size="large"
                         @change="filterDataFn" >
                         <el-option label="All" value="" />
-                        <el-option
+                        <el-option v-if="item && item.id"
                             v-for="item in organization"
                             :key="item.id"
                             :label="item.name"
@@ -34,7 +34,7 @@
                         size="large"
                         @change="filterDataFn" >
                         <el-option label="All" value="" />
-                        <el-option
+                        <el-option v-if="item && item.id"
                             v-for="item in databaseEngineOptions"
                             :key="item.id"
                             :label="item.name"
@@ -190,7 +190,7 @@
                                                 </span>
                                                 <template #dropdown>
                                                     <el-dropdown-menu>
-                                                        <el-dropdown-item :icon="Edit" 
+                                                        <el-dropdown-item
                                                             @click="$emit( 'onChangeView', { viewName: 'ModifyData', data: ds, })">
                                                             <el-icon
                                                                 :size="15"
@@ -199,7 +199,7 @@
                                                             </el-icon>
                                                             <span class="ml-1">Chỉnh sửa</span>
                                                         </el-dropdown-item>
-                                                        <el-dropdown-item :icon="Edit" 
+                                                        <el-dropdown-item
                                                             @click="$emit( 'onChangeView', { viewName: 'AddData', data: ds, })">
                                                             <el-icon
                                                                 :size="15"
@@ -208,7 +208,7 @@
                                                             </el-icon>
                                                             <span class="ml-1">Sao chép</span>
                                                         </el-dropdown-item>
-                                                        <el-dropdown-item :icon="Delete"
+                                                        <el-dropdown-item
                                                             @click="deleteDataSource(ds)">
                                                             <el-icon
                                                                 :size="15" class="text-danger"

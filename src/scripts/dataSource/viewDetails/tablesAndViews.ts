@@ -2,7 +2,7 @@ import { dataSourceApi } from '@/api/dataSourceApi';
 import { onMounted, ref } from 'vue';
 import go from "gojs";
 import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
-import { updateSchemaDescription } from "@/helpers/dataSourceHelper";
+import { updateSchemaDescription, updateTableDescription } from "@/helpers/dataSourceHelper";
 import { ElMessage } from 'element-plus';
 
 export default {
@@ -205,6 +205,15 @@ export default {
             });
         }; 
 
+        const updateTableDesc = (metaId:string, description:string) => {
+            updateTableDescription(metaId, description).then((metaData:any) =>{
+                ElMessage({
+                    message: "Cập nhật mô tả table thành công",
+                    type: 'success',
+                });
+            });
+        }; 
+
         onMounted(async () => {
             // hard code for now
             await fetchTables(
@@ -220,6 +229,7 @@ export default {
             contentHeight,
             refreshData,
             updateSchemaDesc,
+            updateTableDesc,
         };
     },
 };

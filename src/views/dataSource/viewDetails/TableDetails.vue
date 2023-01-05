@@ -3,8 +3,30 @@
     src="@/scripts/dataSource/viewDetails/tableDetail.ts"></script>
 <template>
     <div>
-        <div>
-            Type: Regular | Usage - 0th pctile | 0 Queries | {{columns.length}} Columns | 1 rows
+        <div class="d-flex">
+            <div class="d-flex align-items-center">
+                <el-icon class="text-primary"><InfoFilled /></el-icon>
+                <div class="ml-1 text-nowrap">
+                    Type: Regular | {{columns.length}} Columns | -- rows
+                </div>
+            </div>
+            <div class="ml-3 d-flex align-items-center">
+                <el-icon class="text-primary"><PriceTag /></el-icon>
+                <div class="ml-1 text-nowrap">
+                    <el-button class="button-new-tag ml-1" size="small">
+                        Xem tất cả
+                    </el-button>
+                    <el-input v-if="inputVisible" ref="InputRef" v-model="inputValue" class="ml-1 w-20" style="width: 8rem;" size="small"
+                        @keyup.enter="handleInputConfirm" @blur="handleInputConfirm" />
+                    <el-button v-else class="button-new-tag ml-1" size="small" @click="showInput">
+                        + Thêm
+                    </el-button>
+                    <el-tag v-for="tag in tagList" :key="tag" class="mx-1 mb-1" closable :disable-transitions="false"
+                        @close="handleClose(tag)">
+                        {{ tag }}
+                    </el-tag>
+                </div>
+            </div>
         </div>
         <el-tabs type="border-card" class="tab-data mt-3">
             <el-tab-pane>
