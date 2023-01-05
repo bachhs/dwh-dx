@@ -7,7 +7,7 @@
             <div class="d-flex align-items-center">
                 <el-icon class="text-primary"><InfoFilled /></el-icon>
                 <div class="ml-1 text-nowrap">
-                    Type: Regular | {{columns.length}} Columns | -- rows
+                    Type: Regular ••• {{columns.length}} Columns ••• -- rows
                 </div>
             </div>
             <div class="ml-3 d-flex align-items-center">
