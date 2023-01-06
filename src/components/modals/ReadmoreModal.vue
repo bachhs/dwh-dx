@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-button text @click="centerDialogVisible = true"
-            style="height: auto; line-height: inherit;"
+            style="height: auto; line-height: inherit; font-size: inherit;"
             class="p-0 pb-1 pt-1">            
             <slot name="label">
                 <el-tooltip content="Click xem chi tiết" placement="top">

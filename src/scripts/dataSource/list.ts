@@ -1,4 +1,4 @@
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import { mapState } from "pinia";
 import { dataSourceApi } from "@/api/dataSourceApi";
 import { getDataSourceMetaData } from "@/helpers/dataSourceHelper";
@@ -45,15 +45,21 @@ export default {
             );
         };
 
-        const getDbEngineIcon = (key:string) =>{
+        const getDbEngineIcon = (ds:any, key:string) =>{
             try{
                 if(key && databaseEnginesMap[key]){
+                    ds.dialectIcon = databaseEnginesMap[key].value.iconName;
                     return databaseEnginesMap[key].value.iconName;
                 }
             }catch(error){
                 console.error(error);
             }
             console.log('getDbEngineIcon', key);
+            setTimeout(() =>{
+                if(key && databaseEnginesMap[key]){
+                    ds.dialectIcon = databaseEnginesMap[key].value.iconName;
+                }
+            }, 1000);
             return "exclaimationquestionmark.svg";
         };
 

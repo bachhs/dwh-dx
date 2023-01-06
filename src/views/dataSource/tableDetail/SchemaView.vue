@@ -6,7 +6,7 @@
                     <div v-if="tableSelected.description">
                         <ReadmoreModal :title="`Mô tả về ${tableSelected.name}`" :content="tableSelected.description">  
                             <template #label>
-                                <div class="line-clamp-2" v-html="tableSelected.description"></div>
+                                <div class="line-clamp-2 text-justify" v-html="tableSelected.description"></div>
                             </template>                                      
                         </ReadmoreModal>
                     </div>
@@ -43,15 +43,14 @@
                 class="table table-borderless table-customize table-head-fixed text-nowrap table-striped">
                 <thead>
                     <tr>
-                        <th style="width: 1%;" class="text-nowrap">Tên vột</th>
+                        <th style="width: 1%;" class="text-nowrap">Tên cột</th>
                         <th>Kiểu dữ liệu</th>
                         <th>Mô tả</th>
                         <th>Tags</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr
-                        v-for="column in columns"
+                    <tr v-for="(column, indexColumn) in columns" 
                         :key="column.name">
                         <td class="text-nowrap">
                             <el-button
@@ -83,7 +82,7 @@
                                 </div>
                                 <div v-else>Không có mô tả</div>
                                 <SetDescriptionModal v-model="column.description"
-                                    @onFormSubmit="(descHtml:string) => { updateColumnDesc(column.id, descHtml); }">
+                                    @onFormSubmit="(descHtml:string) => { updateColumnDesc(indexColumn, descHtml); }">
                                     <template #label>
                                         <span class="m-2 d-flex align-items-center">
                                             <el-icon :size="20">
@@ -94,13 +93,8 @@
                                 </SetDescriptionModal>
                             </div>  
                         </td>
-                        <td>
-                            <el-button size="small">
-                                <div>
-                                    <el-icon><Plus /></el-icon>
-                                    <span class="ml-1">Add tag</span>
-                                </div>
-                            </el-button>
+                        <td>                            
+                            <TagsEdit class="d-inline" :tagList="column.tagList"/>
                         </td>
                     </tr>
                 </tbody>
@@ -138,7 +132,7 @@ const updateTableDesc = (metaId:string, description:string) => {
 }; 
 
 
-const updateColumnDesc = (metaId:string, description:string) => {
+const updateColumnDesc = (metaId:number, description:string) => {
     updateColumnDescription(tableSelected.id, metaId, description).then((metaData:any) =>{
         ElMessage({
             message: "Cập nhật mô tả cột thành công",

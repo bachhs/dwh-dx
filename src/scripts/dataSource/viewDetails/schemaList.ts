@@ -11,19 +11,19 @@ export default {
         SetDescriptionModal,
     },
     setup(props: any) {
+        const isLoading = ref(false);
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
         const contentHeight = 'calc(100vh - 23rem)';
         const schemas = ref([]);
-        const fetchSchemas = async (
-            datasourceName: string,
-            databaseName: string
-        ) => {
+        const fetchSchemas = async ( datasourceName: string, databaseName: string ) => {            
+            isLoading.value = true;
             const res = await dataSourceApi.fetchSchemas(
                 datasourceName,
                 databaseName
             );
             schemas.value = res.data.data;
+            isLoading.value = false;
         };
         
         const refreshData = () =>{
@@ -54,6 +54,7 @@ export default {
             fetchSchemas(dataSourceSelected.name, databaseSelected.name);
         });
         return {
+            isLoading,
             databaseSelected,
             schemas,
             contentHeight,

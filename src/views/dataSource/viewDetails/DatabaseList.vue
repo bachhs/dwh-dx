@@ -2,7 +2,8 @@
     lang="ts"
     src="@/scripts/dataSource/viewDetails/databaseList.ts"></script>
 <template>
-    <el-scrollbar :style="`height: ${contentHeight};`">
+    <el-scrollbar :style="`height: ${contentHeight};`"
+        v-loading="isLoading">
         <div>
             <table
                 class="table table-borderless table-customize table-head-fixed text-nowrap table-striped">

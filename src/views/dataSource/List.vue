@@ -106,8 +106,12 @@
                                     v-bind:class="{ 'ds-health-error': !ds.status }">
                                     <div class="d-flex">
                                         <div>
-                                            <img v-if="ds && ds.dialect"
-                                                v-lazy="`/icons/databases/${getDbEngineIcon(ds.dialect)}`"
+                                            <img v-if="ds && ds.dialectIcon"
+                                                v-lazy="`/icons/databases/${ds.dialectIcon}`"
+                                                class="mt-1"
+                                                style="width: 5rem"/>
+                                            <img v-else
+                                                v-lazy="`/icons/databases/${getDbEngineIcon(ds, ds.dialect)}`"
                                                 class="mt-1"
                                                 style="width: 5rem"/>
                                         </div>

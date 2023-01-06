@@ -12,6 +12,7 @@ import { Waypoint } from "vue-waypoint";
 import ReadmoreModal from "@/components/modals/ReadmoreModal.vue";
 import VueLazyLoad from 'vue3-lazyload';
 import TextClamp from 'vue3-text-clamp';
+import TagsEdit from '@/components/TagsEdit.vue';
 import moment from "moment";
 import "./assets/main.css";
 
@@ -33,6 +34,7 @@ app.use(TextClamp);
 app.component("no-data", NoData);
 app.component("Waypoint", Waypoint);
 app.component("ReadmoreModal", ReadmoreModal);
+app.component("TagsEdit", TagsEdit);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);
 }

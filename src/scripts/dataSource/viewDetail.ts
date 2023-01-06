@@ -115,8 +115,10 @@ export default {
 
         const currentViewRef = ref<InstanceType<any>>(); 
         const refreshData = () =>{
+            isLoading.value = true;
             if (!currentViewRef || !currentViewRef.value) return;
             currentViewRef.value?.refreshData();
+            isLoading.value = false;
         };
 
         const updateDataSourceDesc = (descOfDS:string) =>{

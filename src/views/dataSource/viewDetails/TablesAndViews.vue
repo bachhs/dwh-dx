@@ -2,7 +2,8 @@
     lang="ts"
     src="@/scripts/dataSource/viewDetails/tablesAndViews.ts"></script>
 <template>
-    <div>
+    <div
+        v-loading="isLoading">
         <div class="mt-1 ml-1 mr-1 callout callout-info p-2 pt-0 pb-0">
             <div class="d-flex">
                 <div class="flex-fill">
@@ -69,11 +70,12 @@
                                     </el-button>
                                 </div>
                                 <div>
-                                    <small class="text-muted">{{
-                                        t.fullyQualifiedName
-                                    }}</small>
+                                    <small class="text-muted">
+                                        <i>{{ t.fullyQualifiedName }}</i>
+                                    </small>
                                 </div>
-                                <div class="text-muted line-clamp-2" v-if="t.description">
+                                <div class="text-muted line-clamp-2" v-if="t.description"
+                                    style="font-size: 80%;">
                                     <ReadmoreModal :title="`Mô tả về ${t.name}`" :content="t.description"/>
                                     <!-- <div class="line-clamp-1" v-html="t.description">
                                         

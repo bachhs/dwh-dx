@@ -1,6 +1,7 @@
 <script lang="ts" src="@/scripts/dataSource/viewDetails/schemaList.ts"></script>
 <template>
-    <el-scrollbar :style="`height: ${contentHeight};`">
+    <el-scrollbar :style="`height: ${contentHeight};`"
+        v-loading="isLoading">
         <div class="mt-1 ml-1 mr-1 callout callout-info p-2 pt-0 pb-0">
             <div class="d-flex">
                 <div class="flex-fill line-clamp-2 position-relative">

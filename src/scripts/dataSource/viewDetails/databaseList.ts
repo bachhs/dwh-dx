@@ -11,11 +11,14 @@ export default {
         SetDescriptionModal,
     },
     setup(props: any) {
+        const isLoading = ref(false);
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databases = ref([]);
         const fetchDatabases = async (datasourceName: string) => {
+            isLoading.value = true;
             const res = await dataSourceApi.fetchDatabases(datasourceName);
             databases.value = res.data.data;
+            isLoading.value = false;
         };
         const updateDatabseDesc = (metaId:string, description:string) => {
             updateDatabseDescription(metaId, description).then((metaData:any) =>{
@@ -34,6 +37,7 @@ export default {
             fetchDatabases(dataSourceSelected.name);
         });
         return {
+            isLoading,
             databases,
             refreshData,
             updateDatabseDesc,

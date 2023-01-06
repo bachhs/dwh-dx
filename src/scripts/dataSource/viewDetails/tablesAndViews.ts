@@ -12,6 +12,7 @@ export default {
         SetDescriptionModal,
     },
     setup(props: any) {
+        const isLoading = ref(false);
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
         const schemasSelected = props.viewSettings.schemasSelected;
@@ -173,17 +174,15 @@ export default {
                 myDiagram.requestUpdate();
             }, 1000);        
         }
-        const fetchTables = async (
-            datasourceName: string,
-            databaseName: string,
-            schemaName: string
-        ) => {
+        const fetchTables = async ( datasourceName: string, databaseName: string, schemaName: string ) => {
+            isLoading.value = true;
             const res = await dataSourceApi.fetchTables(
                 datasourceName,
                 databaseName,
                 schemaName
             );
             tables.value = res.data.tables;
+            isLoading.value = false;
         };
         
         const refreshData = async () =>{
@@ -224,6 +223,7 @@ export default {
             initDbDiagram();
         });
         return {
+            isLoading,
             schemasSelected,
             tables,
             contentHeight,

@@ -5,7 +5,6 @@ import { tagApi } from '@/api/tagApi';
 import { onMounted, ref, defineAsyncComponent, nextTick } from 'vue';
 import type { SampleData } from '../type';
 import SkeletonBox from "@/components/SkeletonBox.vue";
-import { ElInput } from 'element-plus';
 
 function parseColumns(columns: any[]): any[] {
     return columns.map((c) => {
@@ -14,7 +13,10 @@ function parseColumns(columns: any[]): any[] {
 
         return {
             name: c.name,
+            description: c.description,
+            fullyQualifiedName: c.fullyQualifiedName,
             dataType: dataType,
+            dataLength: c.dataLength,
             isPrimaryKey: c.constraint === 'PRIMARY KEY',
         };
     });
@@ -54,6 +56,7 @@ export default {
         }),
     },
     setup(props: any) {
+        const isLoading = ref(false);
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
         const schemasSelected = props.viewSettings.schemasSelected;
@@ -68,36 +71,9 @@ export default {
         const columns = ref([] as any[]);
         const sampleData = ref<SampleData>();
         const tagList = ref<string[]>([]);
-        const inputValue = ref('');
-        const inputVisible = ref(false);
-        const InputRef = ref<InstanceType<typeof ElInput>>();
 
-        const handleClose = (tag: string) => {
-            tagList.value.splice(tagList.value.indexOf(tag), 1)
-        }
-
-        const showInput = () => {
-            inputVisible.value = true
-            nextTick(() => {
-                InputRef.value!.input!.focus()
-            })
-        }
-
-        const handleInputConfirm = () => {
-            if (inputValue.value) {
-                tagList.value.push(inputValue.value)
-            }
-            inputVisible.value = false
-            inputValue.value = ''
-        }
-
-
-        const fetchColumns = async (
-            datasourceName: string,
-            databaseName: string,
-            schemaName: string,
-            tableName: string
-        ) => {
+        const fetchColumns = async ( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) => {
+            isLoading.value = true;
             const res = await dataSourceApi.fetchColumns(
                 datasourceName,
                 databaseName,
@@ -110,6 +86,7 @@ export default {
                 changeDescription: res.data.changeDescription,
                 href: res.data.href,
             }
+            isLoading.value = false;
         };
  
 
@@ -121,21 +98,14 @@ export default {
                 .flat();
         };
 
-        const setTableDescription = async (
-            tableMetaId: string,
-            description: string
-        ) => {
+        const setTableDescription = async ( tableMetaId: string, description: string ) => {
             await dataSourceApi.updateTableDescription(
                 tableMetaId,
                 description
             );
         };
 
-        const setColumnDescription = async (
-            tableMetaId: string,
-            columnId: number,
-            description: string
-        ) => {
+        const setColumnDescription = async ( tableMetaId: string, columnId: number, description: string ) => {
             await dataSourceApi.updateColumnDescription(
                 tableMetaId,
                 columnId,
@@ -147,19 +117,15 @@ export default {
             await dataSourceApi.updateTableTags(tableMetaId, tags);
         };
 
-        const setColumnTags = async (
-            tableMetaId: string,
-            columnId: number,
-            tags: string[]
-        ) => {
+        const setColumnTags = async ( tableMetaId: string, columnId: number, tags: string[] ) => {
             await dataSourceApi.updateColumnTags(tableMetaId, columnId, tags);
         };
 
         // sample table tags
-        setTableTags('8f2c2595-253e-4e00-937b-7e3d4a99bf5d', [
-            'PersonalData.Personal',
-            'PersonalData.SpecialCategory',
-        ]);
+        // setTableTags('8f2c2595-253e-4e00-937b-7e3d4a99bf5d', [
+        //     'PersonalData.Personal',
+        //     'PersonalData.SpecialCategory',
+        // ]);
         
         const refreshData = () =>{
             // hard code for now
@@ -184,6 +150,7 @@ export default {
         });
         return {
             props,
+            isLoading,
             activityFilter,
             contentHeight,
             contentNodataHeight,
@@ -194,13 +161,6 @@ export default {
             fetchTagList,
             tagList,
             refreshData,
-            
-            inputValue,
-            inputVisible,
-            InputRef,
-            handleClose,
-            showInput,
-            handleInputConfirm,
         };
     },
 };

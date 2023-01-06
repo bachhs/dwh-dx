@@ -90,17 +90,14 @@ export const dataSourceApi = {
         );
     },
     updateTableDescription(tableMetaId: string, description: string) {
-        return axios.put(`/meta/table/${tableMetaId}/description`, {
+        return axios.post(`/meta/database_service/table/${tableMetaId}/description`, {
             description,
         });
     },
-    updateColumnDescription(
-        tableMetaId: string,
-        columnId: number,
-        description: string
-    ) {
-        return axios.put(
-            `/meta/table/${tableMetaId}/column/${columnId}/description`,
+    updateColumnDescription( tableMetaId: string, columnId: number, description: string ) {
+        ///api/v1/meta/database_service/table/{metaId}/column/{columnId}/description
+        return axios.post(
+            `/meta/database_service/table/${tableMetaId}/column/${columnId}/description`,
             {
                 description,
             }
@@ -112,7 +109,7 @@ export const dataSourceApi = {
         });
     },
     updateColumnTags(tableMetaId: string, columnId: number, tags: string[]) {
-        return axios.put(`/meta/table/${tableMetaId}/column/${columnId}/tags`, {
+        return axios.post(`/meta/table/${tableMetaId}/column/${columnId}/tags`, {
             tags,
         });
     },

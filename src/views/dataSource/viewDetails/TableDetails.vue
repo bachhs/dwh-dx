@@ -2,12 +2,13 @@
     lang="ts"
     src="@/scripts/dataSource/viewDetails/tableDetail.ts"></script>
 <template>
-    <div class="w-100vw  overflow-hidden">
+    <div class="w-100vw  overflow-hidden"
+        v-loading="isLoading">
         <div class="d-flex w-100">
             <div class="d-flex align-items-center">
                 <el-icon class="text-primary"><InfoFilled /></el-icon>
                 <div class="ml-1 text-nowrap">
-                    Loại bảng: <span v-if="tableInfo && tableInfo.tableType">{{tableInfo.tableType}}</span> ••• {{columns.length}} Cột ••• -- bản ghi
+                    Loại bảng: <span v-if="tableInfo && tableInfo.tableType">{{tableInfo.tableType}}</span> • Bao gồm {{columns.length}} Cột
                 </div>
             </div>
             <div class="flex-fill ml-3 d-flex align-items-center">
@@ -16,15 +17,7 @@
                     <el-button class="button-new-tag ml-1" size="small">
                         Xem tất cả
                     </el-button>
-                    <el-input v-if="inputVisible" ref="InputRef" v-model="inputValue" class="ml-1 w-20" style="width: 8rem;" size="small"
-                        @keyup.enter="handleInputConfirm" @blur="handleInputConfirm" />
-                    <el-button v-else class="button-new-tag ml-1" size="small" @click="showInput">
-                        + Thêm
-                    </el-button>
-                    <el-tag v-for="tag in tagList" :key="tag" class="mx-1 mb-1" closable :disable-transitions="false"
-                        @close="handleClose(tag)">
-                        {{ tag }}
-                    </el-tag>
+                    <TagsEdit class="d-inline" :tagList="tagList"/>
                 </div>
             </div>
         </div>
