@@ -65,7 +65,20 @@ const updateTableDescription = (metaId:string, descriptionHtml:string) => {
     });
 };
 
+const updateColumnDescription = (tableMetaId: string, columnId: number, descriptionHtml: string) => {
+    return new Promise((resolve, reject) =>{
+        dataSourceApi.updateColumnDescription(tableMetaId, columnId, descriptionHtml)
+        .then((response:any) => {
+            return resolve(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+            reject(error);
+        });
+    });
+};
+
 export { 
     getDataSourceMetaData, updateDataSourceDescription, updateSchemaDescription,
-    updateDatabseDescription, updateTableDescription
+    updateDatabseDescription, updateTableDescription, updateColumnDescription
 };

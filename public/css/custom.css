@@ -135,6 +135,10 @@ body {
 .layout-fixed .sidebar .nav-treeview > .nav-item > .nav-link.active {
   background-color: #007bff !important;
   color: #fff !important; }
+.layout-fixed .w-100vw {
+  width: calc(100vw - 300px); }
+.layout-fixed.sidebar-collapse .w-100vw {
+  width: calc(100vw - 125px) !important; }
 .layout-fixed .content-wrapper {
   color: #333; }
   .layout-fixed .content-wrapper .content {

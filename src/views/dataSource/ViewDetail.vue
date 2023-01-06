@@ -1,6 +1,6 @@
 <script lang="ts" src="@/scripts/dataSource/viewDetail.ts"></script>
 <template>
-    <div class="flex-fill d-flex flex-column w-100 overflow-hidden" v-loading="isLoading">
+    <div class="flex-fill d-flex flex-column" v-loading="isLoading">
         <div class="d-flex align-items-center">
             <div class="flex-fill d-none d-md-block">
                 <h4 class="mb-0 d-flex align-items-center" v-if="ds && ds.name">
@@ -38,7 +38,7 @@
         </div>
         <div class="d-flex flex-fill mt-2 pr-0" v-if="ds">
             <div class="flex-fill pb-0 pt-2 mr-4">
-                <div class="hoz-content-wrap mb-2 mb-md-0">
+                <div class="hoz-content-wrap mb-2 mb-md-0 w-100">
                     <el-scrollbar style="max-width: 100%">
                         <div class="scrollbar-flex-content mt-1 ml-1">
                             <div class="card p-2 pl-3 pr-3 text-nowrap scrollbar-dbinfo-item">

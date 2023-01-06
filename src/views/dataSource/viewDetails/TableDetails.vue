@@ -2,12 +2,12 @@
     lang="ts"
     src="@/scripts/dataSource/viewDetails/tableDetail.ts"></script>
 <template>
-    <div class="w-100">
-        <div class="d-flex w-100 overflow-hidden">
+    <div class="w-100vw  overflow-hidden">
+        <div class="d-flex w-100">
             <div class="d-flex align-items-center">
                 <el-icon class="text-primary"><InfoFilled /></el-icon>
                 <div class="ml-1 text-nowrap">
-                    Type: Regular ••• {{columns.length}} Columns ••• -- rows
+                    Loại bảng: <span v-if="tableInfo && tableInfo.tableType">{{tableInfo.tableType}}</span> ••• {{columns.length}} Cột ••• -- bản ghi
                 </div>
             </div>
             <div class="flex-fill ml-3 d-flex align-items-center">
@@ -52,7 +52,7 @@
                                 <i class="fas fa-history"></i>
                             </div>
                             <div class="ml-1">
-                                Activity Feeds & Tasks
+                                Lịch sử và tác vụ
                                 <span class="ml-1 label label-counting">5</span>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             <div>
                                 <i class="fas fa-vial"></i>
                             </div>
-                            <div class="ml-1">Sample Data</div>
+                            <div class="ml-1">Dữ liệu mẫu</div>
                         </div>
                     </div>
                 </template>
@@ -92,7 +92,7 @@
                             <div>
                                 <i class="fas fa-caret-square-right"></i>
                             </div>
-                            <div class="ml-1">Queries</div>
+                            <div class="ml-1">Truy vấn</div>
                         </div>
                     </div>
                 </template>
@@ -107,7 +107,7 @@
                             <div>
                                 <i class="fas fa-tasks"></i>
                             </div>
-                            <div class="ml-1">Profiler & Data Quality</div>
+                            <div class="ml-1">Hồ sơ & Chất lượng dữ liệu</div>
                         </div>
                     </div>
                 </template>
@@ -137,7 +137,7 @@
                             <div>
                                 <i class="fas fa-list"></i>
                             </div>
-                            <div class="ml-1">Custom Properties</div>
+                            <div class="ml-1">Thuộc tính tùy chỉnh</div>
                         </div>
                     </div>
                 </template>

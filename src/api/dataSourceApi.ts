@@ -107,7 +107,7 @@ export const dataSourceApi = {
         );
     },
     updateTableTags(tableMetaId: string, tags: string[]) {
-        return axios.put(`/meta/table/${tableMetaId}/tags`, {
+        return axios.post(`/meta/database_service/table/${tableMetaId}/tags`, {
             tags,
         });
     },

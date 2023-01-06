@@ -64,6 +64,7 @@ export default {
         const contentNodataHeight = 'calc(100vh - 24rem)';
         const contentNodataWithFilterHeight = 'calc(100vh - 28rem)';
 
+        const tableInfo = ref<Object>({});
         const columns = ref([] as any[]);
         const sampleData = ref<SampleData>();
         const tagList = ref<string[]>([]);
@@ -104,6 +105,11 @@ export default {
                 tableName
             );
             columns.value = parseColumns(res.data.columns);
+            tableInfo.value = {
+                tableType: res.data.tableType,
+                changeDescription: res.data.changeDescription,
+                href: res.data.href,
+            }
         };
  
 
@@ -182,6 +188,7 @@ export default {
             contentHeight,
             contentNodataHeight,
             contentNodataWithFilterHeight,
+            tableInfo,
             columns,
             sampleData,
             fetchTagList,

@@ -298,6 +298,16 @@ body {
         }
     }
 
+    .w-100vw{
+        width: calc(100vw - 300px);
+    }
+
+    &.sidebar-collapse{
+        .w-100vw{
+            width: calc(100vw - 125px) !important;
+        }
+    }
+
     .content-wrapper {
         color: #333;
 

@@ -43,9 +43,9 @@
                 class="table table-borderless table-customize table-head-fixed text-nowrap table-striped">
                 <thead>
                     <tr>
-                        <th>Column name</th>
-                        <th>Type</th>
-                        <th>Description</th>
+                        <th style="width: 1%;" class="text-nowrap">Tên vột</th>
+                        <th>Kiểu dữ liệu</th>
+                        <th>Mô tả</th>
                         <th>Tags</th>
                     </tr>
                 </thead>
@@ -53,7 +53,7 @@
                     <tr
                         v-for="column in columns"
                         :key="column.name">
-                        <td>
+                        <td class="text-nowrap">
                             <el-button
                                 link
                                 class="text-navy"
@@ -73,15 +73,32 @@
                                 </strong>
                             </el-button>
                         </td>
-                        <td>{{ column.dataType }}</td>
-                        <td>No description</td>
+                        <td class="text-nowrap">{{ column.dataType }}</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div v-if="column.description">
+                                    <ReadmoreModal :title="`Mô tả về ${column.name}`" :content="column.description">                                        
+                                        <span class="line-clamp-1" v-html="column.description.replace(/<[^>]*>/g, '')"></span>
+                                    </ReadmoreModal>
+                                </div>
+                                <div v-else>Không có mô tả</div>
+                                <SetDescriptionModal v-model="column.description"
+                                    @onFormSubmit="(descHtml:string) => { updateColumnDesc(column.id, descHtml); }">
+                                    <template #label>
+                                        <span class="m-2 d-flex align-items-center">
+                                            <el-icon :size="20">
+                                                <Edit />
+                                            </el-icon>
+                                        </span>
+                                    </template>
+                                </SetDescriptionModal>
+                            </div>  
+                        </td>
                         <td>
                             <el-button size="small">
                                 <div>
                                     <el-icon><Plus /></el-icon>
-                                    <span class="ml-1"
-                                        >Add tag</span
-                                    >
+                                    <span class="ml-1">Add tag</span>
                                 </div>
                             </el-button>
                         </td>
@@ -94,7 +111,7 @@
 <script setup lang="ts">    
 import { ref, watch, defineComponent } from 'vue';
 import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
-import { updateTableDescription } from "@/helpers/dataSourceHelper";
+import { updateTableDescription, updateColumnDescription } from "@/helpers/dataSourceHelper";
 import { ElMessage } from 'element-plus';
 const props = defineProps({
     viewSettings: { type: Object, required: true },
@@ -115,6 +132,16 @@ const updateTableDesc = (metaId:string, description:string) => {
     updateTableDescription(metaId, description).then((metaData:any) =>{
         ElMessage({
             message: "Cập nhật mô tả table thành công",
+            type: 'success',
+        });
+    });
+}; 
+
+
+const updateColumnDesc = (metaId:string, description:string) => {
+    updateColumnDescription(tableSelected.id, metaId, description).then((metaData:any) =>{
+        ElMessage({
+            message: "Cập nhật mô tả cột thành công",
             type: 'success',
         });
     });
