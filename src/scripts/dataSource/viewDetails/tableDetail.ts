@@ -2,7 +2,7 @@ import { dataSourceApi } from '@/api/dataSourceApi';
 import { tagApi } from '@/api/tagApi';
 // import type { Tag, TagCategory } from '@/types/tag';
 // import axios from 'axios';
-import { onMounted, ref, defineAsyncComponent, nextTick } from 'vue';
+import { onMounted, ref, defineAsyncComponent } from 'vue';
 import type { SampleData } from '../type';
 import SkeletonBox from "@/components/SkeletonBox.vue";
 
@@ -18,6 +18,7 @@ function parseColumns(columns: any[]): any[] {
             dataType: dataType,
             dataLength: c.dataLength,
             isPrimaryKey: c.constraint === 'PRIMARY KEY',
+            tagItems: []
         };
     });
 }

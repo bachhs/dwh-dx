@@ -94,7 +94,8 @@
                             </div>  
                         </td>
                         <td>                            
-                            <TagsEdit class="d-inline" :tagList="column.tagList"/>
+                            <TagsEdit class="d-inline" 
+                                v-model="column.tagItems"/>
                         </td>
                     </tr>
                 </tbody>

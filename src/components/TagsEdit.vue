@@ -12,7 +12,7 @@
             @click="showInput">
             + Thêm
         </el-button>
-        <el-tag v-for="tag in tagList" :key="tag" class="mx-1 mb-1" 
+        <el-tag v-for="tag in tagList" :key="tag" class="mx-1 mb-0" 
             closable 
             :disable-transitions="false"
             @close="handleClose(tag)">
@@ -25,11 +25,11 @@
     import { ref, nextTick, watch } from 'vue';
     import { ElInput } from 'element-plus';
     const props = defineProps({
-        tagList: { type: Array<String>, required: false, default: [] }
+        modelValue: { type: Array<String>, required: false, default: [] }
     });
-    const tagList = ref<Array<String>>(props.tagList);
-    watch(() => props.tagList, (newVal) =>{
-        tagList.value = newVal;
+    const tagList = ref<Array<String>>(props.modelValue);
+    watch(() => props.modelValue, (newVal) =>{
+        tagList.value = JSON.parse(JSON.stringify(newVal));
     });
     const inputValue = ref('');
     const inputVisible = ref(false);

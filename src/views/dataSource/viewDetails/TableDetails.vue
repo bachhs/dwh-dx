@@ -17,7 +17,7 @@
                     <el-button class="button-new-tag ml-1" size="small">
                         Xem tất cả
                     </el-button>
-                    <TagsEdit class="d-inline" :tagList="tagList"/>
+                    <TagsEdit class="d-inline" v-model="tagList"/>
                 </div>
             </div>
         </div>
