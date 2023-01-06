@@ -1,17 +1,16 @@
 <template>
     <el-scrollbar :style="`height: ${contentHeight};`">
         <div class="mt-1 ml-1 mr-3 callout callout-info p-2 pt-0 pb-0">
-            <div class="d-flex">
-                <div class="flex-fill line-clamp-2 position-relative">
-                    <div v-if="tableSelected.description" v-html="tableSelected.description"></div>
-                    <div v-else>Không có mô tả</div>
-                    <div v-if="tableSelected.description"
-                        class="position-absolute bg-white" style="right: 0; bottom: 0;">
-                        <ReadmoreModal
-                            :dotPrefix="true"
-                            :title="`Mô tả về ${tableSelected.name}`" 
-                            :content="tableSelected.description" />
+            <div class="d-flex w-100">
+                <div class="flex-fill">
+                    <div v-if="tableSelected.description">
+                        <ReadmoreModal :title="`Mô tả về ${tableSelected.name}`" :content="tableSelected.description">  
+                            <template #label>
+                                <div class="line-clamp-2" v-html="tableSelected.description"></div>
+                            </template>                                      
+                        </ReadmoreModal>
                     </div>
+                    <div v-else>Không có mô tả</div>
                 </div>
                 <div class="ml-3">
                     <SetDescriptionModal v-model="tableSelected.description"

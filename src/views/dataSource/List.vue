@@ -134,7 +134,13 @@
                                                                 </div>
                                                             </div>
                                                         </template>
-                                                        <span class="line-clamp-1" v-html="ds.metaData.description.replace(/<[^>]*>/g, '')"></span>
+                                                        <text-clamp :text="ds.metaData.description.replace(/<[^>]*>/g, '')" 
+                                                            :max-lines='1'>
+                                                            <!-- <template #after>
+                                                                <el-button text class="p-1 pb-0 pl-0 ml-2 mb-1 h-auto" style="line">Xem thêm</el-button>
+                                                            </template> -->
+                                                        </text-clamp>
+                                                        <!-- <span class="line-clamp-1" v-html="ds.metaData.description.replace(/<[^>]*>/g, '')"></span> -->
                                                     </el-tooltip>                                                   
                                                 </Waypoint>
                                             </div>

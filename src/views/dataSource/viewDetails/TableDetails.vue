@@ -2,17 +2,17 @@
     lang="ts"
     src="@/scripts/dataSource/viewDetails/tableDetail.ts"></script>
 <template>
-    <div>
-        <div class="d-flex">
+    <div class="w-100">
+        <div class="d-flex w-100 overflow-hidden">
             <div class="d-flex align-items-center">
                 <el-icon class="text-primary"><InfoFilled /></el-icon>
                 <div class="ml-1 text-nowrap">
                     Type: Regular ••• {{columns.length}} Columns ••• -- rows
                 </div>
             </div>
-            <div class="ml-3 d-flex align-items-center">
+            <div class="flex-fill ml-3 d-flex align-items-center">
                 <el-icon class="text-primary"><PriceTag /></el-icon>
-                <div class="ml-1 text-nowrap">
+                <div class="ml-1 text-nowrap overflow-hidden">
                     <el-button class="button-new-tag ml-1" size="small">
                         Xem tất cả
                     </el-button>

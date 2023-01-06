@@ -39,11 +39,12 @@
                         <td>{{ d.usage }}</td> -->
                         <td>
                             <div class="d-flex align-items-center">
-                                <div v-if="d.description">
-                                    <span class="line-clamp-1" v-html="d.description.replace(/<[^>]*>/g, '')"></span>
+                                <div class="w-100" v-if="d.description">
+                                    <ReadmoreModal :title="`Mô tả về ${d.name}`" :content="d.description">                                        
+                                        <span class="line-clamp-1" v-html="d.description.replace(/<[^>]*>/g, '')"></span>
+                                    </ReadmoreModal>
                                 </div>
                                 <div v-else>Không có mô tả</div>
-                                <ReadmoreModal v-if="d.description" :title="`Mô tả về ${d.name}`" :content="d.description" />
                                 <SetDescriptionModal v-model="d.description"
                                     @onFormSubmit="(descHtml:string) => { updateDatabseDesc(d.id, descHtml); }">
                                     <template #label>

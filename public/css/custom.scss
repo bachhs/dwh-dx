@@ -438,6 +438,7 @@ body {
     display: -webkit-box !important;
     -webkit-line-clamp: 1 !important;
     -webkit-box-orient: vertical !important;
+    text-align: justify;
 }
 .line-clamp-2{
     white-space: normal !important;
@@ -458,3 +459,12 @@ body {
     padding-top: 0.8rem !important;
     padding-bottom: 0.8rem !important;
 }
+
+// .text-clamp{
+//     &.d-flex{
+//         span{
+//             display: flex;
+//             flex-direction: row;
+//         }
+//     }
+// }

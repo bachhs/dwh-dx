@@ -41,6 +41,7 @@ const usePaginationList = (getListDataFn:Function, filterData:any) => {
         }).catch(() =>{
             isLoading.value = false;
         });
+        $('span.line-clamp-1').css('color', 'red');
     };
     const filterDataFn = () =>{
         getListData(1);

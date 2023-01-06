@@ -1,12 +1,12 @@
 <template>
     <div>
         <el-button text @click="centerDialogVisible = true"
-            style="height: auto;"
-            class="p-0">            
+            style="height: auto; line-height: inherit;"
+            class="p-0 pb-1 pt-1">            
             <slot name="label">
-                <div class="m-1 d-flex align-items-center">                    
-                    <span class="ml-2 text-primary"><span v-if="dotPrefix">...</span> Xem thêm</span>
-                </div>
+                <el-tooltip content="Click xem chi tiết" placement="top">
+                    <span class="line-clamp-1" v-html="content.replace(/<[^>]*>/g, '')"></span>
+                </el-tooltip>
             </slot>
         </el-button>
         <el-dialog

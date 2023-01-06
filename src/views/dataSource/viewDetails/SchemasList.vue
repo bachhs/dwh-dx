@@ -4,15 +4,14 @@
         <div class="mt-1 ml-1 mr-1 callout callout-info p-2 pt-0 pb-0">
             <div class="d-flex">
                 <div class="flex-fill line-clamp-2 position-relative">
-                    <div v-if="databaseSelected.description" v-html="databaseSelected.description"></div>
-                    <div v-else>Không có mô tả</div>
-                    <div v-if="databaseSelected.description"
-                        class="position-absolute bg-white" style="right: 0; bottom: 0;">
-                        <ReadmoreModal
-                            :dotPrefix="true"
-                            :title="`Mô tả về ${databaseSelected.name}`" 
-                            :content="databaseSelected.description" />
+                    <div v-if="databaseSelected.description" style="line-height: 1.3rem;">
+                        <ReadmoreModal :title="`Mô tả về ${databaseSelected.name}`" :content="databaseSelected.description">  
+                            <template #label>
+                                <div class="line-clamp-2" v-html="databaseSelected.description"></div>
+                            </template>                                      
+                        </ReadmoreModal>
                     </div>
+                    <div v-else>Không có mô tả</div>
                 </div>
                 <div class="ml-3">
                     <SetDescriptionModal v-model="databaseSelected.description"
@@ -61,10 +60,9 @@
                         <td>
                             <div class="d-flex align-items-center">
                                 <div v-if="s.description">
-                                    <span class="line-clamp-1" v-html="s.description.replace(/<[^>]*>/g, '')"></span>
+                                    <ReadmoreModal v-if="s.description" :title="`Mô tả về ${s.name}`" :content="s.description" />
                                 </div>
                                 <div v-else>Không có mô tả</div>
-                                <ReadmoreModal v-if="s.description" :title="`Mô tả về ${s.name}`" :content="s.description" />
                                 <SetDescriptionModal v-model="s.description" 
                                     @onFormSubmit="(descHtml:string) => { updateSchemaDesc(s.id, descHtml); }">
                                     <template #label>

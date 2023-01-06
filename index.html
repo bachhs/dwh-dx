@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="/css/adminlte.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	<link rel="stylesheet" href="/css/custom.css">
+	
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed w-100 d-flex">
@@ -36,6 +37,23 @@
 	<!-- overlayScrollbars -->
 	<script src="/js/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 	<!-- AdminLTE App -->
+	<script>
+		$.expr[':'].truncated = function(obj) {
+			var $this = $(obj);
+			var $c = $this
+						.clone()
+						.css({display: 'inline', width: 'auto', visibility: 'hidden'})
+						.appendTo('body');
+
+			var c_width = $c.width();
+			$c.remove();
+
+			if ( c_width > $this.width() )
+				return true;
+			else
+				return false;
+		};
+	</script>
 	<script src="/js/adminlte.min.js"></script>
 	<script type="module" src="/src/main.ts"></script>
 </body>

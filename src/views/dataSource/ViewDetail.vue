@@ -1,6 +1,6 @@
 <script lang="ts" src="@/scripts/dataSource/viewDetail.ts"></script>
 <template>
-    <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
+    <div class="flex-fill d-flex flex-column w-100 overflow-hidden" v-loading="isLoading">
         <div class="d-flex align-items-center">
             <div class="flex-fill d-none d-md-block">
                 <h4 class="mb-0 d-flex align-items-center" v-if="ds && ds.name">
@@ -70,8 +70,10 @@
                             
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Trạng thái</div>
-                                <h5 class="mt-1">
-                                    {{ ds.status ? "Good" : "Not good" }}
+                                <h5 class="mt-1 d-flex align-items-center">
+                                    <el-icon v-if="ds.status" class="text-success"><SuccessFilled /></el-icon>
+                                    <el-icon v-else class="text-danger"><CircleCloseFilled /></el-icon>
+                                    <span class="ml-1">{{ ds.status ? "Good" : "Not good" }}</span>
                                 </h5>
                             </div>
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"

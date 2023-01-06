@@ -11,6 +11,7 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 import { Waypoint } from "vue-waypoint";
 import ReadmoreModal from "@/components/modals/ReadmoreModal.vue";
 import VueLazyLoad from 'vue3-lazyload';
+import TextClamp from 'vue3-text-clamp';
 import moment from "moment";
 import "./assets/main.css";
 
@@ -28,6 +29,7 @@ app.use(router);
 app.use(ElementPlus);
 app.use(CKEditor);
 app.use(VueLazyLoad);
+app.use(TextClamp);
 app.component("no-data", NoData);
 app.component("Waypoint", Waypoint);
 app.component("ReadmoreModal", ReadmoreModal);

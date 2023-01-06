@@ -5,16 +5,15 @@
     <div>
         <div class="mt-1 ml-1 mr-1 callout callout-info p-2 pt-0 pb-0">
             <div class="d-flex">
-                <div class="flex-fill line-clamp-2 position-relative">
-                    <div v-if="schemasSelected.description" v-html="schemasSelected.description"></div>
-                    <div v-else>Không có mô tả</div>
-                    <div v-if="schemasSelected.description"
-                        class="position-absolute bg-white" style="right: 0; bottom: 0;">
-                        <ReadmoreModal
-                            :dotPrefix="true"
-                            :title="`Mô tả về ${schemasSelected.name}`" 
-                            :content="schemasSelected.description" />
+                <div class="flex-fill">
+                    <div v-if="schemasSelected.description">
+                        <ReadmoreModal :title="`Mô tả về ${schemasSelected.name}`" :content="schemasSelected.description">  
+                            <template #label>
+                                <div class="line-clamp-2" v-html="schemasSelected.description"></div>
+                            </template>                                      
+                        </ReadmoreModal>
                     </div>
+                    <div v-else>Không có mô tả</div>
                 </div>
                 <div class="ml-3">
                     <SetDescriptionModal v-model="schemasSelected.description"
@@ -75,7 +74,10 @@
                                     }}</small>
                                 </div>
                                 <div class="text-muted line-clamp-2" v-if="t.description">
-                                    {{ t.description }}
+                                    <ReadmoreModal :title="`Mô tả về ${t.name}`" :content="t.description"/>
+                                    <!-- <div class="line-clamp-1" v-html="t.description">
+                                        
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

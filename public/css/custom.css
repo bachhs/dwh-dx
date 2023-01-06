@@ -229,7 +229,8 @@ body {
   text-overflow: ellipsis !important;
   display: -webkit-box !important;
   -webkit-line-clamp: 1 !important;
-  -webkit-box-orient: vertical !important; }
+  -webkit-box-orient: vertical !important;
+  text-align: justify; }
 
 .line-clamp-2 {
   white-space: normal !important;
