@@ -42,7 +42,7 @@
             <table
                 class="table table-borderless table-customize table-head-fixed text-nowrap table-striped">
                 <thead>
-                    <tr>
+                    <tr style="background-color: #dceaff;">
                         <th style="width: 1%;" class="text-nowrap">Tên cột</th>
                         <th>Kiểu dữ liệu</th>
                         <th>Mô tả</th>
@@ -94,8 +94,9 @@
                             </div>  
                         </td>
                         <td>                            
-                            <TagsEdit class="d-inline" 
-                                v-model="column.tagItems"/>
+                            <TagsEdit class="d-block mr-2" 
+                                v-model="column.tagItems"
+                                @submitTags="(tagItems) => {  }"/>
                         </td>
                     </tr>
                 </tbody>
@@ -112,7 +113,6 @@ const props = defineProps({
     viewSettings: { type: Object, required: true },
     columns: { type: Array<any>, required: true },
 });
-
 const dataSourceSelected = props.viewSettings.dataSourceItem;
 const databaseSelected = props.viewSettings.databaseSelected;
 const schemasSelected = props.viewSettings.schemasSelected;

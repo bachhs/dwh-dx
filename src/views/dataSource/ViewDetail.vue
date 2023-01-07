@@ -7,7 +7,7 @@
                     <i class="fas fa-info-circle text-lightblue mr-2"></i>
                     <el-button link style="font-size: 90%; padding: 0; margin: 0;"
                         v-for="(breadcrumbItem, indexBredcumb) in breadcrumbs"
-                        :key="indexBredcumb"
+                        :key="indexBredcumb" :disabled="isBusing"
                         @click="processingEvent({ eventName: breadcrumbItem.view, dataItem: breadcrumbItem.data })">
                         <el-icon
                             v-if="indexBredcumb > 0"
@@ -22,6 +22,7 @@
             <div class="d-flex align-items-center">
                 <div class="ml-1 mr-4">
                     <el-button type="primary"
+                        :disabled="isBusing"
                         @click="refreshData">
                         <el-icon><Refresh /></el-icon>
                         <span>Refresh</span>
@@ -30,6 +31,7 @@
                     <el-button
                         size="default"
                         type="danger"
+                        :disabled="isBusing"
                         @click="$emit('onChangeView', { viewName: 'ListData', data: null, })" >
                         <div>Thoát</div>
                     </el-button>
@@ -43,7 +45,7 @@
                         <div class="scrollbar-flex-content mt-1 ml-1">
                             <div class="card p-2 pl-3 pr-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Đơn vị</div>
-                                <h5 class="mt-1">{{ ds.organization.name }}</h5>
+                                <h6 class="mt-1">{{ ds.organization.name }}</h6>
                             </div>
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Dialect</div>
@@ -52,42 +54,42 @@
                                     <div class="mt-1 mb-1 mr-2"
                                         v-if="dataEngineItem && dataEngineItem !== null && dataEngineItem.iconName">
                                         <img :src="`/icons/databases/${dataEngineItem.iconName}`"
-                                            style=" height: 1.5rem; " />
+                                            style=" height: 1.2rem; " />
                                     </div>
                                     <div v-if="dataEngineItem && dataEngineItem !== null">
-                                        <h5 class="mt-1">{{dataEngineItem.name}}</h5>
+                                        <h6 class="mt-1">{{dataEngineItem.name}}</h6>
                                     </div>
                                 </div>
                             </div>
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Host</div>
-                                <h5 class="mt-1">{{ ds.host }}</h5>
+                                <h6 class="mt-1">{{ ds.host }}</h6>
                             </div>
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Port</div>
-                                <h5 class="mt-1">{{ ds.port }}</h5>
+                                <h6 class="mt-1">{{ ds.port }}</h6>
                             </div>
                             
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Trạng thái</div>
-                                <h5 class="mt-1 d-flex align-items-center">
+                                <h6 class="mt-1 d-flex align-items-center">
                                     <el-icon v-if="ds.status" class="text-success"><SuccessFilled /></el-icon>
                                     <el-icon v-else class="text-danger"><CircleCloseFilled /></el-icon>
                                     <span class="ml-1">{{ ds.status ? "Good" : "Not good" }}</span>
-                                </h5>
+                                </h6>
                             </div>
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item"
                                 v-if="ds.metaData && ds.metaData.version">
                                 <div>Version</div>
-                                <h5 class="mt-1">
+                                <h6 class="mt-1">
                                     {{ ds.metaData.version }}
-                                </h5>
+                                </h6>
                             </div>
                             <div class="card p-2 pl-3 pr-3 ml-3 text-nowrap scrollbar-dbinfo-item">
                                 <div>Ngày khởi tạo</div>
-                                <h5 class="mt-1">
+                                <h6 class="mt-1">
                                     {{ $filters.prettyDate(ds.created_at) }}
-                                </h5>
+                                </h6>
                             </div>
                             <div class="flex-fill d-none d-md-flex align-items-center card p-1 pl-3 pr-3 ml-3 mr-1 scrollbar-dbinfo-item">
                                 <div class="d-flex w-100">
@@ -148,6 +150,7 @@
                     <component ref="currentViewRef"
                         :is="currentView"
                         @processingEvent="processingEvent"
+                        @onLoadingChanged="(isLoading) => { isBusing = isLoading }"
                         :viewSettings="currentViewProps"
                     ></component>
                 </div>

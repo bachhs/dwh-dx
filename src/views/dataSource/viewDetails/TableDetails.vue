@@ -14,10 +14,13 @@
             <div class="flex-fill ml-3 d-flex align-items-center">
                 <el-icon class="text-primary"><PriceTag /></el-icon>
                 <div class="ml-1 text-nowrap overflow-hidden">
-                    <el-button class="button-new-tag ml-1" size="small">
-                        Xem tất cả
-                    </el-button>
-                    <TagsEdit class="d-inline" v-model="tagList"/>
+                    <el-tooltip content="Xem tất cả các tag">
+                        <el-button class="button-new-tag ml-1" size="small">
+                            <el-icon><CollectionTag /></el-icon>
+                        </el-button>
+                    </el-tooltip>
+                    <TagsEdit class="ml-1 d-inline-block" v-model="tagList"
+                        @submitTags="(tagItems) => { setTableTags(tableSelected.id, tagItems);  }"/>
                 </div>
             </div>
         </div>

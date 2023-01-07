@@ -40,6 +40,7 @@ export default {
     },
     setup(props: any) {
         const isLoading = ref(false);
+        const isBusing = ref(false);
         const ds: any = ref(null);
         const currentView = ref("DatabaseList");
         const currentViewProps = ref({});
@@ -145,6 +146,7 @@ export default {
         });
         return {
             isLoading,
+            isBusing,
             currentViewRef,
             ds,
             breadcrumbs,

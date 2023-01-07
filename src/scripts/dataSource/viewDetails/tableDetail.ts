@@ -2,7 +2,7 @@ import { dataSourceApi } from '@/api/dataSourceApi';
 import { tagApi } from '@/api/tagApi';
 // import type { Tag, TagCategory } from '@/types/tag';
 // import axios from 'axios';
-import { onMounted, ref, defineAsyncComponent } from 'vue';
+import { onMounted, ref, defineAsyncComponent, watch, computed } from 'vue';
 import type { SampleData } from '../type';
 import SkeletonBox from "@/components/SkeletonBox.vue";
 
@@ -18,14 +18,14 @@ function parseColumns(columns: any[]): any[] {
             dataType: dataType,
             dataLength: c.dataLength,
             isPrimaryKey: c.constraint === 'PRIMARY KEY',
-            tagItems: []
+            tagItems: c.tags ? c.tags.map(xTag => xTag.tagFQN) : [],
         };
     });
 }
 
 export default {
     props: ['viewSettings'],
-    emits: ['onChangeView', 'processingEvent'],
+    emits: ['onChangeView', 'processingEvent', "onLoadingChanged"],
     components : {
         SchemaView: defineAsyncComponent({
             loader: () => import("@/views/dataSource/tableDetail/SchemaView.vue"),
@@ -56,7 +56,7 @@ export default {
             loadingComponent: SkeletonBox,
         }),
     },
-    setup(props: any) {
+    setup(props:any, { emit }) {
         const isLoading = ref(false);
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
@@ -71,7 +71,9 @@ export default {
         const tableInfo = ref<Object>({});
         const columns = ref([] as any[]);
         const sampleData = ref<SampleData>();
-        const tagList = ref<string[]>([]);
+        const tagList = computed(() =>{
+            return tableInfo.value && tableInfo.value.tags ? tableInfo.value.tags.map(xTag => xTag.tagFQN) : [];
+        });
 
         const fetchColumns = async ( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) => {
             isLoading.value = true;
@@ -83,21 +85,24 @@ export default {
             );
             columns.value = parseColumns(res.data.columns);
             tableInfo.value = {
+                id: res.data.id,
+                name: res.data.name,
                 tableType: res.data.tableType,
                 changeDescription: res.data.changeDescription,
                 href: res.data.href,
+                tags: res.data.tags,
             }
             isLoading.value = false;
         };
  
 
-        const fetchTagList = async () => {
-            const res = await tagApi.tagList();
-            tagList.value = res.data.data
-                .map((x) => x.children?.map((y) => y.fullyQualifiedName))
-                .filter((x) => x)
-                .flat();
-        };
+        // const fetchTagList = async () => {
+        //     const res = await tagApi.tagList();
+        //     tagList.value = res.data.data
+        //         .map((x) => x.children?.map((y) => y.fullyQualifiedName))
+        //         .filter((x) => x)
+        //         .flat();
+        // };
 
         const setTableDescription = async ( tableMetaId: string, description: string ) => {
             await dataSourceApi.updateTableDescription(
@@ -136,7 +141,7 @@ export default {
                 schemasSelected.name,
                 tableSelected.name
             );
-            fetchTagList();
+            //fetchTagList();
         };
 
         onMounted(() => {
@@ -147,10 +152,14 @@ export default {
                 schemasSelected.name,
                 tableSelected.name
             );
-            fetchTagList();
+            //fetchTagList();
+        });
+        watch(isLoading, (newVal) => {
+            emit("onLoadingChanged", newVal);
         });
         return {
             props,
+            tableSelected,
             isLoading,
             activityFilter,
             contentHeight,
@@ -159,8 +168,9 @@ export default {
             tableInfo,
             columns,
             sampleData,
-            fetchTagList,
+            //fetchTagList,
             tagList,
+            setTableTags,
             refreshData,
         };
     },

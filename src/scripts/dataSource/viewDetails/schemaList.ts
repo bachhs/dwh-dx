@@ -1,16 +1,16 @@
 import { dataSourceApi } from "@/api/dataSourceApi";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
 import { updateDatabseDescription, updateSchemaDescription } from "@/helpers/dataSourceHelper";
 import { ElMessage } from 'element-plus';
 
 export default {
     props: ["viewSettings"],
-    emits: ["onChangeView", "processingEvent"],
+    emits: ["onChangeView", "processingEvent", "onLoadingChanged"],
     components: {
         SetDescriptionModal,
     },
-    setup(props: any) {
+    setup(props:any, { emit }) {
         const isLoading = ref(false);
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
@@ -52,6 +52,9 @@ export default {
         onMounted(() => {
             // hard code for now
             fetchSchemas(dataSourceSelected.name, databaseSelected.name);
+        });
+        watch(isLoading, (newVal) => {
+            emit("onLoadingChanged", newVal);
         });
         return {
             isLoading,
