@@ -8,7 +8,9 @@
             @keyup.enter="handleInputConfirm" 
             @blur="handleInputConfirm" /> -->            
         <div class="d-inline-block mr-1" v-if="inputVisible">
-            <el-select v-model="inputValue" class="mr-2" placeholder="Chọn tag.." size="small">
+            <el-select v-model="inputValue" class="mr-2" placeholder="Chọn tag.." 
+                style="width: 120px;"
+                size="small">
                 <el-option v-for="item in tagListSelections"
                     :key="item"
                     :label="item"
@@ -18,12 +20,12 @@
             <el-button class="button-new-tag ml-0" 
                 size="small" type="primary"
                 @click="handleInputConfirm">
-                <el-icon><Plus /></el-icon>
+                <el-icon><Check /></el-icon>
             </el-button>
             <el-button class="button-new-tag ml-1" 
                 size="small"
                 @click="handleDone">
-                <el-icon><Check /></el-icon>
+                <el-icon><Close /></el-icon>
             </el-button>
         </div>
         <el-button v-else class="button-new-tag ml-1" 
@@ -42,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { ref, nextTick, watch } from 'vue';
+    import { ref, watch } from 'vue';
     //import { ElInput } from 'element-plus';
     import { tagApi } from '@/api/tagApi';
     const props = defineProps({

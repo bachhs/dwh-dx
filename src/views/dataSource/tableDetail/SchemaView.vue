@@ -96,7 +96,7 @@
                         <td>                            
                             <TagsEdit class="d-block mr-2" 
                                 v-model="column.tagItems"
-                                @submitTags="(tagItems) => {  }"/>
+                                @submitTags="(tagItems:Array<string>) => { setColumnTags(tableSelected.id, indexColumn, tagItems);  }"/>
                         </td>
                     </tr>
                 </tbody>
@@ -105,7 +105,8 @@
     </el-scrollbar>
 </template>
 <script setup lang="ts">    
-import { ref, watch, defineComponent } from 'vue';
+import { ref, watch } from 'vue';
+import { dataSourceApi } from '@/api/dataSourceApi';
 import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
 import { updateTableDescription, updateColumnDescription } from "@/helpers/dataSourceHelper";
 import { ElMessage } from 'element-plus';
@@ -141,4 +142,8 @@ const updateColumnDesc = (metaId:number, description:string) => {
         });
     });
 }; 
+
+const setColumnTags = async ( tableMetaId: string, columnId: number, tags: string[] ) => {
+    await dataSourceApi.updateColumnTags(tableMetaId, columnId, tags);
+};
 </script>

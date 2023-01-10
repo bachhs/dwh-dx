@@ -1,5 +1,5 @@
 import { dataSourceApi } from '@/api/dataSourceApi';
-import { tagApi } from '@/api/tagApi';
+//import { tagApi } from '@/api/tagApi';
 // import type { Tag, TagCategory } from '@/types/tag';
 // import axios from 'axios';
 import { onMounted, ref, defineAsyncComponent, watch, computed } from 'vue';
@@ -18,7 +18,7 @@ function parseColumns(columns: any[]): any[] {
             dataType: dataType,
             dataLength: c.dataLength,
             isPrimaryKey: c.constraint === 'PRIMARY KEY',
-            tagItems: c.tags ? c.tags.map(xTag => xTag.tagFQN) : [],
+            tagItems: c.tags ? c.tags.map((xTag:any) => xTag.tagFQN) : [],
         };
     });
 }
@@ -56,7 +56,7 @@ export default {
             loadingComponent: SkeletonBox,
         }),
     },
-    setup(props:any, { emit }) {
+    setup(props:any, { emit }:any) {
         const isLoading = ref(false);
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;
@@ -68,11 +68,11 @@ export default {
         const contentNodataHeight = 'calc(100vh - 24rem)';
         const contentNodataWithFilterHeight = 'calc(100vh - 28rem)';
 
-        const tableInfo = ref<Object>({});
+        const tableInfo = ref<any>({});
         const columns = ref([] as any[]);
         const sampleData = ref<SampleData>();
         const tagList = computed(() =>{
-            return tableInfo.value && tableInfo.value.tags ? tableInfo.value.tags.map(xTag => xTag.tagFQN) : [];
+            return tableInfo.value && tableInfo.value.tags ? tableInfo.value.tags.map((xTag:any) => xTag.tagFQN) : [];
         });
 
         const fetchColumns = async ( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) => {
@@ -104,27 +104,23 @@ export default {
         //         .flat();
         // };
 
-        const setTableDescription = async ( tableMetaId: string, description: string ) => {
-            await dataSourceApi.updateTableDescription(
-                tableMetaId,
-                description
-            );
-        };
+        // const setTableDescription = async ( tableMetaId: string, description: string ) => {
+        //     await dataSourceApi.updateTableDescription(
+        //         tableMetaId,
+        //         description
+        //     );
+        // };
 
-        const setColumnDescription = async ( tableMetaId: string, columnId: number, description: string ) => {
-            await dataSourceApi.updateColumnDescription(
-                tableMetaId,
-                columnId,
-                description
-            );
-        };
+        // const setColumnDescription = async ( tableMetaId: string, columnId: number, description: string ) => {
+        //     await dataSourceApi.updateColumnDescription(
+        //         tableMetaId,
+        //         columnId,
+        //         description
+        //     );
+        // };
 
         const setTableTags = async (tableMetaId: string, tags: string[]) => {
             await dataSourceApi.updateTableTags(tableMetaId, tags);
-        };
-
-        const setColumnTags = async ( tableMetaId: string, columnId: number, tags: string[] ) => {
-            await dataSourceApi.updateColumnTags(tableMetaId, columnId, tags);
         };
 
         // sample table tags

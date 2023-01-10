@@ -60,6 +60,15 @@ app.config.globalProperties.$filters = {
             sameElse: "DD/MM/YYYY HH:mm:ss",
         });
     },
+    prettyDateUnix(value: any) {
+        if (!value) return "--";
+        return moment.unix(value).calendar(null, {
+            sameDay: "[Today] HH:mm:ss",
+            lastDay: "[Yesterday] HH:mm:ss",
+            lastWeek: "DD/MM/YYYY HH:mm:ss",
+            sameElse: "DD/MM/YYYY HH:mm:ss",
+        });
+    },
 };
 app.config.globalProperties.$router = router;
 

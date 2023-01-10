@@ -10,7 +10,7 @@ export default {
     components: {
         SetDescriptionModal,
     },
-    setup(props:any, { emit }) {
+    setup(props:any, { emit }:any) {
         const isLoading = ref(false);
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databaseSelected = props.viewSettings.databaseSelected;

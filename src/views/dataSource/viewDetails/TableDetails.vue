@@ -20,7 +20,7 @@
                         </el-button>
                     </el-tooltip>
                     <TagsEdit class="ml-1 d-inline-block" v-model="tagList"
-                        @submitTags="(tagItems) => { setTableTags(tableSelected.id, tagItems);  }"/>
+                        @submitTags="(tagItems:Array<string>) => { setTableTags(tableSelected.id, tagItems);  }"/>
                 </div>
             </div>
         </div>
@@ -48,8 +48,8 @@
                                 <i class="fas fa-history"></i>
                             </div>
                             <div class="ml-1">
-                                Lịch sử và tác vụ
-                                <span class="ml-1 label label-counting">5</span>
+                                Lịch sử tác động
+                                <!-- <span class="ml-1 label label-counting">5</span> -->
                             </div>
                         </div>
                     </div>

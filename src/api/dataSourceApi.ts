@@ -60,33 +60,9 @@ export const dataSourceApi = {
             "description": descriptionHtml
         });
     },
-    fetchTables(
-        datasourceName: string,
-        databaseName: string,
-        schemaName: string
-    ) {
+    fetchTables( datasourceName: string, databaseName: string, schemaName: string ) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table`
-        );
-    },
-    fetchColumns(
-        datasourceName: string,
-        databaseName: string,
-        schemaName: string,
-        tableName: string
-    ) {
-        return axios(
-            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/column`
-        );
-    },
-    fetchSampleData(
-        datasourceName: string,
-        databaseName: string,
-        schemaName: string,
-        tableName: string
-    ) {
-        return axios(
-            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/sample`
         );
     },
     updateTableDescription(tableMetaId: string, description: string) {
@@ -94,23 +70,36 @@ export const dataSourceApi = {
             description,
         });
     },
-    updateColumnDescription( tableMetaId: string, columnId: number, description: string ) {
-        ///api/v1/meta/database_service/table/{metaId}/column/{columnId}/description
-        return axios.post(
-            `/meta/database_service/table/${tableMetaId}/column/${columnId}/description`,
-            {
-                description,
-            }
-        );
-    },
     updateTableTags(tableMetaId: string, tags: string[]) {
         return axios.post(`/meta/database_service/table/${tableMetaId}/tags`, {
             tags,
         });
     },
+    fetchColumns( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) {
+        return axios(
+            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/column`
+        );
+    },
+    updateColumnDescription( tableMetaId: string, columnId: number, description: string ) {
+        return axios.post(
+            `/meta/database_service/table/${tableMetaId}/column/${columnId}/description`, {
+                description,
+            }
+        );
+    },
     updateColumnTags(tableMetaId: string, columnId: number, tags: string[]) {
-        return axios.post(`/meta/table/${tableMetaId}/column/${columnId}/tags`, {
+        return axios.post(`/meta/database_service/table/${tableMetaId}/column/${columnId}/tags`, {
             tags,
         });
+    },
+    fetchSampleData( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) {
+        return axios(
+            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/sample`
+        );
+    },
+    fetchActivityFeedData( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) {
+        return axios(
+            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/feed`
+        );
     },
 };
