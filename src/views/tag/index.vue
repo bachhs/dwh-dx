@@ -8,7 +8,7 @@
                     <div class="p-2 pl-3 pr-3">
                         <div><strong class="text-navy">Danh mục tag</strong></div>
                         <div class="mt-3">
-                            <el-button class="w-100">
+                            <el-button class="w-100" @click="centerDialogVisible = true">
                                 <el-icon><Plus /></el-icon>
                                 <span class="ml-2">Thêm danh mục tag</span>
                             </el-button>
@@ -59,7 +59,7 @@
                                 </el-button>
                                 <el-button class="ml-1 ml-md-2" type="primary">
                                     <el-icon><Plus /></el-icon> 
-                                    <span class="ml-1 d-none d-md-inline">Thêm mới tag</span>
+                                    <span class="ml-1 d-none d-md-inline" @click="centerDialogChildVisible = true">Thêm mới tag</span>
                                 </el-button>
                                 <el-button class="ml-1 ml-md-2" type="danger">
                                     <el-icon><Delete /></el-icon>
@@ -100,15 +100,18 @@
                                     <tbody>
                                         <tr v-for="tagChildItem in tagSelected.children" v-bind:key="tagChildItem.id">
                                             <td class="text-nowrap">
-                                                <div class="pr-3">{{tagChildItem.name}}</div>
+                                                <div class="pr-3">
+                                                    <strong class="text-navy">{{tagChildItem.name}}</strong>
+                                                </div>
                                             </td>
                                             <td>
                                                 <div class="w-100 d-flex align-items-center">
                                                     <div v-if="tagChildItem.description">
-                                                        <div class="text-normal" style="white-space: normal;" v-html="tagChildItem.description"></div>
+                                                        <div class="text-normal" style="white-space: normal;" 
+                                                            v-html="tagChildItem.description"></div>
                                                     </div>
                                                     <div v-else>No description</div>
-                                                    <!-- <SetDescriptionModal v-model="tagChildItem.description">
+                                                    <SetDescriptionModal v-model="tagChildItem.description">
                                                         <template #label>
                                                             <span class="m-2 d-flex align-items-center">
                                                                 <el-icon :size="20">
@@ -116,7 +119,7 @@
                                                                 </el-icon>
                                                             </span>
                                                         </template>
-                                                    </SetDescriptionModal> -->
+                                                    </SetDescriptionModal>
                                                 </div>   
                                             </td>
                                             <td class="text-center">
@@ -149,6 +152,46 @@
                 </el-card>
             </div>
         </div>
+
+        <el-dialog
+            v-model="centerDialogVisible"
+            close-on-click-modal="false"
+            title="Thêm mới danh mục tag"
+            width="99%"
+            style="max-width: 60rem;"
+            align-center>
+            <div>
+                <TagInfoEdit v-model="tagSelected"/>
+            </div>
+            <template #footer>
+            <span class="dialog-footer">
+                <el-button @click="centerDialogVisible = false">Huỷ bỏ</el-button>
+                <el-button type="primary" @click="centerDialogVisible = false">
+                    Lưu thông tin
+                </el-button>
+            </span>
+            </template>
+        </el-dialog>
+
+        <el-dialog
+            v-model="centerDialogChildVisible"
+            close-on-click-modal="false"
+            title="Thêm mới tag"
+            width="99%"
+            style="max-width: 60rem;"
+            align-center>
+            <div>
+                <TagInfoEdit :isCategoryEdit="false"/>
+            </div>
+            <template #footer>
+            <span class="dialog-footer">
+                <el-button @click="centerDialogChildVisible = false">Huỷ bỏ</el-button>
+                <el-button type="primary" @click="centerDialogChildVisible = false">
+                    Lưu thông tin
+                </el-button>
+            </span>
+            </template>
+        </el-dialog>
     </div>
 </template>
 
