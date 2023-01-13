@@ -483,3 +483,9 @@ body {
 //         }
 //     }
 // }
+
+.description-html-text{
+    p:last-child{
+        margin-bottom: 0;
+    }
+}

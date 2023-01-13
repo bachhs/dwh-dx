@@ -1,4 +1,5 @@
 import type { PagingPayload } from '.';
+import { ref } from 'vue';
 
 export interface AddTagRequest {
     name: string;
@@ -6,14 +7,14 @@ export interface AddTagRequest {
 }
 
 export interface AddTagCategoryRequest extends AddTagRequest {
-    categoryType: 'Descriptive' | 'Classification';
+    categoryType: string;
 }
 
 export interface TagCategory extends AddTagCategoryRequest {
     id: string;
     usageCount: number;
     deleted: boolean;
-    children: Tag[];
+    children: ref<Array<Tag>>;
 }
 
 export interface Tag {
@@ -25,6 +26,11 @@ export interface Tag {
     usageCount: number;
     deprecated: boolean;
     deleted: boolean;
+}
+
+export interface ListTagResponse {
+    data: TagCategory[];
+    paging: PagingPayload;
 }
 
 export interface ListTagResponse {

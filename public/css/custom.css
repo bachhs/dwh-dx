@@ -257,4 +257,7 @@ body {
   padding-top: 0.8rem !important;
   padding-bottom: 0.8rem !important; }
 
+.description-html-text p:last-child {
+  margin-bottom: 0; }
+
 /*# sourceMappingURL=custom.css.map */

@@ -4,14 +4,25 @@
     <div class="flex-fill d-flex flex-column w-100 p-2" v-loading="false">
         <div class="flex-fill row row-eq-height">
             <div class="col-12 col-md-2 d-flex flex-column">
-                <el-card class="flex-fill" :body-style="{ padding: '0px' }">
+                <el-card class="flex-fill" 
+                    v-loading="isLoadingTagCategory"
+                    :body-style="{ padding: '0px' }">
                     <div class="p-2 pl-3 pr-3">
                         <div><strong class="text-navy">Danh mục tag</strong></div>
-                        <div class="mt-3">
-                            <el-button class="w-100" @click="centerDialogVisible = true">
-                                <el-icon><Plus /></el-icon>
-                                <span class="ml-2">Thêm danh mục tag</span>
-                            </el-button>
+                        <div class="mt-3 d-flex align-items-center">
+                            <div class="flex-fill">
+                                <el-button class="w-100" 
+                                    type="primary"    
+                                    @click="openAddTagCategoryModal">
+                                    <el-icon><Plus /></el-icon>
+                                    <span class="ml-1">Thêm danh mục tag</span>
+                                </el-button>
+                            </div>
+                            <div class="ml-2">
+                                <el-button @click="refreshTagData">
+                                    <el-icon><Refresh /></el-icon>
+                                </el-button>
+                            </div>
                         </div>
                     </div>
                     <div class="mt-2 tag-list-container">
@@ -59,9 +70,10 @@
                                 </el-button>
                                 <el-button class="ml-1 ml-md-2" type="primary">
                                     <el-icon><Plus /></el-icon> 
-                                    <span class="ml-1 d-none d-md-inline" @click="centerDialogChildVisible = true">Thêm mới tag</span>
+                                    <span class="ml-1 d-none d-md-inline" @click="openAddTagChildModal">Thêm mới tag</span>
                                 </el-button>
-                                <el-button class="ml-1 ml-md-2" type="danger">
+                                <el-button class="ml-1 ml-md-2" type="danger"
+                                    @click="deleteTagCategory">
                                     <el-icon><Delete /></el-icon>
                                     <span class="ml-1 d-none d-md-inline">Xoá danh mục</span>
                                 </el-button>
@@ -70,10 +82,12 @@
                         <div class="mt-2 card p-3 pt-0 pb-0">
                             <div class="d-flex">
                                 <div class="flex-fill">
-                                    <div v-html="tagSelected.description"></div>
+                                    <div v-if="tagSelected.description" v-html="tagSelected.description"></div>
+                                    <div v-else>Không có mô tả</div>
                                 </div>
                                 <div class="ml-3">
-                                    <SetDescriptionModal v-model="tagSelected.description">
+                                    <SetDescriptionModal v-model="tagSelected.description"
+                                        @onFormSubmit="(descriptionHTML) => updateTagCategory(descriptionHTML)">
                                         <template #label>
                                             <div class="m-2 d-flex align-items-center">
                                                 <el-icon :size="20">
@@ -92,28 +106,29 @@
                                     class="w-100 table table-borderless table-customize table-head-fixed text-nowrap table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="width: 1%;" class="text-nowrap">Name</th>
-                                            <th class="text-left">Description</th>
-                                            <th style="width: 1%;" class="text-nowrap">Action</th>
+                                            <th style="width: 1%;" class="text-nowrap">Tên Tag</th>
+                                            <th class="text-left">Mô tả</th>
+                                            <th style="width: 1%;" class="text-nowrap">Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="tagChildItem in tagSelected.children" v-bind:key="tagChildItem.id">
-                                            <td class="text-nowrap">
+                                            <td class="text-nowrap" style="vertical-align: top;">
                                                 <div class="pr-3">
                                                     <strong class="text-navy">{{tagChildItem.name}}</strong>
                                                 </div>
                                             </td>
-                                            <td>
-                                                <div class="w-100 d-flex align-items-center">
+                                            <td  style="vertical-align: top;">
+                                                <div class="w-100 d-flex align-items-start">
                                                     <div v-if="tagChildItem.description">
-                                                        <div class="text-normal" style="white-space: normal;" 
+                                                        <div class="text-normal description-html-text" style="white-space: normal;" 
                                                             v-html="tagChildItem.description"></div>
                                                     </div>
                                                     <div v-else>No description</div>
-                                                    <SetDescriptionModal v-model="tagChildItem.description">
+                                                    <SetDescriptionModal v-model="tagChildItem.description"
+                                                        @onFormSubmit="(descriptionHTML) => updateTagItem(tagChildItem, descriptionHTML)">
                                                         <template #label>
-                                                            <span class="m-2 d-flex align-items-center">
+                                                            <span class="ml-2 mr-2 d-flex align-items-center">
                                                                 <el-icon :size="20">
                                                                     <Edit />
                                                                 </el-icon>
@@ -122,7 +137,7 @@
                                                     </SetDescriptionModal>
                                                 </div>   
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-center"  style="vertical-align: top;">
                                                 <el-tooltip
                                                     class="box-item text-nowrap"
                                                     effect="dark"
@@ -131,7 +146,8 @@
                                                     <el-button
                                                         size="large"
                                                         link
-                                                        class="text-danger">
+                                                        class="text-danger"
+                                                        @click="deleteTagItem(tagChildItem)">
                                                         <el-icon
                                                             :size="20"
                                                             style="vertical-align: middle;" >
@@ -159,18 +175,13 @@
             title="Thêm mới danh mục tag"
             width="99%"
             style="max-width: 60rem;"
-            align-center>
+            align-center
+            v-loading="centerDialogVisible && isLoadingSubmit">
             <div>
-                <TagInfoEdit v-model="tagSelected"/>
+                <TagInfoEdit ref="addTagCategoryModalRef" v-model="tagSelected"
+                    @modalCloseTrigger="centerDialogVisible = false"
+                    @submit="(formData) => { addTagCategory(formData) }"/>
             </div>
-            <template #footer>
-            <span class="dialog-footer">
-                <el-button @click="centerDialogVisible = false">Huỷ bỏ</el-button>
-                <el-button type="primary" @click="centerDialogVisible = false">
-                    Lưu thông tin
-                </el-button>
-            </span>
-            </template>
         </el-dialog>
 
         <el-dialog
@@ -179,18 +190,13 @@
             title="Thêm mới tag"
             width="99%"
             style="max-width: 60rem;"
-            align-center>
+            align-center
+            v-loading="centerDialogChildVisible && isLoadingSubmit">
             <div>
-                <TagInfoEdit :isCategoryEdit="false"/>
+                <TagInfoEdit ref="addTagChildModalRef" :isCategoryEdit="false"
+                    @modalCloseTrigger="centerDialogChildVisible = false"
+                    @submit="(formData) => { addTagItem(formData) }"/>
             </div>
-            <template #footer>
-            <span class="dialog-footer">
-                <el-button @click="centerDialogChildVisible = false">Huỷ bỏ</el-button>
-                <el-button type="primary" @click="centerDialogChildVisible = false">
-                    Lưu thông tin
-                </el-button>
-            </span>
-            </template>
         </el-dialog>
     </div>
 </template>

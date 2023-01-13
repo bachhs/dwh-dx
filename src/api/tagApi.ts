@@ -6,6 +6,9 @@ import type {
 import axios from 'axios';
 
 export const tagApi = {
+    tagCategoryTypeList() {
+        return axios.get<Array<string>>(`/meta/tag/category-types`);
+    },
     tagList() {
         return axios.get<ListTagResponse>(`/meta/tag`);
     },
@@ -21,11 +24,7 @@ export const tagApi = {
     createTag(tagCategoryName: string, request: AddTagRequest) {
         return axios.post(`/meta/tag/${tagCategoryName}`, request);
     },
-    updateTag(
-        tagCategoryName: string,
-        tagName: string,
-        request: AddTagRequest
-    ) {
+    updateTag( tagCategoryName: string, tagName: string, request: AddTagRequest ) {
         return axios.put(`/meta/tag/${tagCategoryName}/${tagName}`, request);
     },
     deleteTag(tagCategoryName: string, tagName: string) {
