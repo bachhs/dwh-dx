@@ -64,10 +64,10 @@
                                 <h4><strong class="text-navy">{{tagSelected.name}}</strong></h4>
                             </div>
                             <div>
-                                <el-button type="primary">
+                                <!-- <el-button type="primary">
                                     <el-icon><Refresh /></el-icon> 
                                     <span class="ml-1 d-none d-md-inline">Làm mới</span>
-                                </el-button>
+                                </el-button> -->
                                 <el-button class="ml-1 ml-md-2" type="primary">
                                     <el-icon><Plus /></el-icon> 
                                     <span class="ml-1 d-none d-md-inline" @click="openAddTagChildModal">Thêm mới tag</span>
