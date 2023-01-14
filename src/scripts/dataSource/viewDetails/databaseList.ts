@@ -1,16 +1,16 @@
-import { dataSourceApi } from "@/api/dataSourceApi";
-import { onMounted, ref, watch } from "vue";
-import SetDescriptionModal from "@/components/modals/SetDescriptionModal.vue";
-import { updateDatabseDescription } from "@/helpers/dataSourceHelper";
+import { dataSourceApi } from '@/api/dataSourceApi';
+import { onMounted, ref, watch } from 'vue';
+import SetDescriptionModal from '@/components/modals/SetDescriptionModal.vue';
+import { updateDatabseDescription } from '@/helpers/dataSourceHelper';
 import { ElMessage } from 'element-plus';
 
 export default {
-    props: ["viewSettings"],
-    emits: ["onChangeView", "processingEvent", "onLoadingChanged"],
+    props: ['viewSettings'],
+    emits: ['onChangeView', 'processingEvent', 'onLoadingChanged'],
     components: {
         SetDescriptionModal,
     },
-    setup(props:any, { emit }) {
+    setup(props: any, { emit }: { emit: any }) {
         const isLoading = ref(false);
         const dataSourceSelected = props.viewSettings.dataSourceItem;
         const databases = ref([]);
@@ -20,24 +20,25 @@ export default {
             databases.value = res.data.data;
             isLoading.value = false;
         };
-        const updateDatabseDesc = (metaId:string, description:string) => {
-            updateDatabseDescription(metaId, description).then((metaData:any) =>{
-                ElMessage({
-                    message: "Cập nhật mô tả database thành công",
-                    type: 'success',
-                });
-                fetchDatabases(dataSourceSelected.name);
-            });
+        const updateDatabseDesc = (metaId: string, description: string) => {
+            updateDatabseDescription(metaId, description).then(
+                (metaData: any) => {
+                    ElMessage({
+                        message: 'Cập nhật mô tả database thành công',
+                        type: 'success',
+                    });
+                    fetchDatabases(dataSourceSelected.name);
+                }
+            );
         };
-        const refreshData = () =>{
+        const refreshData = () => {
             fetchDatabases(dataSourceSelected.name);
         };
         onMounted(() => {
-            // hard code for now
             fetchDatabases(dataSourceSelected.name);
         });
         watch(isLoading, (newVal) => {
-            emit("onLoadingChanged", newVal);
+            emit('onLoadingChanged', newVal);
         });
         return {
             isLoading,

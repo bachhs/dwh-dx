@@ -1,5 +1,6 @@
 import type DatasourceInfo from '@/scripts/dataSource/type';
 import axios from 'axios';
+import { omAxios } from '@/config/apiClients';
 
 export const dataSourceApi = {
     dataSourceList(params: any) {
@@ -49,7 +50,11 @@ export const dataSourceApi = {
         );
     },
     fetchDatabases(datasourceName: string) {
-        return axios(`/meta/database_service/${datasourceName}/database`);
+        return omAxios('/databases', {
+            params: {
+                service: datasourceName,
+            },
+        });
     },
     updateDatabseDescription(metaId: string, descriptionHtml: string) {
         return axios.post(
