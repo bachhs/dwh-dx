@@ -1,4 +1,2 @@
-import axios from "axios";
-export const searchIndexTableApi = {
-    
-} 
+import axios from 'axios';
+export const searchIndexTableApi = {};

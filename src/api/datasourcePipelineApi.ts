@@ -1,5 +1,6 @@
 import type { ListPipelineResponse } from '@/scripts/datasourcePipeline/type';
 import axios from 'axios';
+
 export const datasourcePipelineApi = {
     dtsPipelineList(params: { page: number; size: number }) {
         const requestParams: any = {

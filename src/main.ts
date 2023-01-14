@@ -1,27 +1,27 @@
-import { createApp, defineAsyncComponent } from "vue";
-import { createPinia } from "pinia";
-import ElementPlus from "element-plus";
-import * as ElementPlusIconsVue from "@element-plus/icons-vue";
-import "element-plus/dist/index.css";
-import axios from "axios";
-import App from "./App.vue";
-import router from "./router";
+import { createApp, defineAsyncComponent } from 'vue';
+import { createPinia } from 'pinia';
+import ElementPlus from 'element-plus';
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+import 'element-plus/dist/index.css';
+import axios from 'axios';
+import App from './App.vue';
+import router from './router';
 //import NoData from "@/components/NoData.vue";
 import CKEditor from '@ckeditor/ckeditor5-vue';
-import { Waypoint } from "vue-waypoint";
+import { Waypoint } from 'vue-waypoint';
 //import ReadmoreModal from "@/components/modals/ReadmoreModal.vue";
 import VueLazyLoad from 'vue3-lazyload';
 import TextClamp from 'vue3-text-clamp';
 //import TagsEdit from '@/components/TagsEdit.vue';
-import SkeletonBoxWithoutLoading from "@/components/SkeletonBoxWithoutLoading.vue";
-import moment from "moment";
-import "./assets/main.css";
+import SkeletonBoxWithoutLoading from '@/components/SkeletonBoxWithoutLoading.vue';
+import moment from 'moment';
+import './assets/main.css';
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
     },
 });
 
@@ -32,20 +32,28 @@ app.use(ElementPlus);
 app.use(CKEditor);
 app.use(VueLazyLoad);
 app.use(TextClamp);
-app.component("no-data", defineAsyncComponent({
-    loader: () => import("@/components/NoData.vue"),
-    loadingComponent: SkeletonBoxWithoutLoading,
-}));
-app.component("Waypoint", Waypoint);
-app.component("ReadmoreModal", defineAsyncComponent({
-    loader: () => import("@/components/modals/ReadmoreModal.vue"),
-    loadingComponent: SkeletonBoxWithoutLoading,
-}));
-app.component("TagsEdit", defineAsyncComponent({
-    loader: () =>
-        import('@/components/TagsEdit.vue'),
-    loadingComponent: SkeletonBoxWithoutLoading,
-}));
+app.component(
+    'no-data',
+    defineAsyncComponent({
+        loader: () => import('@/components/NoData.vue'),
+        loadingComponent: SkeletonBoxWithoutLoading,
+    })
+);
+app.component('Waypoint', Waypoint);
+app.component(
+    'ReadmoreModal',
+    defineAsyncComponent({
+        loader: () => import('@/components/modals/ReadmoreModal.vue'),
+        loadingComponent: SkeletonBoxWithoutLoading,
+    })
+);
+app.component(
+    'TagsEdit',
+    defineAsyncComponent({
+        loader: () => import('@/components/TagsEdit.vue'),
+        loadingComponent: SkeletonBoxWithoutLoading,
+    })
+);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);
 }
@@ -54,25 +62,25 @@ app.config.globalProperties.$filters = {
     prettyDate(value: any) {
         if (!value) value = new Date();
         return moment(value).calendar(null, {
-            sameDay: "[Today] HH:mm:ss",
-            lastDay: "[Yesterday] HH:mm:ss",
-            lastWeek: "DD/MM/YYYY HH:mm:ss",
-            sameElse: "DD/MM/YYYY HH:mm:ss",
+            sameDay: '[Today] HH:mm:ss',
+            lastDay: '[Yesterday] HH:mm:ss',
+            lastWeek: 'DD/MM/YYYY HH:mm:ss',
+            sameElse: 'DD/MM/YYYY HH:mm:ss',
         });
     },
     prettyDateUnix(value: any) {
-        if (!value) return "--";
+        if (!value) return '--';
         return moment.unix(value).calendar(null, {
-            sameDay: "[Today] HH:mm:ss",
-            lastDay: "[Yesterday] HH:mm:ss",
-            lastWeek: "DD/MM/YYYY HH:mm:ss",
-            sameElse: "DD/MM/YYYY HH:mm:ss",
+            sameDay: '[Today] HH:mm:ss',
+            lastDay: '[Yesterday] HH:mm:ss',
+            lastWeek: 'DD/MM/YYYY HH:mm:ss',
+            sameElse: 'DD/MM/YYYY HH:mm:ss',
         });
     },
 };
 app.config.globalProperties.$router = router;
 
-axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 //axios.defaults.withCredentials = true;
 //http://14.225.11.182:8081/swagger-ui/index.html
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
@@ -94,7 +102,7 @@ axios.interceptors.response.use(
         return response;
     },
     (error) => {
-        console.log("axios.interceptors", error);
+        console.log('axios.interceptors', error);
         //if (error && ((error.response && error.response.status && error.response.status === 401))) {
         //    window.location = '/login';
         //}
@@ -104,6 +112,6 @@ axios.interceptors.response.use(
 
 app.config.globalProperties.axios = axiosInstance;
 app.config.globalProperties.$http = axiosInstance;
-app.provide("axios", axiosInstance);
+app.provide('axios', axiosInstance);
 
-app.mount("#vue-app");
+app.mount('#vue-app');

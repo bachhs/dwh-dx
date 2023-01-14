@@ -37,77 +37,122 @@ export const dataSourceApi = {
     getDataSourceMetaData(datasourceName: string) {
         return axios(`/meta/database_service/${datasourceName}`);
     },
-    updateDataSourceDescription(datasourceName: string, descriptionHtml: string){
-        return axios.put(`/meta/database_service/${datasourceName}/description`, {
-            "description": descriptionHtml
-        });
+    updateDataSourceDescription(
+        datasourceName: string,
+        descriptionHtml: string
+    ) {
+        return axios.put(
+            `/meta/database_service/${datasourceName}/description`,
+            {
+                description: descriptionHtml,
+            }
+        );
     },
     fetchDatabases(datasourceName: string) {
         return axios(`/meta/database_service/${datasourceName}/database`);
     },
-    updateDatabseDescription(metaId: string, descriptionHtml: string){
-        return axios.post(`/meta/database_service/database/${metaId}/description`, {
-            "description": descriptionHtml
-        });
+    updateDatabseDescription(metaId: string, descriptionHtml: string) {
+        return axios.post(
+            `/meta/database_service/database/${metaId}/description`,
+            {
+                description: descriptionHtml,
+            }
+        );
     },
     fetchSchemas(datasourceName: string, databaseName: string) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema`
         );
     },
-    updateSchemaDescription(metaId:string, descriptionHtml: string){
-        return axios.post(`/meta/database_service/schema/${metaId}/description`, {
-            "description": descriptionHtml
-        });
+    updateSchemaDescription(metaId: string, descriptionHtml: string) {
+        return axios.post(
+            `/meta/database_service/schema/${metaId}/description`,
+            {
+                description: descriptionHtml,
+            }
+        );
     },
-    fetchTables( datasourceName: string, databaseName: string, schemaName: string ) {
+    fetchTables(
+        datasourceName: string,
+        databaseName: string,
+        schemaName: string
+    ) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table`
         );
     },
     updateTableDescription(tableMetaId: string, description: string) {
-        return axios.post(`/meta/database_service/table/${tableMetaId}/description`, {
-            description,
-        });
+        return axios.post(
+            `/meta/database_service/table/${tableMetaId}/description`,
+            {
+                description,
+            }
+        );
     },
     updateTableTags(tableMetaId: string, tags: string[]) {
         return axios.post(`/meta/database_service/table/${tableMetaId}/tags`, {
             tags,
         });
     },
-    deleteTableTags(tableMetaId: string, tagIndex:number) {
+    deleteTableTags(tableMetaId: string, tagIndex: number) {
         return axios.put(`/meta/database_service/table/${tableMetaId}/tags`, {
-            tagIndexes: [tagIndex], 
+            tagIndexes: [tagIndex],
         });
     },
-    fetchColumns( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) {
+    fetchColumns(
+        datasourceName: string,
+        databaseName: string,
+        schemaName: string,
+        tableName: string
+    ) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/column`
         );
     },
-    updateColumnDescription( tableMetaId: string, columnId: number, description: string ) {
+    updateColumnDescription(
+        tableMetaId: string,
+        columnId: number,
+        description: string
+    ) {
         return axios.post(
-            `/meta/database_service/table/${tableMetaId}/column/${columnId}/description`, {
+            `/meta/database_service/table/${tableMetaId}/column/${columnId}/description`,
+            {
                 description,
             }
         );
     },
     updateColumnTags(tableMetaId: string, columnId: number, tags: string[]) {
-        return axios.post(`/meta/database_service/table/${tableMetaId}/column/${columnId}/tags`, {
-            tags,
-        });
+        return axios.post(
+            `/meta/database_service/table/${tableMetaId}/column/${columnId}/tags`,
+            {
+                tags,
+            }
+        );
     },
-    deleteColumnTags(tableMetaId: string, columnId: number, tagIndex:number) {
-        return axios.put(`/meta/database_service/table/${tableMetaId}/column/${columnId}/tags`, {
-            tagIndexes: [tagIndex], 
-        });
+    deleteColumnTags(tableMetaId: string, columnId: number, tagIndex: number) {
+        return axios.put(
+            `/meta/database_service/table/${tableMetaId}/column/${columnId}/tags`,
+            {
+                tagIndexes: [tagIndex],
+            }
+        );
     },
-    fetchSampleData( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) {
+    fetchSampleData(
+        datasourceName: string,
+        databaseName: string,
+        schemaName: string,
+        tableName: string
+    ) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/sample`
         );
     },
-    fetchActivityFeedData( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) {
+    fetchActivityFeedData(
+        datasourceName: string,
+        databaseName: string,
+        schemaName: string,
+        tableName: string
+    ) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/feed`
         );
