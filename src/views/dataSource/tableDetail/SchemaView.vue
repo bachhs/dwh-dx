@@ -96,7 +96,8 @@
                         <td>                            
                             <TagsEdit class="d-block mr-2" 
                                 v-model="column.tagItems"
-                                @submitTags="(tagItems:Array<string>) => { setColumnTags(tableSelected.id, indexColumn, tagItems);  }"/>
+                                @submitTags="(tagItems:Array<string>) => { setColumnTags(tableSelected.id, indexColumn, tagItems);  }"
+                                @deleteTag="(tagIndex:number) => { deleteColumnTags(tableSelected.id, indexColumn, tagIndex);  }"/>
                         </td>
                     </tr>
                 </tbody>
@@ -145,5 +146,16 @@ const updateColumnDesc = (metaId:number, description:string) => {
 
 const setColumnTags = async ( tableMetaId: string, columnId: number, tags: string[] ) => {
     await dataSourceApi.updateColumnTags(tableMetaId, columnId, tags);
+    ElMessage({
+        message: "Cập nhật tag cho cột thành công",
+        type: 'success',
+    });
+};
+const deleteColumnTags = async ( tableMetaId: string, columnId: number, tagIndex:number) => {
+    await dataSourceApi.deleteColumnTags(tableMetaId, columnId, tagIndex);
+    ElMessage({
+        message: "Xoá tag cho cột thành công",
+        type: 'success',
+    });
 };
 </script>

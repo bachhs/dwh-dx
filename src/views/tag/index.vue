@@ -55,7 +55,8 @@
                 </el-card>
             </div>
             <div class="col-12 col-md-10 d-flex flex-column">
-                <el-card class="flex-fill" :body-style="{ padding: '0px' }">
+                <el-card class="flex-fill" :body-style="{ padding: '0px' }"
+                    v-loading="isLoadingTagChild">
                     <div class="p-2 pl-3 pr-3 d-flex flex-column" 
                         v-if="tagSelected" 
                         :style="`height: calc(100vh - 7rem);`">
@@ -64,10 +65,11 @@
                                 <h4><strong class="text-navy">{{tagSelected.name}}</strong></h4>
                             </div>
                             <div>
-                                <!-- <el-button type="primary">
+                                <el-button type="primary"
+                                        @click="getTagCategoryInfo">
                                     <el-icon><Refresh /></el-icon> 
                                     <span class="ml-1 d-none d-md-inline">Làm mới</span>
-                                </el-button> -->
+                                </el-button>
                                 <el-button class="ml-1 ml-md-2" type="primary">
                                     <el-icon><Plus /></el-icon> 
                                     <span class="ml-1 d-none d-md-inline" @click="openAddTagChildModal">Thêm mới tag</span>
@@ -136,6 +138,7 @@
                                                         </template>
                                                     </SetDescriptionModal>
                                                 </div>   
+                                                <div class="text-muted mt-0">Tag usage: <strong>{{tagChildItem.usageCount}}</strong></div>
                                             </td>
                                             <td class="text-center"  style="vertical-align: top;">
                                                 <el-tooltip

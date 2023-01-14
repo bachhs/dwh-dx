@@ -21,6 +21,9 @@ export const tagApi = {
     deleteTagCategory(tagCategoryName: string) {
         return axios.delete(`/meta/tag/${tagCategoryName}`);
     },
+    getTagCategoryInfo(tagCategoryName: string){
+        return axios.get<TagCategory>(`/meta/tag/${tagCategoryName}`);
+    },
     createTag(tagCategoryName: string, request: AddTagRequest) {
         return axios.post(`/meta/tag/${tagCategoryName}`, request);
     },

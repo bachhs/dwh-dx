@@ -50,7 +50,7 @@
     const props = defineProps({
         modelValue: { type: Array<String>, required: false, default: [] }
     });
-    const emit = defineEmits(['submitTags']);
+    const emit = defineEmits(['submitTags', 'deleteTag']);
 
     const tagList = ref<Array<String>>(props.modelValue);
     watch(() => props.modelValue, (newVal) =>{
@@ -77,7 +77,10 @@
     //const InputRef = ref<InstanceType<typeof ElInput>>();
 
     const handleClose = (tag:String) => {
-        tagList.value.splice(tagList.value.indexOf(tag), 1);
+        let tagIndex = tagList.value.indexOf(tag);
+        tagList.value.splice(tagIndex, 1);
+        emit("deleteTag", tagIndex);
+        //emit("submitTags", tagList.value);
     }
 
     const showInput = () => {
@@ -95,7 +98,8 @@
             if (indexRemove > -1) tagListSelections.value.splice(indexRemove, 1);
         }
         //inputVisible.value = false
-        inputValue.value = ''
+        inputValue.value = '';
+        emit("submitTags", tagList.value);
     }
 
     const handleDone = () => {

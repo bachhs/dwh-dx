@@ -148,7 +148,7 @@ export default {
                 );
 
             // create the model for the E-R diagram
-            console.log('nodeDataArray', tables.value);
+            //console.log('nodeDataArray', tables.value);
             var nodeDataArray = tables.value.map((xTable:any) => {
                 return {
                     key: xTable.name,
@@ -158,7 +158,7 @@ export default {
                     { name: "CategoryID", iskey: false, figure: "Decision", color: "purple" }]
                 };
             });
-            console.log('nodeDataArray', nodeDataArray);
+            //console.log('nodeDataArray', nodeDataArray);
             var linkDataArray = [
                 { from: "datasource_cdc", to: "task_result", text: "0..N", toText: "1" },
                 { from: "datasource_column", to: "datasource_parameter", text: "0..N", toText: "1" },

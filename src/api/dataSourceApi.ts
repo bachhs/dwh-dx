@@ -75,6 +75,11 @@ export const dataSourceApi = {
             tags,
         });
     },
+    deleteTableTags(tableMetaId: string, tagIndex:number) {
+        return axios.put(`/meta/database_service/table/${tableMetaId}/tags`, {
+            tagIndexes: [tagIndex], 
+        });
+    },
     fetchColumns( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) {
         return axios(
             `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/column`
@@ -90,6 +95,11 @@ export const dataSourceApi = {
     updateColumnTags(tableMetaId: string, columnId: number, tags: string[]) {
         return axios.post(`/meta/database_service/table/${tableMetaId}/column/${columnId}/tags`, {
             tags,
+        });
+    },
+    deleteColumnTags(tableMetaId: string, columnId: number, tagIndex:number) {
+        return axios.put(`/meta/database_service/table/${tableMetaId}/column/${columnId}/tags`, {
+            tagIndexes: [tagIndex], 
         });
     },
     fetchSampleData( datasourceName: string, databaseName: string, schemaName: string, tableName: string ) {

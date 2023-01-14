@@ -43,6 +43,18 @@ export default {
             });
         };
 
+        const getTagCategoryInfo = () => {
+            isLoadingTagChild.value = true;
+            let tabCategoryName = tagSelected.value.name;
+            tagApi.getTagCategoryInfo(tabCategoryName).then((response:any) =>{
+                isLoadingTagChild.value = false;
+                tagSelected.value = response.data;
+            }).catch((error) =>{
+                isLoadingTagChild.value = false;
+                console.error(error);
+            });
+        };
+
         //TagCategory 
         const addTagCategory = (formData:any) =>{
             isLoadingTagCategory.value = true;
@@ -108,8 +120,7 @@ export default {
                     isLoadingTagChild.value = false;
                     console.error(error);
                 });
-            }).catch(() => { })
-            
+            }).catch(() => { });            
         }
 
         //TagItem
@@ -223,6 +234,7 @@ export default {
             tagSelected,
             tagItemData,
             refreshTagData,
+            getTagCategoryInfo,
             isLoadingSubmit,
             addTagCategory,
             updateTagCategory,

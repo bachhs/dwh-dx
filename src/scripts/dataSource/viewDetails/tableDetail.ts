@@ -5,6 +5,7 @@ import { dataSourceApi } from '@/api/dataSourceApi';
 import { onMounted, ref, defineAsyncComponent, watch, computed } from 'vue';
 import type { SampleData } from '../type';
 import SkeletonBox from "@/components/SkeletonBox.vue";
+import { ElMessage, ElMessageBox } from 'element-plus';
 
 function parseColumns(columns: any[]): any[] {
     return columns.map((c) => {
@@ -93,41 +94,23 @@ export default {
                 tags: res.data.tags,
             }
             isLoading.value = false;
-        };
- 
-
-        // const fetchTagList = async () => {
-        //     const res = await tagApi.tagList();
-        //     tagList.value = res.data.data
-        //         .map((x) => x.children?.map((y) => y.fullyQualifiedName))
-        //         .filter((x) => x)
-        //         .flat();
-        // };
-
-        // const setTableDescription = async ( tableMetaId: string, description: string ) => {
-        //     await dataSourceApi.updateTableDescription(
-        //         tableMetaId,
-        //         description
-        //     );
-        // };
-
-        // const setColumnDescription = async ( tableMetaId: string, columnId: number, description: string ) => {
-        //     await dataSourceApi.updateColumnDescription(
-        //         tableMetaId,
-        //         columnId,
-        //         description
-        //     );
-        // };
+        }; 
 
         const setTableTags = async (tableMetaId: string, tags: string[]) => {
             await dataSourceApi.updateTableTags(tableMetaId, tags);
+            ElMessage({
+                message: `Đã cập nhật tag cho bảng thành công !`,
+                type: 'success',
+            });
         };
 
-        // sample table tags
-        // setTableTags('8f2c2595-253e-4e00-937b-7e3d4a99bf5d', [
-        //     'PersonalData.Personal',
-        //     'PersonalData.SpecialCategory',
-        // ]);
+        const deleteTableTags = async (tableMetaId: string, tagIndex:number) =>{
+            await dataSourceApi.deleteTableTags(tableMetaId, tagIndex);
+            ElMessage({
+                message: `Đã xoá tag cho bảng thành công !`,
+                type: 'success',
+            });
+        }
         
         const refreshData = () =>{
             // hard code for now
@@ -167,6 +150,7 @@ export default {
             //fetchTagList,
             tagList,
             setTableTags,
+            deleteTableTags,
             refreshData,
         };
     },

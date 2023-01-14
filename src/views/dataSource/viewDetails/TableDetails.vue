@@ -20,7 +20,8 @@
                         </el-button>
                     </el-tooltip>
                     <TagsEdit class="ml-1 d-inline-block" v-model="tagList"
-                        @submitTags="(tagItems:Array<string>) => { setTableTags(tableSelected.id, tagItems);  }"/>
+                        @submitTags="(tagItems:Array<string>) => { setTableTags(tableSelected.id, tagItems);  }"
+                        @deleteTag="(tagIndex:number) => { deleteTableTags(tableSelected.id, tagIndex);  }"/>
                 </div>
             </div>
         </div>
