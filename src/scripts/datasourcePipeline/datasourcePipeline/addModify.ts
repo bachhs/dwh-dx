@@ -7,7 +7,7 @@ const appState = useDataCategoryStore();
 export default {
     props: ['viewSettings'],
 	emits: ['onChangeView'],
-	setup(props:any, { emit }){
+	setup(props:any, { emit }:any){
 		const isLoading = ref(false);		
 		const organizationSelected = ref(appState.defaultOrganization.id);
 		const itemModel = ref({
@@ -31,10 +31,6 @@ export default {
 				{ min: 3, message: 'Nhập tối thiểu 3 ký tự..', trigger: 'blur' },
 			],
 			schedule: [
-				{ required: true, message: 'Vui lòng không bỏ trống..', trigger: 'blur' },
-				{ min: 3, message: 'Nhập tối thiểu 3 ký tự..', trigger: 'blur' },
-			],
-			dag_id: [
 				{ required: true, message: 'Vui lòng không bỏ trống..', trigger: 'blur' },
 				{ min: 3, message: 'Nhập tối thiểu 3 ký tự..', trigger: 'blur' },
 			],

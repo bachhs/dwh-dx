@@ -13,9 +13,9 @@ const router = createRouter({
             component: () => import('@/views/notification/Index.vue'),
         },
         {
-            path: '/search',
-            name: 'search',
-            component: () => import('@/views/search/Index.vue'),
+            path: '/search-engine',
+            name: 'SearchEngine',
+            component: () => import('@/views/search-engine/Index.vue'),
         },
         {
             path: '/data-source',

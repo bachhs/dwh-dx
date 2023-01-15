@@ -89,7 +89,7 @@ export const navItems = [
         type: 'link',
         name: 'Quản lí thẻ',
         icon: 'fas fa-tags',
-        url: '/tags',
+        url: '/tags-manager',
     },
     {
         type: 'link',

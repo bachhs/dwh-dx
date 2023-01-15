@@ -63,13 +63,13 @@
                                 </el-form-item> 
                                 <div class="mb-2">{{getCronExpressionReadable(itemModel.schedule)}}</div>
                             </div>
-                            <div class="mt-2"><strong>Dag ID</strong><span class="ml-1 text-danger">*</span></div>
+                            <!-- <div class="mt-2"><strong>Dag ID</strong><span class="ml-1 text-danger">*</span></div>
                             <div class="mt-2">
                                 <el-form-item label="" prop="dag_id">                                            
                                     <el-input v-model="itemModel.dag_id" size="large" 
                                         placeholder="Dag ID" clearable />
                                 </el-form-item>
-                            </div>
+                            </div> -->
                         </div>
                     </el-card>
                 </el-form>  
@@ -82,7 +82,8 @@
                         </div>
                     </div>                    
                 </div> -->
-                <div class="mt-3 text-center">                    
+                <div class="text-center mt-3 pt-4 pb-4"
+                    style="background-color: #f5f7fa">                    
                     <el-button size="large" type="primary"
                         @click="submitData">
                         <el-icon><CircleCheck /></el-icon>
