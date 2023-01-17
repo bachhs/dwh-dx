@@ -521,10 +521,17 @@
                     </g>
                 </svg>
             </div>
-            <h4 class="text-navy mt-4">Không có dữ liệu để hiển thị</h4>
+            <h4 class="text-navy mt-4">{{title}}</h4>
             <div class="text-muted">
-                <span>Thêm dữ liệu để hiển thị tại đây</span>
+                <span>{{subTitle}}</span>
             </div>
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+    const props = defineProps({
+        title: { type: String, required: false, default: 'Không có dữ liệu để hiển thị' },
+        subTitle: { type: String, required: false, default: 'Thêm dữ liệu để hiển thị tại đây' },
+    });
+</script>
