@@ -36,18 +36,27 @@ export const dataSourceApi = {
         return axios.delete(`/datasource/${dtsId}`);
     },
     getDataSourceMetaData(datasourceName: string) {
-        return axios(`/meta/database_service/${datasourceName}`);
+        return omAxios(`/services/databaseServices/name/${datasourceName}`, {
+            params: {
+                fields: 'owner',
+            },
+        });
     },
     updateDataSourceDescription(
         datasourceName: string,
         descriptionHtml: string
     ) {
-        return axios.put(
-            `/meta/database_service/${datasourceName}/description`,
-            {
+        return this.getDataSourceMetaData(datasourceName).then((response) => {
+            const data = response.data;
+
+            return omAxios.put('/services/databaseServices', {
+                connection: data.connection,
+                name: datasourceName,
+                serviceType: data.serviceType,
+                owner: data.owner,
                 description: descriptionHtml,
-            }
-        );
+            });
+        });
     },
     fetchDatabases(datasourceName: string) {
         return omAxios('/databases', {
@@ -119,8 +128,14 @@ export const dataSourceApi = {
         schemaName: string,
         tableName: string
     ) {
-        return axios(
-            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/column`
+        return omAxios(
+            `/tables/name/${datasourceName}.${databaseName}.${schemaName}.${tableName}`,
+            {
+                params: {
+                    fields: 'columns,owner,usageSummary,tags,dataModel,profile,tests,tableConstraints,extension',
+                    include: 'all',
+                },
+            }
         );
     },
     updateColumnDescription(
