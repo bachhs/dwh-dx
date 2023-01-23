@@ -53,6 +53,7 @@ export const dataSourceApi = {
         return omAxios('/databases', {
             params: {
                 service: datasourceName,
+                fields: 'owner,usageSummary',
             },
         });
     },
@@ -65,9 +66,12 @@ export const dataSourceApi = {
         );
     },
     fetchSchemas(datasourceName: string, databaseName: string) {
-        return axios(
-            `/meta/database_service/${datasourceName}/database/${databaseName}/schema`
-        );
+        return omAxios('/databaseSchemas', {
+            params: {
+                database: `${datasourceName}.${databaseName}`,
+                fields: 'owner,usageSummary',
+            },
+        });
     },
     updateSchemaDescription(metaId: string, descriptionHtml: string) {
         return axios.post(
@@ -82,8 +86,13 @@ export const dataSourceApi = {
         databaseName: string,
         schemaName: string
     ) {
-        return axios(
-            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table`
+        return omAxios(
+            `/databaseSchemas/name/${datasourceName}.${databaseName}.${schemaName}`,
+            {
+                params: {
+                    fields: 'tables,owner,usageSummary',
+                },
+            }
         );
     },
     updateTableDescription(tableMetaId: string, description: string) {
