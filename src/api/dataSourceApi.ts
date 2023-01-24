@@ -36,11 +36,14 @@ export const dataSourceApi = {
         return axios.delete(`/datasource/${dtsId}`);
     },
     getDataSourceMetaData(datasourceName: string) {
-        return omAxios(`/services/databaseServices/name/${datasourceName}`, {
-            params: {
-                fields: 'owner',
-            },
-        });
+        return omAxios.get(
+            `/services/databaseServices/name/${datasourceName}`,
+            {
+                params: {
+                    fields: 'owner',
+                },
+            }
+        );
     },
     updateDataSourceDescription(
         datasourceName: string,
@@ -59,7 +62,7 @@ export const dataSourceApi = {
         });
     },
     fetchDatabases(datasourceName: string) {
-        return omAxios('/databases', {
+        return omAxios.get('/databases', {
             params: {
                 service: datasourceName,
                 fields: 'owner,usageSummary',
@@ -67,15 +70,24 @@ export const dataSourceApi = {
         });
     },
     updateDatabseDescription(metaId: string, descriptionHtml: string) {
-        return axios.post(
-            `/meta/database_service/database/${metaId}/description`,
+        return omAxios.patch(
+            `/databases/${metaId}`,
+            [
+                {
+                    op: 'add',
+                    path: '/description',
+                    value: descriptionHtml,
+                },
+            ],
             {
-                description: descriptionHtml,
+                headers: {
+                    'Content-Type': 'application/json-patch+json',
+                },
             }
         );
     },
     fetchSchemas(datasourceName: string, databaseName: string) {
-        return omAxios('/databaseSchemas', {
+        return omAxios.get('/databaseSchemas', {
             params: {
                 database: `${datasourceName}.${databaseName}`,
                 fields: 'owner,usageSummary',
@@ -83,10 +95,19 @@ export const dataSourceApi = {
         });
     },
     updateSchemaDescription(metaId: string, descriptionHtml: string) {
-        return axios.post(
-            `/meta/database_service/schema/${metaId}/description`,
+        return omAxios.patch(
+            `/databaseSchemas/${metaId}`,
+            [
+                {
+                    op: 'add',
+                    path: '/description',
+                    value: descriptionHtml,
+                },
+            ],
             {
-                description: descriptionHtml,
+                headers: {
+                    'Content-Type': 'application/json-patch+json',
+                },
             }
         );
     },
@@ -95,7 +116,7 @@ export const dataSourceApi = {
         databaseName: string,
         schemaName: string
     ) {
-        return omAxios(
+        return omAxios.get(
             `/databaseSchemas/name/${datasourceName}.${databaseName}.${schemaName}`,
             {
                 params: {
@@ -105,22 +126,56 @@ export const dataSourceApi = {
         );
     },
     updateTableDescription(tableMetaId: string, description: string) {
-        return axios.post(
-            `/meta/database_service/table/${tableMetaId}/description`,
+        return omAxios.patch(
+            `/tables/${tableMetaId}`,
+            [
+                {
+                    op: 'add',
+                    path: '/description',
+                    value: description,
+                },
+            ],
             {
-                description,
+                headers: {
+                    'Content-Type': 'application/json-patch+json',
+                },
             }
         );
     },
     updateTableTags(tableMetaId: string, tags: string[]) {
-        return axios.post(`/meta/database_service/table/${tableMetaId}/tags`, {
-            tags,
+        const tagPayload = tags.map((tag, index) => {
+            return {
+                op: 'add',
+                path: `/tags/${index}`,
+                value: {
+                    labelType: 'Manual',
+                    source: 'Tag',
+                    state: 'Confirmed',
+                    tagFQN: tag,
+                },
+            };
+        });
+        return omAxios.patch(`/tables/${tableMetaId}`, tagPayload, {
+            headers: {
+                'Content-Type': 'application/json-patch+json',
+            },
         });
     },
     deleteTableTags(tableMetaId: string, tagIndex: number) {
-        return axios.put(`/meta/database_service/table/${tableMetaId}/tags`, {
-            tagIndexes: [tagIndex],
-        });
+        return omAxios.patch(
+            `/tables/${tableMetaId}`,
+            [
+                {
+                    op: 'remove',
+                    path: `/tags/${tagIndex}`,
+                },
+            ],
+            {
+                headers: {
+                    'Content-Type': 'application/json-patch+json',
+                },
+            }
+        );
     },
     fetchColumns(
         datasourceName: string,
@@ -128,7 +183,7 @@ export const dataSourceApi = {
         schemaName: string,
         tableName: string
     ) {
-        return omAxios(
+        return omAxios.get(
             `/tables/name/${datasourceName}.${databaseName}.${schemaName}.${tableName}`,
             {
                 params: {
@@ -143,26 +198,54 @@ export const dataSourceApi = {
         columnId: number,
         description: string
     ) {
-        return axios.post(
-            `/meta/database_service/table/${tableMetaId}/column/${columnId}/description`,
+        return omAxios.patch(
+            `/tables/${tableMetaId}`,
+            [
+                {
+                    op: 'add',
+                    path: `/columns/${columnId}/description`,
+                    value: description,
+                },
+            ],
             {
-                description,
+                headers: {
+                    'Content-Type': 'application/json-patch+json',
+                },
             }
         );
     },
     updateColumnTags(tableMetaId: string, columnId: number, tags: string[]) {
-        return axios.post(
-            `/meta/database_service/table/${tableMetaId}/column/${columnId}/tags`,
-            {
-                tags,
-            }
-        );
+        const tagPayload = tags.map((tag, index) => {
+            return {
+                op: 'add',
+                path: `/columns/${columnId}/tags/${index}`,
+                value: {
+                    labelType: 'Manual',
+                    source: 'Tag',
+                    state: 'Confirmed',
+                    tagFQN: tag,
+                },
+            };
+        });
+        return omAxios.patch(`/tables/${tableMetaId}`, tagPayload, {
+            headers: {
+                'Content-Type': 'application/json-patch+json',
+            },
+        });
     },
     deleteColumnTags(tableMetaId: string, columnId: number, tagIndex: number) {
-        return axios.put(
-            `/meta/database_service/table/${tableMetaId}/column/${columnId}/tags`,
+        return omAxios.patch(
+            `/tables/${tableMetaId}`,
+            [
+                {
+                    op: 'remove',
+                    path: `/columns/${columnId}/tags/${tagIndex}`,
+                },
+            ],
             {
-                tagIndexes: [tagIndex],
+                headers: {
+                    'Content-Type': 'application/json-patch+json',
+                },
             }
         );
     },
@@ -172,8 +255,13 @@ export const dataSourceApi = {
         schemaName: string,
         tableName: string
     ) {
-        return axios(
-            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/sample`
+        return omAxios.get(
+            `/tables/name/${datasourceName}.${databaseName}.${schemaName}.${tableName}`,
+            {
+                params: {
+                    fields: 'sampleData',
+                },
+            }
         );
     },
     fetchActivityFeedData(
@@ -182,8 +270,8 @@ export const dataSourceApi = {
         schemaName: string,
         tableName: string
     ) {
-        return axios(
-            `/meta/database_service/${datasourceName}/database/${databaseName}/schema/${schemaName}/table/${tableName}/feed`
+        return omAxios.get(
+            `/feed/<#E::table::${datasourceName}.${databaseName}.${schemaName}.${tableName}>`
         );
     },
 };
