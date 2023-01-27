@@ -3,9 +3,11 @@
         "**/node_modules": true
     },
     "[typescript]": {
+        "editor.tabSize": 4,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[vue]": {
+        "editor.tabSize": 4,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
 }
