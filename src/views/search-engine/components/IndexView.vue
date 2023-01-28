@@ -160,18 +160,11 @@
         <div class="mt-2">
             <el-tabs v-model="tabSelected">
                 <el-tab-pane label="Browse" name="Browse">
-                    <div class="mt-3 text-center">
-                        <no-data title="No records yet"
-                            subTitle="A record is an object you add to an index and want to search for. It can contain any number of attributes."/>
-                        <div class="mt-3">
-                            <el-button class="ml-2">
-                                <el-icon> <Plus /> </el-icon>
-                                <span>Upload records</span>
-                            </el-button>
-                        </div>
-                    </div>
+                    <BrowserTab/>
                 </el-tab-pane>
-                <el-tab-pane label="Configuration" name="Configuration">Configuration</el-tab-pane>
+                <el-tab-pane label="Configuration" name="Configuration">
+                    <ConfiguarationTab/>
+                </el-tab-pane>
                 <el-tab-pane label="Replicas" name="Replicas">Replicas</el-tab-pane>
                 <el-tab-pane label="Search API Logs" name="SearchAPILogs">Search API Logs</el-tab-pane>
                 <el-tab-pane label="Stats" name="Stats">Stats</el-tab-pane>
@@ -181,8 +174,17 @@
     </div>
 </template>
 
-<script setup language="ts"> 
-    import { ref } from "vue";
-    import { Search } from '@element-plus/icons-vue'
+<script setup lang="ts"> 
+    import { ref, defineAsyncComponent } from "vue";
+    import SkeletonBox from '@/components/SkeletonBox.vue';
+    import { Search } from '@element-plus/icons-vue';
+    const BrowserTab = defineAsyncComponent({
+        loader: () => import('@/views/search-engine/components/indexTabs/BrowserTab.vue'),
+        loadingComponent: SkeletonBox,
+    });
+    const ConfiguarationTab = defineAsyncComponent({
+        loader: () => import('@/views/search-engine/components/indexTabs/ConfiguarationTab.vue'),
+        loadingComponent: SkeletonBox,
+    });
     const tabSelected = ref('Browse');
 </script>
