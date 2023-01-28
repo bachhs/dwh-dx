@@ -74,6 +74,11 @@ const router = createRouter({
             name: 'support',
             component: () => import('@/views/support/Index.vue'),
         },
+        {
+            path: '/search-metadata',
+            name: 'SearchMetaData',
+            component: () => import('@/views/searchMetadata/Index.vue'),
+        },
     ],
 });
 export default router;
