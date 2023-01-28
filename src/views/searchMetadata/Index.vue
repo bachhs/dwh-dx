@@ -2,12 +2,33 @@
 
 </script>
 <template>
-    <div class="box-card p-1 w-100 flex-fill d-flex flex-column">
-        <section class="row row-eq-height mt-0 flex-fill">
+    <div class="box-card p-1 w-100  h-100 flex-fill d-flex flex-column">
+        <div>
+            <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
+                <div class="d-flex align-items-center">
+                    <div class="flex-fill">
+                        <el-input
+                            class="w-100"
+                            size="large"
+                            placeholder="Tìm kiếm Bảng, Topics, Dashboards, Pipelines and ML Models"
+                            :prefix-icon="Search"
+                        />
+                    </div>
+                    <div class="ml-2">
+                        <el-button size="large" @click="searchMeta()">
+                            <el-icon><Search /></el-icon> 
+                            <span class="ml-2">Tìm kiếm</span>
+                        </el-button>
+                    </div>
+                </div>
+            </el-card>
+        </div>
+        <section class="row row-eq-height mt-2 flex-fill">
             <div class="col-2">
-                <el-card class="h-100" :body-style="{ padding: '0rem 0rem 0.5rem 0.8rem' }">
-                    <el-scrollbar class="mt-2 pr-3" style="height: calc(100vh - 7rem);">
-                        <nav class="mt-2">
+                <el-card :body-style="{ padding: '0rem 0rem 0.5rem 0.8rem' }">
+                    <el-scrollbar class="mt-2 pr-3" 
+                        style="height: calc(100vh - 10.8rem);">
+                        <nav class="mt-0">
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                                 data-accordion="false">
                                 <li class="nav-item mb-2">
@@ -167,7 +188,7 @@
                 </el-card>
             </div>
             <div class="col-10">
-                <el-card class="h-100" :body-style="{ padding: '0.5rem 0.8rem' }">
+                <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
                     <el-tabs class="tab-data-result mt-0">
                         <el-tab-pane>
                             <template #label>
@@ -185,7 +206,7 @@
                             </template>
                             <div>
                                 <div>10 results</div>
-                                <el-scrollbar class="mt-2" style="height: calc(100vh - 16rem);">
+                                <el-scrollbar class="mt-2 pr-3" style="height: calc(100vh - 19.5rem);">
                                     <div>
                                         <div v-for="itemResult in 10"
                                             class="mb-3">
@@ -211,6 +232,16 @@
                                                     </div>
                                                     <div>
                                                         <span class="text-muted">Matches:</span> 1 in Name
+                                                    </div>
+                                                    <hr class="mb-2"/>
+                                                    <div class="d-flex align-items-center">
+                                                        <div>
+                                                            <el-icon><PriceTag /></el-icon>
+                                                        </div>
+                                                        <div class="ml-2">
+                                                            <span class="mr-2">#PersonalData.Personal</span>
+                                                            <span class="mr-2">#PersonalData.Personal</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </el-card>

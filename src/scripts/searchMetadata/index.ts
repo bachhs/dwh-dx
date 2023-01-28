@@ -1,5 +1,7 @@
 import { defineAsyncComponent, reactive, ref } from "vue";
 import SkeletonBox from '@/components/SkeletonBox.vue';
+import { Search } from '@element-plus/icons-vue';
+import { searchMetaApi } from '@/api/searchMetaApi';
 export default {
 	components: {
 
@@ -46,6 +48,16 @@ export default {
 				return { label: xItem, selected: false }
 			}),
 		});
-		return {data};
+
+		const searchMeta = () => {
+			searchMetaApi.searchTables().then((response:any) => {
+				console.log('response searchTables', response);
+			})
+			.catch((error:any) => {
+				console.error('error searchTables', error);
+			})
+		};
+
+		return {data, Search, searchMeta};
 	},
 };
