@@ -39,11 +39,36 @@ export default {
 		});
 		
 		const resultData:any = ref({
-			tableData: [],
-			topicData: [],
-			dashboardData: [],
-			pipelinesData: [],
-			mlModelData: [],
+			tableData: {
+				total: 0,
+				pageIndex: 1,
+				pageSize: 50,
+				data: []
+			},
+			topicData: {
+				total: 0,
+				pageIndex: 1,
+				pageSize: 50,
+				data: []
+			},
+			dashboardData: {
+				total: 0,
+				pageIndex: 1,
+				pageSize: 50,
+				data: []
+			},
+			pipelinesData: {
+				total: 0,
+				pageIndex: 1,
+				pageSize: 50,
+				data: []
+			},
+			mlModelData: {
+				total: 0,
+				pageIndex: 1,
+				pageSize: 50,
+				data: []
+			},
 		});
 
 		const initedDataSearch = () => {
@@ -64,7 +89,8 @@ export default {
 						return { label: xItem.key, docCount: xItem.doc_count, selected: false }
 					});
 				});
-				resultData.value.tableData = responseData.hits.hits;
+				resultData.value.tableData.total = responseData.hits.total.value;
+				resultData.value.tableData.data = responseData.hits.hits;
 			})
 			.catch((error:any) => {
 				console.error('error searchTables', error);

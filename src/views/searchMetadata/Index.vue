@@ -24,7 +24,7 @@
             </el-card>
         </div>
         <section class="row row-eq-height mt-2 flex-fill">
-            <div class="col-3">
+            <div class="col-20p">
                 <el-card :body-style="{ padding: '0rem 0rem 0.5rem 0.8rem' }">
                     <el-scrollbar class="mt-2 pr-3" 
                         style="height: calc(100vh - 10.8rem);">
@@ -187,7 +187,7 @@
                     </el-scrollbar>
                 </el-card>
             </div>
-            <div class="col-9">
+            <div class="col-80p">
                 <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
                     <el-tabs class="tab-data-result mt-0">
                         <el-tab-pane>
@@ -199,16 +199,16 @@
                                         </div>
                                         <div class="ml-1">
                                             <span>Bảng dữ liệu </span>
-                                            <span class="ml-1 bage-count-result badge"> {{resultData.tableData.length}}</span>
+                                            <span class="ml-1 bage-count-result badge"> {{resultData.tableData.total}}</span>
                                         </div>
                                     </div>
                                 </div>
                             </template>
                             <div>
-                                <div>{{resultData.tableData.length}} results</div>
+                                <div>{{resultData.tableData.total}} results</div>
                                 <el-scrollbar class="mt-2 pr-3" style="height: calc(100vh - 19.5rem);">
                                     <div>
-                                        <div v-for="itemResult in resultData.tableData" :key="itemResult._id"
+                                        <div v-for="itemResult in resultData.tableData.data" :key="itemResult._id"
                                             class="mb-3">
                                             <el-card :body-style="{ padding: '0.3rem 0.8rem 0.5rem' }">
                                                 <div>
@@ -252,12 +252,14 @@
                                     </div>
                                 </el-scrollbar>
                                 <div class="mt-3">
-                                    <el-pagination background layout="total, sizes, prev, pager, next" :total="1000" />
+                                    <el-pagination background layout="total, sizes, prev, pager, next" 
+                                        :total="resultData.tableData.total"
+                                        :page-sizes="[50, 100, 200, 300, 400]"/>
                                 </div>
                             </div>
                         </el-tab-pane>
 
-                        <el-tab-pane>
+                        <!-- <el-tab-pane>
                             <template #label>
                                 <div class="custom-tabs-label">
                                     <div class="d-flex align-items-center">
@@ -331,7 +333,7 @@
                             <div>
                                               
                             </div>
-                        </el-tab-pane>
+                        </el-tab-pane> -->
                     </el-tabs>
                 </el-card>
             </div>
@@ -363,5 +365,24 @@
             }
         }
     }
+}
+
+.col-20p {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+    position: relative;
+    width: 100%;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+}
+.col-80p {
+    -ms-flex: 0 0 80%;
+    flex: 0 0 80%;
+    max-width: 80%;
+    position: relative;
+    width: 100%;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
 }
 </style>
