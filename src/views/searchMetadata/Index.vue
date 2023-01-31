@@ -15,7 +15,7 @@
                         />
                     </div>
                     <div class="ml-2">
-                        <el-button size="large" @click="searchMeta()">
+                        <el-button size="large">
                             <el-icon><Search /></el-icon> 
                             <span class="ml-2">Tìm kiếm</span>
                         </el-button>
@@ -24,7 +24,7 @@
             </el-card>
         </div>
         <section class="row row-eq-height mt-2 flex-fill">
-            <div class="col-2">
+            <div class="col-3">
                 <el-card :body-style="{ padding: '0rem 0rem 0.5rem 0.8rem' }">
                     <el-scrollbar class="mt-2 pr-3" 
                         style="height: calc(100vh - 10.8rem);">
@@ -67,7 +67,7 @@
                                         </div>
                                         <div>                                        
                                             <span class="ml-1 bage-count badge">
-                                                0
+                                                {{filterItem.docCount}}
                                             </span>
                                         </div>
                                     </label>
@@ -89,7 +89,7 @@
                                         </div>
                                         <div>                                        
                                             <span class="ml-1 bage-count badge">
-                                                0
+                                                {{filterItem.docCount}}
                                             </span>
                                         </div>
                                     </label>
@@ -111,7 +111,7 @@
                                         </div>
                                         <div>                                        
                                             <span class="ml-1 bage-count badge">
-                                                0
+                                                {{filterItem.docCount}}
                                             </span>
                                         </div>
                                     </label>
@@ -133,7 +133,7 @@
                                         </div>
                                         <div>                                        
                                             <span class="ml-1 bage-count badge">
-                                                0
+                                                {{filterItem.docCount}}
                                             </span>
                                         </div>
                                     </label>
@@ -155,7 +155,7 @@
                                         </div>
                                         <div>                                        
                                             <span class="ml-1 bage-count badge">
-                                                0
+                                                {{filterItem.docCount}}
                                             </span>
                                         </div>
                                     </label>
@@ -177,7 +177,7 @@
                                         </div>
                                         <div>                                        
                                             <span class="ml-1 bage-count badge">
-                                                0
+                                                {{filterItem.docCount}}
                                             </span>
                                         </div>
                                     </label>
@@ -187,7 +187,7 @@
                     </el-scrollbar>
                 </el-card>
             </div>
-            <div class="col-10">
+            <div class="col-9">
                 <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
                     <el-tabs class="tab-data-result mt-0">
                         <el-tab-pane>
@@ -199,20 +199,20 @@
                                         </div>
                                         <div class="ml-1">
                                             <span>Bảng dữ liệu </span>
-                                            <span class="ml-1 bage-count-result badge"> 10</span>
+                                            <span class="ml-1 bage-count-result badge"> {{resultData.tableData.length}}</span>
                                         </div>
                                     </div>
                                 </div>
                             </template>
                             <div>
-                                <div>10 results</div>
+                                <div>{{resultData.tableData.length}} results</div>
                                 <el-scrollbar class="mt-2 pr-3" style="height: calc(100vh - 19.5rem);">
                                     <div>
-                                        <div v-for="itemResult in 10"
+                                        <div v-for="itemResult in resultData.tableData" :key="itemResult._id"
                                             class="mb-3">
                                             <el-card :body-style="{ padding: '0.3rem 0.8rem 0.5rem' }">
                                                 <div>
-                                                    <div class="text-muted"><small>covid_report.public</small></div>
+                                                    <div class="text-muted"><small>{{itemResult._source.fullyQualifiedName}}</small></div>
                                                     <div class="d-flex align-items-center">
                                                         <div>
                                                             <img
@@ -221,26 +221,29 @@
                                                             />
                                                         </div>
                                                         <div class="ml-1">
-                                                            <h5 class="m-0"><strong>danh_sach_f0</strong></h5>
+                                                            <h6 class="m-0"><strong>{{itemResult._source.name}}</strong></h6>
                                                         </div>
                                                     </div>
                                                     <div class="mt-1">
-                                                        No Owner | No Tier | Type: Regular
+                                                        No Owner | {{itemResult._source.tier === null ? 'No Tier' : itemResult._source.tier}} | Type: {{itemResult._source.tableType}}
                                                     </div>
-                                                    <div class="text-muted">
-                                                        The resulting AsyncComp is a wrapper component that only calls the loader function when it is actually rendered on the page.
+                                                    <div class="text-muted"
+                                                        v-if="itemResult._source.description">
+                                                        {{ itemResult._source.description }}
                                                     </div>
                                                     <div>
                                                         <span class="text-muted">Matches:</span> 1 in Name
                                                     </div>
-                                                    <hr class="mb-2"/>
-                                                    <div class="d-flex align-items-center">
+                                                    <hr class="mb-2" v-if="itemResult._source.tags.length > 0"/>
+                                                    <div class="d-flex align-items-center"
+                                                        v-if="itemResult._source.tags.length > 0">
                                                         <div>
                                                             <el-icon><PriceTag /></el-icon>
                                                         </div>
                                                         <div class="ml-2">
-                                                            <span class="mr-2">#PersonalData.Personal</span>
-                                                            <span class="mr-2">#PersonalData.Personal</span>
+                                                            <span class="mr-2" v-for="tagItem in itemResult._source.tags" :key="tagItem.tagFQN">
+                                                                {{tagItem.tagFQN}}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>

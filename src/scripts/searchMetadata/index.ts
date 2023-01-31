@@ -1,63 +1,80 @@
-import { defineAsyncComponent, reactive, ref } from "vue";
+import { defineAsyncComponent, reactive, ref, onMounted } from "vue";
 import SkeletonBox from '@/components/SkeletonBox.vue';
 import { Search } from '@element-plus/icons-vue';
 import { searchMetaApi } from '@/api/searchMetaApi';
+import type { forEach } from "lodash";
 export default {
 	components: {
 
 	},
 	setup() {
 		const  filterCollection:any = ref({
-			serviceTypeFilter: [
-				'Postgres', 'sql'
-			],
-			tierFilter: [
-				'Tier1', 'Tier2', 'Tier3', 'Tier4'
-			],
-			tagsFilter: [
-				'PersonalData', 'SpecialCategory'
-			],
-			dataSourceFilter: [
-				'test', 'bao_cao_covid', 'danh_sach_covid'
-			],
-			databaseFilter: [
-				'bigdata', 'covid_report'
-			],
-			schemaFilter: [
-				'public'
-			],
+			serviceTypeFilter: [],
+			tierFilter: [],
+			tagsFilter: [],
+			dataSourceFilter: [],
+			databaseFilter: [],
+			schemaFilter: [],
 		});
 		const data:any = ref<any>({
 			isShowDeleted: true,
 			serviceTypeFilter: filterCollection.value.serviceTypeFilter.map((xItem:any) => {
-				return { label: xItem, selected: false }
+				return { label: xItem, docCount: 0, selected: false }
 			}),
 			tierFilter: filterCollection.value.tierFilter.map((xItem:any) => {
-				return { label: xItem, selected: false }
+				return { label: xItem, docCount: 0, selected: false }
 			}),
 			tagsFilter: filterCollection.value.tagsFilter.map((xItem:any) => {
-				return { label: xItem, selected: false }
+				return { label: xItem, docCount: 0, selected: false }
 			}),
 			dataSourceFilter: filterCollection.value.dataSourceFilter.map((xItem:any) => {
-				return { label: xItem, selected: false }
+				return { label: xItem, docCount: 0, selected: false }
 			}),
 			databaseFilter: filterCollection.value.databaseFilter.map((xItem:any) => {
-				return { label: xItem, selected: false }
+				return { label: xItem, docCount: 0, selected: false }
 			}),
 			schemaFilter: filterCollection.value.schemaFilter.map((xItem:any) => {
-				return { label: xItem, selected: false }
+				return { label: xItem, docCount: 0, selected: false }
 			}),
 		});
+		
+		const resultData:any = ref({
+			tableData: [],
+			topicData: [],
+			dashboardData: [],
+			pipelinesData: [],
+			mlModelData: [],
+		});
 
-		const searchMeta = () => {
+		const initedDataSearch = () => {
+			const propertyMap = [
+				{ key: 'serviceTypeFilter', value: 'sterms#Service' },
+				{ key: 'tierFilter', value: 'sterms#Tier' },
+				{ key: 'tagsFilter', value: 'sterms#Tags' },
+				{ key: 'dataSourceFilter', value: 'sterms#ServiceName' },
+				{ key: 'databaseFilter', value: 'sterms#Database' },
+				{ key: 'schemaFilter', value: 'sterms#DatabaseSchema' }
+			];
 			searchMetaApi.searchTables().then((response:any) => {
-				console.log('response searchTables', response);
+				const responseData = response.data;
+				propertyMap.forEach(propItem => {
+					const dataBucket = responseData.aggregations[propItem.value].buckets;
+					//console.log(`response ${propItem.key}`, dataBucket);
+					data.value[propItem.key] = dataBucket.map((xItem:any) => {
+						return { label: xItem.key, docCount: xItem.doc_count, selected: false }
+					});
+				});
+				resultData.value.tableData = responseData.hits.hits;
 			})
 			.catch((error:any) => {
 				console.error('error searchTables', error);
 			})
 		};
 
-		return {data, Search, searchMeta};
+		onMounted(() =>{
+			initedDataSearch();
+		})
+
+		return { data, Search, resultData };
 	},
 };
