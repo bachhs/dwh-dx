@@ -1,13 +1,16 @@
 import { defineAsyncComponent, reactive, ref, onMounted } from "vue";
-import SkeletonBox from '@/components/SkeletonBox.vue';
+import { useDataCategoryStore } from "@/stores/dataCategory";
+const dataCategoryState = useDataCategoryStore(); 
+const databaseEnginesMap = dataCategoryState.databaseEnginesMap;
+//import SkeletonBox from '@/components/SkeletonBox.vue';
 import { Search } from '@element-plus/icons-vue';
 import { searchMetaApi } from '@/api/searchMetaApi';
-import type { forEach } from "lodash";
 export default {
 	components: {
 
 	},
 	setup() {
+		const isLoading = ref<boolean>(false);
 		const  filterCollection:any = ref({
 			serviceTypeFilter: [],
 			tierFilter: [],
@@ -16,8 +19,16 @@ export default {
 			databaseFilter: [],
 			schemaFilter: [],
 		});
+
+		const sortFieldOptions = [
+			{ name: "Last updated", value: "updatedAt" },
+			{ name: "Weekly Usage", value: "usageSummary.weeklyStats.count" },
+			{ name: "Relevance", value: "" },
+		]
+
 		const data:any = ref<any>({
-			isShowDeleted: true,
+			queryStr: '',
+			isShowDeleted: false,
 			serviceTypeFilter: filterCollection.value.serviceTypeFilter.map((xItem:any) => {
 				return { label: xItem, docCount: 0, selected: false }
 			}),
@@ -39,6 +50,8 @@ export default {
 		});
 		
 		const resultData:any = ref({
+			sortField: sortFieldOptions[0].value,
+			sortOrder: 'desc',
 			tableData: {
 				total: 0,
 				pageIndex: 1,
@@ -71,15 +84,28 @@ export default {
 			},
 		});
 
+		const getDbEngineIcon = (key:string) =>{
+            try{
+                if(key && databaseEnginesMap[key]){
+                    return databaseEnginesMap[key].value.iconName;
+                }
+            }catch(error){
+                console.error(error);
+            }
+            return "exclaimationquestionmark.svg";
+        };
+		
+		const propertyMap = [
+			{ key: 'serviceTypeFilter', value: 'sterms#Service' },
+			{ key: 'tierFilter', value: 'sterms#Tier' },
+			{ key: 'tagsFilter', value: 'sterms#Tags' },
+			{ key: 'dataSourceFilter', value: 'sterms#ServiceName' },
+			{ key: 'databaseFilter', value: 'sterms#Database' },
+			{ key: 'schemaFilter', value: 'sterms#DatabaseSchema' }
+		];
+
 		const initedDataSearch = () => {
-			const propertyMap = [
-				{ key: 'serviceTypeFilter', value: 'sterms#Service' },
-				{ key: 'tierFilter', value: 'sterms#Tier' },
-				{ key: 'tagsFilter', value: 'sterms#Tags' },
-				{ key: 'dataSourceFilter', value: 'sterms#ServiceName' },
-				{ key: 'databaseFilter', value: 'sterms#Database' },
-				{ key: 'schemaFilter', value: 'sterms#DatabaseSchema' }
-			];
+			isLoading.value = true;
 			searchMetaApi.searchTables().then((response:any) => {
 				const responseData = response.data;
 				propertyMap.forEach(propItem => {
@@ -91,16 +117,68 @@ export default {
 				});
 				resultData.value.tableData.total = responseData.hits.total.value;
 				resultData.value.tableData.data = responseData.hits.hits;
+				isLoading.value = false;
 			})
 			.catch((error:any) => {
-				console.error('error searchTables', error);
-			})
+				console.error('error initedDataSearch', error);
+				isLoading.value = false;
+			});
 		};
+
+		const searMetaData = () => {
+			isLoading.value = true;
+			let queryStr:string = data.value.queryStr;
+			let pageIndex:number = resultData.value.tableData.pageIndex;
+			let pageSize:number = resultData.value.tableData.pageSize;
+			let sortField:string = resultData.value.sortField;
+			let sortOrder:string = resultData.value.sortOrder;
+			let dialects:Array<string> = data.value.serviceTypeFilter.filter((xItem:any) => xItem.selected).map((xItem:any) => xItem.label);
+			let schemas:Array<string> = data.value.schemaFilter.filter((xItem:any) => xItem.selected).map((xItem:any) => xItem.label);
+			let tags:Array<string> = data.value.tagsFilter.filter((xItem:any) => xItem.selected).map((xItem:any) => xItem.label);
+
+			searchMetaApi.searchTables(queryStr, pageIndex, pageSize, sortField, sortOrder, dialects, schemas, tags)
+			.then((response:any) => {
+				const responseData = response.data;
+				console.log(`searchTables responseData`, responseData);
+				propertyMap.forEach(propItem => {
+					const dataBucket = responseData.aggregations[propItem.value].buckets;
+					//console.log(`response ${propItem.key}`, dataBucket);
+					data.value[propItem.key] = dataBucket.map((xItem:any) => {
+						let isSelected = false;
+						if(propItem.key === 'serviceTypeFilter') isSelected = dialects.includes(xItem.key);
+						if(propItem.key === 'schemaFilter') isSelected = schemas.includes(xItem.key);
+						if(propItem.key === 'tagsFilter') isSelected = tags.includes(xItem.key);
+						return { label: xItem.key, docCount: xItem.doc_count, selected: isSelected }
+					});
+				});
+				resultData.value.tableData.total = responseData.hits.total.value;
+				resultData.value.tableData.data = responseData.hits.hits;
+				isLoading.value = false;
+			})
+			.catch((error:any) => {
+				console.error('error searMetaData', error);
+				isLoading.value = false;
+			});
+		}
+
+		const clearAllFilter = () => {
+			isLoading.value = true;
+			initedDataSearch();
+		}
 
 		onMounted(() =>{
 			initedDataSearch();
 		})
 
-		return { data, Search, resultData };
+		return { 
+			isLoading, 
+			sortFieldOptions, 
+			getDbEngineIcon, 
+			data, 
+			Search, 
+			clearAllFilter, 
+			searMetaData, 
+			resultData 
+		};
 	},
 };

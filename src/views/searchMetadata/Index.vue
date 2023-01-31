@@ -2,7 +2,8 @@
 
 </script>
 <template>
-    <div class="box-card p-1 w-100  h-100 flex-fill d-flex flex-column">
+    <div class="box-card p-1 w-100  h-100 flex-fill d-flex flex-column"
+        v-loading="isLoading">
         <div>
             <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
                 <div class="d-flex align-items-center">
@@ -10,12 +11,14 @@
                         <el-input
                             class="w-100"
                             size="large"
+                            v-model="data.queryStr"
+                            @keyup.enter.native="searMetaData"
                             placeholder="Tìm kiếm Bảng, Topics, Dashboards, Pipelines and ML Models"
                             :prefix-icon="Search"
                         />
                     </div>
                     <div class="ml-2">
-                        <el-button size="large">
+                        <el-button size="large" @click="searMetaData">
                             <el-icon><Search /></el-icon> 
                             <span class="ml-2">Tìm kiếm</span>
                         </el-button>
@@ -32,7 +35,7 @@
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                                 data-accordion="false">
                                 <li class="nav-item mb-2">
-                                    <el-button link href="iframe.html">
+                                    <el-button link @click="clearAllFilter">
                                         <el-icon class="nav-icon ml-0 text-danger">
                                             <Close />
                                         </el-icon>
@@ -40,7 +43,7 @@
                                     </el-button>
                                 </li>
                                 <hr class="m-0 mb-2"/>
-                                <li class="nav-item mb-1">
+                                <!-- <li class="nav-item mb-1">
                                     <label class="pl-2 mb-0 d-flex align-items-center">
                                         <div role="button" class="flex-fill user-select-none cursor-pointer">
                                             <span>Hiển thị các mục đã xoá</span>
@@ -49,8 +52,7 @@
                                             <el-switch  v-model="data.isShowDeleted" size="small" />
                                         </div>
                                     </label>
-                                </li>
-                                <hr class="m-0  mt-1 mb-2"/>
+                                </li> -->
 
                                 <li class="nav-header text-muted ml-0 pl-2 mb-0 mt-0 pt-0">
                                     <strong>LOẠI DỮ LIỆU</strong>
@@ -60,7 +62,7 @@
                                     :key="filterItem.label">
                                     <label class="pl-2 mb-1 d-flex align-items-center">
                                         <div>
-                                            <el-checkbox  v-model="filterItem.selected" class="mb-0 h-auto"/>
+                                            <el-checkbox  v-model="filterItem.selected" @change="searMetaData" class="mb-0 h-auto"/>
                                         </div>
                                         <div role="button" class="ml-2 flex-fill user-select-none cursor-pointer">
                                             <span>{{filterItem.label}}</span>
@@ -73,7 +75,7 @@
                                     </label>
                                 </li>
 
-                                <hr class="m-0  mt-1 mb-2"/>
+                                <!-- <hr class="m-0  mt-1 mb-2"/>
                                 <li class="nav-header text-muted ml-0 pl-2 mb-0 mt-0 pt-0">
                                     <strong>TIER</strong>
                                 </li>
@@ -82,7 +84,7 @@
                                     :key="filterItem.label">
                                     <label class="pl-2 mb-1 d-flex align-items-center">
                                         <div>
-                                            <el-checkbox  v-model="filterItem.selected" class="mb-0 h-auto"/>
+                                            <el-checkbox  v-model="filterItem.selected" @change="searMetaData" class="mb-0 h-auto"/>
                                         </div>
                                         <div role="button" class="ml-2 flex-fill user-select-none cursor-pointer">
                                             <span>{{filterItem.label}}</span>
@@ -93,7 +95,7 @@
                                             </span>
                                         </div>
                                     </label>
-                                </li>
+                                </li> -->
 
                                 <hr class="m-0  mt-1 mb-2"/>
                                 <li class="nav-header text-muted ml-0 pl-2 mb-0 mt-0 pt-0">
@@ -104,7 +106,7 @@
                                     :key="filterItem.label">
                                     <label class="pl-2 mb-1 d-flex align-items-center">
                                         <div>
-                                            <el-checkbox  v-model="filterItem.selected" class="mb-0 h-auto"/>
+                                            <el-checkbox  v-model="filterItem.selected" @change="searMetaData" class="mb-0 h-auto"/>
                                         </div>
                                         <div role="button" class="ml-2 flex-fill user-select-none cursor-pointer">
                                             <span>{{filterItem.label}}</span>
@@ -126,7 +128,7 @@
                                     :key="filterItem.label">
                                     <label class="pl-2 mb-1 d-flex align-items-center">
                                         <div>
-                                            <el-checkbox  v-model="filterItem.selected" class="mb-0 h-auto"/>
+                                            <el-checkbox  v-model="filterItem.selected" @change="searMetaData" class="mb-0 h-auto"/>
                                         </div>
                                         <div role="button" class="ml-2 flex-fill user-select-none cursor-pointer">
                                             <span>{{filterItem.label}}</span>
@@ -148,7 +150,7 @@
                                     :key="filterItem.label">
                                     <label class="pl-2 mb-1 d-flex align-items-center">
                                         <div>
-                                            <el-checkbox  v-model="filterItem.selected" class="mb-0 h-auto"/>
+                                            <el-checkbox  v-model="filterItem.selected" @change="searMetaData" class="mb-0 h-auto"/>
                                         </div>
                                         <div role="button" class="ml-2 flex-fill user-select-none cursor-pointer">
                                             <span>{{filterItem.label}}</span>
@@ -170,7 +172,7 @@
                                     :key="filterItem.label">
                                     <label class="pl-2 mb-1 d-flex align-items-center">
                                         <div>
-                                            <el-checkbox  v-model="filterItem.selected" class="mb-0 h-auto"/>
+                                            <el-checkbox  v-model="filterItem.selected" @change="searMetaData" class="mb-0 h-auto"/>
                                         </div>
                                         <div role="button" class="ml-2 flex-fill user-select-none cursor-pointer">
                                             <span>{{filterItem.label}}</span>
@@ -188,7 +190,22 @@
                 </el-card>
             </div>
             <div class="col-80p">
-                <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
+                <el-card :body-style="{ padding: '0.5rem 0.8rem' }"
+                    class="position-relative">
+                    <div class="position-absolute"
+                        style="right: 1rem; z-index: 10;">
+                        <el-select v-model="resultData.sortField" 
+                            @change="searMetaData"
+                            placeholder="Sort by">
+                            <el-option v-for="item in sortFieldOptions" :key="item.value" :label="item.name" :value="item.value" />
+                        </el-select>
+                        <el-select class="ml-2" v-model="resultData.sortOrder" 
+                            @change="searMetaData"
+                            placeholder="Sort direction">
+                            <el-option label="Ascending" value="asc" />
+                            <el-option label="Descending" value="desc" />
+                        </el-select>
+                    </div>
                     <el-tabs class="tab-data-result mt-0">
                         <el-tab-pane>
                             <template #label>
@@ -204,7 +221,7 @@
                                     </div>
                                 </div>
                             </template>
-                            <div>
+                            <div v-if="resultData.tableData.total > 0">
                                 <div>{{resultData.tableData.total}} results</div>
                                 <el-scrollbar class="mt-2 pr-3" style="height: calc(100vh - 19.5rem);">
                                     <div>
@@ -225,15 +242,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="mt-1">
-                                                        No Owner | {{itemResult._source.tier === null ? 'No Tier' : itemResult._source.tier}} | Type: {{itemResult._source.tableType}}
+                                                        {{itemResult._source.tier === null ? 'No Tier' : itemResult._source.tier}} | Type: {{itemResult._source.tableType}}
                                                     </div>
                                                     <div class="text-muted"
-                                                        v-if="itemResult._source.description">
-                                                        {{ itemResult._source.description }}
+                                                        v-if="itemResult._source.description"
+                                                        v-html="itemResult._source.description.replace(/<[^>]*>/g, '')">
+                                                        
                                                     </div>
-                                                    <div>
+                                                    <!-- <div>
                                                         <span class="text-muted">Matches:</span> 1 in Name
-                                                    </div>
+                                                    </div> -->
                                                     <hr class="mb-2" v-if="itemResult._source.tags.length > 0"/>
                                                     <div class="d-flex align-items-center"
                                                         v-if="itemResult._source.tags.length > 0">
@@ -242,7 +260,7 @@
                                                         </div>
                                                         <div class="ml-2">
                                                             <span class="mr-2" v-for="tagItem in itemResult._source.tags" :key="tagItem.tagFQN">
-                                                                {{tagItem.tagFQN}}
+                                                                #{{tagItem.tagFQN}}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -252,11 +270,17 @@
                                     </div>
                                 </el-scrollbar>
                                 <div class="mt-3">
-                                    <el-pagination background layout="total, sizes, prev, pager, next" 
+                                    <el-pagination background layout="sizes, prev, pager, next" 
+                                        v-model:current-page="resultData.tableData.pageIndex"
+                                        v-model:page-size="resultData.tableData.pageSize"
                                         :total="resultData.tableData.total"
-                                        :page-sizes="[50, 100, 200, 300, 400]"/>
+                                        :page-sizes="[50, 100, 200, 300, 400]"
+                                        @size-change="searMetaData"
+                                        @current-change="searMetaData"/>
                                 </div>
                             </div>
+                            <no-data v-else style="height: calc(100vh - 14.2rem);" title="Không tìm thấy dữ liệu"
+                                :subTitle="`Chúng tôi không tìm thấy bảng nào phù hợp với từ khoá <strong>${data.queryStr}</strong>`"/>
                         </el-tab-pane>
 
                         <!-- <el-tab-pane>

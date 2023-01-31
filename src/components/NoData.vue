@@ -521,9 +521,9 @@
                     </g>
                 </svg>
             </div>
-            <h4 class="text-navy mt-4">{{title}}</h4>
+            <h4 class="text-navy mt-4" v-html="title"></h4>
             <div class="text-muted">
-                <span>{{subTitle}}</span>
+                <span v-html="subTitle"></span>
             </div>
         </div>
     </div>

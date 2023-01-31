@@ -15,7 +15,7 @@ export const searchMetaApi = {
         query?: string,
         page = 1,
         size = 10,
-        sortField?: string,
+        sortField = 'updatedAt',
         sortOrder = 'desc',
         dialects?: string[],
         schemas?: string[],
