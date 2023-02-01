@@ -19,7 +19,9 @@ export const searchMetaApi = {
         sortOrder = 'desc',
         dialects?: string[],
         schemas?: string[],
-        tags?: string[]
+        tags?: string[],
+        datasourceNames?: string[],
+        databaseNames?: string[]
     ) {
         let q = query ? `*${query}*` : '*';
 
@@ -31,6 +33,15 @@ export const searchMetaApi = {
 
         const tagFilter = parseFilters(tags, 'tags.tagFQN');
         if (tagFilter) q += ` AND ${tagFilter}`;
+
+        const datasourceNameFilter = parseFilters(
+            datasourceNames,
+            'service.name'
+        );
+        if (datasourceNameFilter) q += ` AND ${datasourceNameFilter}`;
+
+        const databaseNameFilter = parseFilters(databaseNames, 'database.name');
+        if (databaseNameFilter) q += ` AND ${databaseNameFilter}`;
 
         size = Math.max(size, 1);
         const from = Math.max(page - 1, 0) * size;
