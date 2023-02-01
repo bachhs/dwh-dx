@@ -134,46 +134,25 @@ export default {
 
         onMounted(() => {
             if (props.viewSettings) {
-                if (props.viewSettings.dataItem == null) {
-                    itemModel.value = {
-                        nameOfDS: props.viewSettings.dataItem.name,
-                        descOfDS: props.viewSettings.dataItem.name,
-                        organizationSelected: appState.defaultOrganization.id,
-                        organizationName: appState.defaultOrganization.name,
-                        typeOfDataIn: 'database',
-                        databaseEngineSelected: 'postgresql',
-                        fileTypeSelected: 'csv',
-                        apiMethod: 'GET',
-                        apiUrl: '',
-                        host: '',
-                        port: 5432,
-                        username: '',
-                        password: '',
-                        dbName: '',
-                    };
-                } else {
-                    const dataSourceItem = props.viewSettings.dataItem;
-                    itemModel.value = {
-                        nameOfDS: dataSourceItem.name,
-                        descOfDS:
-                            dataSourceItem.metaData &&
-                            dataSourceItem.metaData.description
-                                ? dataSourceItem.metaData.description
-                                : '',
-                        organizationSelected: dataSourceItem.organization.id,
-                        organizationName: dataSourceItem.organization.name,
-                        typeOfDataIn: dataSourceItem.type,
-                        databaseEngineSelected: dataSourceItem.dialect,
-                        fileTypeSelected: 'xlsx',
-                        apiMethod: 'GET',
-                        apiUrl: '',
-                        host: dataSourceItem.host,
-                        port: dataSourceItem.port,
-                        username: dataSourceItem.username,
-                        password: dataSourceItem.password,
-                        dbName: dataSourceItem.database,
-                    };
-                }
+                const dataSourceItem = props.viewSettings.dataItem;
+                const orgId = dataSourceItem.organization && dataSourceItem.organization.id ? dataSourceItem.organization.id : appState.defaultOrganization.id;
+                const orgName = dataSourceItem.organization && dataSourceItem.organization.name ? dataSourceItem.organization.name : appState.defaultOrganization.name;
+                itemModel.value = {
+                    nameOfDS: '',
+                    descOfDS: '',
+                    organizationSelected: orgId,
+                    organizationName: orgName,
+                    typeOfDataIn: 'database',
+                    databaseEngineSelected: 'postgresql',
+                    fileTypeSelected: 'csv',
+                    apiMethod: 'GET',
+                    apiUrl: '',
+                    host: '',
+                    port: 5432,
+                    username: '',
+                    password: '',
+                    dbName: '',
+                };
             }
         });
         return {

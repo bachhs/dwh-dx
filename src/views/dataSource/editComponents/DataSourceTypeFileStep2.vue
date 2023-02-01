@@ -1,6 +1,19 @@
 <template>
     <div>
-        <div class="row mt-2 w-100">
+        <div>
+            <div class="mt-2">
+                <strong>Cách tải lên dữ liệu file</strong
+                ><span class="ml-1 text-danger">*</span>
+            </div>
+            <div class="mt-2">
+                <el-select v-model="methodUploadSelected" class="w-100" placeholder="Chọn cách tải lên dữ liệu file" size="large">
+                    <el-option label="Upload tệp trực tiếp lên server" value="upload_file" />
+                    <el-option label="Tạo embed link để upload file" value="embed_link" />
+                </el-select>
+            </div>
+        </div>
+        <div class="row mt-4 w-100"
+            v-if="methodUploadSelected === 'upload_file'">            
             <div
                 class="col-12 col-md-2 type-datasource-item"
                 v-for="item in fileTypeDataSourceOptions"
@@ -55,6 +68,7 @@
     watch(() => props.dataSourceItem, (newVal) =>{
         itemModel.value = newVal;
     });
+    const methodUploadSelected = ref<string>('upload_file')
     // const controllerUpload = new AbortController();
     // const fileSelectorRef = ref<any>(null);
     // const files = ref([]);

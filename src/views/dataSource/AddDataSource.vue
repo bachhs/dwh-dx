@@ -70,7 +70,7 @@
                                 :dataSourceItem="itemModel"
                                 :organization="organization"
                                 @onFormSubmit="
-                                    (valid) => {
+                                    (valid:boolean) => {
                                         if (valid) stepWizard = stepWizard + 1;
                                     }
                                 " />
@@ -83,24 +83,16 @@
                             <div class="mt-2">
                                 <el-radio-group
                                     v-model="itemModel.typeOfDataIn">
-                                    <el-radio-button :label="`database`"
-                                        >Database</el-radio-button
-                                    >
-                                    <el-radio-button :label="`file`"
-                                        >File</el-radio-button
-                                    >
-                                    <el-radio-button :label="`api`"
-                                        >API</el-radio-button
-                                    >
+                                    <el-radio-button :label="`database`">Database</el-radio-button>
+                                    <el-radio-button :label="`file`">File</el-radio-button>
+                                    <el-radio-button :label="`api`">API</el-radio-button>
                                 </el-radio-group>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'database'">
                                 <DataSourceTypeDBStep2
                                     v-if="itemModel"
                                     :dataSourceItem="itemModel"
-                                    :databaseEngineOptions="
-                                        databaseEngineOptions
-                                    " />
+                                    :databaseEngineOptions="databaseEngineOptions" />
                                 <div class="mb-2 mt-3">
                                     <strong>Cấu hình kết nối</strong
                                     ><span class="ml-1 text-danger">*</span>
@@ -109,12 +101,7 @@
                                     ref="identityStep3Ref"
                                     v-if="itemModel"
                                     :dataSourceItem="itemModel"
-                                    @onFormSubmit="
-                                        (valid) => {
-                                            if (valid)
-                                                stepWizard = stepWizard + 1;
-                                        }
-                                    " />
+                                    @onFormSubmit="(valid:boolean) => { if (valid) stepWizard = stepWizard + 1; }" />
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
                                 <DataSourceTypeFileStep2

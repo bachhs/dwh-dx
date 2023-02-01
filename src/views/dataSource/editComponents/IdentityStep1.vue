@@ -76,9 +76,10 @@
     import { ref, reactive, watch } from 'vue';
     import type { FormInstance, FormRules } from 'element-plus';
     import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
     const props = defineProps({
-        dataSourceItem: { type: Object, required: true },
-        organization: { type: Array<any>, required: true }
+        dataSourceItem: { type: Object, required: true, default: null },
+        organization: { type: Array<any>, required: true, default: [] }
     });
     const editorConfigs = ref({
         editor: ClassicEditor,

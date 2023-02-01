@@ -48,7 +48,7 @@ export default {
                         viewSettings.value = {
                             viewName: 'AddData',
                             title: 'Thêm mới nguồn dữ liệu',
-                            dataItem: paramsObject.data == null ? new Object(null) : JSON.parse(JSON.stringify(paramsObject.data)),
+                            dataItem: new Object(null),
                         };
                         break;
                     case 'ModifyData':

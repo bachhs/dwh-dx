@@ -23,7 +23,7 @@ export const useDataCategoryStore = defineStore("dataCategory", () => {
 				}
 			});
 			databaseEngineOptions.value = tDataSourceItems;
-			databaseEnginesMap.value = tDataSourceItems.reduce(function(acc, cur, i) {
+			databaseEnginesMap.value = tDataSourceItems.reduce(function(acc:any, cur:any) {
 				acc[cur.key] = cur;
 				return acc;
 			}, {});

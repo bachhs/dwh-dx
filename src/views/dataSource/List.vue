@@ -19,8 +19,7 @@
                         size="large"
                         @change="filterDataFn" >
                         <el-option label="All" value="" />
-                        <el-option v-if="item && item.id"
-                            v-for="item in organization"
+                        <el-option v-for="item in organization"
                             :key="item.id"
                             :label="item.name"
                             :value="item.id" />
@@ -34,8 +33,7 @@
                         size="large"
                         @change="filterDataFn" >
                         <el-option label="All" value="" />
-                        <el-option v-if="item && item.id"
-                            v-for="item in databaseEngineOptions"
+                        <el-option v-for="item in databaseEngineOptions"
                             :key="item.id"
                             :label="item.name"
                             :value="item.id"
