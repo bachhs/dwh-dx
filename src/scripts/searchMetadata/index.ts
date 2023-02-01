@@ -135,8 +135,10 @@ export default {
 			let dialects:Array<string> = data.value.serviceTypeFilter.filter((xItem:any) => xItem.selected).map((xItem:any) => xItem.label);
 			let schemas:Array<string> = data.value.schemaFilter.filter((xItem:any) => xItem.selected).map((xItem:any) => xItem.label);
 			let tags:Array<string> = data.value.tagsFilter.filter((xItem:any) => xItem.selected).map((xItem:any) => xItem.label);
+			let datasourceNames:Array<string> = data.value.dataSourceFilter.filter((xItem:any) => xItem.selected).map((xItem:any) => xItem.label);
+			let databaseNames:Array<string> = data.value.databaseFilter.filter((xItem:any) => xItem.selected).map((xItem:any) => xItem.label);
 
-			searchMetaApi.searchTables(queryStr, pageIndex, pageSize, sortField, sortOrder, dialects, schemas, tags)
+			searchMetaApi.searchTables(queryStr, pageIndex, pageSize, sortField, sortOrder, dialects, schemas, tags, datasourceNames, databaseNames)
 			.then((response:any) => {
 				const responseData = response.data;
 				console.log(`searchTables responseData`, responseData);
@@ -148,6 +150,8 @@ export default {
 						if(propItem.key === 'serviceTypeFilter') isSelected = dialects.includes(xItem.key);
 						if(propItem.key === 'schemaFilter') isSelected = schemas.includes(xItem.key);
 						if(propItem.key === 'tagsFilter') isSelected = tags.includes(xItem.key);
+						if(propItem.key === 'dataSourceFilter') isSelected = datasourceNames.includes(xItem.key);
+						if(propItem.key === 'databaseFilter') isSelected = databaseNames.includes(xItem.key);
 						return { label: xItem.key, docCount: xItem.doc_count, selected: isSelected }
 					});
 				});
