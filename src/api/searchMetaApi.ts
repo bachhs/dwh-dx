@@ -21,7 +21,7 @@ export const searchMetaApi = {
         schemas?: string[],
         tags?: string[]
     ) {
-        let q = query ? query : '*';
+        let q = query ? `*${query}*` : '*';
 
         const dialectFilter = parseFilters(dialects, 'serviceType');
         if (dialectFilter) q += ` AND ${dialectFilter}`;
