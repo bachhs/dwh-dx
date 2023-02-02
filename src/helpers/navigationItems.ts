@@ -37,9 +37,15 @@ export const navItems = [
     },
     {
         type: 'link',
-        name: 'Tags',
-        icon: 'fas fa-tags',
-        url: '/tags-manager',
+        name: 'File Upload',
+        icon: 'fas fa-file',
+        url: '/file-upload',
+    },
+    {
+        type: 'link',
+        name: 'File Embed Link',
+        icon: 'fas fa-file-code',
+        url: '/file-embed-link',
     },
     {
         type: 'navHeader',
@@ -70,6 +76,12 @@ export const navItems = [
         name: 'Cấu hình công cụ tìm kiếm',
         icon: 'fas fa-chart-line',
         url: '/search-engine',
+    },
+    {
+        type: 'link',
+        name: 'Tìm kiếm meta data',
+        icon: 'fas fa-search',
+        url: '/search-metadata',
     },
     {
         type: 'navHeader',

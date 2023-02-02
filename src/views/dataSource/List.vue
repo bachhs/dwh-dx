@@ -18,7 +18,7 @@
                         placeholder="Tổ chức.."
                         size="large"
                         @change="filterDataFn" >
-                        <el-option label="All" value="" />
+                        <el-option label="Tất cả" value="" />
                         <el-option v-for="item in organization"
                             :key="item.id"
                             :label="item.name"
@@ -32,7 +32,7 @@
                         placeholder="Database engine.."
                         size="large"
                         @change="filterDataFn" >
-                        <el-option label="All" value="" />
+                        <el-option label="Tất cả" value="" />
                         <el-option v-for="item in databaseEngineOptions"
                             :key="item.id"
                             :label="item.name"

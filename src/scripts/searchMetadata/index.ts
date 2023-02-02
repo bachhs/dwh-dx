@@ -21,9 +21,9 @@ export default {
 		});
 
 		const sortFieldOptions = [
-			{ name: "Last updated", value: "updatedAt" },
-			{ name: "Weekly Usage", value: "usageSummary.weeklyStats.count" },
-			{ name: "Relevance", value: "" },
+			{ name: "Lần cập nhật cuối", value: "updatedAt" },
+			{ name: "Sử dụng hàng tuần", value: "usageSummary.weeklyStats.count" },
+			{ name: "Mức độ liên quan", value: "" },
 		]
 
 		const data:any = ref<any>({

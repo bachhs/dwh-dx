@@ -23,6 +23,16 @@ const router = createRouter({
             component: () => import('@/views/dataSource/Index.vue'),
         },
         {
+            path: '/file-upload',
+            name: 'fileUpload',
+            component: () => import('@/views/fileUpload/Index.vue'),
+        },
+        {
+            path: '/file-embed-link',
+            name: 'fileEmbedLink',
+            component: () => import('@/views/fileEmbedLink/Index.vue'),
+        },
+        {
             path: '/tags-manager',
             name: 'tagManager',
             component: () => import('@/views/tag/index.vue'),

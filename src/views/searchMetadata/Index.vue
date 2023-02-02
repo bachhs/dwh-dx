@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <script lang="ts" src="@/scripts/searchMetadata">
 
 </script>
@@ -196,14 +197,14 @@
                         style="right: 1rem; z-index: 10;">
                         <el-select v-model="resultData.sortField" 
                             @change="searMetaData"
-                            placeholder="Sort by">
+                            placeholder="Sắp xếp theo">
                             <el-option v-for="item in sortFieldOptions" :key="item.value" :label="item.name" :value="item.value" />
                         </el-select>
                         <el-select class="ml-2" v-model="resultData.sortOrder" 
                             @change="searMetaData"
-                            placeholder="Sort direction">
-                            <el-option label="Ascending" value="asc" />
-                            <el-option label="Descending" value="desc" />
+                            placeholder="Sắp xếp tăng/giảm">
+                            <el-option label="Tăng dần" value="asc" />
+                            <el-option label="Giảm dần" value="desc" />
                         </el-select>
                     </div>
                     <el-tabs class="tab-data-result mt-0">
