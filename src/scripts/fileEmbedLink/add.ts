@@ -2,7 +2,7 @@ import { ref, onMounted } from 'vue';
 import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory';
-import { fileUploadApi } from '@/api/fileUploadApi';
+import { fileEmbedLinkApi } from '@/api/fileEmbedLinkApi';
 const appState = useDataCategoryStore();
 export default {
     props: ['viewSettings'],

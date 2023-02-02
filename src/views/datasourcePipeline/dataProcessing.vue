@@ -85,7 +85,7 @@
                         <table
                             class="table table-striped table-head-fixed text-nowrap table-borderless">
                             <thead>
-                                <tr>
+                                <tr class="bg-white">
                                     <th
                                         class="pl-0 pt-2 pb-2 text-nowrap align-middle">
                                         <button>DỮ LIỆU NGUỒN</button>

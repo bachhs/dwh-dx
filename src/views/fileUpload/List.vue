@@ -68,13 +68,66 @@
                 v-if="listElements.data && listElements.data.length > 0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
-                        <div class="row row-eq-height">
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3 d-flex"
-                                v-for="ds in listElements.data"
-                                :key="ds.id">
-                                
-                            </div>
-                        </div>
+                        <table
+                            class="table table-striped table-head-fixed text-nowrap table-borderless">
+                            <thead>
+                                <tr class="bg-white">
+                                    <th
+                                        class="pl-0 pt-2 pb-2 text-nowrap align-middle">
+                                        <button>ID</button>
+                                    </th>
+                                    <th class="pl-0 pt-2 pb-2 align-middle">
+                                        <button>TỔ CHỨC</button>
+                                    </th>
+                                    <th class="pl-0 pt-2 pb-2 text-center">
+                                        <button>
+                                            <div>PHÁT HIỆN SAI KHÁC</div>
+                                        </button>
+                                    </th>
+                                    <th
+                                        class="pl-0 pt-2 pb-2 text-center align-middle">
+                                        <button>TRẠNG THÁI</button>
+                                    </th>
+                                    <th
+                                        class="pl-0 pt-2 pb-2 text-center align-middle"
+                                        style="width: 1%">
+                                        <div>Action</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class=" ">
+                                <tr v-for="itemDemo in 99" :key="itemDemo">
+                                    <td class="pl-2">
+                                        Sở TTTT - Database {{ itemDemo }}
+                                    </td>
+                                    <td class="pl-2">
+                                        Data Warehouse {{ itemDemo }}
+                                    </td>
+                                    <td class="pl-2 text-center">0/10000</td>
+                                    <td class="pl-2 text-center">
+                                        <span class="badge badge-lg bg-success"
+                                            >Hoàn thành</span
+                                        >
+                                    </td>
+                                    <td class="pl-2 text-center">
+                                        <el-button type="default" class="p-2">
+                                            <el-icon
+                                                style="vertical-align: middle"
+                                                :size="20">
+                                                <Edit />
+                                            </el-icon>
+                                        </el-button>
+                                        <el-button type="danger" class="p-2">
+                                            <el-icon
+                                                style="vertical-align: middle"
+                                                :size="20">
+                                                <Delete />
+                                            </el-icon>
+                                        </el-button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </el-scrollbar>
                 <div class="mt-3 d-flex align-items-center pr-2 p-1">

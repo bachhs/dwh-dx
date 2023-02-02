@@ -68,13 +68,87 @@
                 v-if="listElements.data && listElements.data.length > 0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
-                        <div class="row row-eq-height">
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3 d-flex"
-                                v-for="ds in listElements.data"
-                                :key="ds.id">
-                                
-                            </div>
-                        </div>
+                        <table
+                            class="table table-striped table-head-fixed text-nowrap table-borderless">
+                            <thead>
+                                <tr class="bg-white">
+                                    <th style="width: 1%;"
+                                        class="pl-0 pt-2 pb-2 text-nowrap align-middle">
+                                        <button>ID</button>
+                                    </th>
+                                    <th class="pl-0 pt-2 pb-2 align-middle">
+                                        <button>TỔ CHỨC</button>
+                                    </th>
+                                    <th class="pl-0 pt-2 pb-2 text-center">
+                                        <button>
+                                            <div>EMBEDDED ID</div>
+                                        </button>
+                                    </th>
+                                    <th
+                                        class="pl-0 pt-2 pb-2 text-center align-middle">
+                                        <button>CÓ HIỆU LỰC</button>
+                                    </th>
+                                    <th
+                                        class="pl-0 pt-2 pb-2 text-center align-middle">
+                                        <button>HẾT HIỆU LỰC</button>
+                                    </th>
+                                    <th
+                                        class="pl-0 pt-2 pb-2 text-center align-middle">
+                                        <button>THỜI GIAN THÊM</button>
+                                    </th>
+                                    <th
+                                        class="pl-0 pt-2 pb-2 text-center align-middle">
+                                        <button>LẦN CUỐI CHỈNH SỬA</button>
+                                    </th>
+                                    <th
+                                        class="pl-0 pt-2 pb-2 text-center align-middle"
+                                        style="width: 1%">
+                                        <div>Action</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class=" ">
+                                <tr v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex">
+                                    <td class="pl-2 text-left">{{itemIndex + 1}}</td>
+                                    <td class="pl-2">
+                                        <span v-if="itemData.organization">
+                                            {{ itemData.organization.name }}
+                                        </span>
+                                    </td>
+                                    <td class="pl-2 text-center">
+                                        {{itemData.embedded_id}}
+                                    </td>
+                                    <td class="pl-2 text-center">
+                                        {{$filters.prettyDate(itemData.valid_from)}}
+                                    </td>
+                                    <td class="pl-2 text-center">
+                                        {{$filters.prettyDate(itemData.valid_to)}}
+                                    </td>
+                                    <td class="pl-2 text-center">
+                                        {{$filters.prettyDate(itemData.created_at)}}
+                                    </td>
+                                    <td class="pl-2 text-center">
+                                        {{$filters.prettyDate(itemData.updated_at)}}
+                                    </td>
+                                    <td class="pl-2 text-center">
+                                        <el-button type="default" class="p-2">
+                                            <el-icon
+                                                style="vertical-align: middle"
+                                                :size="20">
+                                                <Edit />
+                                            </el-icon>
+                                        </el-button>
+                                        <el-button type="danger" class="p-2">
+                                            <el-icon
+                                                style="vertical-align: middle"
+                                                :size="20">
+                                                <Delete />
+                                            </el-icon>
+                                        </el-button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </el-scrollbar>
                 <div class="mt-3 d-flex align-items-center pr-2 p-1">
