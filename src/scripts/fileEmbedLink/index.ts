@@ -17,7 +17,7 @@ export default {
         const currentComponent = ref('ListData');
         const viewSettings = ref({
             viewName: 'ListData',
-            title: 'Nguồn dữ liệu',
+            title: 'File Embed Link',
             dataItem: new Object(null),
         });
         const changeView = (paramsObject: { viewName: string; data: any }) => {
@@ -27,14 +27,14 @@ export default {
                     case 'ListData':
                         viewSettings.value = {
                             viewName: 'ListData',
-                            title: 'Nguồn dữ liệu',
+                            title: 'File Embed Link',
                             dataItem: new Object(null),
                         };
                         break;
                     case 'AddData':
                         viewSettings.value = {
                             viewName: 'AddData',
-                            title: 'Thêm mới nguồn dữ liệu',
+                            title: 'Thêm mới Embed Link',
                             dataItem: new Object(null),
                         };
                         break;
