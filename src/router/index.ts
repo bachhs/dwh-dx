@@ -89,6 +89,11 @@ const router = createRouter({
             name: 'SearchMetaData',
             component: () => import('@/views/searchMetadata/Index.vue'),
         },
+        {
+            path: '/search-file',
+            name: 'SearchFile',
+            component: () => import('@/views/searchFile/Index.vue'),
+        },
     ],
 });
 export default router;

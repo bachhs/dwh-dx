@@ -84,6 +84,12 @@ export const navItems = [
         url: '/search-metadata',
     },
     {
+        type: 'link',
+        name: 'Tìm kiếm file',
+        icon: 'fas fa-search',
+        url: '/search-file',
+    },
+    {
         type: 'navHeader',
         name: 'TRỰC QUAN DỮ LIỆU',
     },

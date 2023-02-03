@@ -61,7 +61,7 @@
                                         type="radio"
                                         class="radio-selection"
                                         :value="item.id"
-                                        v-model=" itemModel.organizationSelected "
+                                        v-model=" itemModel.organizationId "
                                         @change="onOrganizationChanged(item)" />
                                     <el-card
                                         :body-style="{ padding: '1rem 0.8rem', }" 

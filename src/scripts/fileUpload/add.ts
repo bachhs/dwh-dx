@@ -24,7 +24,7 @@ export default {
         const isLoading = ref(false);
         const currentOrganizationName = ref('');
         const itemModel = ref({
-            organizationId: 0,
+            organizationId: appState.defaultOrganization.id,
         }); 
 
         const onOrganizationChanged = (item:any)=>{

@@ -260,4 +260,22 @@ body {
 .description-html-text p:last-child {
   margin-bottom: 0; }
 
+.col-20p {
+  -ms-flex: 0 0 20%;
+  flex: 0 0 20%;
+  max-width: 20%;
+  position: relative;
+  width: 100%;
+  padding-right: 7.5px;
+  padding-left: 7.5px; }
+
+.col-80p {
+  -ms-flex: 0 0 80%;
+  flex: 0 0 80%;
+  max-width: 80%;
+  position: relative;
+  width: 100%;
+  padding-right: 7.5px;
+  padding-left: 7.5px; }
+
 /*# sourceMappingURL=custom.css.map */
