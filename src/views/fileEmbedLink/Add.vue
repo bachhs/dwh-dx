@@ -61,7 +61,7 @@
                                         type="radio"
                                         class="radio-selection"
                                         :value="item.id"
-                                        v-model=" itemModel.organizationSelected "
+                                        v-model=" itemModel.organizationId "
                                         @change="onOrganizationChanged(item)" />
                                     <el-card
                                         :body-style="{ padding: '1rem 0.8rem', }" 
@@ -89,11 +89,23 @@
                         </div>
                         <div class="mt-2">
                             <el-form-item label="" prop="nameOfDS">
-                                <el-date-picker v-model="itemModel.nameOfDS" 
+                                <el-date-picker v-model="validDateModel" 
+                                    :editable="true"
                                     type="datetimerange" size="large"
                                     range-separator="Đến ngày" start-placeholder="Ngày có hiệu lực.."
-                                    end-placeholder="Ngày hết hiệu lực" />
+                                    end-placeholder="Ngày hết hiệu lực"
+                                    :time-arrow-control="true"
+                                    format="DD-MM-YYYY HH:mm:ss"
+                                    value-format="YYYY-MM-DD HH:mm:ss"/>
                             </el-form-item>
+                        </div>
+                        <div>
+                            File Embed Link cho <strong>{{ currentOrganizationName }}</strong> có hiệu lực từ 
+                            <strong>{{ moment(validDateModel[0]).format('[Ngày] DD [tháng] MM [năm] YYYY') }}</strong> đến 
+                            <strong>{{ moment(validDateModel[1]).format('[Ngày] DD [tháng] MM [năm] YYYY') }}</strong> 
+                            <span v-if="$filters.durationToStr(validDateModel[1], validDateModel[0])">
+                                ({{ $filters.durationToStr(validDateModel[1], validDateModel[0]) }})
+                            </span>
                         </div>
                     </div> 
                 </el-form>
@@ -103,9 +115,10 @@
                     <el-button
                         size="large"
                         type="primary"
-                        class="mr-1 ml-1">
+                        class="mr-1 ml-1"
+                        @click="addItemSubmit">
                         <el-icon><Plus /></el-icon>
-                        <span>Thêm mới Embed Link</span>
+                        <span>{{ viewSettings.title }}</span>
                     </el-button>
                 </div>
             </div>

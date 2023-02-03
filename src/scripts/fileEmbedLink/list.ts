@@ -28,7 +28,7 @@ export default {
             deleteElement(
                 fileEmbedLinkApi.deleteItem(item.id),
                 moduleName,
-                item.name
+                item.id
             );
         };
 

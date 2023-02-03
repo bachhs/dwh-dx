@@ -77,6 +77,40 @@ app.config.globalProperties.$filters = {
             sameElse: 'DD/MM/YYYY HH:mm:ss',
         });
     },
+    durationToStr(startDate:string, endDate:string) {
+        // TIP: to find current time in milliseconds, use:
+        // var  current_time_milliseconds = new Date().getTime();
+        var diff = moment.duration(moment(startDate).diff(moment(endDate)));
+        let milliseconds:number = diff.asMilliseconds();
+    
+        function numberEnding (number:number) {
+            return (number > 1) ? 's' : '';
+        }
+    
+        var temp = Math.floor(milliseconds / 1000);
+        var years = Math.floor(temp / 31536000);
+        if (years) {
+            return years + ' năm';
+        }
+        //TODO: Months! Maybe weeks? 
+        var days = Math.floor((temp %= 31536000) / 86400);
+        if (days) {
+            return days + ' ngày';
+        }
+        var hours = Math.floor((temp %= 86400) / 3600);
+        if (hours) {
+            return hours + ' giờ';
+        }
+        var minutes = Math.floor((temp %= 3600) / 60);
+        if (minutes) {
+            return minutes + ' phút';
+        }
+        var seconds = temp % 60;
+        if (seconds) {
+            return seconds + ' giây';
+        }
+        return ''; //'just now' //or other string you like;
+    }
 };
 app.config.globalProperties.$router = router;
 

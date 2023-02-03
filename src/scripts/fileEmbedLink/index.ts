@@ -11,6 +11,10 @@ export default {
             loader: () => import('@/views/fileEmbedLink/Add.vue'),
             loadingComponent: SkeletonBox,
         }),
+        ModifyData: defineAsyncComponent({
+            loader: () => import('@/views/fileEmbedLink/Add.vue'),
+            loadingComponent: SkeletonBox,
+        }),
     },
     setup() {
         const isChangeViewLoading = ref(false);
@@ -18,7 +22,7 @@ export default {
         const viewSettings = ref({
             viewName: 'ListData',
             title: 'File Embed Link',
-            dataItem: new Object(null),
+            dataItem: null,
         });
         const changeView = (paramsObject: { viewName: string; data: any }) => {
             isChangeViewLoading.value = true;
@@ -28,14 +32,21 @@ export default {
                         viewSettings.value = {
                             viewName: 'ListData',
                             title: 'File Embed Link',
-                            dataItem: new Object(null),
+                            dataItem: null,
                         };
                         break;
                     case 'AddData':
                         viewSettings.value = {
                             viewName: 'AddData',
                             title: 'Thêm mới Embed Link',
-                            dataItem: new Object(null),
+                            dataItem: null,
+                        };
+                        break;
+                    case 'ModifyData':
+                        viewSettings.value = {
+                            viewName: 'ModifyData',
+                            title: 'Chỉnh sửa Embed Link',
+                            dataItem: paramsObject.data,
                         };
                         break;
                 }

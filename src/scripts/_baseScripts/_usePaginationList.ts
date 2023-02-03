@@ -70,7 +70,7 @@ const usePaginationList = (getListDataFn:Function, filterData:any) => {
         )
         .then(() => {
             deleteFnPromise.then((response:any) =>{		
-                if(response.data.code === 20000){
+                //if(response.data.code === 20000){
                     ElMessage({
                         dangerouslyUseHTMLString: true,
                         type: 'success',
@@ -78,10 +78,10 @@ const usePaginationList = (getListDataFn:Function, filterData:any) => {
                     });	
                     console.log(response.data.message);
                     filterDataFn();
-                }
-                else{
-                    showErrorMsg(response.data.message);
-                }
+                //}
+                //else{
+                //    showErrorMsg(response.data.message);
+                //}
             }).catch(error =>{
                 showErrorMsg("UNKNOW ERROR");
                 console.error(error);
