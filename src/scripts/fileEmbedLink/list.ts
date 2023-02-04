@@ -62,6 +62,10 @@ export default {
             });
         };
 
+        const openEmbedLink = (itemData:any) => {
+            window.open(`/file-embed-link-upload/${itemData.embedded_id}`);
+        };
+
         const route = useRoute();
         const router = useRouter();
         onMounted(() => {
@@ -86,6 +90,7 @@ export default {
             refreshDataFn,
             filterDataDebounceFn,
             deleteItem,
+            openEmbedLink,
         };
     },
     computed: {

@@ -33,6 +33,11 @@ const router = createRouter({
             component: () => import('@/views/fileEmbedLink/Index.vue'),
         },
         {
+            path: '/file-embed-link-upload/:id',
+            name: 'fileEmbedLinkUpload',
+            component: () => import('@/views/fileEmbedLink/Upload.vue'),
+        },
+        {
             path: '/tags-manager',
             name: 'tagManager',
             component: () => import('@/views/tag/index.vue'),

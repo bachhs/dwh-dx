@@ -131,12 +131,20 @@
                                         {{$filters.prettyDate(itemData.updated_at)}}
                                     </td>
                                     <td class="pl-2 text-center">
-                                        <el-button type="default" class="p-2"
+                                        <!-- <el-button type="default" class="p-2"
                                             @click="$emit( 'onChangeView', { viewName: 'ModifyData', data: itemData, })">
                                             <el-icon
                                                 style="vertical-align: middle"
                                                 :size="20">
                                                 <Edit />
+                                            </el-icon>
+                                        </el-button> -->
+                                        <el-button type="default" class="p-2"
+                                            @click="openEmbedLink(itemData)">
+                                            <el-icon
+                                                style="vertical-align: middle"
+                                                :size="20">
+                                                <Link />
                                             </el-icon>
                                         </el-button>
                                         <el-button type="danger" class="p-2"
