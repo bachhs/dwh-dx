@@ -138,8 +138,8 @@
                                                             </h6>
                                                         </div>
                                                     </div> 
-                                                    <div class="text-muted">
-                                                        File size: 50 GB | File type: Excel (xlsx) | Upload: 04-02-2023 01:58  | Last modified: 04-02-2023 01:58
+                                                    <div class="text-muted" style="font-size: 85%;">
+                                                        <strong>Sở thông tin & Truyền thông</strong> | File size: 50 GB | File type: Excel (xlsx) | Upload: 04-02-2023 01:58  | Last modified: 04-02-2023 01:58
                                                     </div>
                                                     <div class="text-muted" style="font-size: 85%;">
                                                         Các doanh nghiệp như Sungroup, Novaland, FPT, Dầu khí Đông Phương, Trung Nam… đang trong quá trình xin đầu tư dự án trên địa bàn tỉnh Khánh Hòa với quy mô, số vốn "khủng".
