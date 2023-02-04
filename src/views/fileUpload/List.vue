@@ -110,8 +110,8 @@
                                     <td class="pl-2">
                                         {{ itemData.file_name }}
                                     </td>
-                                    <td class="pl-2 text-left">{{ itemData.created_at }}</td>
-                                    <td class="pl-2 text-left">{{ itemData.updated_at }}</td>
+                                    <td class="pl-2 text-left">{{ $filters.prettyDate(itemData.created_at) }}</td>
+                                    <td class="pl-2 text-left">{{ $filters.prettyDate(itemData.updated_at) }}</td>
                                     <td class="pl-2 text-center">
                                         <el-button type="default" class="p-2">
                                             <el-icon
