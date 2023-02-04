@@ -19,6 +19,7 @@ export default {
 		var controllerUpload = new AbortController();
         const fileSelectorRef = ref<any>(null);
 		const files = ref([]);
+        const isUploadProgress = ref(false);
         const uploadProgress = ref(0);
 
         const isLoading = ref(false);
@@ -64,37 +65,37 @@ export default {
 
         const addItemSubmit = () => {
             isLoading.value = true;
+            isUploadProgress.value = true;
             try {
                 const formData = new FormData();
                     formData.append('file', files.value[0]);
                     fileUploadApi.uploadFileData(itemModel.value.organizationId, formData, controllerUpload, onProgressUpload).then((response: any) => {
-                        console.log('uploadFileData response', response);
                         isLoading.value = false;
-                        if(response.data){
-                            switch(response.data.status){
-                                case 200:		
-                                case 400:						
+                        isUploadProgress.value = false;
+                        if(response){
+                            switch(response.status){
+                                case 200:						
                                     ElMessage({
                                         message: 'Đã tải lên file thành công !',
                                         type: 'success',
                                     });
                                     removeFile();
+                                    context.emit('onChangeView', {
+                                        viewName: 'ListData',
+                                        data: null,
+                                    });
                                     break;
                             }
                         }
                     })
                     .catch((response:any) =>{
                         console.error('uploadFileData ERROR_1', response);
-                        if(response.status && response.status === 400){
-                            
-                        }
-                        else{
-                            ElMessage.error('Tải file lên không thành công. Đã có lỗi xảy ra !');
-                        }
+                        ElMessage.error('Tải file lên không thành công. Đã có lỗi xảy ra !');
                     });
             } catch (err) {
                 console.log(err);
                 isLoading.value = false;
+                isUploadProgress.value = false;
             }
         };
 

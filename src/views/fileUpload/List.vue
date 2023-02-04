@@ -79,14 +79,18 @@
                                     <th class="pl-0 pt-2 pb-2 align-middle">
                                         <button>TỔ CHỨC</button>
                                     </th>
-                                    <th class="pl-0 pt-2 pb-2 text-center">
+                                    <th class="pl-0 pt-2 pb-2 text-left">
                                         <button>
-                                            <div>PHÁT HIỆN SAI KHÁC</div>
+                                            <div>FILE NAME</div>
                                         </button>
                                     </th>
                                     <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle">
-                                        <button>TRẠNG THÁI</button>
+                                        class="pl-0 pt-2 pb-2 text-left align-middle">
+                                        <button>NGÀY KHỞI TẠO</button>
+                                    </th>
+                                    <th
+                                        class="pl-0 pt-2 pb-2 text-left align-middle">
+                                        <button>LẦN CUỐI CHỈNH SỬA</button>
                                     </th>
                                     <th
                                         class="pl-0 pt-2 pb-2 text-center align-middle"
@@ -96,19 +100,18 @@
                                 </tr>
                             </thead>
                             <tbody class=" ">
-                                <tr v-for="itemDemo in 99" :key="itemDemo">
+                                <tr v-for="itemData in listElements.data" :key="itemData.id">
                                     <td class="pl-2">
-                                        Sở TTTT - Database {{ itemDemo }}
+                                        {{ itemData.id }}
                                     </td>
                                     <td class="pl-2">
-                                        Data Warehouse {{ itemDemo }}
+                                        {{ itemData.organization.name }}
                                     </td>
-                                    <td class="pl-2 text-center">0/10000</td>
-                                    <td class="pl-2 text-center">
-                                        <span class="badge badge-lg bg-success"
-                                            >Hoàn thành</span
-                                        >
+                                    <td class="pl-2">
+                                        {{ itemData.file_name }}
                                     </td>
+                                    <td class="pl-2 text-left">{{ itemData.created_at }}</td>
+                                    <td class="pl-2 text-left">{{ itemData.updated_at }}</td>
                                     <td class="pl-2 text-center">
                                         <el-button type="default" class="p-2">
                                             <el-icon

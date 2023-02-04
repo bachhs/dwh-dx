@@ -177,6 +177,9 @@
                             </dropzone>
                         </file-selector>
                     </div>
+                    <div v-if="isUploadProgress">
+                        <el-progress :text-inside="true" :stroke-width="26" :percentage="uploadProgress" />
+                    </div>
                 </div> 
                 <div
                     class="text-center mt-3 pt-3 pb-3"
@@ -184,7 +187,8 @@
                     <el-button
                         size="large"
                         type="primary"
-                        class="mr-1 ml-1">
+                        class="mr-1 ml-1"
+                        @click="addItemSubmit">
                         <el-icon><Plus /></el-icon>
                         <span>{{ viewSettings.title }}</span>
                     </el-button>

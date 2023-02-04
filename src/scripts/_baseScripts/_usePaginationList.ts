@@ -25,7 +25,8 @@ const usePaginationList = (getListDataFn:Function, filterData:any) => {
         let pagination:any = listElements.value.pagination;
         let filterDataRequest = filterData.value;
         let objectRequest = {
-            ...pagination,
+            page: pagination.page,
+            size: pagination.size,
             ...filterDataRequest,
         };
         getListDataFn(objectRequest).then((response:any) =>{
