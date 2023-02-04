@@ -1,8 +1,9 @@
 import { ref, onMounted, defineAsyncComponent } from 'vue';
-import SkeletonBox from '@/components/SkeletonBox.vue';
+import { useRoute, useRouter } from "vue-router";
 import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory';
+import { fileEmbedLinkApi } from '@/api/fileEmbedLinkApi';
 import { fileUploadApi } from '@/api/fileUploadApi';
 import { FileSelector, Dropzone, DialogButton } from 'vue3-file-selector';
 import { humanFileSize } from "@/helpers/ultilityFunctions";
@@ -23,8 +24,10 @@ export default {
 
         const isLoading = ref(false);
         const currentOrganizationName = ref('');
+        const currentEmbedLinkInfo = ref<any>(null);
         const itemModel = ref({
             organizationId: appState.defaultOrganization.id,
+            embedLinkId: null,
         }); 
 
         const onOrganizationChanged = (item:any)=>{
@@ -62,13 +65,38 @@ export default {
 			}
 		};
 
+        const getEmbedLinkInfo = (embedLinkId:string) => {
+            isLoading.value = true;
+            fileEmbedLinkApi.getItemContent(embedLinkId)
+                .then((response: any) => {
+                    console.log('getEmbedLinkInfo', response);
+                    if (response.status === 200 && response.data) {
+                        currentEmbedLinkInfo.value = response.data;
+                        currentOrganizationName.value = response.data.organization.name;
+                        itemModel.value.organizationId = response.data.organization.id;
+                        itemModel.value.embedLinkId = response.data.embedded_id;
+                    } else {
+                        ElMessage.error(`Oops, ${response.data.message}`);
+                    }
+                    isLoading.value = false;
+                })
+                .catch((error) => {
+                    console.error(error);
+                    isLoading.value = false;
+                });
+        };
+
         const addItemSubmit = () => {
             isLoading.value = true;
             isUploadProgress.value = true;
             try {
                 const formData = new FormData();
                     formData.append('file', files.value[0]);
-                    fileUploadApi.uploadFileData(itemModel.value.organizationId, formData, controllerUpload, onProgressUpload).then((response: any) => {
+                    let requestParams:any = { 
+                        organization_id : itemModel.value.organizationId,
+                        embedded_id: itemModel.value.embedLinkId,
+                    };
+                    fileUploadApi.uploadFileData(requestParams, formData, controllerUpload, onProgressUpload).then((response: any) => {
                         isLoading.value = false;
                         isUploadProgress.value = false;
                         if(response){
@@ -79,10 +107,6 @@ export default {
                                         type: 'success',
                                     });
                                     removeFile();
-                                    context.emit('onChangeView', {
-                                        viewName: 'ListData',
-                                        data: null,
-                                    });
                                     break;
                             }
                         }
@@ -98,13 +122,10 @@ export default {
             }
         };
 
+        const route:any = useRoute();
+
         onMounted(() => {
-            const orgId =  appState.defaultOrganization.id;
-            const orgName =  appState.defaultOrganization.name;
-            currentOrganizationName.value = orgName;
-            itemModel.value = {
-                organizationId: orgId,
-            };
+            getEmbedLinkInfo(route.params.id);
         });
         return {
             isLoading,
@@ -115,7 +136,9 @@ export default {
             removeFile,
             cancelUpload,
             fileSelectorRef,
-            files
+            files,
+            currentOrganizationName,
+            currentEmbedLinkInfo,
         };
     },
     computed: {

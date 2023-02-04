@@ -9,7 +9,7 @@ import router from '../../router/index';
                 <div class="flex-fill">
                     <h4 class="mb-0 d-none d-md-block">
                         <i class="fas fa-file text-lightblue mr-2"></i>
-                        <strong>Embed Link Upload <span class="text-primary">[{{ $route.params.id }}]</span></strong>
+                        <strong>Embed Link Upload</strong>
                     </h4>
                 </div>
                 <!-- <div class="d-flex align-items-center">
@@ -46,52 +46,20 @@ import router from '../../router/index';
                 </div> -->
             </div>
             <el-scrollbar class="d-flex flex-fill mt-0 mt-md-3 pr-0">
-                <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4">
-                    
-                    <el-form
-                        v-if="itemModel"
-                        ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
-                        label-width="0" class="ruleForm">
-                        <div class="mb-3">
+                <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4"
+                    v-if="currentEmbedLinkInfo">                    
+                    <div class="mb-3" v-if="currentEmbedLinkInfo">
+                        <el-card>
                             <div>
-                                <strong>Tổ chức</strong><span class="ml-1 text-danger">*</span>
+                                <div><h4>Tổ chức: <strong class="ml-2">{{ currentEmbedLinkInfo.organization.name }}</strong></h4></div>
+                                <div><h4>Embed link ID: <strong class="ml-2">{{ currentEmbedLinkInfo.embedded_id }}</strong></h4></div>
+                                <div><h4>Thời gian hợp lệ: <strong class="ml-2">{{ $filters.prettyDate(currentEmbedLinkInfo.valid_from) }} đến {{ $filters.prettyDate(currentEmbedLinkInfo.valid_to) }}</strong></h4></div>
                             </div>
-                            <div class="row mt-2" v-if="organization">
-                                <div
-                                    class="col-12 col-md-3 organization-item"
-                                    v-for="item in organization"
-                                    :key="item.id">
-                                    <label class="d-block">
-                                        <input
-                                            type="radio"
-                                            class="radio-selection"
-                                            :value="item.id"
-                                            v-model=" itemModel.organizationId "
-                                            @change="onOrganizationChanged(item)" />
-                                        <el-card
-                                            :body-style="{ padding: '1rem 0.8rem', }" 
-                                            style=" height: auto; overflow: hidden; "
-                                            class="mb-3" >
-                                            <div class="position-relative d-flex align-items-center" >
-                                                <div
-                                                    class="flex-fill item--name text-nowrap"
-                                                    style=" overflow-x: hidden; " >
-                                                    {{ item.name }}
-                                                </div>
-                                                <div class="ml-1 organization-item--icon-selected d-none" >
-                                                    <el-icon :size="20" color="white" ><Check/></el-icon>
-                                                </div>
-                                            </div>
-                                        </el-card>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </el-form>
-                    <div class="mt-1">
+                        </el-card>
+                    </div>
+                    <div class="mt-1" v-if="currentEmbedLinkInfo">
                         <div>
-                            <strong>Tải lên file</strong>
+                            <strong>Tải lên file cho embed link này</strong>
                         </div>
                         <div class="mt-2">
                             <file-selector v-model="files" ref="fileSelectorRef" 
@@ -186,7 +154,7 @@ import router from '../../router/index';
                             <el-progress :text-inside="true" :stroke-width="26" :percentage="uploadProgress" />
                         </div>
                     </div> 
-                    <div
+                    <div v-if="currentEmbedLinkInfo"
                         class="text-center mt-3 pt-3 pb-3"
                         style="background-color: #f5f7fa">
                         <el-button
@@ -194,9 +162,15 @@ import router from '../../router/index';
                             type="primary"
                             class="mr-1 ml-1"
                             @click="addItemSubmit">
-                            <el-icon><Plus /></el-icon>
+                            <el-icon><Check /></el-icon>
                             <span>Submit</span>
                         </el-button>
+                    </div>
+                </div>
+                <div v-else class="w-100 align-items-center justify-content-center">
+                    <div class="mt-4">
+                        <no-data title="Không tìm thấy dữ liệu"
+                            :subTitle="`Chúng tôi không tìm thấy Embed Link này. vui lòng kiểm tra lại.`"/>
                     </div>
                 </div>
             </el-scrollbar>

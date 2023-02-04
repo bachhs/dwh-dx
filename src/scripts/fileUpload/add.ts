@@ -1,5 +1,4 @@
 import { ref, onMounted, defineAsyncComponent } from 'vue';
-import SkeletonBox from '@/components/SkeletonBox.vue';
 import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory';
@@ -69,7 +68,10 @@ export default {
             try {
                 const formData = new FormData();
                     formData.append('file', files.value[0]);
-                    fileUploadApi.uploadFileData(itemModel.value.organizationId, formData, controllerUpload, onProgressUpload).then((response: any) => {
+                    let requestParams:any = { 
+                        organization_id : itemModel.value.organizationId
+                    };
+                    fileUploadApi.uploadFileData(requestParams, formData, controllerUpload, onProgressUpload).then((response: any) => {
                         isLoading.value = false;
                         isUploadProgress.value = false;
                         if(response){

@@ -6,7 +6,9 @@ export const fileUploadApi = {
         };
         return axios.get(`/file`, { params: requestParams });
     },
-    uploadFileData(organization_id:number, formData: FormData, controller: AbortController, onUploadCallback:((_: any) => any)) {
+    uploadFileData(paramsData: { organization_id:number, embedded_id: string }, 
+        formData: FormData, controller: AbortController, 
+        onUploadCallback:((_: any) => any)) {
         const configs = {
             signal: controller.signal,
             headers: { 'Content-Type': 'multipart/form-data' },
@@ -18,8 +20,13 @@ export const fileUploadApi = {
                 onUploadCallback(evtParam);
             }
         };
+
+        let urlRequest = `/organization/${paramsData.organization_id}/file`;
+        if(paramsData.embedded_id){
+            urlRequest = urlRequest + `?embedded_id=${paramsData.embedded_id}`
+        }
         return axios.post(
-            `/organization/${organization_id}/file`, formData, configs
+            urlRequest, formData, configs
         );
     },
     getFileContent(organization_id:number, filename:string){
