@@ -53,7 +53,8 @@
                                         <el-input clearable v-model="filterRequest.query" class="w-100" size="large" placeholder="Nhập từ khoá tìm kiếm.."/>
                                     </div>
                                 </div>
-                                <div class="mb-2">
+                                <hr/>
+                                <div class="mb-2" v-if="aggregationsList.organization.length > 0">
                                     <div>
                                         <span class="text-muted ml-1" style="font-size: 85%;">Tổ chức</span>
                                     </div>
@@ -62,15 +63,45 @@
                                             <el-option label="Tất cả" value="" />
                                             <el-option v-for="item in organization" :key="item.id" :label="item.name" :value="item.name" />
                                         </el-select> -->
-                                        <el-input clearable v-model="filterRequest.organization_name" class="w-100" size="large" placeholder="Tổ chức.."/>
+                                        <!-- <el-input clearable v-model="filterRequest.organization_name" class="w-100" size="large" placeholder="Tổ chức.."/> -->
+                                        <div v-for="filterItem in aggregationsList.organization" :key="filterItem.key">
+                                            <label class="pl-2 mb-1 d-flex align-items-center">
+                                                <div>
+                                                    <el-checkbox  v-model="filterItem.selected" @change="searchFileData" class="mb-0 p-0 h-auto"/>
+                                                </div>
+                                                <div role="button" class="ml-2 flex-fill user-select-none cursor-pointer">
+                                                    <span>{{filterItem.key}}</span>
+                                                </div>
+                                                <div>                                        
+                                                    <span class="ml-1 bage-count badge">
+                                                        {{filterItem.count}}
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="mb-2">
+                                <div class="mb-2" v-if="aggregationsList.embedded_id.length > 0">
                                     <div>
                                         <span class="text-muted ml-1" style="font-size: 85%;">Embed link</span>
                                     </div>
                                     <div class="mt-1">
-                                        <el-input clearable v-model="filterRequest.embedded_id" class="w-100" size="large" placeholder="Embed ID.."/>
+                                        <!-- <el-input clearable v-model="filterRequest.embedded_id" class="w-100" size="large" placeholder="Embed ID.."/> -->
+                                        <div v-for="filterItem in aggregationsList.embedded_id" :key="filterItem.key">
+                                            <label class="pl-2 mb-1 d-flex align-items-center">
+                                                <div>
+                                                    <el-checkbox  v-model="filterItem.selected" @change="searchFileData" class="mb-0 p-0 h-auto"/>
+                                                </div>
+                                                <div role="button" class="ml-2 flex-fill user-select-none cursor-pointer">
+                                                    <span>{{filterItem.key}}</span>
+                                                </div>
+                                                <div>                                        
+                                                    <span class="ml-1 bage-count badge">
+                                                        {{filterItem.count}}
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- <div class="mb-2">
@@ -104,9 +135,20 @@
                                     </div>
                                 </div> -->
                                 <div  class="mt-4">
-                                    <el-button class=" w-100" size="large" type="primary" @click="searchFileData">
-                                        <i class="fas fa-search"></i> <span  class="ml-2">Tìm kiếm</span>
-                                    </el-button>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <el-button class=" w-100" size="large" @click="refreshResult">
+                                                    <i class="fas fa-refresh"></i> <span  class="ml-2">Làm mới</span>
+                                                </el-button>
+                                            </div>
+                                            <div class="col-6">
+                                                <el-button class=" w-100" size="large" type="primary" @click="searchFileData">
+                                                    <i class="fas fa-search"></i> <span  class="ml-2">Tìm kiếm</span>
+                                                </el-button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </el-card>
@@ -188,3 +230,12 @@
 </template>
 
 <script lang="ts" src="@/scripts/searchFile/index.ts"></script>
+
+
+<style lang="scss" scoped>
+.bage-count{
+    background-color: #e7e7e7 !important;
+    font-size: 0.8rem;
+    color: #a7a7a7;
+} 
+</style>
