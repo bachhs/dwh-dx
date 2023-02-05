@@ -45,7 +45,7 @@
             <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4">
                 <el-form
                     v-if="itemModel"
-                    ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
+                    ref="ruleFormValidationRef" :model="itemModel" :rules="rules" 
                     label-width="0" class="ruleForm">
                     <div class="mb-3">
                         <div>
@@ -82,7 +82,16 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="mb-3">
+                        <div>
+                            <strong>Mô tả</strong><span class="ml-1 text-danger">*</span>
+                        </div>
+                        <div class="mt-2">
+                            <el-form-item label="" prop="description" class="w-100">                    
+                                <el-input type="textarea" v-model="itemModel.description" placeholder="Nhập mô tả..."></el-input>
+                            </el-form-item>
+                        </div>
+                    </div>
                 </el-form>
                 <div class="mt-1">
                     <div>

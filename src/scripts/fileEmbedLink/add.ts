@@ -5,7 +5,7 @@ import { useDataCategoryStore } from '@/stores/dataCategory';
 import { fileEmbedLinkApi } from '@/api/fileEmbedLinkApi';
 import moment from 'moment';
 const appState = useDataCategoryStore();
-const organizationList = appState.organization;
+//const organizationList = appState.organization;
 const startOfDay = moment().startOf('day');
 const endOfDay = moment().add(1, 'months').startOf('day');
 export default {

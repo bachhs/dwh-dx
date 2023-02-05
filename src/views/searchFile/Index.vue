@@ -6,41 +6,29 @@
                 <div class="flex-fill d-none d-sm-none d-md-none d-lg-block">
                     <h4>
                         <i class="fas fa-search text-lightblue mr-2"></i>
-                        <strong>Tìm kiếm File</strong>
+                        <strong>Công cụ kiếm File</strong>
                     </h4>
                 </div>
                 <!-- <div class="d-flex align-items-center"></div> -->
             </div>
             <div class="flex-fill d-flex flex-column w-100 pt-2 pb-0">
-                <div class="d-flex align-items-center">
-                    <div class="flex-fill">
-                        <el-input
-                            class="w-100"
-                            size="large"
-                            placeholder="Nhập nội dung tìm kiếm file.."
-                            :prefix-icon="Search"
-                        />
-                    </div>
-                    <div class="ml-2">
-                        <el-button size="large">
-                            <el-icon><Search /></el-icon> 
-                            <span class="ml-2">Tìm kiếm</span>
-                        </el-button>
-                    </div>
+                <div>
+                    <h5 v-if="filterRequest.query" class="mb-0 text-nowrap overflow-hidden">Tìm kiếm kết quả cho từ khoá "<strong class="text-primary">{{ filterRequest.query }}</strong>"</h5>
+                    <h5 v-else class="mb-0 text-nowrap overflow-hidden">Vui lòng nhập từ khoá để tìm kiếm...</h5>
                 </div>
             </div>
-            <div class="pb-1">
-                <section class="row row-eq-height mt-2 flex-fill">
+            <div class="pb-1"  v-loading="isLoading">
+                <section class="row row-eq-height mt-0 flex-fill">
                     <div class="col-20p">
                         <el-card :body-style="{ padding: '0.5rem 0.8rem' }"
                             class="position-relative"
-                            style="height: calc(100vh - 13rem);">
+                            style="height: calc(100vh - 12rem);">
                             <h6 class="mt-2">
                                 <i class="fas fa-filter text-lightblue mr-2"></i>
                                 <strong>Lọc & tìm nâng cao</strong>
                             </h6>
                             <div class="mt-1">
-                                <div class="d-flex align-items-center mb-2">
+                                <!-- <div class="d-flex align-items-center mb-2">
                                     <div>
                                         <el-switch />
                                     </div>
@@ -56,29 +44,35 @@
                                         Tìm kiếm đường dẫn file
                                     </div>
                                 </div>
-                                <hr class="mb-2"/>
+                                <hr class="mb-2"/> -->
+                                <div class="mb-2">
+                                    <div>
+                                        <span class="text-muted ml-1" style="font-size: 85%;">Từ khoá tìm kiếm</span>
+                                    </div>
+                                    <div class="mt-1">
+                                        <el-input v-model="filterRequest.query" class="w-100" size="large" placeholder="Nhập từ khoá tìm kiếm.."/>
+                                    </div>
+                                </div>
                                 <div class="mb-2">
                                     <div>
                                         <span class="text-muted ml-1" style="font-size: 85%;">Tổ chức</span>
                                     </div>
                                     <div class="mt-1">
-                                        <el-select v-model="value" class="w-100" placeholder="Chọn tổ chức">
+                                        <el-select v-model="filterRequest.organization_name" class="w-100" size="large" placeholder="Chọn tổ chức..">
                                             <el-option label="Tất cả" value="" />
-                                            <el-option v-for="item in organization" :key="item.id" :label="item.name" :value="item.id" />
+                                            <el-option v-for="item in organization" :key="item.id" :label="item.name" :value="item.name" />
                                         </el-select>
                                     </div>
                                 </div>
                                 <div class="mb-2">
                                     <div>
-                                        <span class="text-muted ml-1" style="font-size: 85%;">Loại file</span>
+                                        <span class="text-muted ml-1" style="font-size: 85%;">Embed link</span>
                                     </div>
                                     <div class="mt-1">
-                                        <el-select v-model="value" class="w-100" placeholder="Chọn loại file">
-                                            <el-option v-for="item in 99" :key="item" :label="`Options ${item}`" :value="item" />
-                                        </el-select>
+                                        <el-input v-model="filterRequest.embedded_id" class="w-100" size="large" placeholder="Embed ID.."/>
                                     </div>
                                 </div>
-                                <div class="mb-2">
+                                <!-- <div class="mb-2">
                                     <div>
                                         <span class="text-muted ml-1" style="font-size: 85%;">Dung lượng file</span>
                                     </div>
@@ -107,11 +101,16 @@
                                             <el-option v-for="item in 99" :key="item" :label="`Options ${item}`" :value="item" />
                                         </el-select>
                                     </div>
+                                </div> -->
+                                <div  class="mt-4">
+                                    <el-button class=" w-100" size="large" type="primary" @click="searchFileData">
+                                        <i class="fas fa-search"></i> <span  class="ml-2">Tìm kiếm</span>
+                                    </el-button>
                                 </div>
                             </div>
                         </el-card>
                     </div>
-                    <div class="col-80p">
+                    <div class="col-80p pt-2" style="background-color: #f3f3f3; border-radius: 5px;;">
                         <el-scrollbar class="mt-1 pr-3" style="height: calc(100vh - 13.5rem);">
                             <div>
                                 <div v-for="itemResult in 99" :key="itemResult"
