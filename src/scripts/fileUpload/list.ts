@@ -32,6 +32,10 @@ export default {
             );
         };
 
+        const getDownloadUrl = (item:any) => {
+            return `${import.meta.env.VITE_API_URL}/organization/${item.organization.id}/file/${item.file_name}`;
+        };
+
         const route = useRoute();
         const router = useRouter();
         onMounted(() => {
@@ -56,6 +60,7 @@ export default {
             refreshDataFn,
             filterDataDebounceFn,
             deleteItem,
+            getDownloadUrl,
         };
     },
     computed: {

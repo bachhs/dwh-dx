@@ -113,13 +113,21 @@
                                     <td class="pl-2 text-left">{{ $filters.prettyDate(itemData.created_at) }}</td>
                                     <td class="pl-2 text-left">{{ $filters.prettyDate(itemData.updated_at) }}</td>
                                     <td class="pl-2 text-center">
-                                        <el-button type="default" class="p-2">
+                                        <!-- <el-button type="default" class="p-2">
                                             <el-icon
                                                 style="vertical-align: middle"
                                                 :size="20">
                                                 <Edit />
                                             </el-icon>
-                                        </el-button>
+                                        </el-button> -->
+                                        <a :href="getDownloadUrl(itemData)"
+                                            class="el-button p-2">
+                                            <el-icon
+                                                style="vertical-align: middle"
+                                                :size="20">
+                                                <Download />
+                                            </el-icon>
+                                        </a>
                                         <el-button type="danger" class="p-2">
                                             <el-icon
                                                 style="vertical-align: middle"
