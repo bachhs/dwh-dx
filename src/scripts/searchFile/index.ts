@@ -28,14 +28,14 @@ export default {
         }); 
 
         const createAggregationsList = (propName:string, aggregations:Array<any>, itemSelected:any) =>{
-            console.error(`propName, ${aggregations}`);
             let bucketsItem = aggregations.find((xItem:any) => xItem.name === propName).buckets;
-            console.error(`propName, ${bucketsItem}`);
+            console.log(`propName, ${bucketsItem}`);
+            console.log(`itemSelected, ${itemSelected}`);
             if(bucketsItem.length > 0){                
                 aggregationsList.value[propName] = bucketsItem.map((xItem:any) => {
                     return  {
                         ...xItem,
-                        selected: (itemSelected && itemSelected === xItem.key ? true : false),
+                        selected: (itemSelected && itemSelected.key === xItem.key ? true : false),
                     }
                 });
             }
