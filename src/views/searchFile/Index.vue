@@ -50,7 +50,7 @@
                                         <span class="text-muted ml-1" style="font-size: 85%;">Từ khoá tìm kiếm</span>
                                     </div>
                                     <div class="mt-1">
-                                        <el-input v-model="filterRequest.query" class="w-100" size="large" placeholder="Nhập từ khoá tìm kiếm.."/>
+                                        <el-input clearable v-model="filterRequest.query" class="w-100" size="large" placeholder="Nhập từ khoá tìm kiếm.."/>
                                     </div>
                                 </div>
                                 <div class="mb-2">
@@ -62,7 +62,7 @@
                                             <el-option label="Tất cả" value="" />
                                             <el-option v-for="item in organization" :key="item.id" :label="item.name" :value="item.name" />
                                         </el-select> -->
-                                        <el-input v-model="filterRequest.organization_name" class="w-100" size="large" placeholder="Tổ chức.."/>
+                                        <el-input clearable v-model="filterRequest.organization_name" class="w-100" size="large" placeholder="Tổ chức.."/>
                                     </div>
                                 </div>
                                 <div class="mb-2">
@@ -70,7 +70,7 @@
                                         <span class="text-muted ml-1" style="font-size: 85%;">Embed link</span>
                                     </div>
                                     <div class="mt-1">
-                                        <el-input v-model="filterRequest.embedded_id" class="w-100" size="large" placeholder="Embed ID.."/>
+                                        <el-input clearable v-model="filterRequest.embedded_id" class="w-100" size="large" placeholder="Embed ID.."/>
                                     </div>
                                 </div>
                                 <!-- <div class="mb-2">
@@ -113,7 +113,7 @@
                     </div>
                     <div class="col-80p">
                         <div class="pt-2 pl-2" style="background-color: #f3f3f3; border-radius: 5px;">
-                            <el-scrollbar class="mt-1 pr-3" style="height: calc(100vh - 15.5rem);">
+                            <el-scrollbar class="mt-1 pr-3" style="height: calc(100vh - 16rem);">
                                 <div v-if="searchResult.data.length > 0">
                                     <div v-for="itemResult in searchResult.data" :key="itemResult"
                                         class="mb-3">
@@ -157,9 +157,16 @@
                                         </el-card>
                                     </div>
                                 </div>
+                                <div v-else class="w-100 d-flex align-items-center justify-content-center"
+                                        style="height: calc(100vh - 15.5rem);">
+                                    <div class="mt-4">
+                                        <no-data title="Không tìm thấy dữ liệu"
+                                            :subTitle="`Chúng tôi không tìm thấy file nào với từ khoá <strong>${filterRequest.query}</strong>.`"/>
+                                    </div>
+                                </div>
                             </el-scrollbar>
                         </div>
-                        <div class="mt-2">
+                        <div class="mt-2 pt-1 pb-1" style="background-color: #fafafa; border-radius: 5px;">
                             <el-pagination
                                 v-if="searchResult.data && searchResult.data.length > 0"
                                 class=""
@@ -171,6 +178,7 @@
                                 @size-change="searchFileData"
                                 @current-change="searchFileData"
                             />
+                            <div style="height: 2rem;" v-else></div>
                         </div>
                     </div>
                 </section>
