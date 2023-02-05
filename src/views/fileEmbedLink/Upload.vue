@@ -1,3 +1,6 @@
+
+import type { Calendar } from '@element-plus/icons-vue';
+
 import router from '../../router/index';
 <script lang="ts" src="@/scripts/fileEmbedLink/upload.ts"></script>
 <template>
@@ -12,51 +15,43 @@ import router from '../../router/index';
                         <strong>Embed Link Upload</strong>
                     </h4>
                 </div>
-                <!-- <div class="d-flex align-items-center">
-                    <div class="ml-1 mr-4 w-100">
-                        <el-button
-                            size="default"
-                            link
-                            type="danger"
-                            class="d-block d-md-none"
-                            @click="
-                                $emit('onChangeView', {
-                                    viewName: 'ListData',
-                                    data: null,
-                                })
-                            ">
-                            <div>
-                                <i class="fas fa-times"></i>
-                            </div>
-                        </el-button>
-
-                        <el-button
-                            size="default"
-                            type="danger"
-                            class="d-none d-md-block"
-                            @click="
-                                $emit('onChangeView', {
-                                    viewName: 'ListData',
-                                    data: null,
-                                })
-                            ">
-                            <div>Thoát</div>
-                        </el-button>
-                    </div>
-                </div> -->
             </div>
             <el-scrollbar class="d-flex flex-fill mt-0 mt-md-3 pr-0">
                 <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4"
-                    v-if="currentEmbedLinkInfo">                    
-                    <div class="mb-3" v-if="currentEmbedLinkInfo">
-                        <el-card>
+                    v-if="currentEmbedLinkInfo">         
+                    <el-form
+                        v-if="itemModel"
+                        ref="ruleFormValidationRef" :model="itemModel" :rules="rules" 
+                        label-width="0" class="ruleForm">           
+                        <div class="mb-3" v-if="currentEmbedLinkInfo">
+                            <el-card>
+                                <div>
+                                    <div>
+                                        <h5><el-icon class="text-primary"><OfficeBuilding /></el-icon> Tổ chức: <strong class="ml-2">{{ currentEmbedLinkInfo.organization.name }}</strong></h5>
+                                    </div>
+                                    <div>
+                                        <h5><el-icon class="text-primary"><Link /></el-icon> Embed link: <strong class="ml-2">{{ currentEmbedLinkInfo.embedded_id }}</strong></h5>
+                                    </div>
+                                    <div>
+                                        <h5>
+                                            <el-icon class="text-primary"><Calendar /></el-icon> Thời gian hợp lệ: <strong class="ml-2">
+                                            {{ $filters.prettyDate(currentEmbedLinkInfo.valid_from) }}</strong> đến <strong>{{ $filters.prettyDate(currentEmbedLinkInfo.valid_to) }}</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </div>
+                        <div class="mb-3">
                             <div>
-                                <div><h4>Tổ chức: <strong class="ml-2">{{ currentEmbedLinkInfo.organization.name }}</strong></h4></div>
-                                <div><h4>Embed link ID: <strong class="ml-2">{{ currentEmbedLinkInfo.embedded_id }}</strong></h4></div>
-                                <div><h4>Thời gian hợp lệ: <strong class="ml-2">{{ $filters.prettyDate(currentEmbedLinkInfo.valid_from) }} đến {{ $filters.prettyDate(currentEmbedLinkInfo.valid_to) }}</strong></h4></div>
+                                <strong>Mô tả</strong><span class="ml-1 text-danger">*</span>
                             </div>
-                        </el-card>
-                    </div>
+                            <div class="mt-2">
+                                <el-form-item label="" prop="description" class="w-100">                    
+                                    <el-input type="textarea" v-model="itemModel.description" placeholder="Nhập mô tả..."></el-input>
+                                </el-form-item>
+                            </div>
+                        </div>
+                    </el-form>
                     <div class="mt-1" v-if="currentEmbedLinkInfo">
                         <div>
                             <strong>Tải lên file cho embed link này</strong>

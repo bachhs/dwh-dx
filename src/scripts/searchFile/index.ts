@@ -15,15 +15,25 @@ export default {
             size: 50
         });
         
+        const searchResult = ref({
+            data: [],
+            page: 1,
+            size: 50, 
+            total: 0,
+        }); 
+        
         const searchFileData = () => {
             isLoading.value = true;
             const searchParams:any =   {
-                ...filterRequest
+                ...filterRequest.value
             };
             fileSearchApi.searchFileData(searchParams)
                 .then((response: any) => {
-                    if (response.data) {
-                        
+                    if (response.status === 200 && response.data) {
+                        searchResult.value.data = response.data.data;
+                        searchResult.value.total = response.data.total;
+                        searchResult.value.page = filterRequest.value.page;
+                        searchResult.value.size = filterRequest.value.size;
                     } else {
                         console.error(`Oops, ${response.data.message}`);
                     }
@@ -43,7 +53,8 @@ export default {
             isLoading,
             filterRequest,
             searchFileData,
-            Search
+            Search,
+            searchResult
         }
     },
     computed: {

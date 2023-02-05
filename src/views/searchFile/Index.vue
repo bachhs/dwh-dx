@@ -110,57 +110,67 @@
                             </div>
                         </el-card>
                     </div>
-                    <div class="col-80p pt-2" style="background-color: #f3f3f3; border-radius: 5px;;">
-                        <el-scrollbar class="mt-1 pr-3" style="height: calc(100vh - 13.5rem);">
-                            <div>
-                                <div v-for="itemResult in 99" :key="itemResult"
-                                    class="mb-3">
-                                    <el-card :body-style="{ padding: '0.3rem 0.8rem 0.5rem' }">
-                                        <div>
-                                            <!-- <div class="text-muted"><small>{{itemResult}}</small></div> -->
-                                            <div class="d-flex align-items-start">
-                                                <div>
-                                                    <i class="fas fa-file-text fa-3x text-lightblue mt-2"></i>
-                                                </div>
-                                                <div class="ml-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <!-- <div>
-                                                            <img
-                                                                src="/icons/databases/postgresql.svg"
-                                                                style="width: 1.2rem"
-                                                            />
-                                                        </div> -->
-                                                        <div class="ml-0 mb-1 mt-1">
-                                                            <h6 class="m-0">
-                                                                <span class="right badge badge-danger mr-1">{{itemResult % 2 === 0 ? 'Embed Link': 'Upload'}}</span>
-                                                                <strong>Loạt doanh nghiệp lớn muốn đầu tư vào Vân Phong {{itemResult}}</strong>
-                                                            </h6>
+                    <div class="col-80p">
+                        <div class="pt-2 pl-2" style="background-color: #f3f3f3; border-radius: 5px;">
+                            <el-scrollbar class="mt-1 pr-3" style="height: calc(100vh - 15.5rem);">
+                                <div v-if="searchResult.data.length > 0">
+                                    <div v-for="itemResult in searchResult.data" :key="itemResult"
+                                        class="mb-3">
+                                        <el-card :body-style="{ padding: '0.3rem 0.8rem 0.5rem' }">
+                                            <div>
+                                                <div class="d-flex align-items-start">
+                                                    <div>
+                                                        <i class="fas fa-file-text fa-3x text-lightblue mt-2"></i>
+                                                    </div>
+                                                    <div class="ml-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="ml-0 mb-1 mt-1">
+                                                                <el-button link>
+                                                                    <h6 class="m-0">
+                                                                        <span class="right badge badge-danger mr-2">{{itemResult.embedded_id ? 'Embed Link': 'Upload'}}</span>
+                                                                        <strong>{{itemResult.name}}</strong>
+                                                                    </h6>
+                                                                </el-button>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="text-muted" style="font-size: 85%;">
+                                                            <strong>{{ itemResult.organization }}</strong> | Khởi tạo {{ $filters.prettyDate(itemResult.created_at) }}
                                                         </div>
-                                                    </div> 
-                                                    <div class="text-muted" style="font-size: 85%;">
-                                                        <strong>Sở thông tin & Truyền thông</strong> | File size: 50 GB | File type: Excel (xlsx) | Upload: 04-02-2023 01:58  | Last modified: 04-02-2023 01:58
+                                                        <!-- <div class="text-muted" style="font-size: 85%;">
+                                                            Các doanh nghiệp như Sungroup, Novaland, FPT, Dầu khí Đông Phương, Trung Nam… đang trong quá trình xin đầu tư dự án trên địa bàn tỉnh Khánh Hòa với quy mô, số vốn "khủng".
+                                                        </div> -->
                                                     </div>
-                                                    <div class="text-muted" style="font-size: 85%;">
-                                                        Các doanh nghiệp như Sungroup, Novaland, FPT, Dầu khí Đông Phương, Trung Nam… đang trong quá trình xin đầu tư dự án trên địa bàn tỉnh Khánh Hòa với quy mô, số vốn "khủng".
+                                                </div> 
+                                                <!-- <hr class="mb-2"/>
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <el-icon><PriceTag /></el-icon>
                                                     </div>
-                                                </div>
-                                            </div> 
-                                            <hr class="mb-2"/>
-                                            <div class="d-flex align-items-center">
-                                                <div>
-                                                    <el-icon><PriceTag /></el-icon>
-                                                </div>
-                                                <div class="ml-2">
-                                                    <span class="mr-2" v-for="tagItem in 2" :key="tagItem">
-                                                        #tag{{tagItem}}
-                                                    </span>
-                                                </div>
+                                                    <div class="ml-2">
+                                                        <span class="mr-2" v-for="tagItem in 2" :key="tagItem">
+                                                            #tag{{tagItem}}
+                                                        </span>
+                                                    </div>
+                                                </div> -->
                                             </div>
-                                        </div>
-                                    </el-card>
+                                        </el-card>
+                                    </div>
                                 </div>
-                            </div>
-                        </el-scrollbar>
+                            </el-scrollbar>
+                        </div>
+                        <div class="mt-2">
+                            <el-pagination
+                                v-if="searchResult.data && searchResult.data.length > 0"
+                                class=""
+                                background
+                                layout="total, sizes, prev, pager, next"
+                                v-model:current-page="filterRequest.page"
+                                :page-size="filterRequest.size"
+                                :total="searchResult.total"
+                                @size-change="searchFileData"
+                                @current-change="searchFileData"
+                            />
+                        </div>
                     </div>
                 </section>
             </div>

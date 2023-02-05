@@ -62,8 +62,8 @@ app.config.globalProperties.$filters = {
     prettyDate(value: any) {
         if (!value) value = new Date();
         return moment(value).calendar(null, {
-            sameDay: '[Today] HH:mm:ss',
-            lastDay: '[Yesterday] HH:mm:ss',
+            sameDay: '[Hôm nay] HH:mm:ss',
+            lastDay: '[Hôm qua] HH:mm:ss',
             lastWeek: 'DD/MM/YYYY HH:mm:ss',
             sameElse: 'DD/MM/YYYY HH:mm:ss',
         });
@@ -71,8 +71,8 @@ app.config.globalProperties.$filters = {
     prettyDateUnix(value: any) {
         if (!value) return '--';
         return moment.unix(value).calendar(null, {
-            sameDay: '[Today] HH:mm:ss',
-            lastDay: '[Yesterday] HH:mm:ss',
+            sameDay: '[Hôm nay] HH:mm:ss',
+            lastDay: '[Hôm qua] HH:mm:ss',
             lastWeek: 'DD/MM/YYYY HH:mm:ss',
             sameElse: 'DD/MM/YYYY HH:mm:ss',
         });
