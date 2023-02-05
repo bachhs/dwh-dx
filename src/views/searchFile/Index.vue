@@ -58,10 +58,11 @@
                                         <span class="text-muted ml-1" style="font-size: 85%;">Tổ chức</span>
                                     </div>
                                     <div class="mt-1">
-                                        <el-select v-model="filterRequest.organization_name" class="w-100" size="large" placeholder="Chọn tổ chức..">
+                                        <!-- <el-select v-model="filterRequest.organization_name" class="w-100" size="large" placeholder="Chọn tổ chức..">
                                             <el-option label="Tất cả" value="" />
                                             <el-option v-for="item in organization" :key="item.id" :label="item.name" :value="item.name" />
-                                        </el-select>
+                                        </el-select> -->
+                                        <el-input v-model="filterRequest.organization_name" class="w-100" size="large" placeholder="Tổ chức.."/>
                                     </div>
                                 </div>
                                 <div class="mb-2">
