@@ -44,7 +44,7 @@ onMounted(() => {
                             style="line-height: 1.4rem">
                             <div>
                                 <strong class="text-white"
-                                    >SỈNH TUYÊN QUANG</strong
+                                    >TỈNH TUYÊN QUANG</strong
                                 >
                             </div>
                             <div class="d-none d-md-block text-warning">
