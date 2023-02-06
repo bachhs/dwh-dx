@@ -36,7 +36,7 @@ onMounted(() => {
                         <div>
                             <img
                                 src="/custom-img/quochuy.png"
-                                alt="KHO DỮ LIỆU DÙNG CHUNG - SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN QUANG"
+                                alt="KHO DỮ LIỆU DÙNG CHUNG - TỈNH TUYÊN QUANG"
                                 style="width: 2.8rem" />
                         </div>
                         <div
@@ -44,8 +44,7 @@ onMounted(() => {
                             style="line-height: 1.4rem">
                             <div>
                                 <strong class="text-white"
-                                    >SỞ THÔNG TIN VÀ TRUYỀN THÔNG TỈNH TUYÊN
-                                    QUANG</strong
+                                    >SỈNH TUYÊN QUANG</strong
                                 >
                             </div>
                             <div class="d-none d-md-block text-warning">
