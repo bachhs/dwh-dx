@@ -1,12 +1,12 @@
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
-<script lang="ts" src="@/scripts/dataSourceGroup/fileEmbedLink/list.ts"></script>
+<script lang="ts" src="@/scripts/dataSourceGroup/apiSource/list.ts"></script>
 <template>
     <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
         <div class="d-flex align-items-center pr-3">
             <div class="flex-fill d-none d-sm-none d-md-none d-lg-block">
                 <h4>
-                    <i class="fas fa-file-code text-lightblue mr-2"></i>
-                    <strong>File Embed Link</strong>
+                    <i class="fas fa-external-link-alt text-lightblue mr-2"></i>
+                    <strong>API Data source</strong>
                 </h4>
             </div>
             <div class="d-flex align-items-center">
@@ -68,69 +68,31 @@
                 v-if="listElements.data && listElements.data.length > 0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
-                        <table
-                            class="table table-striped table-head-fixed text-nowrap table-borderless">
-                            <thead>
-                                <tr class="bg-white">
-                                    <th style="width: 1%;"
-                                        class="pl-0 pt-2 pb-2 text-nowrap align-middle">
-                                        <button>ID</button>
-                                    </th>
-                                    <th class="pl-0 pt-2 pb-2 align-middle">
-                                        <button>TỔ CHỨC</button>
-                                    </th>
-                                    <th class="pl-0 pt-2 pb-2 text-center">
-                                        <button>
-                                            <div>EMBEDDED ID</div>
-                                        </button>
-                                    </th>
-                                    <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle">
-                                        <button>CÓ HIỆU LỰC</button>
-                                    </th>
-                                    <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle">
-                                        <button>HẾT HIỆU LỰC</button>
-                                    </th>
-                                    <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle">
-                                        <button>THỜI GIAN THÊM</button>
-                                    </th>
-                                    <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle">
-                                        <button>LẦN CUỐI CHỈNH SỬA</button>
-                                    </th>
-                                    <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle"
-                                        style="width: 1%">
-                                        <div>Action</div>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class=" ">
-                                <tr v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex">
-                                    <td class="pl-2 text-left">{{itemData.id}}</td>
-                                    <td class="pl-2">
-                                        <span v-if="itemData.organization">
-                                            {{ itemData.organization.name }}
-                                        </span>
-                                    </td>
-                                    <td class="pl-2 text-center">
-                                        {{itemData.embedded_id}}
-                                    </td>
-                                    <td class="pl-2 text-center">
-                                        {{$filters.prettyDate(itemData.valid_from)}}
-                                    </td>
-                                    <td class="pl-2 text-center">
-                                        {{$filters.prettyDate(itemData.valid_to)}}
-                                    </td>
-                                    <td class="pl-2 text-center">
-                                        {{$filters.prettyDate(itemData.created_at)}}
-                                    </td>
-                                    <td class="pl-2 text-center">
-                                        {{$filters.prettyDate(itemData.updated_at)}}
-                                    </td>
-                                    <td class="pl-2 text-center">
+                        <div v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex">
+                            <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
+                                <div class="d-flex">
+                                    <div class="d-flex flex-column flex-md-row flex-fill">
+                                        <div class="text-left">
+                                            <div>#{{itemData.id}} <strong>{{itemData.name}}</strong></div>
+                                            <div style="font-size: 85%;">{{ itemData.description }}</div>
+                                            <div style="font-size: 85%;">
+                                                <span v-if="itemData.organization">
+                                                    {{ itemData.organization.name }}
+                                                </span>
+                                            </div>
+                                        </div> 
+                                        <div class="ml-0 ml-md-4 text-left">
+                                            <div style="font-size: 85%;"><strong class="text-uppercase">{{itemData.method}}</strong> {{itemData.url}}</div>
+                                            <div style="font-size: 85%;">Headers: {{itemData.headers}}</div>
+                                            <div style="font-size: 85%;">Params: {{itemData.params}}</div>
+                                            <div style="font-size: 85%;">Body: {{itemData.body}}</div>
+                                        </div> 
+                                    </div>
+                                    <div class="ml-2 ml-md-4 text-left">
+                                        <div>{{$filters.prettyDate(itemData.created_at)}}</div>
+                                        <div>{{$filters.prettyDate(itemData.updated_at)}}</div>
+                                    </div>
+                                    <div class="ml-2 mt-1 mt-md-0 ml-md-4 text-left">
                                         <!-- <el-button type="default" class="p-2"
                                             @click="$emit( 'onChangeView', { viewName: 'ModifyData', data: itemData, })">
                                             <el-icon
@@ -155,10 +117,10 @@
                                                 <Delete />
                                             </el-icon>
                                         </el-button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </div>
+                                </div>
+                            </el-card>
+                        </div>
                     </div>
                 </el-scrollbar>
                 <div class="mt-3 d-flex align-items-center pr-2 p-1">

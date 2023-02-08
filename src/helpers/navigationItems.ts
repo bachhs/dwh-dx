@@ -48,6 +48,12 @@ export const navItems = [
         url: '/file-embed-link',
     },
     {
+        type: 'link',
+        name: 'API Data source',
+        icon: 'fas fa-external-link-alt',
+        url: '/api-datasource',
+    },
+    {
         type: 'navHeader',
         name: 'KHO DỮ LIỆU',
     },

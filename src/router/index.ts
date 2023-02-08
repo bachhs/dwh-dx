@@ -38,6 +38,11 @@ const router = createRouter({
             component: () => import('@/views/dataSourceGroup/fileEmbedLink/Upload.vue'),
         },
         {
+            path: '/api-datasource',
+            name: 'apiDatasource',
+            component: () => import('@/views/dataSourceGroup/apiSource/Index.vue'),
+        },
+        {
             path: '/tags-manager',
             name: 'tagManager',
             component: () => import('@/views/tag/index.vue'),
