@@ -9,7 +9,7 @@ export default {
     props: ["viewSettings"],
     emits: ["onChangeView"],
     setup() {
-        const moduleName = "File Embed Link";
+        const moduleName = "API Data source";
         const filterDataInfo = ref({
             organization_id: "",
         });
@@ -39,7 +39,7 @@ export default {
                 })
             };
             ElMessageBox.confirm(
-                `Đồng ý sẽ xoá ${moduleName} <strong class="text-primary">${item.id}</strong>. Tiếp tục?`, 'Xác nhận xoá', {
+                `Đồng ý sẽ xoá ${moduleName} <strong class="text-primary">${item.name}</strong>. Tiếp tục?`, 'Xác nhận xoá', {
                     dangerouslyUseHTMLString: true,
                     confirmButtonText: 'Đồng ý xoá',
                     cancelButtonText: 'Không xoá',
@@ -50,14 +50,14 @@ export default {
                 ElMessage({
                     dangerouslyUseHTMLString: true,
                     type: 'info',
-                    message: `Đã có lỗi xảy ra khi xoá ${moduleName} <strong class="text-primary">${item.id}</strong>. embedded link đã được sử dụng nên không thể xoá`,
+                    message: `Đã có lỗi xảy ra khi xoá ${moduleName} <strong class="text-primary">${item.name}</strong>. api source đã được sử dụng nên không thể xoá`,
                 });
             })
             .catch(() => {
                 ElMessage({
                     dangerouslyUseHTMLString: true,
                     type: 'info',
-                    message: `Đã huỷ bỏ lệnh xoá ${moduleName} <strong class="text-primary">${item.id}</strong>`,
+                    message: `Đã huỷ bỏ lệnh xoá ${moduleName} <strong class="text-primary">${item.name}</strong>`,
                 })
             });
         };

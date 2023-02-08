@@ -1,3 +1,6 @@
+
+import { OfficeBuilding } from '@element-plus/icons-vue';
+
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <script lang="ts" src="@/scripts/dataSourceGroup/apiSource/list.ts"></script>
 <template>
@@ -67,57 +70,78 @@
                 class="flex-fill d-flex flex-column"
                 v-if="listElements.data && listElements.data.length > 0">
                 <el-scrollbar class="w-100 flex-fill">
-                    <div class="mt-2 mr-3">
+                    <div class="mt-2 mr-3 row">
                         <div v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex"
-                        class="mb-3">
+                            class="mb-3 col-12 col-md-6">
                             <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
                                 <div class="d-flex">
+                                    <div class="d-none d-md-block mr-3">
+                                        <img src="/img/api-application-icon.png"
+                                            style="height: 5.5rem;" />
+                                    </div>
                                     <div class="d-flex flex-column flex-md-row flex-fill">
                                         <div class="text-left">
                                             <div>#{{itemData.id}} <strong>{{itemData.name}}</strong></div>
-                                            <div style="font-size: 85%;">{{ itemData.description }}</div>
-                                            <div style="font-size: 85%;">
+                                            <div class="text-muted text-nowrap text-left line-clamp-1" style="font-size: 85%;">
+                                                <strong class="text-uppercase text-primary">{{itemData.method}}</strong> {{itemData.url}}
+                                            </div>
+                                            <div class="text-muted line-clamp-1" style="font-size: 85%;">{{ itemData.description }}</div>
+                                            <div style="font-size: 85%;" class="text-muted">
                                                 <span v-if="itemData.organization">
+                                                    <el-icon class="text-primary mr-1">
+                                                        <OfficeBuilding />
+                                                    </el-icon>
                                                     {{ itemData.organization.name }}
                                                 </span>
                                             </div>
                                         </div> 
-                                        <div class="ml-0 ml-md-4 text-left">
-                                            <div style="font-size: 85%;"><strong class="text-uppercase">{{itemData.method}}</strong> {{itemData.url}}</div>
-                                            <div style="font-size: 85%;">Headers: {{itemData.headers}}</div>
-                                            <div style="font-size: 85%;">Params: {{itemData.params}}</div>
-                                            <div style="font-size: 85%;">Body: {{itemData.body}}</div>
-                                        </div> 
+                                        <!-- <div class="ml-0 ml-md-4 text-left">
+                                            <div class="d-none d-md-block text-muted" style="font-size: 85%;">Headers: {{itemData.headers}}</div>
+                                            <div class="d-none d-md-block text-muted" style="font-size: 85%;">Params: {{itemData.params}}</div>
+                                            <div class="d-none d-md-block text-muted" style="font-size: 85%;">Body: {{itemData.body}}</div>
+                                        </div>  -->
                                     </div>
-                                    <div class="ml-2 ml-md-4 text-left">
-                                        <div>{{$filters.prettyDate(itemData.created_at)}}</div>
-                                        <div>{{$filters.prettyDate(itemData.updated_at)}}</div>
-                                    </div>
-                                    <div class="ml-2 mt-1 mt-md-0 ml-md-4 text-left">
-                                        <!-- <el-button type="default" class="p-2"
-                                            @click="$emit( 'onChangeView', { viewName: 'ModifyData', data: itemData, })">
-                                            <el-icon
-                                                style="vertical-align: middle"
-                                                :size="20">
-                                                <Edit />
-                                            </el-icon>
-                                        </el-button> -->
-                                        <el-button type="default" class="p-2"
-                                            @click="openEmbedLink(itemData)">
-                                            <el-icon
-                                                style="vertical-align: middle"
-                                                :size="20">
-                                                <Link />
-                                            </el-icon>
-                                        </el-button>
-                                        <el-button type="danger" class="p-2"
-                                            @click="deleteItem(itemData)">
-                                            <el-icon
-                                                style="vertical-align: middle"
-                                                :size="20">
-                                                <Delete />
-                                            </el-icon>
-                                        </el-button>
+                                    <div class="ml-2 mt-1 mt-md-0 ml-md-4 text-right">
+                                        <div>
+                                            <el-button type="default" class="p-2"
+                                                @click="$emit( 'onChangeView', { viewName: 'ModifyData', data: itemData, })">
+                                                <el-icon
+                                                    style="vertical-align: middle"
+                                                    :size="20">
+                                                    <Edit />
+                                                </el-icon>
+                                            </el-button>
+                                            <!-- <el-button type="default" class="p-2">
+                                                <el-icon
+                                                    style="vertical-align: middle"
+                                                    :size="20">
+                                                    <Edit />
+                                                </el-icon>
+                                            </el-button> -->
+                                            <el-button type="danger" class="p-2"
+                                                @click="deleteItem(itemData)">
+                                                <el-icon
+                                                    style="vertical-align: middle"
+                                                    :size="20">
+                                                    <Delete />
+                                                </el-icon>
+                                            </el-button>
+                                        </div>
+                                        
+                                        <div class="ml-2 mt-2 ml-md-4 text-left d-none d-md-block">
+                                            <div style="font-size: 85%;" class=" text-nowrap text-muted">
+                                                <el-icon class="text-primary mr-1">
+                                                    <Plus />
+                                                </el-icon>
+                                                <span>{{$filters.prettyDate(itemData.created_at)}}</span>
+                                            </div>
+                                            <div style="font-size: 85%;" class=" text-nowrap text-muted">
+                                                <el-icon class="text-primary mr-1">
+                                                    <Edit />
+                                                </el-icon>
+                                                <span>{{$filters.prettyDate(itemData.updated_at)}}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </el-card>

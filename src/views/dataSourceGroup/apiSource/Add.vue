@@ -45,9 +45,9 @@
             <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4">
                 <el-form
                     v-if="itemModel"
-                    ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
+                    ref="ruleFormApiRef" :model="itemModel" :rules="rules" 
                     label-width="0" class="ruleForm">
-                    <div class="mb-2">
+                    <div class="mb-2 card p-2 pl-3 pr-3 ml-1">
                         <div>
                             <strong>Tổ chức</strong><span class="ml-1 text-danger">*</span>
                         </div>
@@ -82,92 +82,103 @@
                             </div>
                         </div>
                     </div>
-                </el-form>
-                <div class="mt-1">
                     <div>
-                        <!-- <div class="mt-2">
-                            <strong>CẤU HÌNH THAM SỐ API</strong><span class="ml-1 text-danger">*</span>
-                        </div> -->
-                        <div class="mt-3 d-flex">
-                            <div class="flex-fill">
-                                <el-input
-                                    class="input-with-select"
-                                    v-model="itemModel.url"
-                                    size="large"
-                                    placeholder="Dán URL API dữ liệu nguồn vào đây.." >
-                                    <template #prepend>
-                                        <el-select v-model="itemModel.method" size="large" style="width: 150px;">
-                                            <el-option v-for="item in restfulMethods" :key="item"
-                                                :label="item" :value="item" />
-                                        </el-select>
-                                    </template>
-                                </el-input>
-                            </div>
-                            <div></div>
-                        </div>
-                        <div>
-                            <el-tabs v-model="activeTabName">
-                                <el-tab-pane label="Params" name="params">
-                                    <div>
-                                        <!-- <div class="mb-2">
-                                            <strong>Query params</strong><span class="ml-1 text-danger">*</span>
-                                        </div> -->
+                        <div class="card p-2 pl-3 pr-3 ml-1 mt-3">
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div class="mt-2">
                                         <div>
-                                            <el-form ref="ruleFormParamsRef" :model="itemModelAddParams" :rules="rules" 
-                                                label-width="0" class="ruleForm">
-                                                <table class="table table-hover table-striped table-borderless text-nowrap" >
-                                                    <thead>
-                                                        <tr style="background-color: #dceaff;">
-                                                            <th style="width: 50px;"></th>
-                                                            <th>KEY</th>
-                                                            <th>GIÁ TRỊ</th>
-                                                            <th>MÔ TẢ</th>
-                                                            <th style="width: 50px;"></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr v-for="queryParam in queryParams" :key="queryParam.key">
-                                                            <td></td>
-                                                            <td>{{queryParam.key}}</td>
-                                                            <td>{{queryParam.value}}</td>
-                                                            <td>{{queryParam.description}}</td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>
-                                                                <el-form-item label="" prop="key">
-                                                                    <el-input v-model="itemModelAddParams.key" placeholder="Key" size="large"/>
-                                                                </el-form-item>                                                
-                                                            </td>
-                                                            <td>
-                                                                <el-form-item label="" prop="value">
-                                                                    <el-input v-model="itemModelAddParams.value" placeholder="Giá trị" size="large"/>
-                                                                </el-form-item>                                                
-                                                            </td>
-                                                            <td>
-                                                                <el-form-item label="" prop="description">
-                                                                    <el-input v-model="itemModelAddParams.description" placeholder="Mô tả" size="large"/>
-                                                                </el-form-item>                                                
-                                                            </td>
-                                                            <td>
-                                                                <el-button size="large" type="primary" class="pl-3 pr-3"
-                                                                    @click="submitAddParam">
-                                                                    <i class="fas fa-check" style="font-size: 150%;"></i>
-                                                                </el-button>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </el-form>
+                                            <strong>Tên API</strong><span class="ml-1 text-danger">*</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <el-form-item label="" prop="name">
+                                                <el-input v-model="itemModel.name"
+                                                    size="large" placeholder="Tên API"
+                                                    clearable />
+                                            </el-form-item>
                                         </div>
                                     </div>
-                                </el-tab-pane>
-                                <el-tab-pane label="Authorization" name="authorization">Authorization</el-tab-pane>
-                                <el-tab-pane label="Headers (12)" name="headers">Headers</el-tab-pane>
-                                <el-tab-pane label="Body" name="body">Body</el-tab-pane>
-                            </el-tabs>
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <div class="mt-1">
+                                        <div>
+                                            <strong>Mô tả</strong><span class="ml-1 text-danger">*</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <el-form-item label="" prop="description">
+                                                <el-input v-model="itemModel.description"
+                                                    :autosize="{ minRows: 2, maxRows: 4 }"
+                                                    type="textarea"
+                                                    size="large" placeholder="Mô tả"
+                                                    clearable />
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <div class="mt-1 pt-3 card p-2 pl-3 pr-3 ml-1">
+                                    <div class="d-flex">
+                                        <div>
+                                            <el-select v-model="itemModel.method" size="large" style="width: 150px;">
+                                                <el-option v-for="item in restfulMethods" :key="item"
+                                                    :label="item" :value="item" />
+                                            </el-select>
+                                        </div>
+                                        <div class="ml-3 flex-fill">
+                                            <el-form-item label="" prop="url">
+                                                <el-input
+                                                    class="input-with-select"
+                                                    v-model="itemModel.url"
+                                                    size="large"
+                                                    placeholder="URL API .." >
+                                                </el-input>
+                                            </el-form-item>                            
+                                        </div>
+                                        <div></div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </el-form>
+                <div class="mt-2 pl-1 pr-1">
+                    <div>
+                        <el-tabs v-model="activeTabName" type="border-card">
+                            <el-tab-pane label="Params" name="params">
+                                <div class="mb-2"><strong>Danh sách Params</strong></div>
+                                <div>
+                                    <KeyValueEdit ref="refParamsEdit"
+                                        :queryParamsModel="queryParams"
+                                        @onFormParamsSubmit="(dataEvt:Array<any>) =>{ queryParams = dataEvt }"/>
+                                </div>
+                            </el-tab-pane>
+                            <el-tab-pane label="Headers" name="headers">
+                                <div class="mb-2"><strong>Danh sách Headers</strong></div>
+                                <KeyValueEdit ref="refHeadersEdit"
+                                        :queryParamsModel="queryHeaders"
+                                        @onFormParamsSubmit="(dataEvt:Array<any>) =>{ queryHeaders = dataEvt }"/>
+                            </el-tab-pane>
+                            <el-tab-pane label="Body" name="body">
+                                <div class="mb-2">
+                                    <el-radio-group v-model="bodyContentType">
+                                        <el-radio-button label="none">Không</el-radio-button>
+                                        <el-radio-button label="form-data">Form-data</el-radio-button>
+                                        <el-radio-button label="x-www-form-urlencode">x-www-form-urlencode</el-radio-button>
+                                        <!-- <el-radio-button label="binary">Binary</el-radio-button> -->
+                                        <!-- <el-radio-button label="GraphQL">GraphQL</el-radio-button> -->
+                                    </el-radio-group>
+                                </div>
+                                <KeyValueEdit ref="refBodyEdit" v-if="['form-data', 'x-www-form-urlencode'].includes(bodyContentType)"
+                                        :queryParamsModel="queryBody"
+                                        @onFormParamsSubmit="(dataEvt:Array<any>) =>{ queryBody = dataEvt }"/>
+                                <!-- <div v-if="bodyContentType === 'binary'">
+                                    <el-input v-model="fileBinarySelected" type="file" placeholder="Chọn file..." />
+                                </div> -->
+                            </el-tab-pane>
+                        </el-tabs>
                     </div>
                 </div> 
                 <div
@@ -177,7 +188,7 @@
                         size="large"
                         type="primary"
                         class="mr-1 ml-1"
-                        @click="addItemSubmit">
+                        @click="submitItemSubmit">
                         <el-icon><Plus /></el-icon>
                         <span>{{ viewSettings.title }}</span>
                     </el-button>
