@@ -1,8 +1,10 @@
-import { ref, onMounted } from 'vue';
+import { ref, onMounted,reactive } from 'vue';
 import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
+import { restfulMethods } from "@/helpers/constants";
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { apiSourceApi } from '@/api/apiSourceApi';
+import type { FormInstance, FormRules } from 'element-plus';
 import moment from 'moment';
 const appState = useDataCategoryStore();
 
@@ -22,6 +24,41 @@ export default {
             headers: "",
             body: ""
         }); 
+        
+        const activeTabName = ref('params');
+        const queryParams = ref<any>([]);
+        const itemModelAddParams = ref<any>({ key: "", value: "", description: "" });
+        const ruleFormParamsRef = ref<FormInstance>();
+        const rules = reactive<FormRules>({
+            key: [
+                {
+                    required: true,
+                    message: 'Vui lòng không bỏ trống..',
+                    trigger: 'blur',
+                },
+            ],
+            value: [
+                {
+                    required: true,
+                    message: 'Vui lòng không bỏ trống..',
+                    trigger: 'blur',
+                },
+            ],
+        });
+        
+        const submitAddParam = async () => {
+            if (!ruleFormParamsRef || !ruleFormParamsRef.value) return;
+            await ruleFormParamsRef.value.validate((valid, fields) => {
+                if (valid) {
+                    queryParams.value.push({
+                        ...itemModelAddParams.value
+                    });
+                    itemModelAddParams.value = { key: "", value: "", description: "" };
+                } else {
+                    console.log('error submit!', fields);
+                }
+            });
+        };
 
         const onOrganizationChanged = (item:any)=>{
             currentOrganizationName.value = item.name;
@@ -102,6 +139,11 @@ export default {
             addItemSubmit,
             onOrganizationChanged,
             moment,
+            activeTabName,
+            restfulMethods,
+            queryParams,
+            itemModelAddParams,
+            submitAddParam,
         };
     },
     computed: {

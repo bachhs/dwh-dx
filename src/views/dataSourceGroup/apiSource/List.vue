@@ -68,7 +68,8 @@
                 v-if="listElements.data && listElements.data.length > 0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
-                        <div v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex">
+                        <div v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex"
+                        class="mb-3">
                             <el-card :body-style="{ padding: '0.5rem 0.8rem' }">
                                 <div class="d-flex">
                                     <div class="d-flex flex-column flex-md-row flex-fill">
