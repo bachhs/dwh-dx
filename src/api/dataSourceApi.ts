@@ -1,4 +1,4 @@
-import type DatasourceInfo from '@/scripts/dataSource/type';
+import type DatasourceInfo from '@/scripts/dataSourceGroup/dataSource/type';
 import axios from 'axios';
 import { omAxios } from '@/config/apiClients';
 
