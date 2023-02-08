@@ -193,15 +193,15 @@ export default {
                     currentOrganizationName.value = apiSourceItem.organization.name;
                     if(apiSourceItem.params && apiSourceItem.params !== null) {
                         queryParams.value = JSON.parse(apiSourceItem.params);
-                        console.log('queryParams', apiSourceItem.params);
+                        //console.log('queryParams', apiSourceItem.params);
                     }
                     if(apiSourceItem.body && apiSourceItem.body !== null) {
                         queryBody.value = JSON.parse(apiSourceItem.body);
-                        console.log('queryBody', apiSourceItem.body);
+                        //console.log('queryBody', apiSourceItem.body);
                     }
                     if(apiSourceItem.headers && apiSourceItem.headers !== null) {
                         queryHeaders.value = JSON.parse(apiSourceItem.headers);
-                        console.log('queryHeaders', apiSourceItem.headers);
+                        //console.log('queryHeaders', apiSourceItem.headers);
                     }
                     itemModel.value = {
                         id: apiSourceItem.id,
