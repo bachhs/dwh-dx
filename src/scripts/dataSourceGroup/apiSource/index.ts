@@ -31,21 +31,21 @@ export default {
                     case 'ListData':
                         viewSettings.value = {
                             viewName: 'ListData',
-                            title: 'File Embed Link',
+                            title: 'File API Data Source',
                             dataItem: null,
                         };
                         break;
                     case 'AddData':
                         viewSettings.value = {
                             viewName: 'AddData',
-                            title: 'Thêm mới Embed Link',
+                            title: 'Thêm mới API Data Source',
                             dataItem: null,
                         };
                         break;
                     case 'ModifyData':
                         viewSettings.value = {
                             viewName: 'ModifyData',
-                            title: 'Chỉnh sửa Embed Link',
+                            title: 'Chỉnh sửa API Data Source',
                             dataItem: paramsObject.data,
                         };
                         break;

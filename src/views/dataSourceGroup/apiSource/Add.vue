@@ -47,7 +47,7 @@
                     v-if="itemModel"
                     ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
                     label-width="0" class="ruleForm">
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <div>
                             <strong>Tổ chức</strong><span class="ml-1 text-danger">*</span>
                         </div>
@@ -82,30 +82,64 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4">
-                        <div>
-                            <strong>Thời gian có hiệu lực</strong
-                            ><span class="ml-1 text-danger">*</span>
-                        </div>
-                        <div class="mt-2">
-                            <el-form-item label="" prop="nameOfDS">
-                                <el-date-picker v-model="validDateModel" 
-                                    :editable="true"
-                                    type="datetimerange" size="large"
-                                    range-separator="Đến ngày" start-placeholder="Ngày có hiệu lực.."
-                                    end-placeholder="Ngày hết hiệu lực"
-                                    :time-arrow-control="true"
-                                    format="DD-MM-YYYY HH:mm:ss"
-                                    value-format="YYYY-MM-DD HH:mm:ss"/>
-                            </el-form-item>
-                        </div>
-                        <div>
-                            File Embed Link cho <strong>{{ currentOrganizationName }}</strong> có hiệu lực từ 
-                            <strong>{{ moment(validDateModel[0]).format('[Ngày] DD [tháng] MM [năm] YYYY') }}</strong> đến 
-                            <strong>{{ moment(validDateModel[1]).format('[Ngày] DD [tháng] MM [năm] YYYY') }}</strong> 
-                            <span v-if="$filters.durationToStr(validDateModel[1], validDateModel[0])">
-                                ({{ $filters.durationToStr(validDateModel[1], validDateModel[0]) }})
-                            </span>
+                    <div class="mt-1">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div>
+                                    <strong>Tên API</strong>
+                                    <span class="ml-1 text-danger">*</span>
+                                </div>
+                                <div class="mt-2">
+                                    <el-form-item label="" prop="name">
+                                        <el-input 
+                                            v-model="itemModel.name "
+                                            placeholder="Tên API..."
+                                            @change="onOrganizationChanged(item)" />
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div>
+                                    <strong>Mô tả</strong>
+                                    <span class="ml-1 text-danger">*</span>
+                                </div>
+                                <div class="mt-2">
+                                    <el-form-item label="" prop="name">
+                                        <el-input 
+                                            v-model="itemModel.name "
+                                            placeholder="Mô tả API..."
+                                            @change="onOrganizationChanged(item)" />
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-2">
+                                <div>
+                                    <strong>Method</strong>
+                                    <span class="ml-1 text-danger">*</span>
+                                </div>
+                                <div class="mt-2">
+                                    <el-form-item label="" prop="name">
+                                        <el-input 
+                                            v-model="itemModel.name "
+                                            placeholder="Tên API..."
+                                            @change="onOrganizationChanged(item)" />
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-10">
+                                <div>
+                                    <strong>URL</strong>
+                                    <span class="ml-1 text-danger">*</span>
+                                </div>
+                                <div class="mt-2">
+                                    <el-form-item label="" prop="name">
+                                        <el-input 
+                                            v-model="itemModel.name "
+                                            placeholder="Tên API..."
+                                            @change="onOrganizationChanged(item)" />
+                                    </el-form-item>
+                                </div>
+                            </div>
                         </div>
                     </div> 
                 </el-form>

@@ -88,7 +88,7 @@
                             ><span class="ml-1 text-danger">*</span>
                         </div>
                         <div class="mt-2">
-                            <el-form-item label="" prop="nameOfDS">
+                            <el-form-item label="">
                                 <el-date-picker v-model="validDateModel" 
                                     :editable="true"
                                     type="datetimerange" size="large"
