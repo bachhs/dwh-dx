@@ -11,7 +11,7 @@ export const navItems = [
     },
     {
         type: 'relative-link',
-        name: 'Hệ thống xác thực tập trung',
+        name: 'HT xác thực tập trung',
         icon: 'fas fa-shield-halved',
         url: 'https://security.dtcsolution.vn',
     },
@@ -52,6 +52,22 @@ export const navItems = [
         name: 'API Data source',
         icon: 'fas fa-external-link-alt',
         url: '/api-datasource',
+    },
+    {
+        type: 'navHeader',
+        name: 'DỮ LIỆU',
+    },
+    {
+        type: 'link',
+        name: 'Thu thập dữ liệu',
+        icon: 'fas fa-sync-alt',
+        url: '/datasource-pipeline',
+    },
+    {
+        type: 'link',
+        name: 'Xử lý dữ liệu',
+        icon: 'fas fa-fire-alt',
+        url: '/datasource-processing',
     },
     {
         type: 'navHeader',
@@ -142,28 +158,6 @@ export const navItems = [
         name: 'Báo cáo',
         icon: 'fas fa-toolbox',
         url: '/report',
-    },
-    {
-        type: 'navHeader',
-        name: 'DỮ LIỆU',
-    },
-    {
-        type: 'link',
-        name: 'Nguồn dữ liệu',
-        icon: 'fas fa-database',
-        url: '/data-source',
-    },
-    {
-        type: 'link',
-        name: 'Thu thập dữ liệu',
-        icon: 'fas fa-sync-alt',
-        url: '/datasource-pipeline',
-    },
-    {
-        type: 'link',
-        name: 'Xử lý dữ liệu',
-        icon: 'fas fa-fire-alt',
-        url: '/datasource-processing',
     },
     {
         type: 'navHeader',
