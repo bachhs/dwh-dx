@@ -1,4 +1,4 @@
-import { ref, onMounted,reactive, defineAsyncComponent, nextTick } from 'vue';
+import { ref, onMounted,reactive, defineAsyncComponent, nextTick, watch } from 'vue';
 import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
 import SkeletonBox from '@/components/SkeletonBox.vue';
@@ -80,6 +80,16 @@ export default {
             currentOrganizationName.value = item.name;
         };
 
+        watch(() => queryHeaders.value, (newHeaderList) => {
+            let findIndex = newHeaderList.findIndex((xItem:any) => xItem.key.toLowerCase() === 'content-type');
+            if(findIndex > -1){
+                bodyContentType.value = newHeaderList[findIndex].value;
+            }
+            else{
+                bodyContentType.value = "none";
+            }
+        });
+
         const createNewItem = (organizationId:number, data:any) => {
             apiSourceApi
                 .addItem(organizationId, data)
@@ -128,6 +138,43 @@ export default {
                 });
         };
 
+        const contentTypeChanged = (contentType:string) => {
+            if(queryHeaders.value){
+                let findIndex = queryHeaders.value.findIndex((xItem:any) => xItem.key.toLowerCase() === 'content-type');
+                if(findIndex > -1){
+                    queryHeaders.value[findIndex].value = contentType;
+                }
+                else{
+                    queryHeaders.value.push({ key: "Content-Type" , value: contentType });
+                }
+            }
+        };
+
+        const processKeyValueData = (paramData:Array<any>) => {
+            var obj = paramData.reduce(function(acc, cur, i) {
+                acc[cur.key] = cur.value;
+                return acc;
+            }, {});
+            return JSON.stringify(obj);
+        };
+
+        const parseKeyValueData = (stringData:string) => {
+            try{
+                var objectData = JSON.parse(stringData);
+                if(objectData){
+                    var resultData:Array<any> = [];
+                    Object.keys(objectData).forEach((xItem:any) =>{
+                        resultData.push({ key: xItem, value: objectData[xItem] });
+                    });
+                    return resultData;
+                }
+            }
+            catch(error){
+                console.error(error);
+            }
+            return [];
+        }
+
         const submitItemSubmit = async () => {
             if (!ruleFormApiRef || !ruleFormApiRef.value) return;
             await ruleFormApiRef.value.validate((valid, fields) => {
@@ -142,9 +189,9 @@ export default {
                         isLoading.value = true;
                         try {
                             const organizationId = itemModel.value.organizationId;
-                            itemModel.value.params = JSON.stringify(queryParams.value);
-                            itemModel.value.headers = JSON.stringify(queryHeaders.value);
-                            itemModel.value.body = JSON.stringify(queryBody.value);
+                            itemModel.value.params = processKeyValueData(queryParams.value);
+                            itemModel.value.headers = processKeyValueData(queryHeaders.value);
+                            itemModel.value.body = processKeyValueData(queryBody.value);
                             const data = {
                                 name: itemModel.value.name,
                                 description: itemModel.value.description,
@@ -192,15 +239,15 @@ export default {
                     let apiSourceItem = props.viewSettings.dataItem;
                     currentOrganizationName.value = apiSourceItem.organization.name;
                     if(apiSourceItem.params && apiSourceItem.params !== null) {
-                        queryParams.value = JSON.parse(apiSourceItem.params);
+                        queryParams.value = parseKeyValueData(apiSourceItem.params);
                         //console.log('queryParams', apiSourceItem.params);
                     }
                     if(apiSourceItem.body && apiSourceItem.body !== null) {
-                        queryBody.value = JSON.parse(apiSourceItem.body);
+                        queryBody.value = parseKeyValueData(apiSourceItem.body);
                         //console.log('queryBody', apiSourceItem.body);
                     }
                     if(apiSourceItem.headers && apiSourceItem.headers !== null) {
-                        queryHeaders.value = JSON.parse(apiSourceItem.headers);
+                        queryHeaders.value = parseKeyValueData(apiSourceItem.headers);
                         //console.log('queryHeaders', apiSourceItem.headers);
                     }
                     itemModel.value = {
@@ -239,6 +286,7 @@ export default {
             queryParams,
             queryHeaders,
             queryBody,
+            contentTypeChanged,
         };
     },
     computed: {

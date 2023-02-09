@@ -8,7 +8,7 @@
                         <!-- <th style="width: 50px;"></th> -->
                         <th>KEY</th>
                         <th>GIÁ TRỊ</th>
-                        <th>MÔ TẢ</th>
+                        <!-- <th>MÔ TẢ</th> -->
                         <th class="text-center" style="width: 50px;">
                             <!-- <el-tooltip class="box-item" effect="dark" content="Chế độ chỉnh sửa Bulk" placement="bottom">
                                 <el-switch v-model="editMode" />
@@ -21,7 +21,7 @@
                         <!-- <td></td> -->
                         <td><el-input :value="queryParam.key" disabled placeholder="Key" size="large"/></td>
                         <td><el-input :value="queryParam.value" disabled placeholder="Key" size="large"/></td>
-                        <td><el-input :value="queryParam.description" disabled placeholder="Key" size="large"/></td>
+                        <!-- <td><el-input :value="queryParam.description" disabled placeholder="Key" size="large"/></td> -->
                         <td>
                             <!-- <el-button type="default" class="p-2">
                                 <el-icon
@@ -54,11 +54,11 @@
                                 <el-input v-model="itemModelAddParams.value" placeholder="Giá trị" size="large"/>
                             </el-form-item>                                                
                         </td>
-                        <td>
+                        <!-- <td>
                             <el-form-item label="" prop="description">
                                 <el-input v-model="itemModelAddParams.description" placeholder="Mô tả" size="large"/>
                             </el-form-item>                                                
-                        </td>
+                        </td> -->
                         <td>
                             <el-button size="large" type="primary" class="pl-3 pr-3"
                                 @click="submitAddParam">
@@ -69,7 +69,7 @@
                 </tbody>
                 <tbody v-else>
                     <tr>
-                        <td colspan="5">
+                        <td colspan="4">
                             <el-input v-model="itemModelParamsBulk"
                                 :autosize="{ minRows: 6, maxRows: 20 }"
                                 type="textarea"

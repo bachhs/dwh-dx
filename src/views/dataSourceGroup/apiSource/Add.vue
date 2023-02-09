@@ -163,7 +163,7 @@
                             </el-tab-pane>
                             <el-tab-pane label="Body" name="body">
                                 <div class="mb-2">
-                                    <el-radio-group v-model="bodyContentType">
+                                    <el-radio-group v-model="bodyContentType" @change="contentTypeChanged">
                                         <el-radio-button label="none">Không</el-radio-button>
                                         <el-radio-button label="form-data">Form-data</el-radio-button>
                                         <el-radio-button label="x-www-form-urlencode">x-www-form-urlencode</el-radio-button>
