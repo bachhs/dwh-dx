@@ -328,6 +328,6 @@
 </template>
 <style scoped>
 .ds-health-error{
-    background-color: #ffe0e0;
+    /* background-color: #ffe0e0; */
 }
 </style>
