@@ -155,21 +155,42 @@ onMounted(() => {
                             v-for="(navItem, navItemIndex) in navItems"
                             :key="navItemIndex">
                             <router-link
-                                v-if="navItem.type === 'link'"
+                                v-if="navItem.type === 'link' && !(navItem.childItems)"
                                 :to="`${navItem.url}`"
-                                class="nav-link"
+                                class="nav-link pl-1"
                                 active-class="active">
                                 <i :class="`nav-icon ${navItem.icon}`"></i>
                                 <p>{{ navItem.name }}</p>
                             </router-link>
-                            <a class="nav-link" :href="navItem.url" v-if="navItem.type === 'relative-link'" target="_blank">
+                            <a class="nav-link pl-1" :href="navItem.url" 
+                                v-if="navItem.type === 'relative-link' && !(navItem.childItems)" 
+                                target="_blank">
                                 <i :class="`nav-icon ${navItem.icon}`"></i>
                                 <p>{{ navItem.name }}</p>
                             </a>
-                            <span v-if="navItem.type === 'navHeader'">
+                            <span class="text-orange" v-if="navItem.type === 'navHeader' && !(navItem.childItems)">
                                 {{ navItem.name }}
                             </span>
-                        </li>
+
+                            <a href="javascript:void(0);" class="nav-link pl-1"
+                                v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    {{ navItem.name }}
+                                    <i class="fas fa-angle-left right"></i>
+                                    <!-- <span class="badge badge-info right">6</span> -->
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview"
+                                v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
+                                <li class="nav-item" v-for="subItem in navItem.childItems" :key="subItem.name">
+                                    <router-link :to="subItem.url"  class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ subItem.name }}</p>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li> 
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
