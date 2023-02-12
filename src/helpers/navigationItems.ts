@@ -349,17 +349,17 @@ export const navItems:Array<any> = [
             },              
             {
                 type: 'link',
-                name: 'KQ số hóa KQTTHC cấp Sở/Ban, Ngành',
+                name: 'KQ số hóa KQTTHC Sở/Ban, Ngành',
                 url: '/ss',
             },             
             {
                 type: 'link',
-                name: 'KQ số hóa KQTTHC cấp TP/Huyện',
+                name: 'KQ số hóa KQTTHC TP/Huyện',
                 url: '/ss',
             },           
             {
                 type: 'link',
-                name: 'KQ số hóa KQTTHC cấp Xã/Phường',
+                name: 'KQ số hóa KQTTHC Xã/Phường',
                 url: '/ss',
             },
         ]

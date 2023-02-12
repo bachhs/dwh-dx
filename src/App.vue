@@ -184,8 +184,7 @@ onMounted(() => {
                             <ul class="nav nav-treeview"
                                 v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
                                 <li class="nav-item" v-for="subItem in navItem.childItems" :key="subItem.name">
-                                    <router-link :to="subItem.url"  class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                    <router-link :to="subItem.url"  class="nav-link pl-1">
                                         <p>{{ subItem.name }}</p>
                                     </router-link>
                                 </li>
