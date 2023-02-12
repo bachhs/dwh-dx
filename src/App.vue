@@ -43,12 +43,11 @@ onMounted(() => {
                             class="ml-1 ml-md-2 text-left d-flex flex-column align-item-center justify-content-center"
                             style="line-height: 1.4rem">
                             <div>
-                                <strong class="text-white"
-                                    >TỈNH TUYÊN QUANG</strong
+                                <strong class="text-white">NỀN TẢNG SỐ HOÁ KẾT QUẢ THỦ TỤC HÀNH CHÍNH</strong
                                 >
                             </div>
                             <div class="d-none d-md-block text-warning">
-                                KHO DỮ LIỆU DÙNG CHUNG
+                                TỈNH TUYÊN QUANG
                             </div>
                         </div>
                     </div>
@@ -139,7 +138,7 @@ onMounted(() => {
             <!-- Sidebar -->
             <div class="sidebar" style="height: calc(100% + 1px)">
                 <!-- Sidebar Menu -->
-                <nav class="mt-4">
+                <nav class="mt-0">
                     <ul
                         class="nav nav-pills nav-sidebar flex-column"
                         data-widget="treeview"

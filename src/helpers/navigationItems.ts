@@ -349,7 +349,7 @@ export const navItems:Array<any> = [
             },              
             {
                 type: 'link',
-                name: 'KQ số hóa KQTTHC Sở/Ban, Ngành',
+                name: 'KQ số hóa KQTTHC Sở/B.ngành',
                 url: '/ss',
             },             
             {
