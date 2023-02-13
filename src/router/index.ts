@@ -8,9 +8,9 @@ const router = createRouter({
             component: () => import('@/views/dashboard/HomeView.vue'),
         },
         {
-            path: '/notification',
-            name: 'notification',
-            component: () => import('@/views/notification/Index.vue'),
+            path: '/category/organization',
+            name: 'organization',
+            component: () => import('@/views/baseTools/categoriesManager/organization/Index.vue'),
         },
         {
             path: '/search-engine',
