@@ -80,7 +80,6 @@ export default {
         const isTestDatabaseOk = ref<boolean>(false);
         const TestDatabase = () =>{      
             if (!identityStep3Ref.value || !identityStep3Ref.value) return;
-            isLoading.value = true;
             identityStep3Ref.value?.submitData().then((isVaild) => {
                 console.log(isVaild);
                 let requestData:any = {
@@ -91,6 +90,7 @@ export default {
                     password: itemModel.value.password,
                     database: itemModel.value.dbName,
                 };
+                isLoading.value = true;
                 testConnection(requestData).then(({ isSucceed, msg }) => {
                     isTestDatabaseOk.value = isSucceed;
                     if(isSucceed){                        
