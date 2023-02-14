@@ -128,6 +128,11 @@ const router = createRouter({
             name: 'QueryResult',
             component: () => import('@/views/queryResult/Index.vue'),
         },
+        {
+            path: '/shared/api-share-data',
+            name: 'apiShareData',
+            component: () => import('@/views/sharedApi/Index.vue'),
+        },
     ],
 });
 export default router;

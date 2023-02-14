@@ -380,6 +380,6 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Chia sẻ dữ liệu KQ TTHC',
         icon: 'fas fa-cube',
-        url: '/shared/api-datasource',
+        url: '/shared/api-share-data',
     },
 ];
