@@ -96,33 +96,33 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Luồng lấy dữ liệu từ File',
         icon: 'fas fa-cube',
-        url: '/ss',
+        url: '/data-source-file',
         childItems: [            
             {
                 type: 'link',
                 name: 'Thông tin nguồn dữ liệu',
-                url: '/ss',
+                url: '/data-source-file/info',
             },            
             {
                 type: 'link',
                 name: 'Phiên bản dữ liệu',
-                url: '/ss',
+                url: '/data-source-file/version',
             },         
             {
                 type: 'link',
                 name: 'Cấu hình tiến trình',
-                url: '/ss',
+                url: '/data-source-file/progress',
             },              
             {
                 type: 'link',
                 name: 'Làm giàu tự động',
-                url: '/ss',
+                url: '/data-source-file/enrichment',
             },    
                        
             {
                 type: 'link',
                 name: 'Từ tập tin sẵn có',
-                url: '/file-upload',
+                url: '/data-source-file/file-upload',
             },        
         ]
     },
@@ -130,27 +130,27 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Luồng lấy dữ liệu từ API',
         icon: 'fas fa-cube',
-        url: '/ss',
+        url: '/data-source-api',
         childItems: [            
             {
                 type: 'link',
                 name: 'Thông tin nguồn dữ liệu',
-                url: '/api-datasource',
+                url: '/data-source-api/api-datasource',
             },            
             {
                 type: 'link',
                 name: 'Phiên bản dữ liệu',
-                url: '/ss',
+                url: '/data-source-api/version',
             },         
             {
                 type: 'link',
                 name: 'Cấu hình tiến trình',
-                url: '/ss',
+                url: '/data-source-api/progress',
             },              
             {
                 type: 'link',
                 name: 'Làm giàu tự động',
-                url: '/ss',
+                url: '/data-source-api/enrichment',
             },    
         ]
     },
@@ -158,47 +158,42 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Luồng lấy dữ liệu từ CSDL',
         icon: 'fas fa-cube',
-        url: '/ss',
+        url: '/data-source-db',
         childItems: [            
             {
                 type: 'link',
                 name: 'Thông tin nguồn dữ liệu',
-                url: '/data-source',
-            },            
-            {
-                type: 'link',
-                name: 'Phiên bản dữ liệu',
-                url: '/ss',
+                url: '/data-source-db/data-source',
             },         
             {
                 type: 'link',
                 name: 'Cấu hình tiến trình',
-                url: '/ss',
+                url: '/data-source-db/progress',
             },              
             {
                 type: 'link',
                 name: 'Làm giàu tự động',
-                url: '/ss',
+                url: '/data-source-db/enrichment',
             },      
             {
                 type: 'link',
                 name: 'Từ CSDL cục bộ',
-                url: '/ss',
+                url: '/data-source-db/local-db',
             },         
             {
                 type: 'link',
                 name: 'Từ CSDL khác',
-                url: '/ss',
+                url: '/data-source-db/others-db',
             },              
             {
                 type: 'link',
                 name: 'Từ CSDL Cloud',
-                url: '/data-source',
+                url: '/data-source-db/cloud-db',
             },              
             {
                 type: 'link',
                 name: 'Cập nhật CSDL Cloud',
-                url: '/ss',
+                url: '/data-source-db/cloud-db-update',
             },    
         ]
     },
@@ -210,66 +205,64 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Tích hợp dữ liệu mới',
         icon: 'fas fa-cube',
-        url: '/ss',
-        childItems: [ 
-        ]
+        url: '/before-digitalization-store/new-data-integration',
     },
     {
         type: 'link',
         name: 'Kho dữ liệu ',
         icon: 'fas fa-cube',
-        url: '/file-upload'
+        url: '/before-digitalization-store/data-store'
     },
     {
         type: 'link',
         name: 'Chuẩn hoá & làm giàu',
         icon: 'fas fa-cube',
-        url: '/ss',
+        url: '/standardize-enrichment',
         childItems: [            
             {
                 type: 'link',
                 name: 'Tạo không gian làm việc',
-                url: '/ss',
+                url: '/standardize-enrichment/workspace',
             },            
             {
                 type: 'link',
                 name: 'Phân phối dữ liệu',
-                url: '/ss',
+                url: '/standardize-enrichment/distribution',
             },         
             {
                 type: 'link',
                 name: 'Chất lượng dữ liệu',
-                url: '/ss',
+                url: '/standardize-enrichment/quality',
             },              
             {
                 type: 'link',
                 name: 'Thanh chất lượng DL',
-                url: '/ss',
+                url: '/standardize-enrichment/make-quality',
             },              
             {
                 type: 'link',
                 name: 'Chi tiết cột',
-                url: '/ss',
+                url: '/standardize-enrichment/column-detail',
             },              
             {
                 type: 'link',
                 name: 'Chi tiết tập dữ liệu',
-                url: '/ss',
+                url: '/standardize-enrichment/data-set-details',
             },             
             {
                 type: 'link',
                 name: 'Tìm kiếm dữ liệu',
-                url: '/ss',
+                url: '/standardize-enrichment/workspace',
             },            
             {
                 type: 'link',
                 name: 'Xuất dữ liệu vào kho',
-                url: '/ss',
+                url: '/standardize-enrichment/data-search',
             },            
             {
                 type: 'link',
                 name: 'Xuất dữ liệu vào kho theo lịch',
-                url: '/ss',
+                url: '/standardize-enrichment/export-to-store-schedule',
             },  
         ]
     },

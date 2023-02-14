@@ -19,17 +19,12 @@ const router = createRouter({
             }
         }),
         {
-            path: '/search-engine',
-            name: 'SearchEngine',
-            component: () => import('@/views/search-engine/Index.vue'),
-        },
-        {
-            path: '/data-source',
+            path: '/data-source-db/data-source',
             name: 'dataSource',
             component: () => import('@/views/dataSourceGroup/dataSource/Index.vue'),
         },
         {
-            path: '/file-upload',
+            path: '/data-source-file/file-upload',
             name: 'fileUpload',
             component: () => import('@/views/dataSourceGroup/fileUpload/Index.vue'),
         },
@@ -44,7 +39,7 @@ const router = createRouter({
             component: () => import('@/views/dataSourceGroup/fileEmbedLink/Upload.vue'),
         },
         {
-            path: '/api-datasource',
+            path: '/data-source-api/api-datasource',
             name: 'apiDatasource',
             component: () => import('@/views/dataSourceGroup/apiSource/Index.vue'),
         },
@@ -99,6 +94,11 @@ const router = createRouter({
             path: '/support',
             name: 'support',
             component: () => import('@/views/support/Index.vue'),
+        },
+        {
+            path: '/search-engine',
+            name: 'SearchEngine',
+            component: () => import('@/views/search-engine/Index.vue'),
         },
         {
             path: '/search-metadata',

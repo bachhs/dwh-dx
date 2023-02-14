@@ -149,7 +149,9 @@ onMounted(() => {
                         <li
                             v-bind:class="{
                                 'nav-item': ['link', 'relative-link'].includes(navItem.type),
-                                'nav-header': navItem.type === 'navHeader',
+                                'nav-header': navItem.type === 'navHeader',                                
+                                'menu-is-opening': navItem.childItems && navItem.childItems.map((xNavItem) => xNavItem.url).includes($route.path),
+                                'menu-open': navItem.childItems && navItem.childItems.map((xNavItem) => xNavItem.url).includes($route.path)
                             }"
                             v-for="(navItem, navItemIndex) in navItems"
                             :key="navItemIndex">
@@ -172,7 +174,9 @@ onMounted(() => {
                             </span>
 
                             <a href="javascript:void(0);" class="nav-link pl-1"
-                                v-bind:class="{ 'active' : navItem.childItems && navItem.childItems.map((xNavItem) => xNavItem.url).includes($route.path) }"
+                                v-bind:class="{ 
+                                    'active' : navItem.childItems && navItem.childItems.map((xNavItem) => xNavItem.url).includes($route.path),
+                                }"
                                 v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
