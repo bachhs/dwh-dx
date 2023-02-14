@@ -23,11 +23,13 @@ export const ingestionPipelineApi = {
     testConnection({ dialect, host, port, username, password, database }) {
         const body = {
             connection: {
-                ...DIALECT_PARAMS[dialect],
-                hostPort: `${host}:${port}`,
-                username,
-                password,
-                database,
+                config: {
+                    ...DIALECT_PARAMS[dialect],
+                    hostPort: `${host}:${port}`,
+                    username,
+                    password,
+                    database,
+                },
             },
             connectionType: 'Database',
         };
