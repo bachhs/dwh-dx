@@ -61,11 +61,16 @@ const router = createRouter({
             name: 'tagManager',
             component: () => import('@/views/tag/index.vue'),
         },
-        // {
-        //   path: "/datasource-pipeline",
-        //   name: "datasourcePipeline",
-        //   component: () => import("@/views/datasourcePipeline/Index.vue"),
-        // },
+        {
+          path: "/before-digitalization-store/new-data-integration",
+          name: "newDataIntegration",
+          component: () => import("@/views/beforeDigitalization/newDataIntegration/Index.vue"),
+        },
+        {
+          path: "/before-digitalization-store/data-store",
+          name: "dataStore",
+          component: () => import("@/views/beforeDigitalization/dataStore/Index.vue"),
+        },
         {
             path: '/data-flow',
             name: 'dataFlow',
