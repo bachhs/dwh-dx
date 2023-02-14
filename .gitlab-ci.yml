@@ -29,5 +29,5 @@ push-to-github:
   script:
     - echo "https://bachhs:$GITHUB_TOKEN@github.com" > ~/.git-credentials
     - git config credential.helper 'store --file ~/.git-credentials'
-    - git remote add upstream https://github.com/bachhs/dwh-dx.git
+    - git remote add github https://github.com/bachhs/dwh-dx.git
     - git push github HEAD:main-navigation-updated
