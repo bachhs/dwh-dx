@@ -288,7 +288,19 @@ export const navItems:Array<any> = [
     },
     {
         type: 'link',
-        name: 'Dữ liệu đã số hoá',
+        name: 'Chờ xác nhận',
+        icon: 'fas fa-cube',
+        url: '/digitization/wait-confirm',
+    },
+    {
+        type: 'link',
+        name: 'Chờ duyệt',
+        icon: 'fas fa-cube',
+        url: '/digitization/wait-accept',
+    },
+    {
+        type: 'link',
+        name: 'Hoàn thành',
         icon: 'fas fa-cube',
         url: '/digitization/completed',
     },
