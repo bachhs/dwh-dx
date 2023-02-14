@@ -14,6 +14,7 @@
                         v-model="itemModel.nameOfDS"
                         size="large"
                         placeholder="Tên nguồn dữ liệu"
+                        :disabled="isEditMode"
                         clearable
                     />
                 </el-form-item>
@@ -78,6 +79,7 @@
     import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
     const props = defineProps({
+        isEditMode: { type: Boolean, required: false, default: false },
         dataSourceItem: { type: Object, required: true, default: null },
         organization: { type: Array<any>, required: true, default: [] }
     });

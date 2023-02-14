@@ -75,7 +75,7 @@
                                 ref="identityStep1Ref"
                                 :dataSourceItem="itemModel"
                                 :organization="organization"
-                                @onFormSubmit="(valid:Boolean) => { if(valid) { updateDatasource(); } }" />
+                                :isEditMode="true"/>
                             <div
                                 class="text-center mt-3 pt-4 pb-4"
                                 style="background-color: #f5f7fa">
@@ -127,14 +127,7 @@
                                 <ConfigDatabaseStep3
                                     ref="identityStep3Ref"
                                     v-if="itemModel"
-                                    :dataSourceItem="itemModel"
-                                    @onFormSubmit="
-                                        (valid) => {
-                                            if (valid) {
-                                                updateDatasource();
-                                            }
-                                        }
-                                    " />
+                                    :dataSourceItem="itemModel"/>
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
                                 <DataSourceTypeFileStep2
@@ -155,9 +148,19 @@
                                 <el-button
                                     type="primary"
                                     size="large"
+                                    v-if="!isShowTestConnectionBtn"
                                     @click="submitTab(2)">
                                     <el-icon><CircleCheck /></el-icon>
                                     <span>SAVE CHANGE</span>
+                                </el-button>
+
+                                <el-button size="large" 
+                                    type="primary" 
+                                    v-if="isShowTestConnectionBtn" 
+                                    class="mr-1 ml-1"
+                                    @click="TestDatabase">
+                                    <i class="fas fa-database mr-2"></i>
+                                    <span>Check connection</span>
                                 </el-button>
                             </div>
                         </div>

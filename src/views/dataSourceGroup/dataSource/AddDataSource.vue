@@ -80,14 +80,14 @@
                                 <strong>Nguồn dữ liệu</strong
                                 ><span class="ml-1 text-danger">*</span>
                             </div>
-                            <div class="mt-2">
+                            <!-- <div class="mt-2">
                                 <el-radio-group
                                     v-model="itemModel.typeOfDataIn">
                                     <el-radio-button :label="`database`">Database</el-radio-button>
                                     <el-radio-button :label="`file`">File</el-radio-button>
                                     <el-radio-button :label="`api`">API</el-radio-button>
                                 </el-radio-group>
-                            </div>
+                            </div> -->
                             <div v-if="itemModel.typeOfDataIn === 'database'">
                                 <DataSourceTypeDBStep2
                                     v-if="itemModel"
@@ -100,8 +100,7 @@
                                 <ConfigDatabaseStep3
                                     ref="identityStep3Ref"
                                     v-if="itemModel"
-                                    :dataSourceItem="itemModel"
-                                    @onFormSubmit="(valid:boolean) => { if (valid) stepWizard = stepWizard + 1; }" />
+                                    :dataSourceItem="itemModel" />
                             </div>
                             <div v-if="itemModel.typeOfDataIn === 'file'">
                                 <DataSourceTypeFileStep2
@@ -149,11 +148,21 @@
                     <el-button
                         size="large"
                         type="primary"
-                        v-if="stepWizard < totalStepWizard"
+                        v-if="stepWizard < totalStepWizard && !isShowTestConnectionBtn"
                         class="mr-1 ml-1"
                         @click="submitStep(stepWizard)">
                         <span>Bước tiếp theo</span>
                         <el-icon class="ml-2"><DArrowRight /></el-icon>
+                    </el-button>
+
+                    <el-button
+                        size="large"
+                        type="primary"
+                        v-if="stepWizard === 1 && isShowTestConnectionBtn"
+                        class="mr-1 ml-1"
+                        @click="TestDatabase">
+                        <i class="fas fa-database mr-2"></i>
+                        <span>Check connection</span>
                     </el-button>
 
                     <el-button

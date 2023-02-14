@@ -20,14 +20,7 @@ const DIALECT_PARAMS: Record<string, Record<string, any>> = {
 };
 
 export const ingestionPipelineApi = {
-    testConnection(
-        dialect: string,
-        host: string,
-        port: number,
-        username: string,
-        password: string,
-        database?: string
-    ) {
+    testConnection({ dialect, host, port, username, password, database }) {
         const body = {
             connection: {
                 ...DIALECT_PARAMS[dialect],

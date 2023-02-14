@@ -1,10 +1,13 @@
-import { ref, onMounted, reactive, defineAsyncComponent } from 'vue';
+import { ref, onMounted, reactive, defineAsyncComponent, computed } from 'vue';
 import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { dataSourceApi } from '@/api/dataSourceApi';
 import SkeletonBox from '@/components/SkeletonBox.vue';
+import { testConnection } from '@/helpers/dataSourceHelper';
 const appState = useDataCategoryStore();
+const INDENTITY_STEP = 0;
+const CONNECTION_STEP = 1;
 export default {
     props: ['viewSettings'],
     emits: ['onChangeView'],
@@ -51,8 +54,11 @@ export default {
         }),
     },
     setup(props: any, context: any) {
+        const identityStep1Ref = ref<InstanceType<any>>();
+        const identityStep3Ref = ref<InstanceType<any>>();
+
         const isLoading = ref(false);
-        const stepWizard = ref(0);
+        const stepWizard = ref(INDENTITY_STEP);
         const totalStepWizard = 2;
         const itemModel = ref({
             nameOfDS: '',
@@ -71,19 +77,84 @@ export default {
             dbName: '',
         });
 
-        const identityStep1Ref = ref<InstanceType<any>>();
-        const identityStep3Ref = ref<InstanceType<any>>();
+        const isTestDatabaseOk = ref<boolean>(false);
+        const TestDatabase = () =>{      
+            if (!identityStep3Ref.value || !identityStep3Ref.value) return;
+            isLoading.value = true;
+            identityStep3Ref.value?.submitData().then((isVaild) => {
+                console.log(isVaild);
+                let requestData:any = {
+                    dialect: itemModel.value.databaseEngineSelected,
+                    host: itemModel.value.host,
+                    port: itemModel.value.port,
+                    username: itemModel.value.username,
+                    password: itemModel.value.password,
+                    database: itemModel.value.dbName,
+                };
+                testConnection(requestData).then(({ isSucceed, msg }) => {
+                    isTestDatabaseOk.value = isSucceed;
+                    if(isSucceed){                        
+                        ElMessage({
+                            message: 'Kiểm tra kết nối đến database thành công',
+                            type: 'success',
+                        });
+                        isLoading.value = false;
+                    }
+                    else{
+                        ElMessage({
+                            message: msg,
+                            type: 'warning',
+                        });
+                        isLoading.value = false;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    isTestDatabaseOk.value = false;
+                    ElMessage({
+                        message: 'Kiểm tra kết nối đến database không thành công. ' + error.message,
+                        type: 'warning',
+                    });
+                    isLoading.value = false;
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+            });      
+        };
+
+        const isAllowedNext = computed(() => {
+            if(stepWizard.value === CONNECTION_STEP){
+                return isTestDatabaseOk.value;
+            }
+            else{
+                stepWizard.value < totalStepWizard.value;
+            }
+        });
+
+        const isShowTestConnectionBtn = computed(() => {
+            if(stepWizard.value === CONNECTION_STEP){
+                return !isTestDatabaseOk.value;
+            }
+            else return false;
+        });
+
         const submitStep = (stepIndex: number) => {
             switch (stepIndex) {
-                case 0:
+                case INDENTITY_STEP:
                     if (!identityStep1Ref.value || !identityStep1Ref.value)
                         return;
                     identityStep1Ref.value?.submitData();
                     break;
-                case 1:
-                    if (!identityStep3Ref.value || !identityStep3Ref.value)
-                        return;
-                    identityStep3Ref.value?.submitData();
+                case CONNECTION_STEP:
+                    if (!identityStep3Ref.value || !identityStep3Ref.value) return;
+                    identityStep3Ref.value?.submitData().then((isVaild) => {
+                        console.log(isVaild);
+                        if (isVaild) stepWizard.value = stepWizard.value + 1;
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
                     break;
                 default:
                     stepWizard.value = stepWizard.value + 1;
@@ -162,16 +233,12 @@ export default {
             identityStep1Ref,
             identityStep3Ref,
             itemModel,
-            // controllerUpload: controllerUpload,
-            // files,
-            // fileSelectorRef,
-            // fileTypeAccept: [
-            //     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            //     'application/vnd.ms-excel',
-            // ],
+            isTestDatabaseOk,
+            TestDatabase,
+            isAllowedNext,
+            isShowTestConnectionBtn,
             submitStep,
             addDatasource,
-            //humanFileSize,
         };
     },
     computed: {

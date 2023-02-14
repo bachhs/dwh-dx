@@ -1,4 +1,39 @@
-import { dataSourceApi } from '@/api/dataSourceApi';
+import { dataSourceApi } from '@/api/dataSourceApi'; 
+import { ElMessage } from 'element-plus';
+import { ingestionPipelineApi } from '@/api/ingestionPipelineApi';
+
+const testConnection = (requestData:any) => {
+    return new Promise((resolve, reject) => {        
+        ingestionPipelineApi.testConnection(requestData)
+            .then((response: any) => {
+                switch (response.status) {
+                    case 400:                                        
+                        return resolve({
+                            isSucceed: false,
+                            msg: "Tham số nhập vào không đúng định dạng"
+                        });
+                        break;
+                    case 200:                                        
+                        return resolve({
+                            isSucceed: true,
+                            msg: "kết nối thành công đến Database"
+                        });
+                        break;
+                    default:                                
+                        return resolve({
+                            isSucceed: false,
+                            msg: "Tham số nhập vào không đúng định dạng"
+                        });
+                        break; 
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                reject(error);
+            });
+    });
+};
+
 const getDataSourceMetaData = (dtsName: string) => {
     return new Promise((resolve, reject) => {
         dataSourceApi
@@ -91,6 +126,7 @@ const updateColumnDescription = (
 };
 
 export {
+    testConnection,
     getDataSourceMetaData,
     updateDataSourceDescription,
     updateSchemaDescription,

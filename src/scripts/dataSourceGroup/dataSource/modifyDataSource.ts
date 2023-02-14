@@ -1,4 +1,4 @@
-import { ref, onMounted, defineAsyncComponent } from 'vue';
+import { ref, onMounted, defineAsyncComponent, computed } from 'vue';
 import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory';
@@ -6,6 +6,8 @@ import { dataSourceApi } from '@/api/dataSourceApi';
 import { getDataSourceMetaData } from '@/helpers/dataSourceHelper';
 import SkeletonBox from '@/components/SkeletonBox.vue';
 const appState = useDataCategoryStore();
+const INDENTITY_TAB = 1;
+const CONNECTION_TAB = 2;
 export default {
     props: ['viewSettings'],
     emits: ['onChangeView'],
@@ -52,9 +54,10 @@ export default {
         }),
     },
     setup(props: any) {
-        const isLoading = ref(false);
-        const stepWizard = ref(1);
-        const totalStepWizard = 4;
+        const identityStep1Ref = ref<InstanceType<any>>();
+        const identityStep3Ref = ref<InstanceType<any>>();
+
+        const isLoading = ref(false); 
         const dataSourceItem = props.viewSettings.dataItem;
         const itemModel = ref({
             nameOfDS: dataSourceItem.name,
@@ -74,6 +77,60 @@ export default {
             username: dataSourceItem.username,
             password: dataSourceItem.password,
             dbName: dataSourceItem.database,
+        }); 
+
+        const isTestDatabaseOk = ref<boolean>(false);
+        const TestDatabase = () =>{      
+            if (!identityStep3Ref.value || !identityStep3Ref.value) return;
+            isLoading.value = true;
+            identityStep3Ref.value?.submitData().then((isVaild) => {
+                console.log(isVaild);
+                let requestData:any = {
+                    dialect: itemModel.value.databaseEngineSelected,
+                    host: itemModel.value.host,
+                    port: itemModel.value.port,
+                    username: itemModel.value.username,
+                    password: itemModel.value.password,
+                    database: itemModel.value.dbName,
+                };
+                testConnection(requestData).then(({ isSucceed, msg }) => {
+                    isTestDatabaseOk.value = isSucceed;
+                    if(isSucceed){                        
+                        ElMessage({
+                            message: 'Kiểm tra kết nối đến database thành công',
+                            type: 'success',
+                        });
+                        isLoading.value = false;
+                    }
+                    else{
+                        ElMessage({
+                            message: msg,
+                            type: 'warning',
+                        });
+                        isLoading.value = false;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    isTestDatabaseOk.value = false;
+                    ElMessage({
+                        message: 'Kiểm tra kết nối đến database không thành công. ' + error.message,
+                        type: 'warning',
+                    });
+                    isLoading.value = false;
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+            });      
+        };
+
+        const isAllowedNext = computed(() => {
+            return isTestDatabaseOk.value;
+        });
+
+        const isShowTestConnectionBtn = computed(() => {
+            return !isTestDatabaseOk.value;;
         });
 
         const updateDatasource = () => {
@@ -113,19 +170,23 @@ export default {
             }
         };
 
-        const identityStep1Ref = ref<InstanceType<any>>();
-        const identityStep3Ref = ref<InstanceType<any>>();
         const submitTab = (tabIndex: number) => {
             switch (tabIndex) {
-                case 1:
+                case INDENTITY_TAB:
                     if (!identityStep1Ref.value || !identityStep1Ref.value)
                         return;
                     identityStep1Ref.value?.submitData();
                     break;
-                case 2:
+                case CONNECTION_TAB:
                     if (!identityStep3Ref.value || !identityStep3Ref.value)
                         return;
-                    identityStep3Ref.value?.submitData();
+                    identityStep3Ref.value?.submitData().then((isVaild) => {
+                        console.log(isVaild);
+                        if(isVaild) { updateDatasource(); }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
                     break;
                 default:
                     break;
@@ -167,13 +228,13 @@ export default {
             }
         });
         return {
-            isLoading,
-            stepWizard,
-            totalStepWizard,
+            isLoading, 
             identityStep1Ref,
             identityStep3Ref,
             itemModel,
             submitTab,
+            isTestDatabaseOk,
+            TestDatabase,
             updateDatasource,
         };
     },

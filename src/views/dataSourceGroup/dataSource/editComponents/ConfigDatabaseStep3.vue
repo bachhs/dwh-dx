@@ -89,6 +89,7 @@
         allowedEdit: { type: Boolean, required: false, default: true },
         dataSourceItem: { type: Object, required: true },
     });
+ 
     const itemModel = ref<any>(props.dataSourceItem);
     watch(() => props.dataSourceItem, (newVal) =>{
         itemModel.value = newVal;
@@ -132,16 +133,21 @@
             },
         ],
     });
+
     const emit = defineEmits(['onFormSubmit']);
-    const submitData = async () => {
-        if (!ruleFormStep3Ref || !ruleFormStep3Ref.value) return;
-        await ruleFormStep3Ref.value.validate((valid, fields) => {
-            if (valid) {
-                emit("onFormSubmit", valid);
-            } else {
-                console.log('error submit!', fields);
-            }
-        });
+    const submitData = () => {
+        return new Promise(async (resolve, reject) => {
+            if (!ruleFormStep3Ref || !ruleFormStep3Ref.value) return;
+            await ruleFormStep3Ref.value.validate((valid, fields) => {
+                if (valid) {
+                    emit("onFormSubmit", valid);
+                    return resolve(valid);
+                } else {
+                    console.log('error submit!', fields);
+                    return reject({ msg: 'error submit', data: fields });
+                }
+            });
+        })
     };
     defineExpose({
         submitData,
