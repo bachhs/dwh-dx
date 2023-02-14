@@ -172,6 +172,7 @@ onMounted(() => {
                             </span>
 
                             <a href="javascript:void(0);" class="nav-link pl-1"
+                                v-bind:class="{ 'active' : navItem.childItems && navItem.childItems.map((xNavItem) => xNavItem.url).includes($route.path) }"
                                 v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
@@ -183,7 +184,8 @@ onMounted(() => {
                             <ul class="nav nav-treeview"
                                 v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
                                 <li class="nav-item" v-for="subItem in navItem.childItems" :key="subItem.name">
-                                    <router-link :to="subItem.url"  class="nav-link pl-1">
+                                    <router-link :to="subItem.url"  class="nav-link pl-2"
+                                        active-class="active">
                                         <p>{{ subItem.name }}</p>
                                     </router-link>
                                 </li>

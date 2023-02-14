@@ -111,8 +111,15 @@ body {
   background: radial-gradient(circle, #02274a 0%, #0e3f6c 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#02274a", endColorstr="#0e3f6c", GradientType=1); }
 
+@media screen and (min-width: 768px) {
+  body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .content-wrapper, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-footer, body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 280px; } }
 .layout-fixed .main-sidebar {
-  top: calc(4rem - 1px); }
+  top: calc(4rem - 1px);
+  width: 280px; }
+.layout-fixed.main-sidebar::before {
+  width: 280px; }
 .layout-fixed.sidebar-collapse .main-header {
   margin-left: 0 !important; }
 .layout-fixed.sidebar-collapse .navbar-nav .nav-link {
@@ -138,9 +145,6 @@ body {
 .layout-fixed .sidebar .nav-link p {
   position: initial;
   white-space: nowrap !important; }
-.layout-fixed .sidebar .nav-treeview > .nav-item > .nav-link.active {
-  background-color: #007bff !important;
-  color: #fff !important; }
 .layout-fixed .w-100vw {
   width: calc(100vw - 300px); }
 .layout-fixed.sidebar-collapse .w-100vw {

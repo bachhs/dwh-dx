@@ -1,4 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
+const categoryRoutes = [
+    "position", "procedureIssue", "procedureType", "profileType", "province", "religion", 
+    "wards", "citizen", "district", "enterprise", "linhVuc", "nation", "organization"
+];
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -7,11 +11,13 @@ const router = createRouter({
             name: 'home',
             component: () => import('@/views/dashboard/HomeView.vue'),
         },
-        {
-            path: '/category/organization',
-            name: 'organization',
-            component: () => import('@/views/baseTools/categoriesManager/organization/Index.vue'),
-        },
+        ...categoryRoutes.map(rItem => {
+            return {
+                path: `/category/${rItem.split(/(?=[A-Z])/).join('-').toLowerCase()}`,
+                name: `${rItem}Cat`,
+                component: () => import(`@/views/baseTools/categoriesManager/${rItem}/Index.vue`),
+            }
+        }),
         {
             path: '/search-engine',
             name: 'SearchEngine',

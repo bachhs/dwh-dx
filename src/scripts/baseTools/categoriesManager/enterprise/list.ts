@@ -71,7 +71,6 @@ export default {
             refreshDataFn,
             filterDataDebounceFn,
             deleteItem,
-            openEmbedLink,
         };
     }, 
 };

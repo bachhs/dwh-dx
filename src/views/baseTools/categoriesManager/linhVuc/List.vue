@@ -1,30 +1,15 @@
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
-<script lang="ts" src="@/scripts/dataSourceGroup/fileEmbedLink/list.ts"></script>
+<script lang="ts" src="@/scripts/baseTools/categoriesManager/linhvuc/list.ts"></script>
 <template>
     <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
         <div class="d-flex align-items-center pr-3">
             <div class="flex-fill d-none d-sm-none d-md-none d-lg-block">
                 <h4>
                     <i class="fas fa-file-code text-lightblue mr-2"></i>
-                    <strong>File Embed Link</strong>
+                    <strong>{{ viewSettings.title }}</strong>
                 </h4>
             </div>
             <div class="d-flex align-items-center">
-                <div class="ml-1 mr-1 d-none d-md-block">
-                    <el-select v-if="organization"
-                        style="width: 15rem"
-                        v-model="filterData.organization_id"
-                        filterable
-                        placeholder="Tổ chức.."
-                        size="large"
-                        @change="filterDataFn" >
-                        <el-option label="Tất cả" value="" />
-                        <el-option v-for="item in organization"
-                            :key="item.id"
-                            :label="item.name"
-                            :value="item.id" />
-                    </el-select>
-                </div>
                 <div class="ml-1 mr-1">
                     <el-input
                         v-model="filterData.name"
@@ -77,21 +62,11 @@
                                         <button>ID</button>
                                     </th>
                                     <th class="pl-0 pt-2 pb-2 align-middle">
-                                        <button>TỔ CHỨC</button>
-                                    </th>
-                                    <th class="pl-0 pt-2 pb-2 text-center">
-                                        <button>
-                                            <div>EMBEDDED ID</div>
-                                        </button>
-                                    </th>
-                                    <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle">
-                                        <button>CÓ HIỆU LỰC</button>
-                                    </th>
-                                    <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle">
-                                        <button>HẾT HIỆU LỰC</button>
-                                    </th>
+                                        <button>{{ viewSettings.title }}</button>
+                                    </th> 
+                                    <th class="pl-0 pt-2 pb-2 align-middle">
+                                        <button>MÔ TẢ</button>
+                                    </th> 
                                     <th
                                         class="pl-0 pt-2 pb-2 text-center align-middle">
                                         <button>THỜI GIAN THÊM</button>
@@ -103,7 +78,7 @@
                                     <th
                                         class="pl-0 pt-2 pb-2 text-center align-middle"
                                         style="width: 1%">
-                                        <div>Action</div>
+                                        <div>ACTION</div>
                                     </th>
                                 </tr>
                             </thead>
@@ -111,42 +86,26 @@
                                 <tr v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex">
                                     <td class="pl-2 text-left">{{itemData.id}}</td>
                                     <td class="pl-2">
-                                        <span v-if="itemData.organization">
-                                            {{ itemData.organization.name }}
-                                        </span>
-                                    </td>
-                                    <td class="pl-2 text-center">
-                                        {{itemData.embedded_id}}
-                                    </td>
-                                    <td class="pl-2 text-center">
-                                        {{$filters.prettyDate(itemData.valid_from)}}
-                                    </td>
-                                    <td class="pl-2 text-center">
-                                        {{$filters.prettyDate(itemData.valid_to)}}
-                                    </td>
-                                    <td class="pl-2 text-center">
+                                        {{ viewSettings.title }} {{ itemIndex + 1 }}
+                                    </td> 
+                                    <td class="pl-2">
+                                        Giới thiệu về {{ viewSettings.title }} {{ itemIndex + 1 }}
+                                    </td> 
+                                    <td class="pl-2 text-center text-nowrap" style="width: 1%;">
                                         {{$filters.prettyDate(itemData.created_at)}}
                                     </td>
-                                    <td class="pl-2 text-center">
+                                    <td class="pl-2 text-center text-nowrap" style="width: 1%;">
                                         {{$filters.prettyDate(itemData.updated_at)}}
                                     </td>
                                     <td class="pl-2 text-center">
-                                        <!-- <el-button type="default" class="p-2"
+                                        <el-button type="default" class="p-2"
                                             @click="$emit( 'onChangeView', { viewName: 'ModifyData', data: itemData, })">
                                             <el-icon
                                                 style="vertical-align: middle"
                                                 :size="20">
                                                 <Edit />
                                             </el-icon>
-                                        </el-button> -->
-                                        <el-button type="default" class="p-2"
-                                            @click="openEmbedLink(itemData)">
-                                            <el-icon
-                                                style="vertical-align: middle"
-                                                :size="20">
-                                                <Link />
-                                            </el-icon>
-                                        </el-button>
+                                        </el-button> 
                                         <el-button type="danger" class="p-2"
                                             @click="deleteItem(itemData)">
                                             <el-icon

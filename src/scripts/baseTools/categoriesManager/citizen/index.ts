@@ -4,15 +4,15 @@ import SkeletonBox from '@/components/SkeletonBox.vue';
 export default {
     components: {
         ListData: defineAsyncComponent({
-            loader: () => import('@/views/baseTools/categoriesManager/organization/List.vue'),
+            loader: () => import('@/views/baseTools/categoriesManager/citizen/List.vue'),
             loadingComponent: SkeletonBox,
         }),
         AddData: defineAsyncComponent({
-            loader: () => import('@/views/baseTools/categoriesManager/organization/Add.vue'),
+            loader: () => import('@/views/baseTools/categoriesManager/citizen/Add.vue'),
             loadingComponent: SkeletonBox,
         }),
         ModifyData: defineAsyncComponent({
-            loader: () => import('@/views/baseTools/categoriesManager/organization/Add.vue'),
+            loader: () => import('@/views/baseTools/categoriesManager/citizen/Add.vue'),
             loadingComponent: SkeletonBox,
         }),
     },
@@ -21,7 +21,7 @@ export default {
         const currentComponent = ref('ListData');
         const viewSettings = ref({
             viewName: 'ListData',
-            title: 'Cơ quan thực hiện',
+            title: 'Công dân',
             dataItem: null,
         });
         const changeView = (paramsObject: { viewName: string; data: any }) => {
@@ -31,21 +31,21 @@ export default {
                     case 'ListData':
                         viewSettings.value = {
                             viewName: 'ListData',
-                            title: 'Cơ quan thực hiện',
+                            title: 'Công dân',
                             dataItem: null,
                         };
                         break;
                     case 'AddData':
                         viewSettings.value = {
                             viewName: 'AddData',
-                            title: 'Thêm mới Cơ quan thực hiện',
+                            title: 'Thêm mới Công dân',
                             dataItem: null,
                         };
                         break;
                     case 'ModifyData':
                         viewSettings.value = {
                             viewName: 'ModifyData',
-                            title: 'Chỉnh sửa Cơ quan thực hiện',
+                            title: 'Chỉnh sửa Công dân',
                             dataItem: paramsObject.data,
                         };
                         break;

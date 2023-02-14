@@ -1,4 +1,4 @@
-<script lang="ts" src="@/scripts/dataSourceGroup/fileEmbedLink/add.ts"></script>
+<script lang="ts" src="@/scripts/baseTools/categoriesManager/organization/add.ts"></script>
 <template>
     <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
         <div class="d-flex align-items-center">
@@ -49,64 +49,24 @@
                     label-width="0" class="ruleForm">
                     <div class="mb-3">
                         <div>
-                            <strong>Tổ chức</strong><span class="ml-1 text-danger">*</span>
+                            <strong>Tên cơ quan</strong><span class="ml-1 text-danger">*</span>
                         </div>
-                        <div class="row mt-2" v-if="organization">
-                            <div
-                                class="col-12 col-md-3 organization-item"
-                                v-for="item in organization"
-                                :key="item.id">
-                                <label class="d-block">
-                                    <input
-                                        type="radio"
-                                        class="radio-selection"
-                                        :value="item.id"
-                                        v-model=" itemModel.organizationId "
-                                        @change="onOrganizationChanged(item)" />
-                                    <el-card
-                                        :body-style="{ padding: '1rem 0.8rem', }" 
-                                        style=" height: auto; overflow: hidden; "
-                                        class="mb-3" >
-                                        <div class="position-relative d-flex align-items-center" >
-                                            <div
-                                                class="flex-fill item--name text-nowrap"
-                                                style=" overflow-x: hidden; " >
-                                                {{ item.name }}
-                                            </div>
-                                            <div class="ml-1 organization-item--icon-selected d-none" >
-                                                <el-icon :size="20" color="white" ><Check/></el-icon>
-                                            </div>
-                                        </div>
-                                    </el-card>
-                                </label>
-                            </div>
+                        <div class="mt-2">
+                            <el-form-item label="">
+                                <el-input v-model="itemModel.name" size="large" placeholder="Tên cơ quan.."/>
+                            </el-form-item>
                         </div>
                     </div>
                     <div class="mt-4">
                         <div>
-                            <strong>Thời gian có hiệu lực</strong
+                            <strong>Mô tả</strong
                             ><span class="ml-1 text-danger">*</span>
                         </div>
                         <div class="mt-2">
                             <el-form-item label="">
-                                <el-date-picker v-model="validDateModel" 
-                                    :editable="true"
-                                    type="datetimerange" size="large"
-                                    range-separator="Đến ngày" start-placeholder="Ngày có hiệu lực.."
-                                    end-placeholder="Ngày hết hiệu lực"
-                                    :time-arrow-control="true"
-                                    format="DD-MM-YYYY HH:mm:ss"
-                                    value-format="YYYY-MM-DD HH:mm:ss"/>
+                                <el-input v-model="itemModel.name" size="large" placeholder="Mô tả.."/>
                             </el-form-item>
-                        </div>
-                        <div>
-                            File Embed Link cho <strong>{{ currentOrganizationName }}</strong> có hiệu lực từ 
-                            <strong>{{ moment(validDateModel[0]).format('[Ngày] DD [tháng] MM [năm] YYYY') }}</strong> đến 
-                            <strong>{{ moment(validDateModel[1]).format('[Ngày] DD [tháng] MM [năm] YYYY') }}</strong> 
-                            <span v-if="$filters.durationToStr(validDateModel[1], validDateModel[0])">
-                                ({{ $filters.durationToStr(validDateModel[1], validDateModel[0]) }})
-                            </span>
-                        </div>
+                        </div> 
                     </div> 
                 </el-form>
                 <div

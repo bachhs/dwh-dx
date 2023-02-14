@@ -1,4 +1,4 @@
-<script lang="ts" src="@/scripts/baseTools/categoriesManager/index.ts"></script>
+<script lang="ts" src="@/scripts/baseTools/categoriesManager/linhvuc/index.ts"></script>
 <template>
     <el-card class="box-card w-100 d-flex flex-fill flex-column"
         v-loading="isChangeViewLoading"
