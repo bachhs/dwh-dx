@@ -91,7 +91,7 @@ const router = createRouter({
             component: () => import('@/views/administration/Index.vue'),
         },
         {
-            path: '/monitor',
+            path: '/report/monitor',
             name: 'monitor',
             component: () => import('@/views/monitor/Index.vue'),
         },
@@ -114,6 +114,11 @@ const router = createRouter({
             path: '/search-file',
             name: 'SearchFile',
             component: () => import('@/views/searchFile/Index.vue'),
+        },
+        {
+            path: '/query-result/all',
+            name: 'QueryResult',
+            component: () => import('@/views/queryResult/Index.vue'),
         },
     ],
 });
