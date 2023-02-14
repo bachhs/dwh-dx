@@ -24,17 +24,22 @@ const router = createRouter({
             component: () => import('@/views/dataSourceGroup/dataSource/Index.vue'),
         },
         {
+            path: '/data-source-file/file-server',
+            name: 'fileServer',
+            component: () => import('@/views/dataSourceGroup/fileServer/Index.vue'),
+        },
+        {
             path: '/data-source-file/file-upload',
             name: 'fileUpload',
             component: () => import('@/views/dataSourceGroup/fileUpload/Index.vue'),
         },
         {
-            path: '/file-embed-link',
+            path: '/data-source-file/file-embed-link',
             name: 'fileEmbedLink',
             component: () => import('@/views/dataSourceGroup/fileEmbedLink/Index.vue'),
         },
         {
-            path: '/file-embed-link-upload/:id',
+            path: '/data-source-file/file-embed-link-upload/:id',
             name: 'fileEmbedLinkUpload',
             component: () => import('@/views/dataSourceGroup/fileEmbedLink/Upload.vue'),
         },

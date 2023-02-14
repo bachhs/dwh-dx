@@ -101,7 +101,7 @@ export const navItems:Array<any> = [
             {
                 type: 'link',
                 name: 'Thông tin nguồn dữ liệu',
-                url: '/data-source-file/info',
+                url: '/data-source-file/file-server',
             },            
             {
                 type: 'link',
@@ -117,13 +117,17 @@ export const navItems:Array<any> = [
                 type: 'link',
                 name: 'Làm giàu tự động',
                 url: '/data-source-file/enrichment',
-            },    
-                       
+            },                           
             {
                 type: 'link',
                 name: 'Từ tập tin sẵn có',
                 url: '/data-source-file/file-upload',
-            },        
+            },                             
+            {
+                type: 'link',
+                name: 'Từ đường dẫn chia sẻ',
+                url: '/data-source-file/file-embed-link',
+            },     
         ]
     },
     {
