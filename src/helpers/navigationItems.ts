@@ -276,33 +276,36 @@ export const navItems:Array<any> = [
     },
     {
         type: 'link',
-        name: 'Đang chờ số hoá',
+        name: 'Số hoá dữ liệu',
         icon: 'fas fa-cube',
-        url: '/digitization/pending',
-    },
-    {
-        type: 'link',
-        name: 'Đang số hoá',
-        icon: 'fas fa-cube',
-        url: '/digitization/inprogress',
-    },
-    {
-        type: 'link',
-        name: 'Chờ xác nhận',
-        icon: 'fas fa-cube',
-        url: '/digitization/wait-confirm',
-    },
-    {
-        type: 'link',
-        name: 'Chờ duyệt',
-        icon: 'fas fa-cube',
-        url: '/digitization/wait-accept',
-    },
-    {
-        type: 'link',
-        name: 'Hoàn thành',
-        icon: 'fas fa-cube',
-        url: '/digitization/completed',
+        url: '/digitization',
+        childItems: [
+            {
+                type: 'link',
+                name: 'Đang chờ số hoá',
+                url: '/digitization/pending',
+            },
+            {
+                type: 'link',
+                name: 'Đang số hoá',
+                url: '/digitization/inprogress',
+            },
+            {
+                type: 'link',
+                name: 'Chờ xác nhận',
+                url: '/digitization/wait-confirm',
+            },
+            {
+                type: 'link',
+                name: 'Chờ duyệt',
+                url: '/digitization/wait-accept',
+            },
+            {
+                type: 'link',
+                name: 'Hoàn thành',
+                url: '/digitization/completed',
+            },
+        ]
     },
     {
         type: 'navHeader',
