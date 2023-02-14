@@ -126,6 +126,24 @@ import { OfficeBuilding } from '@element-plus/icons-vue';
                                                     <Delete />
                                                 </el-icon>
                                             </el-button>
+
+                                            <el-dropdown trigger="click" class="ml-2">
+                                                <span class="el-dropdown-link">
+                                                    <el-icon><MoreFilled /></el-icon>
+                                                </span>
+                                                <template #dropdown>
+                                                    <el-dropdown-menu>
+                                                        <el-dropdown-item>
+                                                            <el-icon
+                                                                :size="15"
+                                                                style="vertical-align: middle;" >
+                                                                <Edit />
+                                                            </el-icon>
+                                                            <span class="ml-1">Tạo luồng lấy dữ liệu</span>
+                                                        </el-dropdown-item>
+                                                    </el-dropdown-menu>
+                                                </template>
+                                            </el-dropdown>
                                         </div>
                                         
                                         <div class="ml-2 mt-2 ml-md-4 text-left d-none d-md-block">

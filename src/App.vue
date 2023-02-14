@@ -56,6 +56,12 @@ onMounted(() => {
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
+                <li>
+                    <a class="btn btn-primary" href="https://wiki-dx.dtcsolution.vn"
+                        target="_blank">
+                        WIKI
+                    </a>
+                </li>
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">

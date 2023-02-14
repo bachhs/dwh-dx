@@ -23,7 +23,7 @@ const router = createRouter({
             return {
                 path: `/digitization/${rItem}`,
                 name: `digitization_${rItem}`,
-                component: () => import(`@/views/digitization/Index.vue`),
+                component: () => import(`@/views/digitization/${rItem}/Index.vue`),
             }
         }),
         {
