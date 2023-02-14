@@ -1,4 +1,4 @@
-<script lang="ts" src="@/scripts/baseTools/categoriesManager/nation/add.ts"></script>
+<script lang="ts" src="@/scripts/baseTools/categoriesManager/ethnic/add.ts"></script>
 <template>
     <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
         <div class="d-flex align-items-center">

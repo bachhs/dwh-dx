@@ -48,9 +48,8 @@
             </div>
         </div>
         <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
-            <div
-                class="flex-fill d-flex flex-column"
-                v-if="listElements.data && listElements.data.length > 0">
+            <div class="flex-fill d-flex flex-column"
+                v-if="religions && religions.length > 0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
                         <table
@@ -63,10 +62,7 @@
                                     </th>
                                     <th class="pl-0 pt-2 pb-2 align-middle">
                                         <button>{{ viewSettings.title }}</button>
-                                    </th> 
-                                    <th class="pl-0 pt-2 pb-2 align-middle">
-                                        <button>MÔ TẢ</button>
-                                    </th> 
+                                    </th>  
                                     <th
                                         class="pl-0 pt-2 pb-2 text-center align-middle">
                                         <button>THỜI GIAN THÊM</button>
@@ -83,16 +79,13 @@
                                 </tr>
                             </thead>
                             <tbody class=" ">
-                                <tr v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex">
-                                    <td class="pl-2 text-left">{{itemData.id}}</td>
+                                <tr v-for="(itemData, itemIndex) in religions" :key="itemIndex">
+                                    <td class="pl-2 text-left">{{itemIndex + 1}}</td>
                                     <td class="pl-2">
-                                        {{ viewSettings.title }} {{ itemIndex + 1 }}
-                                    </td> 
-                                    <td class="pl-2">
-                                        Giới thiệu về {{ viewSettings.title }} {{ itemIndex + 1 }}
-                                    </td> 
+                                        {{ itemData }}
+                                    </td>  
                                     <td class="pl-2 text-center text-nowrap" style="width: 1%;">
-                                        {{$filters.prettyDate(itemData.created_at)}}
+                                        {{$filters.prettyDate($filters.randomDate())}}
                                     </td>
                                     <td class="pl-2 text-center text-nowrap" style="width: 1%;">
                                         {{$filters.prettyDate(itemData.updated_at)}}

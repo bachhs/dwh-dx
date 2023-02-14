@@ -7,6 +7,7 @@ import usePaginationList from "@/scripts/_baseScripts/_usePaginationList";
 import { ElMessage, ElMessageBox } from 'element-plus';
 const route = useRoute();
 const router = useRouter();
+import fields from "@/_sampleData/fields";
 export default {
     props: ["viewSettings"],
     emits: ["onChangeView"],
@@ -62,6 +63,7 @@ export default {
             getListData(1);
         });
         return {
+            fields,
             isLoading,
             listElements,
             lastDataLoading,

@@ -50,11 +50,11 @@
         <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
             <div
                 class="flex-fill d-flex flex-column"
-                v-if="listElements.data && listElements.data.length > 0">
+                v-if="procedureIssue && procedureIssue.length > 0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
                         <table
-                            class="table table-striped table-head-fixed text-nowrap table-borderless">
+                            class="table table-striped table-head-fixed table-borderless">
                             <thead>
                                 <tr class="bg-white">
                                     <th style="width: 1%;"
@@ -62,17 +62,20 @@
                                         <button>ID</button>
                                     </th>
                                     <th class="pl-0 pt-2 pb-2 align-middle">
-                                        <button>{{ viewSettings.title }}</button>
+                                        <button>TÊN LOẠI CẤP THỦ TỤC</button>
                                     </th> 
                                     <th class="pl-0 pt-2 pb-2 align-middle">
-                                        <button>MÔ TẢ</button>
+                                        <button>LĨNH VỰC</button>
                                     </th> 
+                                    <th class="pl-0 pt-2 pb-2 align-middle">
+                                        <button>CƠ QUAN THỰC HIỆN</button>
+                                    </th>
                                     <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle">
+                                        class="pl-0 pt-2 pb-2 text-center align-middle text-nowrap">
                                         <button>THỜI GIAN THÊM</button>
                                     </th>
                                     <th
-                                        class="pl-0 pt-2 pb-2 text-center align-middle">
+                                        class="pl-0 pt-2 pb-2 text-center align-middle text-nowrap">
                                         <button>LẦN CUỐI CHỈNH SỬA</button>
                                     </th>
                                     <th
@@ -83,13 +86,16 @@
                                 </tr>
                             </thead>
                             <tbody class=" ">
-                                <tr v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex">
-                                    <td class="pl-2 text-left">{{itemData.id}}</td>
+                                <tr v-for="(itemData, itemIndex) in procedureIssue" :key="itemIndex">
+                                    <td class="pl-2 text-left">{{itemIndex+1}}</td>
                                     <td class="pl-2">
-                                        {{ viewSettings.title }} {{ itemIndex + 1 }}
+                                        {{ itemData.name }}
                                     </td> 
-                                    <td class="pl-2">
-                                        Giới thiệu về {{ viewSettings.title }} {{ itemIndex + 1 }}
+                                    <td class="pl-2 text-nowrap">
+                                        {{ itemData.type }}
+                                    </td> 
+                                    <td class="pl-2 text-nowrap">
+                                        {{ itemData.orgProcess }}
                                     </td> 
                                     <td class="pl-2 text-center text-nowrap" style="width: 1%;">
                                         {{$filters.prettyDate(itemData.created_at)}}
@@ -97,7 +103,7 @@
                                     <td class="pl-2 text-center text-nowrap" style="width: 1%;">
                                         {{$filters.prettyDate(itemData.updated_at)}}
                                     </td>
-                                    <td class="pl-2 text-center">
+                                    <td class="pl-2 text-center text-nowrap">
                                         <el-button type="default" class="p-2"
                                             @click="$emit( 'onChangeView', { viewName: 'ModifyData', data: itemData, })">
                                             <el-icon
@@ -134,7 +140,7 @@
                     </div>
                     <div>
                         <el-pagination
-                            v-if="listElements.data && listElements.data.length > 0"
+                            v-if="procedureIssue && procedureIssue.length > 0"
                             class=""
                             background
                             layout="total, sizes, prev, pager, next"

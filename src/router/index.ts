@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 const categoryRoutes = [
     "position", "procedureIssue", "procedureType", "profileType", "province", "religion", 
-    "wards", "citizen", "district", "enterprise", "linhVuc", "nation", "organization"
+    "wards", "citizen", "district", "enterprise", "linhVuc", "ethnic", "organization"
 ];
 const digitizationState = ['pending', 'inprogress', 'wait-confirm', 'wait-accept', 'completed']
 const router = createRouter({

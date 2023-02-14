@@ -1,0 +1,22 @@
+export default [
+    { name: 'Văn phòng'},
+    { name: 'Thanh tra tỉnh'},
+    { name: 'Sở Nội vụ'},
+    { name: 'Sở Kế hoạch và đầu tư'},
+    { name: 'Sở Tài chính'},
+    { name: 'Sở Công thương'},
+    { name: 'Sở Giao thông vận tải'},
+    { name: 'Sở Xây dựng'},
+    { name: 'Sở Thông tin và truyền thông'},
+    { name: 'Sở Văn hóa Thể thao và du lịch'},
+    { name: 'Sở Khoa học và công nghệ'},
+    { name: 'Sở Giáo dục và đào tạo'},
+    { name: 'Sở Y tế'},
+    { name: 'Sở Tư pháp'},
+    { name: 'Sở Tài nguyên và môi trường'},
+    { name: 'Sở Lao động thương binh và xã hội'},
+    { name: 'Sở Nông nghiệp và phát triển nông thôn'},
+    { name: 'Sở Ngoại vụ (tùy địa phương)'},
+    { name: 'Ban Dân tộc (tùy địa phương)'},
+
+]

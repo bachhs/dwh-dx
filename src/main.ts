@@ -110,6 +110,11 @@ app.config.globalProperties.$filters = {
             return seconds + ' giây';
         }
         return ''; //'just now' //or other string you like;
+    },
+    randomDate(){
+        const start = new Date(2023, 0, 1);
+        const end = new Date(2023, 1, 1);
+        return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
     }
 };
 app.config.globalProperties.$router = router;

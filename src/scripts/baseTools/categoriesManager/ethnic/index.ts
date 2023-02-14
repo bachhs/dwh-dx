@@ -4,15 +4,15 @@ import SkeletonBox from '@/components/SkeletonBox.vue';
 export default {
     components: {
         ListData: defineAsyncComponent({
-            loader: () => import('@/views/baseTools/categoriesManager/nation/List.vue'),
+            loader: () => import('@/views/baseTools/categoriesManager/ethnic/List.vue'),
             loadingComponent: SkeletonBox,
         }),
         AddData: defineAsyncComponent({
-            loader: () => import('@/views/baseTools/categoriesManager/nation/Add.vue'),
+            loader: () => import('@/views/baseTools/categoriesManager/ethnic/Add.vue'),
             loadingComponent: SkeletonBox,
         }),
         ModifyData: defineAsyncComponent({
-            loader: () => import('@/views/baseTools/categoriesManager/nation/Add.vue'),
+            loader: () => import('@/views/baseTools/categoriesManager/ethnic/Add.vue'),
             loadingComponent: SkeletonBox,
         }),
     },

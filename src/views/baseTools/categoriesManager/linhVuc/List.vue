@@ -57,7 +57,7 @@
         <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
             <div
                 class="flex-fill d-flex flex-column"
-                v-if="listElements.data && listElements.data.length > 0">
+                v-if="fields && fields.length > 0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
                         <table
@@ -71,12 +71,9 @@
                                     </th>
                                     <th class="pl-0 pt-2 pb-2 align-middle">
                                         <button>
-                                            {{ viewSettings.title }}
+                                            TÊN LĨNH VỰC
                                         </button>
-                                    </th>
-                                    <th class="pl-0 pt-2 pb-2 align-middle">
-                                        <button>MÔ TẢ</button>
-                                    </th>
+                                    </th> 
                                     <th
                                         class="pl-0 pt-2 pb-2 text-center align-middle">
                                         <button>THỜI GIAN THÊM</button>
@@ -96,18 +93,13 @@
                                 <tr
                                     v-for="(
                                         itemData, itemIndex
-                                    ) in listElements.data"
+                                    ) in fields"
                                     :key="itemIndex">
                                     <td class="pl-2 text-left">
-                                        {{ itemData.id }}
-                                    </td>
-                                    <td class="pl-2">
-                                        {{ viewSettings.title }}
                                         {{ itemIndex + 1 }}
-                                    </td>
+                                    </td> 
                                     <td class="pl-2">
-                                        Giới thiệu về {{ viewSettings.title }}
-                                        {{ itemIndex + 1 }}
+                                        {{ itemData }}
                                     </td>
                                     <td
                                         class="pl-2 text-center text-nowrap"
@@ -174,8 +166,8 @@
                     <div>
                         <el-pagination
                             v-if="
-                                listElements.data &&
-                                listElements.data.length > 0
+                                fields &&
+                                fields.length > 0
                             "
                             class=""
                             background

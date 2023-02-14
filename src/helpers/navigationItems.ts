@@ -44,7 +44,7 @@ export const navItems:Array<any> = [
             {
                 type: 'link',
                 name: 'Thông tin dân tộc',
-                url: '/category/nation',
+                url: '/category/ethnic',
             },
             {
                 type: 'link',
