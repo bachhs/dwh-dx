@@ -1,4 +1,6 @@
-<script lang="ts" src="@/scripts/baseTools/categoriesManager/linhvuc/add.ts"></script>
+<script
+    lang="ts"
+    src="@/scripts/baseTools/categoriesManager/linhVuc/add.ts"></script>
 <template>
     <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
         <div class="d-flex align-items-center">
@@ -45,15 +47,22 @@
             <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4">
                 <el-form
                     v-if="itemModel"
-                    ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
-                    label-width="0" class="ruleForm">
+                    ref="ruleFormStep1Ref"
+                    :model="itemModel"
+                    :rules="rules"
+                    label-width="0"
+                    class="ruleForm">
                     <div class="mb-3">
                         <div>
-                            <strong>Tên cơ quan</strong><span class="ml-1 text-danger">*</span>
+                            <strong>Tên cơ quan</strong
+                            ><span class="ml-1 text-danger">*</span>
                         </div>
                         <div class="mt-2">
                             <el-form-item label="">
-                                <el-input v-model="itemModel.name" size="large" placeholder="Tên cơ quan.."/>
+                                <el-input
+                                    v-model="itemModel.name"
+                                    size="large"
+                                    placeholder="Tên cơ quan.." />
                             </el-form-item>
                         </div>
                     </div>
@@ -64,10 +73,13 @@
                         </div>
                         <div class="mt-2">
                             <el-form-item label="">
-                                <el-input v-model="itemModel.name" size="large" placeholder="Mô tả.."/>
+                                <el-input
+                                    v-model="itemModel.name"
+                                    size="large"
+                                    placeholder="Mô tả.." />
                             </el-form-item>
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
                 </el-form>
                 <div
                     class="text-center mt-3 pt-3 pb-3"

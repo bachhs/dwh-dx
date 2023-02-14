@@ -1,12 +1,14 @@
-<script lang="ts" src="@/scripts/baseTools/categoriesManager/linhvuc/index.ts"></script>
+<script
+    lang="ts"
+    src="@/scripts/baseTools/categoriesManager/linhVuc/index.ts"></script>
 <template>
-    <el-card class="box-card w-100 d-flex flex-fill flex-column"
+    <el-card
+        class="box-card w-100 d-flex flex-fill flex-column"
         v-loading="isChangeViewLoading"
-		:body-style="{ padding: '0.5rem 0.8rem' }">
+        :body-style="{ padding: '0.5rem 0.8rem' }">
         <component
             :is="currentComponent"
             @onChangeView="changeView"
-            :viewSettings="viewSettings"
-        ></component>
+            :viewSettings="viewSettings"></component>
     </el-card>
 </template>
