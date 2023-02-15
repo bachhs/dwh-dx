@@ -5,7 +5,7 @@ import router from '../../router/index';
 <script lang="ts" src="@/scripts/dataSourceGroup/fileEmbedLink/upload.ts"></script>
 <template>
     <el-card class="box-card w-100 d-flex flex-fill flex-column"
-        v-loading="isChangeViewLoading"
+        v-loading="isChangeViewLoading" style="height: 100vh;"
 		:body-style="{ padding: '0.5rem 0.8rem' }">
         <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
             <div class="d-flex align-items-center">

@@ -9,7 +9,33 @@
                         <strong>Kho dữ liệu</strong>
                     </h4>
                 </div>
-                <div class="d-flex align-items-center"> 
+                <div class="d-flex align-items-center">
+                    <div class="ml-1 mr-1 d-none d-md-block">
+                        <el-select v-if="organization"
+                            style="width: 15rem"
+                            filterable
+                            placeholder="Tổ chức.."
+                            size="large">
+                            <el-option label="Tất cả tổ chức" value="" />
+                            <el-option v-for="item in organization"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id" />
+                        </el-select>
+                    </div> 
+                    <div class="ml-1 mr-1 d-none d-md-block">
+                        <el-select
+                            style="width: 15rem"
+                            filterable
+                            placeholder="Nguồn dữ liệu.."
+                            size="large">
+                            <el-option label="Tất cả nguồn dữ liệu" value="" />
+                            <el-option label="API" value="api" />
+                            <el-option label="DATABASE" value="database" />
+                            <el-option label="EMBEDLINK" value="embedlink" />
+                            <el-option label="FILE SERVER" value="filerServer" />
+                        </el-select>
+                    </div> 
                     <div class="ml-1 mr-1">
                         <el-input filterable placeholder="Nhập để lọc dữ liệu.." size="large"
                             style="min-width: 16rem">
@@ -21,12 +47,6 @@
                         </el-input>
                     </div>
                     <div class="ml-1 text-nowrap">
-                        <el-button size="large" type="primary">
-                            <el-icon :size="20" style="vertical-align: middle">
-                                <Plus />
-                            </el-icon>
-                        </el-button>
-
                         <el-button size="large" type="primary">
                             <el-icon :size="20" style="vertical-align: middle">
                                 <Refresh />
@@ -42,17 +62,18 @@
                             <table class="table table-striped table-head-fixed table-borderless">
                                 <thead>
                                     <tr class="bg-white">
-                                        <th style="width: 1%;" class="pl-0 pt-2 pb-2text-center text-nowrap align-middle">
+                                        <th style="width: 1%;"></th>
+                                        <th style="width: 1%;" class="pl-0 pt-2 pb-2 text-center text-nowrap align-middle">
                                             <button>STT</button>
-                                        </th>
-                                        <th style="width: 1%;" class="pl-0 pt-2 pb-2 text-nowrap align-middle">
-                                            <button>TỔ CHỨC</button>
                                         </th>
                                         <th class="pl-0 pt-2 pb-2 text-nowrap align-middle">
                                             <button>TÊN FILE</button>
                                         </th>
                                         <th class="pl-0 pt-2 pb-2 text-nowrap text-center align-middle">
                                             <button>LOẠI FILE</button>
+                                        </th>
+                                        <th style="width: 1%;" class="pl-0 pt-2 pb-2 text-nowrap align-middle">
+                                            <button>TỔ CHỨC</button>
                                         </th>
                                         <th class="pl-0 pt-2 pb-2 align-middle text-center text-nowrap">
                                             <button>NGUỒN DỮ LIỆU</button>
@@ -67,18 +88,24 @@
                                 </thead>
                                 <tbody class=" ">
                                     <tr v-for="(itemData, itemIndex) in 99" :key="itemIndex">
-                                        <td class="pl-2 text-center">#{{ itemData }}</td>
-                                        <td class="pl-2 text-nowrap">
-                                            <div>Sở thông tin & Truyền thông</div>
+                                        <td class="p-0 pl-1 text-left">
+                                            <img v-if="itemIndex % 2 === 0" src="/custom-img/list-icon/pdf-icon.png"
+                                                style="height: 2.5rem;" />
+                                            <img v-else src="/custom-img/list-icon/xlsx-icon.png"
+                                                style="height: 2.5rem;" />
                                         </td>
+                                        <td class="pl-2 text-center">#{{ itemData }}</td>
                                         <td class="pl-2 text-left">
-                                            <div>2.001098.000.00.00.H60.XLSX</div>
+                                            <div>2.{{(Math.random() + 1).toString(36).substring(4)}}.000.00.00.H60.{{itemIndex % 2 === 0 ? 'pdf' : 'xlsx'}}</div>
                                             <div class="text-muted" style="font-size: 85%;">
                                                 2.001098.000.00.00.H60 - Cấp Giấy phép thiết lập trang thông tin điện tử tổng hợp
                                             </div>
                                         </td>
                                         <td class="pl-2 text-center">
-                                            <div>XLSX</div>
+                                            <div class="text-uppercase">{{itemIndex % 2 === 0 ? 'pdf' : 'xlsx'}}</div>
+                                        </td>
+                                        <td class="pl-2 text-nowrap">
+                                            <div>Sở thông tin & Truyền thông</div>
                                         </td>
                                         <td class="pl-2 text-center">
                                             TỪ API
