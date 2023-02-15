@@ -4,8 +4,10 @@
     <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
         <div class="d-flex align-items-center pr-3">
             <div class="flex-fill d-none d-sm-none d-md-none d-lg-block">
-                <h4>
-                    <i class="fas fa-file-code text-lightblue mr-2"></i>
+                <h4 class="d-flex align-items-center">
+                    <img src="/custom-img/list-icon/embed-link-icon.svg"
+                        class="mr-1"
+                        style="height: 2rem;" />
                     <strong>File Embed Link</strong>
                 </h4>
             </div>
@@ -74,6 +76,9 @@
                                 <tr class="bg-white">
                                     <th style="width: 1%;"
                                         class="pl-0 pt-2 pb-2 text-nowrap align-middle">
+                                    </th>
+                                    <th style="width: 1%;"
+                                        class="pl-0 pt-2 pb-2 text-nowrap align-middle">
                                         <button>ID</button>
                                     </th>
                                     <th class="pl-0 pt-2 pb-2 align-middle">
@@ -109,7 +114,11 @@
                             </thead>
                             <tbody class=" ">
                                 <tr v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex">
-                                    <td class="pl-2 text-left">{{itemData.id}}</td>
+                                    <td class="p-0 text-left">
+                                        <img src="/custom-img/list-icon/embed-link-icon.svg"
+                                            style="height: 2.5rem;" />
+                                    </td>
+                                    <td class="pl-2 text-left">#{{itemData.id}}</td>
                                     <td class="pl-2">
                                         <span v-if="itemData.organization">
                                             {{ itemData.organization.name }}

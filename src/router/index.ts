@@ -3,7 +3,8 @@ const categoryRoutes = [
     "position", "procedureIssue", "procedureType", "profileType", "province", "religion", 
     "wards", "citizen", "district", "enterprise", "linhVuc", "ethnic", "organization"
 ];
-const digitizationState = ['pending', 'inprogress', 'wait-confirm', 'wait-accept', 'completed']
+const beforeDigitization = ['dataStore', 'newDataIntegrated'];
+const digitizationState = ['pending', 'inprogress', 'wait-confirm', 'wait-accept', 'completed'];
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -24,6 +25,13 @@ const router = createRouter({
                 path: `/digitization/${rItem}`,
                 name: `digitization_${rItem}`,
                 component: () => import(`@/views/digitization/${rItem}/Index.vue`),
+            }
+        }),
+        ...beforeDigitization.map(rItem => {
+            return {
+                path: `/before-digitalization-store/${rItem.split(/(?=[A-Z])/).join('-').toLowerCase()}`,
+                name: `beforeDigitization_${rItem}`,
+                component: () => import(`@/views/beforeDigitization/${rItem}/Index.vue`),
             }
         }),
         {
