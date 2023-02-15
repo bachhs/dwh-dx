@@ -42,27 +42,55 @@
                             <table class="table table-striped table-head-fixed table-borderless">
                                 <thead>
                                     <tr class="bg-white">
-                                        <th style="width: 1%;" class="pl-0 pt-2 pb-2 text-nowrap align-middle">
+                                        <th style="width: 1%;" class="pl-0 pt-2 pb-2text-center text-nowrap align-middle">
                                             <button>STT</button>
                                         </th>
                                         <th style="width: 1%;" class="pl-0 pt-2 pb-2 text-nowrap align-middle">
-                                            <button>SỐ HỒ SƠ</button>
+                                            <button>TỔ CHỨC</button>
                                         </th>
-                                        <th class="pl-0 pt-2 pb-2 align-middle text-nowrap">
-                                            <button>VỀ VIỆC</button>
+                                        <th class="pl-0 pt-2 pb-2 text-nowrap align-middle">
+                                            <button>TÊN FILE</button>
+                                        </th>
+                                        <th class="pl-0 pt-2 pb-2 text-nowrap text-center align-middle">
+                                            <button>LOẠI FILE</button>
+                                        </th>
+                                        <th class="pl-0 pt-2 pb-2 align-middle text-center text-nowrap">
+                                            <button>NGUỒN DỮ LIỆU</button>
+                                        </th>
+                                        <th class="pl-0 pt-2 pb-2 text-nowrap align-middle">
+                                            <button>KHỞI TẠO/CHỈNH SỬA</button>
+                                        </th>
+                                        <th style="width: 1%;" class="pl-0 pt-2 pb-2 text-nowrap align-middle">
+                                            <button>THAO TÁC</button>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody class=" ">
                                     <tr v-for="(itemData, itemIndex) in 99" :key="itemIndex">
-                                        <td class="pl-2 text-left">{{ itemData }}</td>
-                                        <td class="pl-2">
-                                            <a href="#" class="text-primary">
-                                                <strong>000.00.12.H60-230201-0002</strong>
-                                            </a>
+                                        <td class="pl-2 text-center">#{{ itemData }}</td>
+                                        <td class="pl-2 text-nowrap">
+                                            <div>Sở thông tin & Truyền thông</div>
                                         </td>
                                         <td class="pl-2 text-left">
-                                            <div>2.001098.000.00.00.H60 - Cấp Giấy phép thiết lập trang thông tin điện tử tổng hợp</div>
+                                            <div>2.001098.000.00.00.H60.XLSX</div>
+                                            <div class="text-muted" style="font-size: 85%;">
+                                                2.001098.000.00.00.H60 - Cấp Giấy phép thiết lập trang thông tin điện tử tổng hợp
+                                            </div>
+                                        </td>
+                                        <td class="pl-2 text-center">
+                                            <div>XLSX</div>
+                                        </td>
+                                        <td class="pl-2 text-center">
+                                            TỪ API
+                                        </td>
+                                        <td class="pl-2 text-left text-nowrap" style="width: 1%;">
+                                            <div><i class="fas fa-plus-circle text-primary"></i> {{$filters.prettyDate($filters.randomDate())}}</div>
+                                            <div><i class="fas fa-edit text-primary"></i> {{$filters.prettyDate(new Date())}}</div>
+                                        </td>
+                                        <td>
+                                            <el-button type="primary">
+                                                Số hoá
+                                            </el-button>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -3,7 +3,7 @@ const categoryRoutes = [
     "position", "procedureIssue", "procedureType", "profileType", "province", "religion", 
     "wards", "citizen", "district", "enterprise", "linhVuc", "ethnic", "organization"
 ];
-const beforeDigitization = ['dataStore', 'newDataIntegrated'];
+const beforeDigitization = ['dataStore', 'newDataIntegration'];
 const digitizationState = ['pending', 'inprogress', 'wait-confirm', 'wait-accept', 'completed'];
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
