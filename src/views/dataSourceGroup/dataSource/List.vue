@@ -9,8 +9,8 @@
                     <strong>Nguồn dữ liệu</strong>
                 </h4>
             </div>
-            <!-- <div class="d-flex align-items-center">
-                <div class="ml-1 mr-1 d-none d-md-block">
+            <div class="d-flex align-items-center">
+                <!-- <div class="ml-1 mr-1 d-none d-md-block">
                     <el-select
                         v-if="organization"
                         style="width: 15rem"
@@ -70,7 +70,7 @@
                             </el-icon>
                         </template>
                     </el-input>
-                </div>
+                </div> -->
                 <div class="ml-1 text-nowrap">
                     <el-button
                         size="large"
@@ -95,7 +95,7 @@
                         </el-icon>
                     </el-button>
                 </div>
-            </div> -->
+            </div>
         </div>
         <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
             <!-- Old datasource list -->
