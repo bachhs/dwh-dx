@@ -51,6 +51,12 @@ const router = createRouter({
             meta: { layout: 'AppLayoutDefault' }
         },
         {
+            path: '/data-source-file/progress',
+            name: 'datasourcePipelineFileServer',
+            component: () => import('@/views/datasourcePipeline/fileServer/Index.vue'),
+            meta: { layout: 'AppLayoutDefault' }
+        },
+        {
             path: '/data-source-file/file-upload',
             name: 'fileUpload',
             component: () => import('@/views/dataSourceGroup/fileUpload/Index.vue'),
@@ -75,6 +81,12 @@ const router = createRouter({
             meta: { layout: 'AppLayoutDefault' }
         },
         {
+            path: '/data-source-api/progress',
+            name: 'datasourcePipelineApi',
+            component: () => import('@/views/datasourcePipeline/apiSource/Index.vue'),
+            meta: { layout: 'AppLayoutDefault' }
+        },
+        {
             path: '/tags-manager',
             name: 'tagManager',
             component: () => import('@/views/tag/index.vue'),
@@ -87,16 +99,9 @@ const router = createRouter({
             meta: { layout: 'AppLayoutDefault' }
         },
         {
-            path: '/datasource-pipeline',
-            name: 'datasourcePipeline',
-            component: () =>
-                import('@/views/datasourcePipeline/datasourcePipeline.vue'),
-                meta: { layout: 'AppLayoutDefault' }
-        },
-        {
-            path: '/datasource-processing',
-            name: 'dataProcessing',
-            component: () => import('@/views/datasourcePipeline/dataProcessing.vue'),
+            path: '/data-source-db/progress',
+            name: 'datasourcePipelineDataSet',
+            component: () => import('@/views/datasourcePipeline/dataSet/Index.vue'),
             meta: { layout: 'AppLayoutDefault' }
         },
         {

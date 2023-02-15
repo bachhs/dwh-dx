@@ -1,4 +1,7 @@
-<script lang="ts" src="@/scripts/datasourcePipeline/dataProcessing.ts"></script>
+
+import { VideoPause } from '@element-plus/icons-vue';
+
+<script lang="ts" src="@/scripts/datasourcePipeline/apiSource/index.ts"></script>
 <template>
     <el-card
         class="box-card w-100 d-flex flex-fill flex-column"
@@ -7,63 +10,11 @@
             <div class="d-flex align-items-center">
                 <div class="flex-fill d-none d-md-block">
                     <h4>
-                        <i class="fas fa-fire-alt text-navy"></i>
-                        <strong>Xử lý dữ liệu</strong>
+                        <i class="fas fa-fire-alt text-danger mr-2"></i>
+                        <strong>Tiến trình thu thập dữ liệu từ API</strong>
                     </h4>
                 </div>
-                <div class="d-flex align-items-center">
-                    <div class="ml-1 mr-1">
-                        <el-select
-                            v-model="sourceData"
-                            filterable
-                            placeholder="Dữ liệu nguồn.."
-                            size="large">
-                            <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value" />
-                        </el-select>
-                    </div>
-                    <div class="ml-1 mr-1">
-                        <el-select
-                            v-model="typeDataFormat"
-                            filterable
-                            placeholder="Dữ liệu đích.."
-                            size="large">
-                            <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value" />
-                        </el-select>
-                    </div>
-                    <div class="ml-1 mr-1">
-                        <el-select
-                            v-model="typeDataFormat"
-                            filterable
-                            placeholder="Lịch thu thập.."
-                            size="large">
-                            <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value" />
-                        </el-select>
-                    </div>
-                    <div class="ml-1 mr-1">
-                        <el-select
-                            v-model="typeDataFormat"
-                            filterable
-                            placeholder="Trạng thái.."
-                            size="large">
-                            <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value" />
-                        </el-select>
-                    </div>
+                <div class="d-flex align-items-center">                    
                     <div class="ml-1">
                         <el-button size="large" type="primary">
                             <el-icon :size="20" style="vertical-align: middle">
@@ -86,6 +37,7 @@
                             class="table table-striped table-head-fixed text-nowrap table-borderless">
                             <thead>
                                 <tr class="bg-white">
+                                    <th style="width: 1%;"></th>
                                     <th
                                         class="pl-0 pt-2 pb-2 text-nowrap align-middle">
                                         <button>DỮ LIỆU NGUỒN</button>
@@ -97,10 +49,7 @@
                                         <button>
                                             <div>PHÁT HIỆN SAI KHÁC</div>
                                             <div>
-                                                <small
-                                                    >(Bản ghi lỗi / Tổng số bản
-                                                    ghi)</small
-                                                >
+                                                <small >(Bản ghi lỗi / Tổng số bản ghi)</small >
                                             </div>
                                         </button>
                                     </th>
@@ -111,38 +60,47 @@
                                     <th
                                         class="pl-0 pt-2 pb-2 text-center align-middle"
                                         style="width: 1%">
-                                        <div>Action</div>
+                                        <div>ACTION</div>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody class=" ">
                                 <tr v-for="itemDemo in 99" :key="itemDemo">
-                                    <td class="pl-2">
-                                        Sở TTTT - Database {{ itemDemo }}
+                                    <td class="p-0 text-left">
+                                        <img src="/custom-img/list-icon/embed-link-icon.svg"
+                                            class="ml-1"
+                                            style="height: 2.5rem;" />
                                     </td>
                                     <td class="pl-2">
-                                        Data Warehouse {{ itemDemo }}
+                                        <div>ftp://ftp.dtcsolution.vn:21</div>
+                                        <div class="text-muted" style="font-size: 90%;">Sở Thông Tin Truyền Thông</div>
+                                    </td>
+                                    <td class="pl-2">
+                                        Kho dữ liệu
                                     </td>
                                     <td class="pl-2 text-center">0/10000</td>
                                     <td class="pl-2 text-center">
-                                        <span class="badge badge-lg bg-success"
-                                            >Hoàn thành</span
-                                        >
+                                        <!-- <span v-if="itemDemo % 2 ===  0" class="badge badge-lg bg-success">Hoàn thành</span> -->
+                                        <div v-if="itemDemo % 2 ===  0"  class="pl-2" style="background-color: #fff; border-radius: 50px;">
+                                            <el-progress :stroke-width="15" status="success" :percentage="100"
+                                                :duration="2" >
+                                                <el-button text>Hoàn thành</el-button>
+                                            </el-progress>
+                                        </div>
+                                        <div v-else  class="pl-2" style="background-color: #fff; border-radius: 50px;">
+                                            <el-progress :stroke-width="15" :percentage="70"
+                                                :duration="2"
+                                                :indeterminate="true" >
+                                                <el-button text>Đang xử lý</el-button>
+                                            </el-progress>
+                                        </div>
                                     </td>
                                     <td class="pl-2 text-center">
                                         <el-button type="default" class="p-2">
-                                            <el-icon
-                                                style="vertical-align: middle"
-                                                :size="20">
-                                                <Edit />
-                                            </el-icon>
+                                            <i class="fas fa-stop mr-1 ml-1"></i> Tạm dừng
                                         </el-button>
                                         <el-button type="danger" class="p-2">
-                                            <el-icon
-                                                style="vertical-align: middle"
-                                                :size="20">
-                                                <Delete />
-                                            </el-icon>
+                                            <i class="fas fa-stop mr-1 ml-1"></i> Huỷ
                                         </el-button>
                                     </td>
                                 </tr>
