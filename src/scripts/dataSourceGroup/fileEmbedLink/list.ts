@@ -63,7 +63,7 @@ export default {
         };
 
         const openEmbedLink = (itemData:any) => {
-            window.open(`/file-embed-link-upload/${itemData.embedded_id}`);
+            window.open(`/data-source-file/file-embed-link-upload/${itemData.embedded_id}`);
         };
 
         const route = useRoute();

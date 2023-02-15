@@ -72,6 +72,7 @@
                             class="table table-striped table-head-fixed text-nowrap table-borderless">
                             <thead>
                                 <tr class="bg-white">
+                                    <th style="width: 1%;"></th>
                                     <th style="width: 1%;"
                                         class="pl-0 pt-2 pb-2 text-nowrap align-middle">
                                         <button>ID</button>
@@ -101,7 +102,11 @@
                             </thead>
                             <tbody class=" ">
                                 <tr v-for="(itemData, itemIndex) in listElements.data" :key="itemIndex">
-                                    <td class="pl-2 text-left">{{itemData.id}}</td>
+                                    <td class="p-0 text-left">
+                                        <img src="/custom-img/list-icon/file-icon.svg"
+                                            style="height: 2.5rem;" />
+                                    </td>
+                                    <td class="pl-2 text-left">#{{itemData.id}}</td>
                                     <td class="pl-2">
                                         <span v-if="itemData.organization">
                                             {{ itemData.organization.name }}
