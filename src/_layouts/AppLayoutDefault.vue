@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink, RouterView, useRoute } from 'vue-router';
 import { navItems } from '@/helpers/navigationItems';
 import { useDataCategoryStore } from '@/stores/dataCategory';
+const route = useRoute();
 const dataCategoryStore = useDataCategoryStore();
 dataCategoryStore.getOrganization();
 dataCategoryStore.getAppParams();
