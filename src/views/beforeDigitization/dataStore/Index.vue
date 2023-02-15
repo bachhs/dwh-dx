@@ -120,9 +120,9 @@
                                                     <i class="fas fa-eye"></i>
                                                 </el-button>
                                             </el-tooltip>
-                                            <el-tooltip class="box-item" effect="dark" content="Tải xuống" placement="top"> 
+                                            <el-tooltip class="box-item" effect="dark" content="Số hoá tài liệu này" placement="top"> 
                                                 <el-button>
-                                                    <i class="fas fa-download"></i>
+                                                    <i class="fas fa-upload"></i>
                                                 </el-button>
                                             </el-tooltip>
                                         </td>

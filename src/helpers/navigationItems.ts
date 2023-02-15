@@ -323,12 +323,12 @@ export const navItems:Array<any> = [
         icon: 'fas fa-cube',
         url: '/query-result/specialized',
     },
-    {
-        type: 'link',
-        name: 'D.Liệu KQ TTHC',
-        icon: 'fas fa-cube',
-        url: '/data-result/all',
-    },
+    // {
+    //     type: 'link',
+    //     name: 'D.Liệu KQ TTHC',
+    //     icon: 'fas fa-cube',
+    //     url: '/data-result/all',
+    // },
     {
         type: 'navHeader',
         name: 'BÁO CÁO VÀ KHAI THÁC',
