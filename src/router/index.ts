@@ -154,10 +154,16 @@ const router = createRouter({
         },
         {
             path: '/query-result/all',
-            name: 'QueryResult',
+            name: 'QueryResultAll',
             component: () => import('@/views/queryResult/Index.vue'),
             meta: { layout: 'AppLayoutDefault' }
         },
+        {
+            path: '/query-result/specialized',
+            name: 'QueryResultSpecialized',
+            component: () => import('@/views/queryResult/specialized/Index.vue'),
+            meta: { layout: 'AppLayoutDefault' }
+        },        
         {
             path: '/shared/api-share-data',
             name: 'apiShareData',

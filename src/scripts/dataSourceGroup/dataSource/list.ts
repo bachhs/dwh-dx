@@ -1,4 +1,4 @@
-import { ref, onMounted, nextTick } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { mapState } from 'pinia';
 import { dataSourceApi } from '@/api/dataSourceApi';
 import { organizationApi } from '@/api/organizationApi';
@@ -22,6 +22,7 @@ export default {
         const {
             isLoading,
             lastDataLoading,
+            groupIdVisible,
             listElements,
             filterData,
             filterDataDebounceFn,
@@ -29,8 +30,17 @@ export default {
             refreshDataFn,
             filterDataFn,
             deleteElement,
-        } = useGroupList(organizationApi.organizationListAll, "id", dataSourceApi.listDatasourceByOrganization, filterDataSource);
+        } = useGroupList(organizationApi.organizationListAll, "id", dataSourceApi.listDatasourceByOrganization, filterDataSource, [filterDataSource.value.organization_id]);
         //} = usePaginationList(dataSourceApi.dataSourceList, filterDataSource); 
+ 
+        watch(() => filterDataSource.value.organization_id, (newVal) =>{
+            console.log('groupIdTargetShow', newVal);
+            if(newVal){
+                groupIdVisible.value= [newVal];
+            }
+            else groupIdVisible.value = [];
+            getListData();
+        });
 
         const onChangeWaitpoint = (ds: any, waypointState: any) => {
             if (waypointState.going === 'IN') {
@@ -64,28 +74,7 @@ export default {
                 }
             }, 1000);
             return 'exclaimationquestionmark.svg';
-        };
-
-        // const getGroupDatasources = async () => {
-        //     const or = await organizationApi.organizationListAll();
-        //     const organizations = or.data;
-
-        //     for (const organization of organizations) {
-        //         const dr = await dataSourceApi.listDatasourceByOrganization(
-        //             organization.id
-        //         );
-
-        //         const datasources = dr.data;
-
-        //         if (datasources.length > 0) {
-        //             groupElements.push({
-        //                 id: organization.id,
-        //                 organization,
-        //                 datasources,
-        //             });
-        //         }
-        //     }
-        // };
+        }; 
 
         const route = useRoute();
         const router = useRouter();

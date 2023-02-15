@@ -3,33 +3,37 @@ import debounce from 'lodash/debounce';
 import moment from 'moment';
 import { ElMessage, ElMessageBox } from 'element-plus'; 
 
-const useGroupList = (getGroupFn:Function, requestProp:string, getListDataFn:Function, filterData:any) => {
+const useGroupList = (getGroupFn:Function, requestProp:string, getListDataFn:Function, filterData:any, groupIdTargetShow?:Array<any>) => {
     const isLoading = ref(false);
     const lastDataLoading = ref("");
-    const listElements = ref<any>([]);
+    const listElements = ref<Array<any>>([]);
+    const groupIdVisible = ref<Array<any>>([]);
     //const filterData = ref({});
     const updateLoadTime = () =>{ 
-        lastDataLoading.value = moment().local().format('DD-MM-YYYY HH:mm:ss')
+        lastDataLoading.value = moment().local().format('DD-MM-YYYY HH:mm:ss');
     };
     const getListData = () => {
         isLoading.value = true;
         listElements.value = [];
         let filterDataRequest = filterData.value;        
         getGroupFn().then((response:any) => {
-            console.log('getGroupFn', response);
             response.data.forEach((groupItem:any) => {
-                getListDataFn(groupItem[requestProp]).then((dataResult:any) =>{
-                    if (dataResult.data.length > 0) {
-                        listElements.value.push({
-                            id: groupItem[requestProp],
-                            groupItem: groupItem,
-                            dataItems: dataResult.data,
-                        });
-                    }
-                }).catch((error:any) =>{ 
-                    isLoading.value = false;
-                    console.error(error);
-                });  
+                console.log('groupIdVisible', {...groupIdVisible.value});
+                console.log('groupItem', groupItem[requestProp]);
+                if(groupIdVisible.value.length === 0 || groupIdVisible.value.includes(groupItem[requestProp])){
+                    getListDataFn(groupItem[requestProp]).then((dataResult:any) =>{
+                        if (dataResult.data.length > 0) {
+                            listElements.value.push({
+                                id: groupItem[requestProp],
+                                groupItem: groupItem,
+                                dataItems: dataResult.data,
+                            });
+                        }
+                    }).catch((error:any) =>{ 
+                        isLoading.value = false;
+                        console.error(error);
+                    });  
+                }
             });
             isLoading.value = false;
             updateLoadTime(); 
@@ -39,6 +43,7 @@ const useGroupList = (getGroupFn:Function, requestProp:string, getListDataFn:Fun
         });        
         $('span.line-clamp-1').css('color', 'red');
     };
+
     const filterDataFn = () =>{
         getListData();
     };
@@ -90,6 +95,7 @@ const useGroupList = (getGroupFn:Function, requestProp:string, getListDataFn:Fun
     return {
         isLoading,
         lastDataLoading,
+        groupIdVisible,
         listElements,
         filterData,
         updateLoadTime,

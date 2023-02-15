@@ -10,15 +10,14 @@
                 </h4>
             </div>
             <div class="d-flex align-items-center">
-                <!-- <div class="ml-1 mr-1 d-none d-md-block">
+                <div class="ml-1 mr-1 d-none d-md-block">
                     <el-select
                         v-if="organization"
                         style="width: 15rem"
                         v-model="filterData.organization_id"
                         filterable
                         placeholder="Tổ chức.."
-                        size="large"
-                        @change="filterDataFn">
+                        size="large">
                         <el-option label="Tất cả" value="" />
                         <el-option
                             v-for="item in organization"
@@ -27,7 +26,7 @@
                             :value="item.id" />
                     </el-select>
                 </div>
-                <div class="ml-1 mr-1 d-none d-md-block">
+                <!-- <div class="ml-1 mr-1 d-none d-md-block">
                     <el-select
                         v-if="databaseEngineOptions"
                         v-model="filterData.dialect"
@@ -54,7 +53,7 @@
                             </div>
                         </el-option>
                     </el-select>
-                </div>
+                </div> -->
                 <div class="ml-1 mr-1">
                     <el-input
                         v-model="filterData.name"
@@ -70,7 +69,7 @@
                             </el-icon>
                         </template>
                     </el-input>
-                </div> -->
+                </div>
                 <div class="ml-1 text-nowrap">
                     <el-button
                         size="large"
@@ -377,6 +376,14 @@
                                                     </span>
                                                     <template #dropdown>
                                                         <el-dropdown-menu>
+                                                            <el-dropdown-item>
+                                                                <el-icon
+                                                                    :size="15"
+                                                                    style="vertical-align: middle;" >
+                                                                    <Download />
+                                                                </el-icon>
+                                                                <span class="ml-1">Tạo luồng lấy dữ liệu</span>
+                                                            </el-dropdown-item>
                                                             <el-dropdown-item @click=" $emit( 'onChangeView', { viewName: 'ModifyData', data: ds, } ) ">
                                                                 <el-icon :size="15" style=" vertical-align: middle; ">
                                                                     <Edit />

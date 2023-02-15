@@ -319,9 +319,9 @@ export const navItems:Array<any> = [
     },
     {
         type: 'link',
-        name: 'D.Liệu KQ TTHC Sở/B.ngành',
+        name: 'D.Liệu KQ TTHC chuyên ngành',
         icon: 'fas fa-cube',
-        url: '/data-result/departments',
+        url: '/query-result/specialized',
     },
     {
         type: 'link',

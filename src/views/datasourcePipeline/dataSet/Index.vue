@@ -78,7 +78,7 @@
                                     <td class="pl-2 text-center">0/10000</td>
                                     <td class="pl-2 text-center">
                                         <!-- <span v-if="itemDemo % 2 ===  0" class="badge badge-lg bg-success">Hoàn thành</span> -->
-                                        <div v-if="itemDemo % 2 ===  0"  class="pl-2" style="background-color: #fff; border-radius: 50px;">
+                                        <div v-if="itemDemo % 3 ===  0"  class="pl-2" style="background-color: #fff; border-radius: 50px;">
                                             <el-progress :stroke-width="15" status="success" :percentage="100"
                                                 :duration="2" >
                                                 <el-button text>Hoàn thành</el-button>

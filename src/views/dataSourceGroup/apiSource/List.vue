@@ -1,4 +1,7 @@
 
+import { Download } from '@element-plus/icons-vue';
+
+
 import { OfficeBuilding } from '@element-plus/icons-vue';
 
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
@@ -137,7 +140,7 @@ import { OfficeBuilding } from '@element-plus/icons-vue';
                                                             <el-icon
                                                                 :size="15"
                                                                 style="vertical-align: middle;" >
-                                                                <Edit />
+                                                                <Download />
                                                             </el-icon>
                                                             <span class="ml-1">Tạo luồng lấy dữ liệu</span>
                                                         </el-dropdown-item>
