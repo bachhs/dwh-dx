@@ -20,6 +20,9 @@ export const dataSourceApi = {
             requestParams.name = params.name;
         return axios.get(`/datasources`, { params: requestParams });
     },
+    listDatasourceByOrganization(organizationId: number) {
+        return axios.get(`/organization/${organizationId}/datasources`);
+    },
     getDataSourceDetail(dtsId: number) {
         return axios.get(`/datasource/${dtsId}`);
     },

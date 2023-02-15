@@ -4,6 +4,9 @@ export const organizationApi = {
     organizationList() {
         return axios.get(`/organization`, { params: { page: 1, limit: 100 } });
     },
+    organizationListAll() {
+        return axios.get(`/organization/all`);
+    },
     getOrganization(organizationId: number) {
         return axios.get(`/organization/${organizationId}`);
     },
