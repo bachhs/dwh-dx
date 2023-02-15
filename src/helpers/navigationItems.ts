@@ -118,11 +118,11 @@ export const navItems:Array<any> = [
                 name: 'Làm giàu tự động',
                 url: '/data-source-file/enrichment',
             },                           
-            {
-                type: 'link',
-                name: 'Từ tập tin sẵn có',
-                url: '/data-source-file/file-upload',
-            },                             
+            // {
+            //     type: 'link',
+            //     name: 'Từ tập tin sẵn có',
+            //     url: '/data-source-file/file-upload',
+            // },                             
             {
                 type: 'link',
                 name: 'Từ đường dẫn chia sẻ',
@@ -158,49 +158,49 @@ export const navItems:Array<any> = [
             },    
         ]
     },
-    {
-        type: 'link',
-        name: 'Luồng lấy dữ liệu từ CSDL',
-        icon: 'fas fa-cube',
-        url: '/data-source-db',
-        childItems: [            
-            {
-                type: 'link',
-                name: 'Thông tin nguồn dữ liệu',
-                url: '/data-source-db/data-source',
-            },         
-            {
-                type: 'link',
-                name: 'Cấu hình tiến trình',
-                url: '/data-source-db/progress',
-            },              
-            {
-                type: 'link',
-                name: 'Làm giàu tự động',
-                url: '/data-source-db/enrichment',
-            },      
-            {
-                type: 'link',
-                name: 'Từ CSDL cục bộ',
-                url: '/data-source-db/local-db',
-            },         
-            {
-                type: 'link',
-                name: 'Từ CSDL khác',
-                url: '/data-source-db/others-db',
-            },              
-            {
-                type: 'link',
-                name: 'Từ CSDL Cloud',
-                url: '/data-source-db/cloud-db',
-            },              
-            {
-                type: 'link',
-                name: 'Cập nhật CSDL Cloud',
-                url: '/data-source-db/cloud-db-update',
-            },    
-        ]
-    },
+    // {
+    //     type: 'link',
+    //     name: 'Luồng lấy dữ liệu từ CSDL',
+    //     icon: 'fas fa-cube',
+    //     url: '/data-source-db',
+    //     childItems: [            
+    //         {
+    //             type: 'link',
+    //             name: 'Thông tin nguồn dữ liệu',
+    //             url: '/data-source-db/data-source',
+    //         },         
+    //         {
+    //             type: 'link',
+    //             name: 'Cấu hình tiến trình',
+    //             url: '/data-source-db/progress',
+    //         },              
+    //         {
+    //             type: 'link',
+    //             name: 'Làm giàu tự động',
+    //             url: '/data-source-db/enrichment',
+    //         },      
+    //         {
+    //             type: 'link',
+    //             name: 'Từ CSDL cục bộ',
+    //             url: '/data-source-db/local-db',
+    //         },         
+    //         {
+    //             type: 'link',
+    //             name: 'Từ CSDL khác',
+    //             url: '/data-source-db/others-db',
+    //         },              
+    //         {
+    //             type: 'link',
+    //             name: 'Từ CSDL Cloud',
+    //             url: '/data-source-db/cloud-db',
+    //         },              
+    //         {
+    //             type: 'link',
+    //             name: 'Cập nhật CSDL Cloud',
+    //             url: '/data-source-db/cloud-db-update',
+    //         },    
+    //     ]
+    // },
     {
         type: 'navHeader',
         name: 'KHO TTHC TRƯỚC SỐ HOÁ',

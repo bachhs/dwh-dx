@@ -79,7 +79,7 @@
                                             <button>NGUỒN DỮ LIỆU</button>
                                         </th>
                                         <th class="pl-0 pt-2 pb-2 text-nowrap align-middle">
-                                            <button>KHỞI TẠO/CHỈNH SỬA</button>
+                                            <button>KHỞI TẠO</button>
                                         </th>
                                         <th style="width: 1%;" class="pl-0 pt-2 pb-2 text-nowrap align-middle">
                                             <button>THAO TÁC</button>
@@ -97,9 +97,9 @@
                                         <td class="pl-2 text-center">#{{ itemData }}</td>
                                         <td class="pl-2 text-left">
                                             <div>2.{{(Math.random() + 1).toString(36).substring(4)}}.000.00.00.H60.{{itemIndex % 2 === 0 ? 'pdf' : 'xlsx'}}</div>
-                                            <div class="text-muted" style="font-size: 85%;">
+                                            <!-- <div class="text-muted" style="font-size: 85%;">
                                                 2.001098.000.00.00.H60 - Cấp Giấy phép thiết lập trang thông tin điện tử tổng hợp
-                                            </div>
+                                            </div> -->
                                         </td>
                                         <td class="pl-2 text-center">
                                             <div class="text-uppercase">{{itemIndex % 2 === 0 ? 'pdf' : 'xlsx'}}</div>
@@ -112,12 +112,19 @@
                                         </td>
                                         <td class="pl-2 text-left text-nowrap" style="width: 1%;">
                                             <div><i class="fas fa-plus-circle text-primary"></i> {{$filters.prettyDate($filters.randomDate())}}</div>
-                                            <div><i class="fas fa-edit text-primary"></i> {{$filters.prettyDate(new Date())}}</div>
+                                            <div><i class="fas fa-user text-primary"></i> dtc_user</div>
                                         </td>
-                                        <td>
-                                            <el-button type="primary">
-                                                Số hoá
-                                            </el-button>
+                                        <td class="text-nowrap">
+                                            <el-tooltip class="box-item" effect="dark" content="Xem nhanh" placement="top">                                                
+                                                <el-button type="primary">
+                                                    <i class="fas fa-eye"></i>
+                                                </el-button>
+                                            </el-tooltip>
+                                            <el-tooltip class="box-item" effect="dark" content="Tải xuống" placement="top"> 
+                                                <el-button>
+                                                    <i class="fas fa-download"></i>
+                                                </el-button>
+                                            </el-tooltip>
                                         </td>
                                     </tr>
                                 </tbody>
