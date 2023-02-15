@@ -110,15 +110,17 @@
                                             <div>2.001098.000.00.00.H60 - Cấp Giấy phép thiết lập trang thông tin điện tử tổng hợp</div>
                                         </td>
                                         <td class="pl-2 text-left text-nowrap">
-                                            <div>10 ngày làm việc</div>
-                                            <div>- Ngày tiếp nhận:02/02/2023 09:02:58</div>
-                                            <div>- Hạn xử lý:16/02/2023 09:02:58</div>
-                                            <div>- Ngày hẹn trả:15/02/2023 17:00:00</div>
-                                            <div>- Ngày có KQ:08/02/2023 14:06:51</div>
-                                            <div>- Ngày trả KQ:08/02/2023 14:17:20</div>
+                                            <div style="font-size: 90%;">
+                                                <div class="text-puple"><strong>10 ngày làm việc</strong></div>
+                                                <div class="text-primary">- Ngày tiếp nhận: <strong>02/02/2023 09:02:58</strong></div>
+                                                <div class="text-orange">- Hạn xử lý: <strong>16/02/2023 09:02:58</strong></div>
+                                                <div class="text-indigo">- Ngày hẹn trả: <strong>15/02/2023 17:00:00</strong></div>
+                                                <div class="text-info">- Ngày có KQ: <strong>08/02/2023 14:06:51</strong></div>
+                                                <div class="text-success">- Ngày trả KQ: <strong>08/02/2023 14:17:20</strong></div>
+                                            </div>
                                         </td>
                                         <td class="pl-2 text-left text-nowrap">
-                                            NGUYỄN HƯNG HÀ
+                                            <strong>NGUYỄN HƯNG HÀ</strong>
                                         </td>
                                         <td class="pl-2 text-center">
                                             Sở Tài nguyên và Môi trường

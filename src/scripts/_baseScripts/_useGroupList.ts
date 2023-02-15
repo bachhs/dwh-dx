@@ -26,14 +26,13 @@ const useGroupList = (getGroupFn:Function, requestProp:string, getListDataFn:Fun
                             dataItems: dataResult.data,
                         });
                     }
-                    listElements.value.data = response.data.content;
-                    isLoading.value = false;
-                    updateLoadTime();
                 }).catch((error:any) =>{ 
                     isLoading.value = false;
                     console.error(error);
-                });   
+                });  
             });
+            isLoading.value = false;
+            updateLoadTime(); 
         }).catch((error:any) =>{ 
             isLoading.value = false;
             console.error(error);
