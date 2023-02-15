@@ -5,7 +5,8 @@ import { organizationApi } from '@/api/organizationApi';
 import { getDataSourceMetaData } from '@/helpers/dataSourceHelper';
 import { useDataCategoryStore } from '@/stores/dataCategory';
 import { useRoute, useRouter } from 'vue-router';
-import usePaginationList from '@/scripts/_baseScripts/_usePaginationList';
+//import usePaginationList from '@/scripts/_baseScripts/_usePaginationList';
+import useGroupList from '@/scripts/_baseScripts/_useGroupList';
 const dataCategoryState = useDataCategoryStore();
 const databaseEnginesMap = dataCategoryState.databaseEnginesMap;
 export default {
@@ -28,13 +29,8 @@ export default {
             refreshDataFn,
             filterDataFn,
             deleteElement,
-        } = usePaginationList(dataSourceApi.dataSourceList, filterDataSource);
-
-        const groupElements: {
-            id: any;
-            organization: any;
-            datasources: any;
-        }[] = [];
+        } = useGroupList(organizationApi.organizationListAll, "id", dataSourceApi.listDatasourceByOrganization, filterDataSource);
+        //} = usePaginationList(dataSourceApi.dataSourceList, filterDataSource); 
 
         const onChangeWaitpoint = (ds: any, waypointState: any) => {
             if (waypointState.going === 'IN') {
@@ -70,26 +66,26 @@ export default {
             return 'exclaimationquestionmark.svg';
         };
 
-        const getGroupDatasources = async () => {
-            const or = await organizationApi.organizationListAll();
-            const organizations = or.data;
+        // const getGroupDatasources = async () => {
+        //     const or = await organizationApi.organizationListAll();
+        //     const organizations = or.data;
 
-            for (const organization of organizations) {
-                const dr = await dataSourceApi.listDatasourceByOrganization(
-                    organization.id
-                );
+        //     for (const organization of organizations) {
+        //         const dr = await dataSourceApi.listDatasourceByOrganization(
+        //             organization.id
+        //         );
 
-                const datasources = dr.data;
+        //         const datasources = dr.data;
 
-                if (datasources.length > 0) {
-                    groupElements.push({
-                        id: organization.id,
-                        organization,
-                        datasources,
-                    });
-                }
-            }
-        };
+        //         if (datasources.length > 0) {
+        //             groupElements.push({
+        //                 id: organization.id,
+        //                 organization,
+        //                 datasources,
+        //             });
+        //         }
+        //     }
+        // };
 
         const route = useRoute();
         const router = useRouter();
@@ -104,8 +100,8 @@ export default {
             //         router.replace({ query: {} });
             //     }
             // }
-            // getListData(1);
-            await getGroupDatasources();
+            //getListData(1);
+            getListData();
         });
         return {
             isLoading,
@@ -119,7 +115,6 @@ export default {
             filterDataDebounceFn,
             onChangeWaitpoint,
             deleteDataSource,
-            groupElements,
         };
     },
     computed: {

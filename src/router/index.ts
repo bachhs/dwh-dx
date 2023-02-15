@@ -153,12 +153,12 @@ const router = createRouter({
             component: () => import('@/views/queryResult/Index.vue'),
             meta: { layout: 'AppLayoutDefault' }
         },
-        // {
-        //     path: '/shared/api-share-data',
-        //     name: 'apiShareData',
-        //     component: () => import('@/views/sharedApi/Index.vue'),
-        //     meta: { layout: 'AppLayoutDefault' }
-        // },
+        {
+            path: '/shared/api-share-data',
+            name: 'apiShareData',
+            component: () => import('@/views/sharedApi/Index.vue'),
+            meta: { layout: 'AppLayoutDefault' }
+        },
     ],
 });
 export default router;
