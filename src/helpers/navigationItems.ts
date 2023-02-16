@@ -125,7 +125,7 @@ export const navItems:Array<any> = [
             // },                             
             {
                 type: 'link',
-                name: 'Từ đường dẫn chia sẻ',
+                name: 'Link tải lên không đăng nhập',
                 url: '/data-source-file/file-embed-link',
             },     
         ]

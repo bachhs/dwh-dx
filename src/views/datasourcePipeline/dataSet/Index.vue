@@ -44,10 +44,7 @@
                                     </th>
                                     <th class="pl-0 pt-2 pb-2 text-center">
                                         <button>
-                                            <div>PHÁT HIỆN SAI KHÁC</div>
-                                            <div>
-                                                <small >(Bản ghi lỗi / Tổng số bản ghi)</small >
-                                            </div>
+                                            <div>SỐ DỮ LIỆU ĐÃ LẤY</div> 
                                         </button>
                                     </th>
                                     <th
@@ -75,7 +72,9 @@
                                     <td class="pl-2">
                                         Kho dữ liệu
                                     </td>
-                                    <td class="pl-2 text-center">0/10000</td>
+                                    <td class="pl-2 text-center">
+                                        {{Math.floor(Math.random() * (10000 - 60 + 1) + 60)}}
+                                    </td>
                                     <td class="pl-2 text-center">
                                         <!-- <span v-if="itemDemo % 2 ===  0" class="badge badge-lg bg-success">Hoàn thành</span> -->
                                         <div v-if="itemDemo % 3 ===  0"  class="pl-2" style="background-color: #fff; border-radius: 50px;">
@@ -92,13 +91,20 @@
                                             </el-progress>
                                         </div>
                                     </td>
-                                    <td class="pl-2 text-center">
-                                        <el-button type="default" class="p-2">
-                                            <i class="fas fa-stop mr-1 ml-1"></i> Tạm dừng
-                                        </el-button>
-                                        <el-button type="danger" class="p-2">
-                                            <i class="fas fa-stop mr-1 ml-1"></i> Huỷ
-                                        </el-button>
+                                    <td class="pl-2 text-center text-nowrap">
+                                        <div v-if="itemDemo % 3 ===  0">
+                                            <el-button type="default" class="p-2" >
+                                                <i class="fas fa-redo-alt mr-1 ml-1"></i> Chạy lại
+                                            </el-button>
+                                        </div>
+                                        <div v-else>
+                                            <el-button type="default" class="p-2" >
+                                                <i class="fas fa-pause mr-1 ml-1"></i>
+                                            </el-button>
+                                            <el-button type="danger" class="p-2">
+                                                <i class="fas fa-stop mr-1 ml-1"></i>
+                                            </el-button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
