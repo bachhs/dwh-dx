@@ -108,7 +108,7 @@
                                             <div>Sở thông tin & Truyền thông</div>
                                         </td>
                                         <td class="pl-2 text-center">
-                                            TỪ API
+                                            {{itemIndex % 2 === 0 ? 'TỪ FPT SERVER' : 'UPLOAD TRỰC TIẾP'}}
                                         </td>
                                         <td class="pl-2 text-left text-nowrap" style="width: 1%;">
                                             <div><i class="fas fa-plus-circle text-primary"></i> {{$filters.prettyDate($filters.randomDate())}}</div>
@@ -122,7 +122,7 @@
                                             </el-tooltip>
                                             <el-tooltip class="box-item" effect="dark" content="Số hoá tài liệu này" placement="top"> 
                                                 <el-button>
-                                                    <i class="fas fa-upload"></i>
+                                                    <i class="fas fa-sync-alt"></i>
                                                 </el-button>
                                             </el-tooltip>
                                         </td>

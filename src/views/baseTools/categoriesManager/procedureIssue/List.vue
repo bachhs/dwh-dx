@@ -62,21 +62,24 @@
                                         <button>ID</button>
                                     </th>
                                     <th class="pl-0 pt-2 pb-2 align-middle">
-                                        <button>TÊN LOẠI CẤP THỦ TỤC</button>
+                                        <button>MÃ SỐ</button>
+                                    </th> 
+                                    <th class="pl-0 pt-2 pb-2 align-middle">
+                                        <button>TÊN THỦ TỤC</button>
                                     </th> 
                                     <th class="pl-0 pt-2 pb-2 align-middle">
                                         <button>LĨNH VỰC</button>
                                     </th> 
-                                    <th class="pl-0 pt-2 pb-2 align-middle">
-                                        <button>CƠ QUAN THỰC HIỆN</button>
+                                    <th class="pl-0 pt-2 pb-2 align-middle text-nowrap">
+                                        <button>TÊN MỨC ĐỘ</button>
                                     </th>
                                     <th
                                         class="pl-0 pt-2 pb-2 text-center align-middle text-nowrap">
-                                        <button>THỜI GIAN THÊM</button>
+                                        <button>NGÀY ÁP DỤNG</button>
                                     </th>
                                     <th
                                         class="pl-0 pt-2 pb-2 text-center align-middle text-nowrap">
-                                        <button>LẦN CUỐI CHỈNH SỬA</button>
+                                        <button>CẬP NHẬT</button>
                                     </th>
                                     <th
                                         class="pl-0 pt-2 pb-2 text-center align-middle"
@@ -89,19 +92,23 @@
                                 <tr v-for="(itemData, itemIndex) in procedureIssue" :key="itemIndex">
                                     <td class="pl-2 text-left">{{itemIndex+1}}</td>
                                     <td class="pl-2">
+                                        <strong>{{ itemData.shortName }}</strong>
+                                    </td> 
+                                    <td class="pl-2">
                                         {{ itemData.name }}
                                     </td> 
                                     <td class="pl-2 text-nowrap">
-                                        {{ itemData.type }}
+                                        {{ itemData.linhVuc }}
                                     </td> 
                                     <td class="pl-2 text-nowrap">
-                                        {{ itemData.orgProcess }}
+                                        {{ itemData.mucDo }}
                                     </td> 
-                                    <td class="pl-2 text-center text-nowrap" style="width: 1%;">
-                                        {{$filters.prettyDate(itemData.created_at)}}
+                                    <td class="pl-2 text-left text-nowrap" style="width: 1%;">
+                                        --
                                     </td>
-                                    <td class="pl-2 text-center text-nowrap" style="width: 1%;">
-                                        {{$filters.prettyDate(itemData.updated_at)}}
+                                    <td class="pl-2 text-left text-nowrap" style="width: 1%;">
+                                        <div><i class="fas fa-plus-circle text-primary"></i> {{$filters.prettyDate($filters.randomDate())}}</div>
+                                        <div><i class="fas fa-user text-primary"></i> dtc_user</div>
                                     </td>
                                     <td class="pl-2 text-center text-nowrap">
                                         <el-button type="default" class="p-2"
@@ -147,7 +154,7 @@
                             v-model:current-page="listElements.pagination.page"
                             :page-size="listElements.pagination.size"
                             :page-count="listElements.pagination.totalPages"
-                            :total="listElements.pagination.totalElements"
+                            :total="procedureIssue.length"
                             @size-change="getListData"
                             @current-change="getListData"
                         />
