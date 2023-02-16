@@ -256,12 +256,12 @@ export const navItems:Array<any> = [
             {
                 type: 'link',
                 name: 'Tìm kiếm dữ liệu',
-                url: '/standardize-enrichment/workspace',
+                url: '/standardize-enrichment/data-search',
             },            
             {
                 type: 'link',
                 name: 'Xuất dữ liệu vào kho',
-                url: '/standardize-enrichment/data-search',
+                url: '/standardize-enrichment/export-to-store',
             },            
             {
                 type: 'link',
