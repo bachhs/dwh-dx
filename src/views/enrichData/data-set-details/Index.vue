@@ -1,4 +1,4 @@
-<script lang="ts" src="@/scripts/enrichData/index.ts"></script>
+<script lang="ts" src="@/scripts/enrichData/data-set-details/index.ts"></script>
 <template>
     <el-card
         class="box-card w-100 d-flex flex-fill flex-column"
@@ -8,7 +8,7 @@
                 <div class="flex-fill d-none d-md-block">
                     <h4>
                         <i class="fas fa-database text-danger mr-2"></i>
-                        <strong>Làm giàu dữ liệu</strong>
+                        <strong>Chi tiết tập dữ liệu</strong>
                     </h4>
                 </div>
                 <div class="d-flex align-items-center">                    

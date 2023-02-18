@@ -1,4 +1,4 @@
-<script lang="ts" src="@/scripts/enrichData/index.ts"></script>
+<script lang="ts" src="@/scripts/enrichData/workspace/index.ts"></script>
 <template>
     <el-card
         class="box-card w-100 d-flex flex-fill flex-column"
@@ -7,8 +7,8 @@
             <div class="d-flex align-items-center">
                 <div class="flex-fill d-none d-md-block">
                     <h4>
-                        <i class="fas fa-database text-danger mr-2"></i>
-                        <strong>Làm giàu dữ liệu</strong>
+                        <i class="fas fa-rocket text-danger mr-2"></i>
+                        <strong>Không gian làm việc</strong>
                     </h4>
                 </div>
                 <div class="d-flex align-items-center">                    
@@ -30,7 +30,7 @@
             <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
-                        
+                        <no-data/>
                     </div>
                 </el-scrollbar>  
             </div>

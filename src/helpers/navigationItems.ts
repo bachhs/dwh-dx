@@ -225,7 +225,7 @@ export const navItems:Array<any> = [
         childItems: [            
             {
                 type: 'link',
-                name: 'Tạo không gian làm việc',
+                name: 'Không gian làm việc',
                 url: '/standardize-enrichment/workspace',
             },            
             {
