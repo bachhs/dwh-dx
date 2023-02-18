@@ -214,8 +214,8 @@ onMounted(() => {
             <!-- Main content -->
             <section class="content">
                 <div
-                    class="container-fluid p-0 pt-2 d-flex flex-column w-100"
-                    style="height: calc(100vh - 4.6rem)">
+                    class="container-fluid p-0 pt-2 pb-2 d-flex flex-column w-100"
+                    style="height: calc(100vh - 4.0rem)">
                     <slot />
                 </div>
             </section>

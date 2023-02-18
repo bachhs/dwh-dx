@@ -525,6 +525,7 @@
             <div class="text-muted">
                 <span v-html="subTitle"></span>
             </div>
+            <slot name="contentBottom"/>
         </div>
     </div>
 </template>
