@@ -13,11 +13,11 @@
                 </div>
                 <div class="d-flex align-items-center">                    
                     <div class="ml-1">
-                        <el-button size="large" type="primary">
+                        <!-- <el-button size="large" type="primary">
                             <el-icon :size="20" style="vertical-align: middle">
                                 <Plus />
                             </el-icon>
-                        </el-button>
+                        </el-button> -->
 
                         <el-button size="large" type="primary">
                             <el-icon :size="20" style="vertical-align: middle">
@@ -30,7 +30,7 @@
             <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
-                        
+                        <img class="w-100" src="/sample-images/chi-tiet-tap-du-lieu.jpg" />
                     </div>
                 </el-scrollbar>  
             </div>

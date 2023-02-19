@@ -57,54 +57,34 @@
     </div>
 </template>
 
-<script lang="ts">
-    export default {
-        name: "SkeletonBox",
-        props: {
-            maxWidth: {
-                default: 100,
-                type: Number,
-            },
-            minWidth: {
-                default: 80,
-                type: Number,
-            },
-            height: {
-                default: `1em`,
-                type: String,
-            },
-            width: {
-                default: null,
-                type: String,
-            },
-        },
-        data() {
-            return {
-                loadingMessage: [
-                    "Please be patient, we're keep working...",
-                    'How about this weather, eh?',
-                    'Building a wall...',
-                    'Running with scissors...',
-                    'Work, work...',
-                    'Patience! This is difficult, you know...',
-                    "Please wait while the minions do their work",
-                    "Grabbing extra minions",
-                    "Doing the heavy lifting",
-                    "We're working very Hard .... Really",
-                    "Waking up the minions"
-                ]
-            };
-        },
-        computed: {
-            computedWidth() {
-                return this.width || `${Math.floor((Math.random() * (this.maxWidth - this.minWidth)) + this.minWidth)}%`;
-            },
-            randomMessage() {
-                const randomElement = this.loadingMessage[Math.floor(Math.random() * this.loadingMessage.length)];
-                return randomElement;
-            }
-        },
-    };
+<script lang="ts" setup>
+import { ref, computed } from "vue";
+const props = defineProps({
+    maxWidth: { type: Number, required: false, default: 100 },
+    minWidth: { type: Number, required: false, default: 80 },
+    height: { type: String, required: false, default: `1em` },
+    width: { type: String, required: false, default: null },
+});
+const loadingMessage = ref([
+    "Please be patient, we're keep working...",
+    'How about this weather, eh?',
+    'Building a wall...',
+    'Running with scissors...',
+    'Work, work...',
+    'Patience! This is difficult, you know...',
+    "Please wait while the minions do their work",
+    "Grabbing extra minions",
+    "Doing the heavy lifting",
+    "We're working very Hard .... Really",
+    "Waking up the minions"
+]);
+const computedWidth = computed(() => {
+    return props.width || `${Math.floor((Math.random() * (props.maxWidth - props.minWidth)) + props.minWidth)}%`;
+});
+const randomMessage = computed(() => {
+    const randomElement = loadingMessage.value[Math.floor(Math.random() * loadingMessage.value.length)];
+    return randomElement;
+});
 </script>
 
 <style lang="css">
