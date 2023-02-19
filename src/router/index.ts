@@ -5,7 +5,9 @@ const categoryRoutes = [
 ];
 const beforeDigitization = ['dataStore', 'newDataIntegration'];
 const digitizationState = ['pending', 'inprogress', 'wait-confirm', 'wait-accept', 'completed'];
-const endrichDataRoutes = [ "workspace", "column-detail", "data-search", "data-set-details", "distribution", "export-to-store", "export-to-store-schedule", "make-quality", "quality"];
+const endrichDataRoutes = [ "workspace", "column-detail", "data-search", "data-set-details", "export-to-store", "export-to-store-schedule", 
+//"make-quality", "quality", "distribution"
+];
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
