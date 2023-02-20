@@ -7,6 +7,10 @@ import type { Share } from '@element-plus/icons-vue';
         class="box-card w-100 d-flex flex-fill flex-column"
         :body-style="{ padding: '0.8rem 1rem' }">
         <component :is="currentView" :ItemSelected="ItemSelected"
-            @changeView="(viewData:any) => { currentView = viewData.name; ItemSelected = viewData.data }" />
+            @changeView="(viewData:any) => { 
+                currentView = viewData.name; 
+                if(viewData.data) ItemSelected = viewData.data; 
+            }" />
+            {{ currentView }}
     </el-card>
 </template>
