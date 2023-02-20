@@ -8,6 +8,14 @@ const digitizationState = ['pending', 'inprogress', 'wait-confirm', 'wait-accept
 const endrichDataRoutes = [ "workspace", "column-detail", "data-search", "data-set-details", "export-to-store", "export-to-store-schedule", 
 //"make-quality", "quality", "distribution"
 ];
+const reportRoutes = [
+    "report-digitization",
+    "digitization-by-departments",
+    "digitization-by-district",
+    "digitization-by-wards",
+    "profile-has-file-by-cycle",
+    "profile-no-file-by-cycle",
+]
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -46,6 +54,14 @@ const router = createRouter({
                 path: `/standardize-enrichment/${rItem.toLowerCase()}`,
                 name: `enrichData_${rItem}`,
                 component: () => import(`@/views/enrichData/${rItem}/Index.vue`),
+                meta: { layout: 'AppLayoutDefault' }
+            }
+        }),
+        ...reportRoutes.map(rItem => {
+            return {
+                path: `/report/${rItem.toLowerCase()}`,
+                name: `report_${rItem}`,
+                component: () => import(`@/views/report/${rItem}/Index.vue`),
                 meta: { layout: 'AppLayoutDefault' }
             }
         }),
