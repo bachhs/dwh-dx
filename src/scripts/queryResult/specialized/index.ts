@@ -1,26 +1,34 @@
-import { ref, onMounted } from "vue";
-import { mapState } from "pinia";
-import { useDataCategoryStore } from "@/stores/dataCategory";
-import { useRoute, useRouter } from "vue-router";
-import usePaginationList from "@/scripts/_baseScripts/_usePaginationList";
-import { ElMessage, ElMessageBox } from 'element-plus';
+import { ref, defineAsyncComponent } from 'vue';
+import SkeletonBox from '@/components/SkeletonBox.vue';
 export default {
-    setup() {
-        const isLoading = ref(false);
-        const route = useRoute();
-        const router = useRouter();
-        const centerDialogVisible = ref(false)
-        onMounted(() => { 
-
-        });
-        return {
-            isLoading,
-            centerDialogVisible,
-        };
+    components: {
+        ListData: defineAsyncComponent({
+            loader: () => import('@/views/queryResult/specialized/List.vue'),
+            loadingComponent: SkeletonBox,
+        }),
+        AddData: defineAsyncComponent({
+            loader: () => import('@/views/queryResult/specialized/Add.vue'),
+            loadingComponent: SkeletonBox,
+        }),
+        ModifyData: defineAsyncComponent({
+            loader: () => import('@/views/queryResult/specialized/Add.vue'),
+            loadingComponent: SkeletonBox,
+        }),
+        DataSetList: defineAsyncComponent({
+            loader: () => import('@/views/queryResult/specialized/detail/DataSetList.vue'),
+            loadingComponent: SkeletonBox,
+        }),
+        DataSetDetail: defineAsyncComponent({
+            loader: () => import('@/views/queryResult/specialized/detail/DataSetDetail.vue'),
+            loadingComponent: SkeletonBox,
+        }),
     },
-    computed: {
-        ...mapState(useDataCategoryStore, [
-            "organization",
-        ]),
+    setup() {
+        const currentView = ref("ListData");
+        const ItemSelected = ref<any>(null);
+        return {
+            currentView,
+            ItemSelected,
+        };
     },
 };
