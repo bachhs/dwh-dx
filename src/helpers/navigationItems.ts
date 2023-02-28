@@ -6,19 +6,19 @@ export const navItems:Array<any> = [
     {
         type: 'link',
         name: 'Trang chủ',
-        icon: 'fas fa-cube',
+        icon: "fas fa-home",
         url: '/',
     },
     {
         type: 'relative-link',
         name: 'Quản trị - Trợ giúp',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-key',
         url: 'http://14.225.11.181:9004/pfpro/ssoportal/',
     },
     {
         type: 'link',
         name: 'Q.lý thông tin danh mục',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-list',
         url: '/category/organization',
         childItems: [            
             {
@@ -95,7 +95,7 @@ export const navItems:Array<any> = [
     {
         type: 'link',
         name: 'Luồng lấy dữ liệu từ File',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-file',
         url: '/data-source-file',
         childItems: [            
             {
@@ -133,7 +133,7 @@ export const navItems:Array<any> = [
     {
         type: 'link',
         name: 'Luồng lấy dữ liệu từ API',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-bezier-curve',
         url: '/data-source-api',
         childItems: [            
             {
@@ -208,19 +208,19 @@ export const navItems:Array<any> = [
     {
         type: 'link',
         name: 'Tích hợp dữ liệu mới',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-asterisk',
         url: '/before-digitalization-store/new-data-integration',
     },
     {
         type: 'link',
         name: 'Kho dữ liệu ',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-store',
         url: '/before-digitalization-store/data-store'
     },
     {
         type: 'link',
         name: 'Chuẩn hoá & làm giàu',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-check-square',
         url: '/standardize-enrichment',
         childItems: [            
             {
@@ -277,7 +277,7 @@ export const navItems:Array<any> = [
     {
         type: 'link',
         name: 'Số hoá dữ liệu',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-digital-tachograph',
         url: '/digitization',
         childItems: [
             {
@@ -314,13 +314,13 @@ export const navItems:Array<any> = [
     {
         type: 'link',
         name: 'Truy vấn kết quả TTHC',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-search',
         url: '/query-result/all',
     },
     {
         type: 'link',
         name: 'D.Liệu KQ TTHC chuyên ngành',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-user-secret',
         url: '/query-result/specialized',
     },
     // {
@@ -336,7 +336,7 @@ export const navItems:Array<any> = [
     {
         type: 'link',
         name: 'Báo cáo tổng hợp',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-chart-line',
         url: '/report',
         childItems: [         
             {
@@ -379,7 +379,7 @@ export const navItems:Array<any> = [
     {
         type: 'link',
         name: 'Chia sẻ dữ liệu KQ TTHC',
-        icon: 'fas fa-cube',
+        icon: 'fas fa-share-square',
         url: '/shared/api-share-data',
     },
 ];

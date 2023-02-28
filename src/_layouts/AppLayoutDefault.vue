@@ -28,7 +28,7 @@ onMounted(() => {
                         data-widget="pushmenu"
                         href="#"
                         role="button"
-                        ><i class="fas fa-bars text-white fa-2x"></i
+                        ><i class="fas fa-ellipsis-v text-white fa-2x"></i
                     ></a>
                 </li>
                 <li>
@@ -57,15 +57,36 @@ onMounted(() => {
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <li>
+                <li class="pt-1 mr-2 d-none d-md-block">
                     <a class="btn btn-primary" href="https://wiki-dx.dtcsolution.vn"
-                        target="_blank">
+                        target="_blank" style="height: auto;">
                         WIKI
                     </a>
                 </li>
-                <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link pt-2 pb-2" data-toggle="dropdown" href="#" style="height: auto;">
+                        <el-tooltip content="Danh sách ứng dụng">
+                            <i class="far fa-th-large text-white fa-2x"></i> 
+                        </el-tooltip>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
+                        <a href="http://14.225.11.181:9004/pfpro/ssoportal/" target="_blank" class="dropdown-item">
+                            <div class="w-100 d-flex">
+                                <div style="width: 2em;"><i class="fas fa-key text-primary mr-2"></i></div>
+                                <div>Quản trị - Trợ giúp</div>
+                            </div>
+                        </a> 
+                        <a href="#" class="dropdown-item">
+                            <div class="w-100 d-flex">
+                                <div style="width: 2em;"><i class="fas fa-list text-primary mr-2"></i></div>
+                                <div>Quản lý thông tin danh mục</div>
+                            </div>
+                        </a> 
+                    </div>
+                </li>
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown d-none d-md-block">
+                    <a class="nav-link" data-toggle="dropdown" href="#" style="height: auto;">
                         <i class="far fa-bell text-white fa-2x"></i>
                         <span class="badge badge-warning navbar-badge">15</span>
                     </a>
@@ -157,8 +178,8 @@ onMounted(() => {
                             v-bind:class="{
                                 'nav-item': ['link', 'relative-link'].includes(navItem.type),
                                 'nav-header': navItem.type === 'navHeader',                                
-                                'menu-is-opening': navItem.childItems && navItem.childItems.map((xNavItem) => xNavItem.url).includes($route.path),
-                                'menu-open': navItem.childItems && navItem.childItems.map((xNavItem) => xNavItem.url).includes($route.path)
+                                'menu-is-opening': navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path),
+                                'menu-open': navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path)
                             }"
                             v-for="(navItem, navItemIndex) in navItems"
                             :key="navItemIndex">
@@ -182,10 +203,10 @@ onMounted(() => {
 
                             <a href="javascript:void(0);" class="nav-link pl-1"
                                 v-bind:class="{ 
-                                    'active' : navItem.childItems && navItem.childItems.map((xNavItem) => xNavItem.url).includes($route.path),
+                                    'active' : navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path),
                                 }"
                                 v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
-                                <i class="nav-icon fas fa-copy"></i>
+                                <i :class="`nav-icon  ${navItem.icon ? navItem.icon : 'fas fa-copy'}`"></i>
                                 <p>
                                     {{ navItem.name }}
                                     <i class="fas fa-angle-left right"></i>
@@ -195,9 +216,9 @@ onMounted(() => {
                             <ul class="nav nav-treeview"
                                 v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
                                 <li class="nav-item" v-for="subItem in navItem.childItems" :key="subItem.name">
-                                    <router-link :to="subItem.url"  class="nav-link pl-2"
+                                    <router-link :to="subItem.url"  class="nav-link pl-3"
                                         active-class="active">
-                                        <p>{{ subItem.name }}</p>
+                                        <p>• {{ subItem.name }}</p>
                                     </router-link>
                                 </li>
                             </ul>
