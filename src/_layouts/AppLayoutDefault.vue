@@ -28,7 +28,7 @@ onMounted(() => {
                         data-widget="pushmenu"
                         href="#"
                         role="button"
-                        ><i class="fas fa-ellipsis-v text-white fa-2x"></i
+                        ><i class="fas fa-bars text-white fa-2x"></i
                     ></a>
                 </li>
                 <li>
