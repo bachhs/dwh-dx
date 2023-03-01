@@ -29,14 +29,14 @@
                 <div class="mt-0 mr-3">
                     <div class="mt-3">
                         <div class="row row-eq-height">
-                            <div class="col-12 col-md-3 mb-3 animate__animated animate__zoomIn" 
+                            <div class="col-12 col-md-3 mb-3 animate__animated animate__zoomIn d-flex flex-column" 
                             v-for="item in organizations" :key="item.name">
                                 <el-card :body-style="{ padding: '0.8rem 0.8rem' }"
-                                    class="cursor-pointer position-relative workspace-item-wrapper">
+                                    class="cursor-pointer position-relative workspace-item-wrapper flex-fill w-100">
                                     <div>
                                         <div>
-                                            <h5 class="mb-1">
-                                                <i class="fas fa-building text-lightblue mr-2"></i><span>{{item.name}}</span>
+                                            <h5 class="mb-1 d-flex align-items-start">
+                                                <i class="fas fa-building text-lightblue mt-1 mr-2"></i><span>{{item.name}}</span>
                                             </h5>
                                         </div>
                                         <div class="d-flex align-items-center" style="font-size: 90%;">
