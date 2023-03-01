@@ -93,7 +93,7 @@
                                             style="width: 3.5rem" />
                                     </div>
                                     <div
-                                        class="ml-2 flex-fill"
+                                        class="ml-2 text-left flex-fill"
                                         style="line-height: 1.2rem">
                                         <div>
                                             <strong class="text-navy"
