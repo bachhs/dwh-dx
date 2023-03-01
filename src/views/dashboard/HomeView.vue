@@ -3,10 +3,8 @@
 <template>
     <el-card
         class="box-card w-100 flex-fill text-center"
-        :body-style="{ padding: '0.5rem 0.8rem' }">
-        <img src="/img/dashboard.jpg" class="animate__animated animate__zoomIn"
-            style="height: calc(100vh - 7rem);"/>
-        <!-- <el-scrollbar>
+        :body-style="{ padding: '0.5rem 0.8rem' }"> 
+        <el-scrollbar>
             <div
                 class="d-flex mt-1 mb-2 diagrams animate__animated animate__zoomIn">
                 <div
@@ -36,14 +34,14 @@
                                 class="d-flex align-items-center justify-content-center pt-2 pb-2 c-rounded diagrams-item">
                                 <div
                                     class="d-flex align-items-center pl-2 pr-2 w-100">
-                                    <div class="dig-icon p-2">
+                                    <!-- <div class="dig-icon p-2">
                                         <img
                                             v-if="unitItem && unitItem.imgUrl"
                                             :src="unitItem.imgUrl"
                                             style="width: 4rem" />
-                                    </div>
+                                    </div> -->
                                     <div
-                                        class="ml-2 flex-fill text-white"
+                                        class="ml-0 flex-fill text-white text-nowrap text-center"
                                         v-if="unitItem && unitItem.name"
                                         v-html="
                                             unitItem.name.replace(
@@ -264,6 +262,6 @@
                     </el-scrollbar>
                 </div>
             </div>
-        </el-scrollbar> -->
+        </el-scrollbar>
     </el-card>
 </template>

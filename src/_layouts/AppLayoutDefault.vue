@@ -43,12 +43,10 @@ onMounted(() => {
                             class="ml-1 ml-md-2 text-left d-flex flex-column align-item-center justify-content-center"
                             style="line-height: 1.4rem">
                             <div>
-                                <strong class="text-white">NỀN TẢNG SỐ HOÁ KẾT QUẢ </strong>
-                                <strong class="text-white d-none d-md-inline">THỦ TỤC HÀNH CHÍNH</strong>
-                                <strong class="text-white d-inline d-md-none">TTHC</strong>
+                                <strong class="text-white">TỈNH TUYÊN QUANG</strong> 
                             </div>
                             <div class="d-none d-md-block text-warning">
-                                TỈNH TUYÊN QUANG
+                                KHO DỮ LIỆU DÙNG CHUNG
                             </div>
                         </div>
                     </div>
