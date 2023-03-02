@@ -9,23 +9,7 @@
                     <strong>{{ viewSettings.title }}</strong>
                 </h4>
             </div>
-            <div class="d-flex align-items-center">
-                <div class="ml-1 mr-1">
-                    <el-input
-                        v-model="filterData.name"
-                        filterable
-                        placeholder="Nhập để lọc dữ liệu.."
-                        size="large"
-                        style="min-width: 16rem"
-                        @input="filterDataDebounceFn"
-                        @keyup.enter.native="filterDataFn" >
-                        <template #prepend>
-                            <el-icon style="vertical-align: middle">
-                                <Search />
-                            </el-icon>
-                        </template>
-                    </el-input>
-                </div>
+            <div class="d-flex align-items-center"> 
                 <div class="ml-1 text-nowrap">
                     <el-button
                         size="large"
@@ -50,7 +34,7 @@
         <div class="flex-fill d-flex flex-column w-100 pt-3 pb-0">
             <div
                 class="flex-fill d-flex flex-column"
-                v-if="wards && wards.length > 0">
+                v-if="listElements.data && listElements.data.length > 0">
                 <el-scrollbar class="w-100 flex-fill">
                     <div class="mt-2 mr-3">
                         <table
@@ -86,16 +70,16 @@
                                 </tr>
                             </thead>
                             <tbody class=" ">
-                                <tr v-for="(itemData, itemIndex) in wards" :key="itemData.code">
-                                    <td class="pl-2 text-left">{{itemData.code}}</td>
+                                <tr v-for="(itemData, itemIndex) in listElements.data" :key="itemData.id">
+                                    <td class="pl-2 text-left">{{itemData.id}}</td>
                                     <td class="pl-2">
                                         {{ itemData.name }}
                                     </td> 
                                     <td class="pl-2">
-                                        {{ itemData.name_with_type }}
+                                        {{ itemData.full_name }}
                                     </td> 
                                     <td class="pl-2">
-                                        {{ itemData.path_with_type }}
+                                        {{ itemData.full_path }}
                                     </td> 
                                     <td class="pl-2 text-center text-nowrap" style="width: 1%;">
                                         {{$filters.prettyDate(itemData.created_at)}}
