@@ -9,7 +9,7 @@ export default {
     props: ["viewSettings"],
     emits: ["onChangeView"],
     setup() {
-        const moduleName = "File Embed Link";
+        const moduleName = "Tỉnh/Thành phố";
         const {
             isLoading,
             lastDataLoading,
@@ -20,18 +20,11 @@ export default {
             refreshDataFn,
             filterDataFn,
             deleteElement,
-        } = usePaginationList(provinceApi.getItems, null);
+        } = usePaginationList(provinceApi.getItems, {});
 
-        const deleteItem = (item: any) => { 
-            let showErrorMsg =(msg:string) =>{
-                ElMessage({
-                    dangerouslyUseHTMLString: true,
-                    type: 'info',
-                    message: `Đã có lỗi xảy ra khi xoá ${moduleName} <strong class="text-primary">${item.id}</strong>. ${msg}`,
-                })
-            };
+        const deleteItem = (item: any) => {  
             ElMessageBox.confirm(
-                `Đồng ý sẽ xoá ${moduleName} <strong class="text-primary">${item.id}</strong>. Tiếp tục?`, 'Xác nhận xoá', {
+                `Đồng ý sẽ xoá ${moduleName} <strong class="text-primary">${item.name}</strong>. Tiếp tục?`, 'Xác nhận xoá', {
                     dangerouslyUseHTMLString: true,
                     confirmButtonText: 'Đồng ý xoá',
                     cancelButtonText: 'Không xoá',
@@ -39,11 +32,23 @@ export default {
                 }
             )
             .then(() => {
-                ElMessage({
-                    dangerouslyUseHTMLString: true,
-                    type: 'info',
-                    message: `Đã có lỗi xảy ra khi xoá ${moduleName} <strong class="text-primary">${item.id}</strong>. embedded link đã được sử dụng nên không thể xoá`,
-                });
+                isLoading.value = true;
+                provinceApi.deleteItem(item.id)
+                    .then((response: any) => {
+                        if (response.data) {
+                            ElMessage({
+                                message: 'Thao tác thực hiện thành công',
+                                type: 'success',
+                            }); 
+                        } else {
+                            ElMessage.error(`Oops, ${response.data.message}`);
+                        }
+                        isLoading.value = false;
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        isLoading.value = false;
+                    });
             })
             .catch(() => {
                 ElMessage({

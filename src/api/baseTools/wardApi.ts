@@ -1,7 +1,7 @@
 import axios from 'axios';
 const parentModuleId = 'district';
 const moduleId = 'ward';
-export const provinceApi = {
+export const wardApi = {
     getItems(params: any) {
         const requestParams: any = {
             page: params.page,
