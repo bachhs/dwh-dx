@@ -38,14 +38,14 @@ export default {
                     case 'AddData':
                         viewSettings.value = {
                             viewName: 'AddData',
-                            title: 'Thêm mới Thông tin Tỉnh/Thành phố',
+                            title: 'Thêm mới Tỉnh/Thành phố',
                             dataItem: null,
                         };
                         break;
                     case 'ModifyData':
                         viewSettings.value = {
                             viewName: 'ModifyData',
-                            title: 'Chỉnh sửa Thông tin Tỉnh/Thành phố',
+                            title: 'Chỉnh sửa Tỉnh/Thành phố',
                             dataItem: paramsObject.data,
                         };
                         break;
