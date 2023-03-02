@@ -102,12 +102,124 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Lấy dữ liệu từ MSSQL',
         icon: 'fas fa-database',
+        url: '/data-source-mssql',
+        childItems: [            
+            {
+                type: 'link',
+                name: 'Thông tin nguồn dữ liệu',
+                url: '/data-source-mssql/file-server',
+            },            
+            {
+                type: 'link',
+                name: 'Phiên bản dữ liệu',
+                url: '/data-source-mssql/version',
+            },         
+            {
+                type: 'link',
+                name: 'Cấu hình tiến trình',
+                url: '/data-source-mssql/progress',
+            },              
+            {
+                type: 'link',
+                name: 'Làm giàu tự động',
+                url: '/data-source-mssql/enrichment',
+            },       
+        ]
+    },
+    {
+        type: 'link',
+        name: 'Lấy dữ liệu từ PostgreSQL',
+        icon: 'fas fa-database',
+        url: '/data-source-postgre-sql',
+        childItems: [            
+            {
+                type: 'link',
+                name: 'Thông tin nguồn dữ liệu',
+                url: '/data-source-postgre-sql/api-datasource',
+            },            
+            {
+                type: 'link',
+                name: 'Phiên bản dữ liệu',
+                url: '/data-source-postgre-sql/version',
+            },         
+            {
+                type: 'link',
+                name: 'Cấu hình tiến trình',
+                url: '/data-source-postgre-sql/progress',
+            },              
+            {
+                type: 'link',
+                name: 'Làm giàu tự động',
+                url: '/data-source-postgre-sql/enrichment',
+            },    
+        ]
+    }, 
+    {
+        type: 'link',
+        name: 'Lấy dữ liệu từ MySQL',
+        icon: 'fas fa-database',
+        url: '/data-source-mysql',
+        childItems: [            
+            {
+                type: 'link',
+                name: 'Thông tin nguồn dữ liệu',
+                url: '/data-source-mysql/api-datasource',
+            },            
+            {
+                type: 'link',
+                name: 'Phiên bản dữ liệu',
+                url: '/data-source-mysql/version',
+            },         
+            {
+                type: 'link',
+                name: 'Cấu hình tiến trình',
+                url: '/data-source-mysql/progress',
+            },              
+            {
+                type: 'link',
+                name: 'Làm giàu tự động',
+                url: '/data-source-mysql/enrichment',
+            },    
+        ]
+    }, 
+    {
+        type: 'link',
+        name: 'Lấy dữ liệu từ Oracle',
+        icon: 'fas fa-database',
+        url: '/data-source-oracle',
+        childItems: [            
+            {
+                type: 'link',
+                name: 'Thông tin nguồn dữ liệu',
+                url: '/data-source-oracle/api-datasource',
+            },            
+            {
+                type: 'link',
+                name: 'Phiên bản dữ liệu',
+                url: '/data-source-oracle/version',
+            },         
+            {
+                type: 'link',
+                name: 'Cấu hình tiến trình',
+                url: '/data-source-oracle/progress',
+            },              
+            {
+                type: 'link',
+                name: 'Làm giàu tự động',
+                url: '/data-source-oracle/enrichment',
+            },    
+        ]
+    }, 
+    {
+        type: 'link',
+        name: 'Lấy dữ liệu từ File',
+        icon: 'fas fa-folder-open',
         url: '/data-source-file',
         childItems: [            
             {
                 type: 'link',
                 name: 'Thông tin nguồn dữ liệu',
-                url: '/data-source-file/file-server',
+                url: '/data-source-file/api-datasource',
             },            
             {
                 type: 'link',
@@ -123,128 +235,6 @@ export const navItems:Array<any> = [
                 type: 'link',
                 name: 'Làm giàu tự động',
                 url: '/data-source-file/enrichment',
-            },                           
-            // {
-            //     type: 'link',
-            //     name: 'Từ tập tin sẵn có',
-            //     url: '/data-source-file/file-upload',
-            // },                             
-            {
-                type: 'link',
-                name: 'Link tải lên không đăng nhập',
-                url: '/data-source-file/file-embed-link',
-            },     
-        ]
-    },
-    {
-        type: 'link',
-        name: 'Lấy dữ liệu từ PostgreSQL',
-        icon: 'fas fa-database',
-        url: '/data-source-api',
-        childItems: [            
-            {
-                type: 'link',
-                name: 'Thông tin nguồn dữ liệu',
-                url: '/data-source-api/api-datasource',
-            },            
-            {
-                type: 'link',
-                name: 'Phiên bản dữ liệu',
-                url: '/data-source-api/version',
-            },         
-            {
-                type: 'link',
-                name: 'Cấu hình tiến trình',
-                url: '/data-source-api/progress',
-            },              
-            {
-                type: 'link',
-                name: 'Làm giàu tự động',
-                url: '/data-source-api/enrichment',
-            },    
-        ]
-    }, 
-    {
-        type: 'link',
-        name: 'Lấy dữ liệu từ MySQL',
-        icon: 'fas fa-database',
-        url: '/data-source-api',
-        childItems: [            
-            {
-                type: 'link',
-                name: 'Thông tin nguồn dữ liệu',
-                url: '/data-source-api/api-datasource',
-            },            
-            {
-                type: 'link',
-                name: 'Phiên bản dữ liệu',
-                url: '/data-source-api/version',
-            },         
-            {
-                type: 'link',
-                name: 'Cấu hình tiến trình',
-                url: '/data-source-api/progress',
-            },              
-            {
-                type: 'link',
-                name: 'Làm giàu tự động',
-                url: '/data-source-api/enrichment',
-            },    
-        ]
-    }, 
-    {
-        type: 'link',
-        name: 'Lấy dữ liệu từ Oracle',
-        icon: 'fas fa-database',
-        url: '/data-source-api',
-        childItems: [            
-            {
-                type: 'link',
-                name: 'Thông tin nguồn dữ liệu',
-                url: '/data-source-api/api-datasource',
-            },            
-            {
-                type: 'link',
-                name: 'Phiên bản dữ liệu',
-                url: '/data-source-api/version',
-            },         
-            {
-                type: 'link',
-                name: 'Cấu hình tiến trình',
-                url: '/data-source-api/progress',
-            },              
-            {
-                type: 'link',
-                name: 'Làm giàu tự động',
-                url: '/data-source-api/enrichment',
-            },    
-        ]
-    }, 
-    {
-        type: 'link',
-        name: 'Lấy dữ liệu từ File',
-        icon: 'fas fa-folder-open',
-        url: '/data-source-api',
-        childItems: [            
-            {
-                type: 'link',
-                name: 'Thông tin nguồn dữ liệu',
-                url: '/data-source-api/api-datasource',
-            },            
-            {
-                type: 'link',
-                name: 'Phiên bản dữ liệu',
-                url: '/data-source-api/version',
-            },         
-            {
-                type: 'link',
-                name: 'Cấu hình tiến trình',
-                url: '/data-source-api/progress',
-            },              
-            {
-                type: 'link',
-                name: 'Làm giàu tự động',
-                url: '/data-source-api/enrichment',
             },    
         ]
     }, 
@@ -455,85 +445,85 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Phân tích Dữ liệu',
         icon: 'fas fa-chart-area',
-        url: '/before-digitalization-store/data-store7',
+        url: '/data-analysis',
         childItems: [
             {
                 type: 'link',
                 name: 'Dân số',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/population', 
             }, 
             {
                 type: 'link',
                 name: 'Y tế',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/medical', 
             }, 
             {
                 type: 'link',
                 name: 'Giáo dục & Đào tạo',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/educations', 
             }, 
             {
                 type: 'link',
                 name: 'Tư pháp',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/justice', 
             }, 
             {
                 type: 'link',
                 name: 'Bảo hiểm xã hội',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/social-insurance', 
             }, 
             {
                 type: 'link',
                 name: 'Kế hoạch - Đầu tư',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/social-insurance', 
             }, 
             {
                 type: 'link',
                 name: 'Giao thông - Vận tải',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/transportation', 
             }, 
             {
                 type: 'link',
                 name: 'Văn hoá - Thể thao',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/transportation', 
             }, 
             {
                 type: 'link',
                 name: 'Tài chính - Kho bạc',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/finance-treasury', 
             }, 
             {
                 type: 'link',
                 name: 'Xây dựng',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/construction', 
             },
             {
                 type: 'link',
                 name: 'Lao động',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/labor', 
             },
             {
                 type: 'link',
                 name: 'Thông tin & truyền thông',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/information-communication', 
             },
             {
                 type: 'link',
                 name: 'Nội vụ',
                 icon: 'fas fa-cube',
-                url: '/digitization', 
+                url: '/data-analysis/home-affairs', 
             },
         ]
     },
@@ -546,7 +536,7 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Quản lý & cấu hình tìm kiếm',
         icon: 'fas fa-search',
-        url: '/digitization', 
+        url: '/search-management', 
     },
     {
         type: 'navHeader',
@@ -556,18 +546,18 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Công cụ Wiki',
         icon: 'fas fa-search',
-        url: '/digitization', 
+        url: '/wiki-tools', 
     },  
     {
         type: 'link',
         name: 'Biểu diễn trực quan',
         icon: 'fas fa-search',
-        url: '/digitization', 
+        url: '/visualization', 
     }, 
     {
         type: 'link',
         name: 'Chia sẻ dữ liệu',
         icon: 'fas fa-search',
-        url: '/digitization', 
+        url: '/data-sharing', 
     },
 ];
