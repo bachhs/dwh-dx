@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
   import AppLayoutDefault from '@/_layouts/AppLayoutDefault.vue'
   import NoNavLayout from '@/_layouts/NoNavLayout.vue'
   import { markRaw, ref, watch } from 'vue'
@@ -29,4 +29,4 @@
 
 <template>
   <component :is="layout"> <router-view /> </component>
-</template>
+</template> -->

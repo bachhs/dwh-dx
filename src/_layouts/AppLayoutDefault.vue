@@ -8,7 +8,25 @@ const dataCategoryStore = useDataCategoryStore();
 dataCategoryStore.getOrganization();
 dataCategoryStore.getAppParams();
 const linkTime = ref(new Date().getTime());
+const toggleMenu = (navItem:any) => {
+    if(navItem.hasOwnProperty('toggleSubMenu')){
+        navItem.toggleSubMenu = !navItem.toggleSubMenu;
+    }
+    else{
+        navItem.toggleSubMenu = true;
+    } 
+}; 
+const navItemsRef = ref(navItems);
 onMounted(() => {
+    var foundedNav = navItemsRef.value.find(xNav => {
+        console.log('xNav', xNav);
+        console.log('route.path', route.path);
+        return xNav.url && route.path.startsWith(xNav.url);
+    });
+    console.log('foundedNav', foundedNav);
+    if(foundedNav && foundedNav !== null){
+        foundedNav.toggleSubMenu = true;
+    }
     setInterval(() => {
         linkTime.value = new Date().getTime();
     }, 1000);
@@ -117,7 +135,7 @@ onMounted(() => {
                             >
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer"
+                        <a href="https://keycloak.dtcsolution.vn/realms/tuyen-quang/protocol/openid-connect/logout" class="dropdown-item dropdown-footer"
                             >See All Notifications</a
                         >
                     </div>
@@ -178,10 +196,10 @@ onMounted(() => {
                             v-bind:class="{
                                 'nav-item': ['link', 'relative-link'].includes(navItem.type),
                                 'nav-header': navItem.type === 'navHeader',                                
-                                'menu-is-opening': navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path),
-                                'menu-open': navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path)
+                                'menu-is-opening':  navItem.toggleSubMenu,
+                                'menu-open':navItem.toggleSubMenu
                             }"
-                            v-for="(navItem, navItemIndex) in navItems"
+                            v-for="(navItem, navItemIndex) in navItemsRef"
                             :key="navItemIndex">
                             <router-link
                                 v-if="navItem.type === 'link' && !(navItem.childItems)"
@@ -199,9 +217,9 @@ onMounted(() => {
                             </a>
                             <span class="text-orange" v-if="navItem.type === 'navHeader' && !(navItem.childItems)">
                                 {{ navItem.name }}
-                            </span>
-
+                            </span> 
                             <a href="javascript:void(0);" class="nav-link pl-1"
+                                @click="toggleMenu(navItem)"
                                 v-bind:class="{ 
                                     'active' : navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path),
                                 }"
@@ -213,7 +231,7 @@ onMounted(() => {
                                     <!-- <span class="badge badge-info right">6</span> -->
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview"
+                            <ul class="nav nav-treeview" :style="`display: ${navItem.toggleSubMenu ? 'block' : 'none'};`"
                                 v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
                                 <li class="nav-item" v-for="subItem in navItem.childItems" :key="subItem.name">
                                     <router-link :to="subItem.url"  class="nav-link pl-3"
@@ -237,7 +255,7 @@ onMounted(() => {
                 <div
                     class="container-fluid p-0 pt-2 pb-2 d-flex flex-column w-100"
                     style="height: calc(100vh - 4.0rem)">
-                    <slot />
+                    <RouterView />
                 </div>
             </section>
             <!-- /.content -->
@@ -259,7 +277,4 @@ onMounted(() => {
         <!-- /.control-sidebar -->
     </div>
 </template>
-
-<script lang="ts">
-export default {}
-</script>
+ 

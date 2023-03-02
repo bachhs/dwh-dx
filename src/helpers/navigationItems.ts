@@ -7,7 +7,7 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Trang chủ',
         icon: "fas fa-home",
-        url: '/',
+        url: '/dashboard',
     },
     {
         type: 'relative-link',
