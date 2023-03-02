@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { RouterLink, RouterView, useRoute } from 'vue-router';
 import { navItems } from '@/helpers/navigationItems';
 import { useDataCategoryStore } from '@/stores/dataCategory';
@@ -8,7 +8,30 @@ const dataCategoryStore = useDataCategoryStore();
 dataCategoryStore.getOrganization();
 dataCategoryStore.getAppParams();
 const linkTime = ref(new Date().getTime());
+const toggleMenu = (navItem:any) => {
+    if(navItem.hasOwnProperty('toggleSubMenu')){
+        navItem.toggleSubMenu = !navItem.toggleSubMenu;
+    }
+    else{
+        navItem.toggleSubMenu = true;
+    } 
+}; 
+const navItemsRef = ref(navItems);
+watch(() => route.path, (newValRoutePath) => { 
+    var foundedNavs = navItemsRef.value.find(xNav => { 
+        return xNav.toggleSubMenu && xNav.url && !newValRoutePath.startsWith(xNav.url);
+    });
+    if(foundedNavs && foundedNavs !== null){
+        foundedNavs.toggleSubMenu = false;
+    }
+})
 onMounted(() => {
+    var foundedNav = navItemsRef.value.find(xNav => { 
+        return xNav.url && route.path.startsWith(xNav.url);
+    });
+    if(foundedNav && foundedNav !== null){
+        foundedNav.toggleSubMenu = true;
+    }
     setInterval(() => {
         linkTime.value = new Date().getTime();
     }, 1000);
@@ -43,10 +66,12 @@ onMounted(() => {
                             class="ml-1 ml-md-2 text-left d-flex flex-column align-item-center justify-content-center"
                             style="line-height: 1.4rem">
                             <div>
-                                <strong class="text-white">TỈNH TUYÊN QUANG</strong> 
+                                <strong class="text-white">NỀN TẢNG SỐ HOÁ KẾT QUẢ </strong>
+                                <strong class="text-white d-none d-md-inline">THỦ TỤC HÀNH CHÍNH</strong>
+                                <strong class="text-white d-inline d-md-none">TTHC</strong>
                             </div>
                             <div class="d-none d-md-block text-warning">
-                                KHO DỮ LIỆU DÙNG CHUNG
+                                TỈNH TUYÊN QUANG
                             </div>
                         </div>
                     </div>
@@ -115,7 +140,7 @@ onMounted(() => {
                             >
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer"
+                        <a href="https://keycloak.dtcsolution.vn/realms/tuyen-quang/protocol/openid-connect/logout" class="dropdown-item dropdown-footer"
                             >See All Notifications</a
                         >
                     </div>
@@ -176,10 +201,11 @@ onMounted(() => {
                             v-bind:class="{
                                 'nav-item': ['link', 'relative-link'].includes(navItem.type),
                                 'nav-header': navItem.type === 'navHeader',                                
-                                'menu-is-opening': navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path),
-                                'menu-open': navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path)
+                                'menu-is-opening':  navItem.toggleSubMenu,
+                                'menu-open':navItem.toggleSubMenu,
+                                'navItem-actived': navItem.toggleSubMenu && (navItem.childItems)
                             }"
-                            v-for="(navItem, navItemIndex) in navItems"
+                            v-for="(navItem, navItemIndex) in navItemsRef"
                             :key="navItemIndex">
                             <router-link
                                 v-if="navItem.type === 'link' && !(navItem.childItems)"
@@ -197,9 +223,9 @@ onMounted(() => {
                             </a>
                             <span class="text-orange" v-if="navItem.type === 'navHeader' && !(navItem.childItems)">
                                 {{ navItem.name }}
-                            </span>
-
-                            <a href="javascript:void(0);" class="nav-link pl-1"
+                            </span> 
+                            <a href="javascript:void(0);" class="nav-link nav-link-has-sub-items pl-1"
+                                @click="toggleMenu(navItem)"
                                 v-bind:class="{ 
                                     'active' : navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path),
                                 }"
@@ -211,7 +237,7 @@ onMounted(() => {
                                     <!-- <span class="badge badge-info right">6</span> -->
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview"
+                            <ul class="nav nav-treeview" :style="`display: ${navItem.toggleSubMenu ? 'block' : 'none'}; `"
                                 v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
                                 <li class="nav-item" v-for="subItem in navItem.childItems" :key="subItem.name">
                                     <router-link :to="subItem.url"  class="nav-link pl-3"
@@ -235,7 +261,7 @@ onMounted(() => {
                 <div
                     class="container-fluid p-0 pt-2 pb-2 d-flex flex-column w-100"
                     style="height: calc(100vh - 4.0rem)">
-                    <slot />
+                    <RouterView />
                 </div>
             </section>
             <!-- /.content -->
@@ -257,7 +283,4 @@ onMounted(() => {
         <!-- /.control-sidebar -->
     </div>
 </template>
-
-<script lang="ts">
-export default {}
-</script>
+ 

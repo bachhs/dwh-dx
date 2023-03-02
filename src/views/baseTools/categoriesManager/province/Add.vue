@@ -4,7 +4,7 @@
         <div class="d-flex align-items-center">
             <div class="flex-fill">
                 <h4 class="mb-0 d-none d-md-block">
-                    <i class="fas fa-file-code text-lightblue mr-2"></i>
+                    <i class="fas fa-cube text-lightblue mr-2"></i>
                     <strong>{{ viewSettings.title }}</strong>
                 </h4>
             </div>
@@ -46,28 +46,8 @@
                 <el-form
                     v-if="itemModel"
                     ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
-                    label-width="0" class="ruleForm">
-                    <div class="mb-3">
-                        <div>
-                            <strong>Tên cơ quan</strong><span class="ml-1 text-danger">*</span>
-                        </div>
-                        <div class="mt-2">
-                            <el-form-item label="">
-                                <el-input v-model="itemModel.name" size="large" placeholder="Tên cơ quan.."/>
-                            </el-form-item>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div>
-                            <strong>Mô tả</strong
-                            ><span class="ml-1 text-danger">*</span>
-                        </div>
-                        <div class="mt-2">
-                            <el-form-item label="">
-                                <el-input v-model="itemModel.name" size="large" placeholder="Mô tả.."/>
-                            </el-form-item>
-                        </div> 
-                    </div> 
+                    label-width="0" class="ruleForm">                    
+                    <EditCategory :itemModel="itemModel" :editFields="editFields"/>
                 </el-form>
                 <div
                     class="text-center mt-3 pt-3 pb-3"

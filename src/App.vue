@@ -11,5 +11,5 @@ export default defineComponent({
 </script>
 
 <template>
-    <AppLayout />
+    <RouterView />
 </template>

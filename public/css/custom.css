@@ -4,6 +4,40 @@ body {
   max-height: 100vh;
   overflow: hidden; }
 
+.lds-loading {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px; }
+
+.lds-loading div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #2f539b;
+  animation: lds-loading 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite; }
+
+.lds-loading div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s; }
+
+.lds-loading div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s; }
+
+.lds-loading div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0; }
+
+@keyframes lds-loading {
+  0% {
+    top: 8px;
+    height: 64px; }
+  50%,
+    100% {
+    top: 24px;
+    height: 32px; } }
 ::selection {
   background: #409eff;
   color: #fff; }
@@ -166,6 +200,17 @@ body {
   width: calc(100vw - 300px); }
 .layout-fixed.sidebar-collapse .w-100vw {
   width: calc(100vw - 125px) !important; }
+.layout-fixed .navItem-actived {
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  padding: 3px; }
+  .layout-fixed .navItem-actived .nav-link-has-sub-items {
+    background-color: #37424c  !important; }
+  .layout-fixed .navItem-actived ul .nav-link {
+    color: #4a3f3f !important; }
+    .layout-fixed .navItem-actived ul .nav-link.active {
+      background-color: #007bff !important;
+      color: #fff !important; }
 .layout-fixed .content-wrapper {
   color: #333; }
   .layout-fixed .content-wrapper .content {
