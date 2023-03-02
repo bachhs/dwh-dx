@@ -311,6 +311,10 @@ body {
     margin-left: -280px;
 }
 
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
 .layout-fixed {
     .main-sidebar {
         top: calc(4rem - 1px);
@@ -397,7 +401,7 @@ body {
     }
 
     .navItem-actived {
-        background-color: #f3f3f3;
+        background-color: #ffd597;
         border-radius: 5px;
         padding: 3px;        
         .nav-link-has-sub-items{ 

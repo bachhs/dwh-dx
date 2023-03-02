@@ -1,6 +1,5 @@
 import { defineAsyncComponent, ref, nextTick } from 'vue';
-import SkeletonBox from '@/components/SkeletonBox.vue';
-
+import SkeletonBox from '@/components/SkeletonBox.vue'; 
 export default {
     components: {
         ListData: defineAsyncComponent({

@@ -23,7 +23,7 @@ const usePaginationList = (getListDataFn:Function, filterData:any) => {
         isLoading.value = true;
         listElements.value.data = [];
         let pagination:any = listElements.value.pagination;
-        let filterDataRequest = filterData.value;
+        let filterDataRequest =  (filterData !== null) ? filterData.value : {};
         let objectRequest = {
             page: pagination.page,
             size: pagination.size,
@@ -49,7 +49,7 @@ const usePaginationList = (getListDataFn:Function, filterData:any) => {
     };
     const filterDataDebounceFn:Function = debounce(filterDataFn, 1000, { 'maxWait': 5000 });
     const refreshDataFn = () =>{
-        filterData.value = {};
+        if(filterData !== null) filterData.value = {};
         getListData(1);
     };
 

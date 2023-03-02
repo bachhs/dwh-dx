@@ -166,6 +166,9 @@ body {
 .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
   margin-left: -280px; }
 
+.sidebar::-webkit-scrollbar {
+  display: none; }
+
 .layout-fixed .main-sidebar {
   top: calc(4rem - 1px);
   width: 280px; }
@@ -201,7 +204,7 @@ body {
 .layout-fixed.sidebar-collapse .w-100vw {
   width: calc(100vw - 125px) !important; }
 .layout-fixed .navItem-actived {
-  background-color: #f3f3f3;
+  background-color: #ffd597;
   border-radius: 5px;
   padding: 3px; }
   .layout-fixed .navItem-actived .nav-link-has-sub-items {
