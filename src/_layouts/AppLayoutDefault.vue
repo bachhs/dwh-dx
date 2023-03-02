@@ -154,7 +154,7 @@ onMounted(() => {
                                     src="/img/user2-160x160.jpg"
                                     style="width: 2.8rem"
                                     class="img-circle elevation-2"
-                                    alt="User Image" />
+                                    alt="User Image"  />
                             </div>
                         </div>
                         <template #dropdown>
