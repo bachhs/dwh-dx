@@ -1,36 +1,34 @@
-import type { ListPipelineResponse } from '@/scripts/datasourcePipeline/type';
 import axios from 'axios';
 
-export const datasourcePipelineApi = {
-    dtsPipelineList(params: { page: number; size: number }) {
+export const dbSourcePipelineApi = {
+    dataItemList(params: any) {
         const requestParams: any = {
             page: params.page,
             size: params.size,
         };
-        return axios.get(`/pipelines`, { params: requestParams });
-    },
-    dtsPipelineByDtsId(dtsId: number) {
-        return axios.get(`/datasources/${dtsId}/pipelines`);
-    },
-    getDtsPipeline(pipelineId: number) {
-        return axios.get(`/pipeline/${pipelineId}`);
-    },
-    addDtsPipeline(dtsId: number, data: any) {
-        return axios.post(`/datasources/${dtsId}/pipeline`, data);
-    },
-    updateDtsPipeline(pipelineId: number, data: any) {
-        return axios.put(`/pipeline/${pipelineId}`, data);
-    },
-    deleteDtsPipeline(dtsId: number) {
-        return axios.delete(`/pipeline/${dtsId}`);
-    },
-    getMetaPipelines(datasourceName?: string) {
-        if (datasourceName) {
-            return axios.get<ListPipelineResponse>(
-                `meta/ingestion?datasourceName=${datasourceName}`
-            );
-        } else {
-            return axios.get<ListPipelineResponse>(`meta/ingestion`);
+        let requestUrl = `/dbsource/pipeline`;
+        if (
+            params.dbsource_id &&
+            params.dbsource_id !== null &&
+            params.dbsource_id !== ''
+        ) {
+            requestUrl = `/dbsource/${params.dbsource_id}/pipeline`;
         }
+        return axios.get(requestUrl, { params: requestParams });
+    },
+    getItem(itemId: number) {
+        return axios.get(`/dbsource/${itemId}`);
+    },
+    addItem(dbsource_id: number, itemData: any) {
+        return axios.post(
+            `/dbsource/${dbsource_id}/pipeline`,
+            itemData
+        );
+    },
+    updateItem(itemId: number, itemData: any) {
+        return axios.put(`/dbsource/pipeline/${itemId}`, itemData);
+    },
+    deleteItem(itemId: number) {
+        return axios.delete(`/dbsource/pipeline/${itemId}`);
     },
 };

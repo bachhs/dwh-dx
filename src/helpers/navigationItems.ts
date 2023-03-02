@@ -13,7 +13,7 @@ export const navItems:Array<any> = [
         type: 'relative-link',
         name: 'Quản trị - Trợ giúp',
         icon: 'fas fa-key',
-        url: 'http://14.225.11.181:9004/pfpro/ssoportal/',
+        url: 'https://security.dtcsolution.vn',
     },
     {
         type: 'link',
@@ -89,19 +89,137 @@ export const navItems:Array<any> = [
         ]
     },
     {
+        type: 'relative-link',
+        name: 'IOC Y tế',
+        icon: 'fas fa-briefcase-medical',
+        url: 'https://covid-tq.dtcsolution.vn/login',
+    },
+    {
         type: 'navHeader',
-        name: 'THU THẬP DỮ LIỆU',
+        name: 'LUỒNG DỮ LIỆU',
     },
     {
         type: 'link',
-        name: 'Luồng lấy dữ liệu từ File',
-        icon: 'fas fa-file',
+        name: 'Lấy dữ liệu từ MSSQL',
+        icon: 'fas fa-database',
+        url: '/data-source-mssql',
+        childItems: [            
+            {
+                type: 'link',
+                name: 'Thông tin nguồn dữ liệu',
+                url: '/data-source-mssql/file-server',
+            },            
+            {
+                type: 'link',
+                name: 'Phiên bản dữ liệu',
+                url: '/data-source-mssql/version',
+            },         
+            {
+                type: 'link',
+                name: 'Cấu hình tiến trình',
+                url: '/data-source-mssql/progress',
+            },              
+            {
+                type: 'link',
+                name: 'Làm giàu tự động',
+                url: '/data-source-mssql/enrichment',
+            },       
+        ]
+    },
+    {
+        type: 'link',
+        name: 'Lấy dữ liệu từ PostgreSQL',
+        icon: 'fas fa-database',
+        url: '/data-source-postgre-sql',
+        childItems: [            
+            {
+                type: 'link',
+                name: 'Thông tin nguồn dữ liệu',
+                url: '/data-source-postgre-sql/api-datasource',
+            },            
+            {
+                type: 'link',
+                name: 'Phiên bản dữ liệu',
+                url: '/data-source-postgre-sql/version',
+            },         
+            {
+                type: 'link',
+                name: 'Cấu hình tiến trình',
+                url: '/data-source-postgre-sql/progress',
+            },              
+            {
+                type: 'link',
+                name: 'Làm giàu tự động',
+                url: '/data-source-postgre-sql/enrichment',
+            },    
+        ]
+    }, 
+    {
+        type: 'link',
+        name: 'Lấy dữ liệu từ MySQL',
+        icon: 'fas fa-database',
+        url: '/data-source-mysql',
+        childItems: [            
+            {
+                type: 'link',
+                name: 'Thông tin nguồn dữ liệu',
+                url: '/data-source-mysql/api-datasource',
+            },            
+            {
+                type: 'link',
+                name: 'Phiên bản dữ liệu',
+                url: '/data-source-mysql/version',
+            },         
+            {
+                type: 'link',
+                name: 'Cấu hình tiến trình',
+                url: '/data-source-mysql/progress',
+            },              
+            {
+                type: 'link',
+                name: 'Làm giàu tự động',
+                url: '/data-source-mysql/enrichment',
+            },    
+        ]
+    }, 
+    {
+        type: 'link',
+        name: 'Lấy dữ liệu từ Oracle',
+        icon: 'fas fa-database',
+        url: '/data-source-oracle',
+        childItems: [            
+            {
+                type: 'link',
+                name: 'Thông tin nguồn dữ liệu',
+                url: '/data-source-oracle/api-datasource',
+            },            
+            {
+                type: 'link',
+                name: 'Phiên bản dữ liệu',
+                url: '/data-source-oracle/version',
+            },         
+            {
+                type: 'link',
+                name: 'Cấu hình tiến trình',
+                url: '/data-source-oracle/progress',
+            },              
+            {
+                type: 'link',
+                name: 'Làm giàu tự động',
+                url: '/data-source-oracle/enrichment',
+            },    
+        ]
+    }, 
+    {
+        type: 'link',
+        name: 'Lấy dữ liệu từ File',
+        icon: 'fas fa-folder-open',
         url: '/data-source-file',
         childItems: [            
             {
                 type: 'link',
                 name: 'Thông tin nguồn dữ liệu',
-                url: '/data-source-file/file-server',
+                url: '/data-source-file/api-datasource',
             },            
             {
                 type: 'link',
@@ -117,22 +235,12 @@ export const navItems:Array<any> = [
                 type: 'link',
                 name: 'Làm giàu tự động',
                 url: '/data-source-file/enrichment',
-            },                           
-            // {
-            //     type: 'link',
-            //     name: 'Từ tập tin sẵn có',
-            //     url: '/data-source-file/file-upload',
-            // },                             
-            {
-                type: 'link',
-                name: 'Link tải lên không đăng nhập',
-                url: '/data-source-file/file-embed-link',
-            },     
+            },    
         ]
-    },
+    }, 
     {
         type: 'link',
-        name: 'Luồng lấy dữ liệu từ API',
+        name: 'Lấy dữ liệu từ API',
         icon: 'fas fa-bezier-curve',
         url: '/data-source-api',
         childItems: [            
@@ -157,229 +265,299 @@ export const navItems:Array<any> = [
                 url: '/data-source-api/enrichment',
             },    
         ]
-    },
-    // {
-    //     type: 'link',
-    //     name: 'Luồng lấy dữ liệu từ CSDL',
-    //     icon: 'fas fa-cube',
-    //     url: '/data-source-db',
-    //     childItems: [            
-    //         {
-    //             type: 'link',
-    //             name: 'Thông tin nguồn dữ liệu',
-    //             url: '/data-source-db/data-source',
-    //         },         
-    //         {
-    //             type: 'link',
-    //             name: 'Cấu hình tiến trình',
-    //             url: '/data-source-db/progress',
-    //         },              
-    //         {
-    //             type: 'link',
-    //             name: 'Làm giàu tự động',
-    //             url: '/data-source-db/enrichment',
-    //         },      
-    //         {
-    //             type: 'link',
-    //             name: 'Từ CSDL cục bộ',
-    //             url: '/data-source-db/local-db',
-    //         },         
-    //         {
-    //             type: 'link',
-    //             name: 'Từ CSDL khác',
-    //             url: '/data-source-db/others-db',
-    //         },              
-    //         {
-    //             type: 'link',
-    //             name: 'Từ CSDL Cloud',
-    //             url: '/data-source-db/cloud-db',
-    //         },              
-    //         {
-    //             type: 'link',
-    //             name: 'Cập nhật CSDL Cloud',
-    //             url: '/data-source-db/cloud-db-update',
-    //         },    
-    //     ]
-    // },
+    }, 
     {
         type: 'navHeader',
-        name: 'KHO TTHC TRƯỚC SỐ HOÁ',
+        name: 'KHO DỮ LIỆU TRUNG TÂM',
     },
     {
         type: 'link',
         name: 'Tích hợp dữ liệu mới',
         icon: 'fas fa-asterisk',
-        url: '/before-digitalization-store/new-data-integration',
-    },
-    {
-        type: 'link',
-        name: 'Kho dữ liệu ',
-        icon: 'fas fa-store',
-        url: '/before-digitalization-store/data-store'
+        url: '/before-digitalization-store/new-data-integration',        
+        // childItems: [            
+        //     {
+        //         type: 'link',
+        //         name: 'Từ các tập tin sẵn có',
+        //         url: '/data-source-api/api-datasource',
+        //     },            
+        //     {
+        //         type: 'link',
+        //         name: 'Từ các CSDL cục bộ',
+        //         url: '/data-source-api/version',
+        //     },         
+        //     {
+        //         type: 'link',
+        //         name: 'Từ các CSDL ngoài',
+        //         url: '/data-source-api/progress',
+        //     },              
+        //     {
+        //         type: 'link',
+        //         name: 'Từ các CSDL đám mây',
+        //         url: '/data-source-api/enrichment',
+        //     },              
+        //     {
+        //         type: 'link',
+        //         name: 'Cập nhật CSDL đám mây',
+        //         url: '/data-source-api/enrichment',
+        //     },              
+        //     {
+        //         type: 'link',
+        //         name: 'Tích hợp bằng FTP',
+        //         url: '/data-source-api/enrichment',
+        //     },            
+        //     {
+        //         type: 'link',
+        //         name: 'Cập nhật kết nối FTP',
+        //         url: '/data-source-api/enrichment',
+        //     },          
+        //     {
+        //         type: 'link',
+        //         name: 'Tích hợp URL không phân trang',
+        //         url: '/data-source-api/enrichment',
+        //     },       
+        //     {
+        //         type: 'link',
+        //         name: 'Tích hợp URL có phân trang',
+        //         url: '/data-source-api/enrichment',
+        //     },         
+        //     {
+        //         type: 'link',
+        //         name: 'Cập nhật kết nối URL',
+        //         url: '/data-source-api/enrichment',
+        //     },         
+        //     {
+        //         type: 'link',
+        //         name: 'Nhập từ DV lưu trữ cloud',
+        //         url: '/data-source-api/enrichment',
+        //     },          
+        // ]
     },
     {
         type: 'link',
         name: 'Chuẩn hoá & làm giàu',
         icon: 'fas fa-check-square',
         url: '/standardize-enrichment',
-        childItems: [            
-            {
-                type: 'link',
-                name: 'Không gian làm việc',
-                url: '/standardize-enrichment/workspace',
-            },            
-            {
-                type: 'link',
-                name: 'Phân phối dữ liệu',
-                url: '/standardize-enrichment/distribution',
-            },         
-            {
-                type: 'link',
-                name: 'Chất lượng dữ liệu',
-                url: '/standardize-enrichment/quality',
-            },              
-            {
-                type: 'link',
-                name: 'Thanh chất lượng DL',
-                url: '/standardize-enrichment/make-quality',
-            },              
-            {
-                type: 'link',
-                name: 'Chi tiết cột',
-                url: '/standardize-enrichment/column-detail',
-            },              
-            {
-                type: 'link',
-                name: 'Chi tiết tập dữ liệu',
-                url: '/standardize-enrichment/data-set-details',
-            },             
-            {
-                type: 'link',
-                name: 'Tìm kiếm dữ liệu',
-                url: '/standardize-enrichment/data-search',
-            },            
-            {
-                type: 'link',
-                name: 'Xuất dữ liệu vào kho',
-                url: '/standardize-enrichment/export-to-store',
-            },            
-            {
-                type: 'link',
-                name: 'Xuất dữ liệu vào kho theo lịch',
-                url: '/standardize-enrichment/export-to-store-schedule',
-            },  
-        ]
+        // childItems: [            
+        //     {
+        //         type: 'link',
+        //         name: 'Không gian làm việc',
+        //         url: '/standardize-enrichment/workspace',
+        //     },            
+        //     {
+        //         type: 'link',
+        //         name: 'Phân phối dữ liệu',
+        //         url: '/standardize-enrichment/distribution',
+        //     },         
+        //     {
+        //         type: 'link',
+        //         name: 'Chất lượng dữ liệu',
+        //         url: '/standardize-enrichment/quality',
+        //     },              
+        //     {
+        //         type: 'link',
+        //         name: 'Thanh chất lượng DL',
+        //         url: '/standardize-enrichment/make-quality',
+        //     },              
+        //     {
+        //         type: 'link',
+        //         name: 'Chi tiết cột',
+        //         url: '/standardize-enrichment/column-detail',
+        //     },              
+        //     {
+        //         type: 'link',
+        //         name: 'Chi tiết tập dữ liệu',
+        //         url: '/standardize-enrichment/data-set-details',
+        //     },             
+        //     {
+        //         type: 'link',
+        //         name: 'Tìm kiếm bộ dữ liệu',
+        //         url: '/standardize-enrichment/data-search',
+        //     },         
+        //     {
+        //         type: 'link',
+        //         name: 'Lọc dữ liệu',
+        //         url: '/standardize-enrichment/data-search',
+        //     },                
+        //     {
+        //         type: 'link',
+        //         name: 'Công cụ thao tác nhanh',
+        //         url: '/standardize-enrichment/export-to-store',
+        //     },            
+        //     {
+        //         type: 'link',
+        //         name: 'Biến đổi dữ liệu',
+        //         url: '/standardize-enrichment/export-to-store-schedule',
+        //     },  
+        // ]
     },
     {
         type: 'navHeader',
-        name: 'SỐ HOÁ DỮ LIỆU',
+        name: 'KHO DỮ LIỆU',
     },
     {
         type: 'link',
-        name: 'Số hoá dữ liệu',
-        icon: 'fas fa-digital-tachograph',
-        url: '/digitization',
+        name: 'Truy vấn Dữ liệu',
+        icon: 'fas fa-search',
+        url: '/before-digitalization-store/data-store'
+    },
+    {
+        type: 'link',
+        name: 'Duyệt các Phân vùng',
+        icon: 'fas fa-cube',
+        url: '/before-digitalization-store/data-store2'
+    },
+    {
+        type: 'link',
+        name: 'Dashboards',
+        icon: 'fas fa-tachometer-alt',
+        url: '/before-digitalization-store/data-store4'
+    },
+    {
+        type: 'link',
+        name: 'Lập lịch truy vấn Dữ liệu',
+        icon: 'fas fa-calendar',
+        url: '/before-digitalization-store/data-store3'
+    },
+    {
+        type: 'link',
+        name: 'Tải Dữ liệu từ Files',
+        icon: 'fas fa-folder-open',
+        url: '/before-digitalization-store/data-store5'
+    },
+    {
+        type: 'link',
+        name: 'Tải Dữ liệu từ Cloud Storage',
+        icon: 'fas fa-cloud',
+        url: '/before-digitalization-store/data-store6'
+    },
+    {
+        type: 'link',
+        name: 'Quản lý truy vấn Dữ liệu',
+        icon: 'fas fa-tasks',
+        url: '/before-digitalization-store/data-store7'
+    },
+    {
+        type: 'navHeader',
+        name: 'PHÂN TÍCH DỮ LIỆU',
+    },    
+    {
+        type: 'link',
+        name: 'Phân tích Dữ liệu',
+        icon: 'fas fa-chart-area',
+        url: '/data-analysis',
         childItems: [
             {
                 type: 'link',
-                name: 'Đang chờ số hoá',
-                url: '/digitization/pending',
+                name: 'Dân số',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/population', 
+            }, 
+            {
+                type: 'link',
+                name: 'Y tế',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/medical', 
+            }, 
+            {
+                type: 'link',
+                name: 'Giáo dục & Đào tạo',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/educations', 
+            }, 
+            {
+                type: 'link',
+                name: 'Tư pháp',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/justice', 
+            }, 
+            {
+                type: 'link',
+                name: 'Bảo hiểm xã hội',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/social-insurance', 
+            }, 
+            {
+                type: 'link',
+                name: 'Kế hoạch - Đầu tư',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/social-insurance', 
+            }, 
+            {
+                type: 'link',
+                name: 'Giao thông - Vận tải',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/transportation', 
+            }, 
+            {
+                type: 'link',
+                name: 'Văn hoá - Thể thao',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/transportation', 
+            }, 
+            {
+                type: 'link',
+                name: 'Tài chính - Kho bạc',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/finance-treasury', 
+            }, 
+            {
+                type: 'link',
+                name: 'Xây dựng',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/construction', 
             },
             {
                 type: 'link',
-                name: 'Đang số hoá',
-                url: '/digitization/inprogress',
+                name: 'Lao động',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/labor', 
             },
             {
                 type: 'link',
-                name: 'Chờ xác nhận',
-                url: '/digitization/wait-confirm',
+                name: 'Thông tin & truyền thông',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/information-communication', 
             },
             {
                 type: 'link',
-                name: 'Chờ duyệt',
-                url: '/digitization/wait-accept',
-            },
-            {
-                type: 'link',
-                name: 'Hoàn thành',
-                url: '/digitization/completed',
+                name: 'Nội vụ',
+                icon: 'fas fa-cube',
+                url: '/data-analysis/home-affairs', 
             },
         ]
     },
+    
     {
         type: 'navHeader',
-        name: 'KHO TTHC CHUYÊN NGÀNH',
+        name: 'SEARCH ENGINE',
     },
     {
         type: 'link',
-        name: 'Truy vấn kết quả TTHC',
+        name: 'Quản lý & cấu hình tìm kiếm',
         icon: 'fas fa-search',
-        url: '/query-result/all',
+        url: '/search-management', 
     },
-    {
-        type: 'link',
-        name: 'D.Liệu KQ TTHC chuyên ngành',
-        icon: 'fas fa-user-secret',
-        url: '/query-result/specialized',
-    },
-    // {
-    //     type: 'link',
-    //     name: 'D.Liệu KQ TTHC',
-    //     icon: 'fas fa-cube',
-    //     url: '/data-result/all',
-    // },
     {
         type: 'navHeader',
-        name: 'BÁO CÁO VÀ KHAI THÁC',
-    },
+        name: 'KHAI THÁC DỮ LIỆU',
+    }, 
     {
         type: 'link',
-        name: 'Báo cáo tổng hợp',
-        icon: 'fas fa-chart-line',
-        url: '/report',
-        childItems: [         
-            {
-                type: 'link',
-                name: 'Thống kê kết nối hệ thống',
-                url: '/report/monitor',
-            },            
-            {
-                type: 'link',
-                name: 'T.hợp KQ số hóa KQTTHC',
-                url: '/report/report-digitization',
-            },            
-            {
-                type: 'link',
-                name: 'HS có file KQTTHC theo kỳ',
-                url: '/report/profile-has-file-by-cycle',
-            },         
-            {
-                type: 'link',
-                name: 'HS không có file KQTTHC theo kỳ',
-                url: '/report/profile-no-file-by-cycle',
-            },              
-            {
-                type: 'link',
-                name: 'KQ số hóa KQTTHC Sở/B.ngành',
-                url: '/report/digitization-by-departments',
-            },             
-            {
-                type: 'link',
-                name: 'KQ số hóa KQTTHC TP/Huyện',
-                url: '/report/digitization-by-district',
-            },           
-            {
-                type: 'link',
-                name: 'KQ số hóa KQTTHC Xã/Phường',
-                url: '/report/digitization-by-wards',
-            },
-        ]
-    },
+        name: 'Công cụ Wiki',
+        icon: 'fas fa-search',
+        url: '/wiki-tools', 
+    },  
     {
         type: 'link',
-        name: 'Chia sẻ dữ liệu KQ TTHC',
-        icon: 'fas fa-share-square',
-        url: '/shared/api-share-data',
+        name: 'Biểu diễn trực quan',
+        icon: 'fas fa-search',
+        url: '/visualization', 
+    }, 
+    {
+        type: 'link',
+        name: 'Chia sẻ dữ liệu',
+        icon: 'fas fa-search',
+        url: '/data-sharing', 
     },
 ];
