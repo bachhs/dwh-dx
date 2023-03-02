@@ -1,21 +1,15 @@
-import { ref, onMounted } from "vue";
-import { mapState } from "pinia";
-import { fileEmbedLinkApi } from "@/api/fileEmbedLinkApi";
-import { useDataCategoryStore } from "@/stores/dataCategory";
+import { ref, onMounted } from "vue"; 
+import { provinceApi } from "@/api/baseTools/provinceApi"; 
 import { useRoute, useRouter } from "vue-router";
 import usePaginationList from "@/scripts/_baseScripts/_usePaginationList";
 import { ElMessage, ElMessageBox } from 'element-plus';
 const route = useRoute();
-const router = useRouter();
-import provinces from "@/_sampleData/provinces";
+const router = useRouter(); 
 export default {
     props: ["viewSettings"],
     emits: ["onChangeView"],
     setup() {
         const moduleName = "File Embed Link";
-        const filterDataInfo = ref({
-            organization_id: "",
-        });
         const {
             isLoading,
             lastDataLoading,
@@ -26,7 +20,7 @@ export default {
             refreshDataFn,
             filterDataFn,
             deleteElement,
-        } = usePaginationList(fileEmbedLinkApi.dataItemList, filterDataInfo);
+        } = usePaginationList(provinceApi.getItems, null);
 
         const deleteItem = (item: any) => { 
             let showErrorMsg =(msg:string) =>{
@@ -62,8 +56,7 @@ export default {
         onMounted(() => { 
             getListData(1);
         });
-        return {
-            provinces,
+        return { 
             isLoading,
             listElements,
             lastDataLoading,

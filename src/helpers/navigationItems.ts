@@ -19,7 +19,7 @@ export const navItems:Array<any> = [
         type: 'link',
         name: 'Q.lý thông tin danh mục',
         icon: 'fas fa-list',
-        url: '/category/organization',
+        url: '/category',
         childItems: [            
             {
                 type: 'link',

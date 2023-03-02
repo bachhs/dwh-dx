@@ -42,10 +42,10 @@
             </div>
         </div>
         <el-scrollbar class="d-flex flex-fill mt-0 mt-md-3 pr-0">
-            <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4">
+            <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4"> 
                 <el-form
                     v-if="itemModel"
-                    ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
+                    ref="ruleFormRef" :model="itemModel" :rules="rules" 
                     label-width="0" class="ruleForm">                    
                     <EditCategory :itemModel="itemModel" :editFields="editFields"/>
                 </el-form>
@@ -56,7 +56,7 @@
                         size="large"
                         type="primary"
                         class="mr-1 ml-1"
-                        @click="addItemSubmit">
+                        @click="submitItemSubmit">
                         <el-icon><Plus /></el-icon>
                         <span>{{ viewSettings.title }}</span>
                     </el-button>

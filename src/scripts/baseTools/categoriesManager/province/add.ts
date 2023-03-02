@@ -1,7 +1,9 @@
-import { ref, onMounted, defineAsyncComponent } from 'vue';
+import { ref, reactive, onMounted, defineAsyncComponent } from 'vue';
 import { mapState } from 'pinia';
 import { ElMessage } from 'element-plus';
+import type { FormInstance, FormRules } from 'element-plus';
 import { useDataCategoryStore } from '@/stores/dataCategory'; 
+import { provinceApi } from "@/api/baseTools/provinceApi"; 
 import moment from 'moment'; 
 import SkeletonBox from '@/components/SkeletonBox.vue';
 export default {
@@ -15,6 +17,7 @@ export default {
         }),
     },
     setup(props: any, context: any) {
+        var isEditMode = false;
         const isLoading = ref(false); 
         const editFields = ref([
             { key: "name", label: "Tên Tỉnh/Thành phố" },
@@ -24,37 +27,124 @@ export default {
              countryId: 1
         });  
         
-        const addItemSubmit = () => {
-            isLoading.value = true;
-            try {
-                const data = {
-                    
-                }; 
-                console.log('itemModel', itemModel.value);
-                isLoading.value = false;
-            } catch (err) {
-                console.log(err);
-                isLoading.value = false;
-            }
+        const ruleFormRef = ref<FormInstance>();
+        const rules = reactive<FormRules>({
+            name: [
+                {
+                    required: true,
+                    message: 'Vui lòng không bỏ trống..',
+                    trigger: 'blur',
+                },
+            ],
+            full_name: [
+                {
+                    required: true,
+                    message: 'Vui lòng không bỏ trống..',
+                    trigger: 'blur',
+                },
+            ], 
+        }); 
+        
+        const createNewItem = (data:any) => {
+            provinceApi
+                .addItem(data)
+                .then((response: any) => {
+                    if (response.data) {
+                        ElMessage({
+                            message: 'Thêm mới thành công',
+                            type: 'success',
+                        });
+                        context.emit('onChangeView', {
+                            viewName: 'ListData',
+                            data: null,
+                        });
+                    } else {
+                        ElMessage.error(`Oops, ${response.data.message}`);
+                    }
+                    isLoading.value = false;
+                })
+                .catch((error) => {
+                    console.error(error);
+                    isLoading.value = false;
+                });
+        }
+
+        const modifyItem = (itemId:number, data:any) => {
+            provinceApi
+                .updateItem(itemId, data)
+                .then((response: any) => {
+                    if (response.data) {
+                        ElMessage({
+                            message: 'Cập nhật thành công',
+                            type: 'success',
+                        });
+                        context.emit('onChangeView', {
+                            viewName: 'ListData',
+                            data: null,
+                        });
+                    } else {
+                        ElMessage.error(`Oops, ${response.data.message}`);
+                    }
+                    isLoading.value = false;
+                })
+                .catch((error) => {
+                    console.error(error);
+                    isLoading.value = false;
+                });
+        };
+
+        const submitItemSubmit = async () => {
+            if (!ruleFormRef || !ruleFormRef.value) return;
+            await ruleFormRef.value.validate((valid, fields) => {
+                if (valid) {      
+                    isLoading.value = true;
+                    try { 
+                        const data = {
+                            ...itemModel.value
+                        };
+                        if(!isEditMode) createNewItem(data);
+                        else modifyItem(itemModel.value.id, data);
+
+                    } catch (err) {
+                        console.log(err);
+                        isLoading.value = false;
+                    }     
+                } else {
+                    console.log('error submit!', fields);
+                }
+            });
+            
+            
         }; 
         
         onMounted(() => {
             if (props.viewSettings) {
                 if(props.viewSettings.dataItem === null){ 
+                    isEditMode = false;
                     itemModel.value = { 
+                        countryId: 1
                     };
                 }
-                else{   
+                else{    
+                    isEditMode = true;
+                    let editItem = props.viewSettings.dataItem;
                     itemModel.value = { 
+                        countryId: 1,
+                        id: editItem.id, 
                     };
+                    editFields.value.forEach(xField => {
+                        itemModel.value[xField.key] = editItem[xField.key];
+                    });
                 }
             }
         });
         return {
             isLoading, 
             editFields,
+            ruleFormRef,
+            rules,
             itemModel,
-            addItemSubmit, 
+            submitItemSubmit, 
             moment,
         };
     },
