@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { RouterLink, RouterView, useRoute } from 'vue-router';
 import { navItems } from '@/helpers/navigationItems';
 import { useDataCategoryStore } from '@/stores/dataCategory';
@@ -17,13 +17,18 @@ const toggleMenu = (navItem:any) => {
     } 
 }; 
 const navItemsRef = ref(navItems);
+watch(() => route.path, (newValRoutePath) => { 
+    var foundedNavs = navItemsRef.value.find(xNav => { 
+        return xNav.toggleSubMenu && xNav.url && !newValRoutePath.startsWith(xNav.url);
+    });
+    if(foundedNavs && foundedNavs !== null){
+        foundedNavs.toggleSubMenu = false;
+    }
+})
 onMounted(() => {
-    var foundedNav = navItemsRef.value.find(xNav => {
-        console.log('xNav', xNav);
-        console.log('route.path', route.path);
+    var foundedNav = navItemsRef.value.find(xNav => { 
         return xNav.url && route.path.startsWith(xNav.url);
     });
-    console.log('foundedNav', foundedNav);
     if(foundedNav && foundedNav !== null){
         foundedNav.toggleSubMenu = true;
     }
@@ -197,7 +202,8 @@ onMounted(() => {
                                 'nav-item': ['link', 'relative-link'].includes(navItem.type),
                                 'nav-header': navItem.type === 'navHeader',                                
                                 'menu-is-opening':  navItem.toggleSubMenu,
-                                'menu-open':navItem.toggleSubMenu
+                                'menu-open':navItem.toggleSubMenu,
+                                'navItem-actived': navItem.toggleSubMenu && (navItem.childItems)
                             }"
                             v-for="(navItem, navItemIndex) in navItemsRef"
                             :key="navItemIndex">
@@ -218,7 +224,7 @@ onMounted(() => {
                             <span class="text-orange" v-if="navItem.type === 'navHeader' && !(navItem.childItems)">
                                 {{ navItem.name }}
                             </span> 
-                            <a href="javascript:void(0);" class="nav-link pl-1"
+                            <a href="javascript:void(0);" class="nav-link nav-link-has-sub-items pl-1"
                                 @click="toggleMenu(navItem)"
                                 v-bind:class="{ 
                                     'active' : navItem.childItems && navItem.childItems.map((xNavItem:any) => xNavItem.url).includes($route.path),
@@ -231,7 +237,7 @@ onMounted(() => {
                                     <!-- <span class="badge badge-info right">6</span> -->
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" :style="`display: ${navItem.toggleSubMenu ? 'block' : 'none'};`"
+                            <ul class="nav nav-treeview" :style="`display: ${navItem.toggleSubMenu ? 'block' : 'none'}; `"
                                 v-if="navItem.type === 'link' && (navItem.childItems && navItem.childItems.length > 0)">
                                 <li class="nav-item" v-for="subItem in navItem.childItems" :key="subItem.name">
                                     <router-link :to="subItem.url"  class="nav-link pl-3"

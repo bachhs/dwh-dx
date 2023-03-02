@@ -396,6 +396,24 @@ body {
         }
     }
 
+    .navItem-actived {
+        background-color: #f3f3f3;
+        border-radius: 5px;
+        padding: 3px;        
+        .nav-link-has-sub-items{ 
+            background-color: #37424c  !important;
+        }
+        ul {
+            .nav-link{
+                color: #4a3f3f !important;
+                &.active{
+                    background-color: #007bff !important;
+                    color: #fff !important;
+                }
+            }
+        }
+    }
+
     .content-wrapper {
         color: #333;
 

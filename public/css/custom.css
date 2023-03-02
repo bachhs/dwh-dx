@@ -200,6 +200,17 @@ body {
   width: calc(100vw - 300px); }
 .layout-fixed.sidebar-collapse .w-100vw {
   width: calc(100vw - 125px) !important; }
+.layout-fixed .navItem-actived {
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  padding: 3px; }
+  .layout-fixed .navItem-actived .nav-link-has-sub-items {
+    background-color: #37424c  !important; }
+  .layout-fixed .navItem-actived ul .nav-link {
+    color: #4a3f3f !important; }
+    .layout-fixed .navItem-actived ul .nav-link.active {
+      background-color: #007bff !important;
+      color: #fff !important; }
 .layout-fixed .content-wrapper {
   color: #333; }
   .layout-fixed .content-wrapper .content {
