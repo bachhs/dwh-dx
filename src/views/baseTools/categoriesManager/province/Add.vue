@@ -1,9 +1,12 @@
-<script lang="ts" src="@/scripts/baseTools/categoriesManager/province/add.ts"></script>
+<script
+    lang="ts"
+    src="@/scripts/baseTools/categoriesManager/province/add.ts"></script>
 <template>
     <div class="flex-fill d-flex flex-column w-100" v-loading="isLoading">
         <div class="d-flex align-items-center">
             <div class="flex-fill">
                 <h4 class="mb-0 d-none d-md-block">
+                    <i class="fas fa-cube text-lightblue mr-2"></i>
                     <i class="fas fa-cube text-lightblue mr-2"></i>
                     <strong>{{ viewSettings.title }}</strong>
                 </h4>
@@ -42,12 +45,17 @@
             </div>
         </div>
         <el-scrollbar class="d-flex flex-fill mt-0 mt-md-3 pr-0">
-            <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4"> 
+            <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4">
                 <el-form
                     v-if="itemModel"
-                    ref="ruleFormRef" :model="itemModel" :rules="rules" 
-                    label-width="0" class="ruleForm">                    
-                    <EditCategory :itemModel="itemModel" :editFields="editFields"/>
+                    ref="ruleFormRef"
+                    :model="itemModel"
+                    :rules="rules"
+                    label-width="0"
+                    class="ruleForm">
+                    <EditCategory
+                        :itemModel="itemModel"
+                        :editFields="editFields" />
                 </el-form>
                 <div
                     class="text-center mt-3 pt-3 pb-3"
