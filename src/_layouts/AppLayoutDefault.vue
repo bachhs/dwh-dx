@@ -1,8 +1,40 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch,computed } from 'vue';
+import AccountDropdown from "@/components/AccountDropdown.vue";
 import { RouterLink, RouterView, useRoute } from 'vue-router';
 import { navItems } from '@/helpers/navigationItems';
 import { useDataCategoryStore } from '@/stores/dataCategory';
+import { useAppStateStore } from "@/stores/appState";
+import SecurityHelper from '@/helpers/securityHelper';
+const appState = useAppStateStore();
+const securityHelper = new SecurityHelper();
+
+const currentUser:any = computed(() => appState.$state.userInfo);
+securityHelper.isLoggedIn().then(isLogined => {
+    if(isLogined !== null && isLogined === true) {
+        securityHelper.getUser()
+            .then((user:any) => {
+                if(user){
+                    localStorage.setItem(securityHelper.getAccessTokenStoreName(), user.access_token);
+                    appState.setUserInfo({
+                        ...user.profile,
+                        accessToken: user.access_token
+                    });
+                    securityHelper.getAccountService().then((userProfileUrl:string) =>{
+                        if(userProfileUrl !== null && userProfileUrl !== ''){
+                            appState.setUserProfileUrl(userProfileUrl);
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });			
+    }
+}).catch(error => {
+    console.error(error);
+});	
+
 const route = useRoute();
 const dataCategoryStore = useDataCategoryStore();
 dataCategoryStore.getOrganization();
@@ -147,39 +179,7 @@ onMounted(() => {
                 </li>
                 <li class="nav-item ml-3">
                     <!-- Sidebar user (optional) -->
-                    <el-dropdown trigger="click">
-                        <div class="el-dropdown-link">
-                            <div class="image">
-                                <img
-                                    src="/img/user2-160x160.jpg"
-                                    style="width: 2.8rem"
-                                    class="img-circle elevation-2"
-                                    alt="User Image" />
-                            </div>
-                        </div>
-                        <template #dropdown>
-                            <el-dropdown-menu>
-                                <el-dropdown-item command="a">
-                                    <el-icon color="#409eff">
-                                        <User />
-                                    </el-icon>
-                                    <span>Hồ sơ của bạn</span>
-                                </el-dropdown-item>
-                                <el-dropdown-item command="b">
-                                    <el-icon color="#409eff">
-                                        <Setting />
-                                    </el-icon>
-                                    <span>Thiết lập tài khoản</span>
-                                </el-dropdown-item>
-                                <el-dropdown-item command="e" divided>
-                                    <el-icon color="#f00">
-                                        <SwitchButton />
-                                    </el-icon>
-                                    <span>Đăng xuất</span>
-                                </el-dropdown-item>
-                            </el-dropdown-menu>
-                        </template>
-                    </el-dropdown>
+                    <AccountDropdown :is-hide-text="true" :currentUser="{ ...currentUser }"/>
                 </li>
             </ul>
         </nav>

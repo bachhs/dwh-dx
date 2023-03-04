@@ -113,7 +113,8 @@ export default class securityHelper {
         return mgr.signinRedirectCallback();
     }
 
-    cleanInfo(){
+    cleanInfo(){        
+        localStorage.removeItem('_isLogined');
         localStorage.removeItem(this.getAccessTokenStoreName());
     }
 

@@ -42,32 +42,38 @@
             </div>
         </div>
         <el-scrollbar class="d-flex flex-fill mt-0 mt-md-3 pr-0">
-            <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4">
+            <div class="flex-fill d-flex flex-column w-100 pb-0 pt-2 mr-4"> 
                 <el-form
                     v-if="itemModel"
-                    ref="ruleFormStep1Ref" :model="itemModel" :rules="rules" 
+                    ref="ruleFormRef" :model="itemModel" :rules="rules" 
                     label-width="0" class="ruleForm">
                     <div class="mb-3">
                         <div>
-                            <strong>Tên cơ quan</strong><span class="ml-1 text-danger">*</span>
+                            <strong>Trực thuộc Tỉnh/Thành phố</strong><span class="ml-1 text-danger">*</span>
                         </div>
                         <div class="mt-2">
-                            <el-form-item label="">
-                                <el-input v-model="itemModel.name" size="large" placeholder="Tên cơ quan.."/>
-                            </el-form-item>
+                            <el-select v-model="provinceSelected" size="large" class="w-100"
+                                :disabled="isEditMode">
+                                <el-option v-for="item in provinceListOptions" :key="item.id"
+                                    :label="item.name" :value="item.id" />
+                            </el-select>
                         </div>
                     </div>
-                    <div class="mt-4">
+                    <div class="mb-3">
                         <div>
-                            <strong>Mô tả</strong
-                            ><span class="ml-1 text-danger">*</span>
+                            <strong>Trực thuộc Quận/Huyện</strong><span class="ml-1 text-danger">*</span>
                         </div>
                         <div class="mt-2">
-                            <el-form-item label="">
-                                <el-input v-model="itemModel.name" size="large" placeholder="Mô tả.."/>
-                            </el-form-item>
-                        </div> 
-                    </div> 
+                            <el-select v-model="districtSelected" size="large" class="w-100"
+                                :disabled="isEditMode">
+                                <el-option v-for="item in districtListOptions" :key="item.id"
+                                    :label="item.name" :value="item.id" />
+                            </el-select>
+                        </div>
+                    </div>
+                    <EditCategory
+                        :itemModel="itemModel"
+                        :editFields="editFields" />
                 </el-form>
                 <div
                     class="text-center mt-3 pt-3 pb-3"
@@ -76,7 +82,7 @@
                         size="large"
                         type="primary"
                         class="mr-1 ml-1"
-                        @click="addItemSubmit">
+                        @click="submitItemSubmit">
                         <el-icon><Plus /></el-icon>
                         <span>{{ viewSettings.title }}</span>
                     </el-button>

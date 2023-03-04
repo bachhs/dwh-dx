@@ -19,7 +19,6 @@
 import { ref } from 'vue';
 const props = defineProps({
     editFields: { type: Array<any>, required: true, default: null },
-    itemModel: { type: Object, required: true, default: null },
-    rules: { type: Object, required: true, default: null },
+    itemModel: { type: Object, required: true, default: null }, 
 });
 </script>

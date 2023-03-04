@@ -65,7 +65,7 @@
                         type="primary"
                         class="mr-1 ml-1"
                         @click="submitItemSubmit">
-                        <el-icon><Plus /></el-icon>
+                        <el-icon><Plus v-if="!isEditMode" /><Edit v-else/></el-icon>
                         <span>{{ viewSettings.title }}</span>
                     </el-button>
                 </div>

@@ -19,7 +19,7 @@ export default {
         }),
     },
     setup(props: any, context: any) {
-        let isEditMode = false;
+        let isEditMode = ref(false);
         const isLoading = ref(false);
         const editFields = ref([
             { key: 'name', label: 'Tên Tỉnh/Thành phố' },
@@ -104,7 +104,7 @@ export default {
                         const data = {
                             ...itemModel.value,
                         };
-                        if (!isEditMode) createNewItem(data);
+                        if (!isEditMode.value) createNewItem(data);
                         else modifyItem(itemModel.value.id, data);
                     } catch (err) {
                         console.log(err);
@@ -117,14 +117,15 @@ export default {
         };
 
         onMounted(() => {
+            isLoading.value = true;
             if (props.viewSettings) {
                 if (props.viewSettings.dataItem === null) {
-                    isEditMode = false;
+                    isEditMode.value = false;
                     itemModel.value = {
                         countryId: 1,
                     };
                 } else {
-                    isEditMode = true;
+                    isEditMode.value = true;
                     const editItem = props.viewSettings.dataItem;
                     itemModel.value = {
                         countryId: 1,
@@ -135,12 +136,14 @@ export default {
                     });
                 }
             }
+            isLoading.value = false;
         });
         return {
             isLoading,
             editFields,
             ruleFormRef,
             rules,
+            isEditMode,
             itemModel,
             submitItemSubmit,
             moment,

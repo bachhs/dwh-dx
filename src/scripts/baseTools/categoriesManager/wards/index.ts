@@ -21,7 +21,7 @@ export default {
         const currentComponent = ref('ListData');
         const viewSettings = ref({
             viewName: 'ListData',
-            title: 'Thông tin Xã/Phường',
+            title: 'Xã/Phường',
             dataItem: null,
         });
         const changeView = (paramsObject: { viewName: string; data: any }) => {
@@ -31,21 +31,21 @@ export default {
                     case 'ListData':
                         viewSettings.value = {
                             viewName: 'ListData',
-                            title: 'Thông tin Xã/Phường',
+                            title: 'Xã/Phường',
                             dataItem: null,
                         };
                         break;
                     case 'AddData':
                         viewSettings.value = {
                             viewName: 'AddData',
-                            title: 'Thêm mới Thông tin Xã/Phường',
+                            title: 'Thêm mới Xã/Phường',
                             dataItem: null,
                         };
                         break;
                     case 'ModifyData':
                         viewSettings.value = {
                             viewName: 'ModifyData',
-                            title: 'Chỉnh sửa Thông tin Xã/Phường',
+                            title: 'Chỉnh sửa Xã/Phường',
                             dataItem: paramsObject.data,
                         };
                         break;

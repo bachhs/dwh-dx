@@ -9,6 +9,13 @@ export const districtApi = {
         }; 
         return axios.get(`/param/${moduleId}`, { params: requestParams });
     }, 
+    getItemsByProvince(provinceId:number, params: any) {
+        const requestParams: any = {
+            page: params.page,
+            size: params.size,
+        }; 
+        return axios.get(`/param/city/${provinceId}/${moduleId}`, { params: requestParams });
+    }, 
     getItem(itemId: number) {
         return axios.get(`/param/${moduleId}/${itemId}`);
     },

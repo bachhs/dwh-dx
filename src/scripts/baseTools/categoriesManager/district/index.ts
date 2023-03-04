@@ -21,7 +21,7 @@ export default {
         const currentComponent = ref('ListData');
         const viewSettings = ref({
             viewName: 'ListData',
-            title: 'Thông tin Huyện/Thành phố',
+            title: ' Huyện/Thành phố',
             dataItem: null,
         });
         const changeView = (paramsObject: { viewName: string; data: any }) => {
@@ -31,21 +31,21 @@ export default {
                     case 'ListData':
                         viewSettings.value = {
                             viewName: 'ListData',
-                            title: 'Thông tin Huyện/Thành phố',
+                            title: ' Huyện/Thành phố',
                             dataItem: null,
                         };
                         break;
                     case 'AddData':
                         viewSettings.value = {
                             viewName: 'AddData',
-                            title: 'Thêm mới Thông tin Huyện/Thành phố',
+                            title: 'Thêm mới Huyện/Thành phố',
                             dataItem: null,
                         };
                         break;
                     case 'ModifyData':
                         viewSettings.value = {
                             viewName: 'ModifyData',
-                            title: 'Chỉnh sửa Thông tin Huyện/Thành phố',
+                            title: 'Chỉnh sửa Huyện/Thành phố',
                             dataItem: paramsObject.data,
                         };
                         break;

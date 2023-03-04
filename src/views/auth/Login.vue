@@ -62,7 +62,15 @@
                     securityHelper.goToHomePage();
                 }      
                 else{                    
-                    data.isLoading = false;
+                    // const _islogined = localStorage.getItem('_isLogined');
+                    // if(_islogined && _islogined === "true"){
+                    //     data.isLoading = true;
+                    //     securityHelper.signinRedirect();
+                    // }
+                    // data.isLoading = false;
+
+                    data.isLoading = true;
+                    securityHelper.signinRedirect();
                 }  
             }, 1000);
     }).catch(error => { 

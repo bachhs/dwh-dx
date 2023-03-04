@@ -26,9 +26,11 @@
     securityHelper.signinRedirectCallback()
         .then((user:any) => {
             localStorage.setItem(securityHelper.getAccessTokenStoreName(), user.access_token);
+            localStorage.setItem('_isLogined', "true");
             securityHelper.goToHomePage();        
         }).catch((e:any) => {
             console.error(e);
+            localStorage.removeItem('_isLogined');
             securityHelper.goToLoginPage(); 
         });
 </script>
