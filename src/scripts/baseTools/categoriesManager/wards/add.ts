@@ -21,9 +21,10 @@ export default {
     setup(props: any, context: any) {
         let isEditMode = false;
         const isLoading = ref(false);
-        const editFields = ref([
-            { key: 'name', label: 'Tên Tỉnh/Thành phố' },
-            { key: 'full_name', label: 'Tên Tỉnh/Thành phố dạng đầy đủ' },
+        const editFields = ref([ 
+            { key: 'name', label: 'Tên Xã/Phường' },
+            { key: 'full_name', label: 'Tên Xã/Phường dạng đầy đủ' },
+            { key: 'full_path', label: 'Tên Xã/Phường bao gồm Huyện/Quận & Tỉnh/Thành phố' },
         ]);
         const itemModel = ref<any>({
             countryId: 1,
