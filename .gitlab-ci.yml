@@ -1,16 +1,13 @@
-default:
-  image: node:16.16.0
-
 deploy-datalake:
   stage: deploy
-  image: node:16.16.0
+  image: bitnami/git:2.39.1
   only:
     - datalake
   script:
-    - npm install --global vercel
-    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-    - vercel build --prod --token=$VERCEL_TOKEN
-    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+    - echo "https://bachhs:$GITHUB_TOKEN@github.com" > ~/.git-credentials
+    - git config credential.helper 'store --file ~/.git-credentials'
+    - git config remote.datalake.url >&- || git remote add datalake https://github.com/bachhs/datalake.git
+    - git push datalake HEAD:datalake
 
 deploy-dx:
   stage: deploy
@@ -20,5 +17,5 @@ deploy-dx:
   script:
     - echo "https://bachhs:$GITHUB_TOKEN@github.com" > ~/.git-credentials
     - git config credential.helper 'store --file ~/.git-credentials'
-    - git config remote.github.url >&- || git remote add github https://github.com/bachhs/dwh-dx.git
-    - git push github HEAD:dx
+    - git config remote.dx.url >&- || git remote add dx https://github.com/bachhs/dwh-dx.git
+    - git push dx HEAD:dx
