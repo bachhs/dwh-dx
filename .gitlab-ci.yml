@@ -1,7 +1,7 @@
 default:
   image: node:16.16.0
 
-deploy-datalake
+deploy-datalake:
   stage: deploy
   image: node:16.16.0
   only:
@@ -12,7 +12,7 @@ deploy-datalake
     - vercel build --prod --token=$VERCEL_TOKEN
     - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
 
-push-to-github:
+deploy-dx:
   stage: deploy
   image: bitnami/git:2.39.1
   only:
